@@ -34,10 +34,10 @@ public class playerControler : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.instance.isPaused)
-        {
+        //if (!gameManager.instance.isPaused)
+        //{
             Movement();
-        }
+        //}
         Sprint();
     }
     void Movement()
@@ -102,7 +102,7 @@ public class playerControler : MonoBehaviour, IDamage
         isShooting=false;
 
     }
-    public void takeDamage(int amount)
+    public void takeDamage(int amount, DamageEngine.damageType DamageType)
     {
         Hp-=amount;
 
