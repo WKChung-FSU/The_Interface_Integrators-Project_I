@@ -2,28 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SearchService;
+using Unity.VisualScripting;
+using UnityEditor;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
+    #region Player
+    public GameObject player;
+    public playerControler playerScript;
+    #endregion
+
+    #region UI
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuHUD;
+    [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject ammoBar;
+    [SerializeField] TMP_Text healthValue;
+    [SerializeField] TMP_Text ammoCount;
     [SerializeField] TMP_Text enemyCountText;
-
-    public GameObject player;   
-    public playerControler playerScript;
     public bool isPaused;
+    public bool hudEnabled;
+    #endregion
 
     int enemyCount;
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
+        hudEnabled = true;
     }
 
     // Update is called once per frame
@@ -31,16 +46,18 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (menuActive == null) { 
-            
-             statePause();
-             menuActive = menuPause;
-             menuActive.SetActive(isPaused);
-            
+            if (menuActive == null)
+            {
+                statePause();
+                menuActive = menuPause;
+                menuActive.SetActive(isPaused);
+                DisableHUD();
             }
-            else if (menuActive == menuPause) { 
-            stateUnPaused();
-             }
+            else if (menuActive == menuPause)
+            {
+                stateUnPaused();
+                EnableHUD();
+            }
         }
 
     }
@@ -49,16 +66,17 @@ public class gameManager : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = 0f;
         Cursor.visible = true;
-        Cursor.lockState=CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void stateUnPaused()
     {
         isPaused = !isPaused;
         Time.timeScale = 1f;
-        Cursor.visible=false;
-        Cursor.lockState=CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(isPaused);
         menuActive = null;
+        EnableHUD();
     }
     public void updateGameGoal(int amount)
     {
@@ -79,6 +97,15 @@ public class gameManager : MonoBehaviour
         menuActive.SetActive(isPaused);
     }
 
+    public void EnableHUD()
+    {
+        hudEnabled = true;
+        menuHUD.SetActive(hudEnabled);
+    }
 
-
+    public void DisableHUD()
+    {
+        hudEnabled = false;
+        menuHUD.SetActive(hudEnabled);
+    }
 }
