@@ -22,8 +22,6 @@ public class DamageEngine : MonoBehaviour
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, RemoveTime);
         }
-
-
     }
 
     private void OnTriggerEnter(Collider other)
