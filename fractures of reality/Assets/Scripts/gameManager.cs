@@ -13,6 +13,8 @@ public class gameManager : MonoBehaviour
     #region Player
     public GameObject player;
     public playerControler playerScript;
+
+    [SerializeField] PlayerWeapon playerWeapon;
     #endregion
 
     #region UI
@@ -23,14 +25,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuHUD;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject ammoBar;
-    [SerializeField] TMP_Text healthValue;
-    [SerializeField] TMP_Text ammoCount;
+    [SerializeField] TMP_Text healthCountText;
+    [SerializeField] TMP_Text ammoCountText;
     [SerializeField] TMP_Text enemyCountText;
     public bool isPaused;
     public bool hudEnabled;
     #endregion
 
     int enemyCount;
+    int healthCount;
+    int ammoCount;
 
     // Start is called before the first frame update
     void Awake()
@@ -60,6 +64,10 @@ public class gameManager : MonoBehaviour
             }
         }
 
+        //update health bar
+        UpdateHeathBar();
+        //update ammo bar
+        UpdateAmmoBar();
     }
     public void statePause()
     {
@@ -109,5 +117,15 @@ public class gameManager : MonoBehaviour
         menuHUD.SetActive(hudEnabled);
     }
 
+    void UpdateHeathBar()
+    {
+        healthCount = playerScript.hpOriginal;
+        healthCountText.text = healthCount.ToString("F0");
+    }
 
+    void UpdateAmmoBar()
+    {
+        ammoCount = playerWeapon.CurrAmmo;
+        ammoCountText.text = ammoCount.ToString("F0");
+    }
 }
