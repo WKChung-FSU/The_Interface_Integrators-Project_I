@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageEngine : MonoBehaviour
 {
     // will add more spell types if necessary
-    public enum damageType { spellBasic, Environmental }
+    public enum damageType { spellBasic, Environmental, }
     [SerializeField] damageType type;
     [SerializeField] Rigidbody rb; 
 

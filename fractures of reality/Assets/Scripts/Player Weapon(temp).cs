@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour, IDamage
@@ -11,22 +12,28 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     int hpOriginal;
     bool isSprinting;
     bool isShooting;
-
+    
     #endregion
     #region wepon Stats
+
+
+
     [SerializeField] DamageEngine.damageType Weapon1Type;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
+    [SerializeField] int shootDistance;
 
-    int MaxAmmo;
-    int CurrAmmo;
+    Vector<DamageEngine.damageType> PlayerInventory;
+
+    public int MaxAmmo;
+    public int CurrAmmo;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         hpOriginal = Hp;
+     
     }
 
     // Update is called once per frame
@@ -36,7 +43,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             StartCoroutine(Shoot());
     }
 
-    #region Ammo Getters
+    #region PLayer stat Getters
     int getMaxAmmo()
     {
         return MaxAmmo;
@@ -46,7 +53,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return CurrAmmo;
     }
-
+    int getMaxHealth() 
+    {
+    return hpOriginal;
+    }
+    int getCurrentHealth()
+    {
+        return Hp;
+    }
     #endregion
 
     IEnumerator Shoot()
@@ -54,7 +68,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         isShooting = true;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
         {
             //Debug.Log(hit.collider.name);
 
