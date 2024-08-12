@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class playerControler : MonoBehaviour, IDamage
 {
+    public int hpOriginal;
     //fields
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
@@ -22,7 +23,7 @@ public class playerControler : MonoBehaviour, IDamage
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
-    int hpOriginal;
+    
      bool isSprinting;
     bool isShooting;
     // Start is called before the first frame update
