@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour,IDamage
         }
         
     }
-    public void takeDamage(int amount)
+    public void takeDamage(int amount, DamageEngine.damageType damageType)
     {
         Hp -= amount;
 

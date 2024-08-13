@@ -7,7 +7,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 {
     #region Test Variables
     [SerializeField] LayerMask ignoreMask;
-    bool isShooting;
     #endregion
     #region wepon Stats
     [SerializeField] DamageEngine.damageType Weapon1Type;
@@ -16,8 +15,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] int shootDistance;
     [SerializeField] int MaxAmmo;
     DamageEngine[] weaponInventory= new DamageEngine[3];
-    public int CurrAmmo;
 
+    public int CurrAmmo;
+    bool isShooting;
     #endregion
 
     // Start is called before the first frame update
@@ -31,7 +31,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         if (Input.GetButton("Shoot") && isShooting == false)
             StartCoroutine(Shoot());
-
     }
 
     IEnumerator Shoot()
@@ -41,7 +40,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             IDamage damage = hit.collider.GetComponent<IDamage>();
 

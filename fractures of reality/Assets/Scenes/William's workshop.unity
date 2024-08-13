@@ -446,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 163003646}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: 1.5, z: -22.25}
+  m_LocalPosition: {x: 8.5, y: 1.5, z: -22.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1966,7 +1966,7 @@ Transform:
   m_GameObject: {fileID: 673943378}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.25, y: 1.25, z: -22.5}
+  m_LocalPosition: {x: 6.5, y: 1.25, z: -22.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2121,19 +2121,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc032359e9fee47935e6541d4d5ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpOriginal: 0
   controller: {fileID: 700595708}
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
-  Hp: 2
-  speed: 15
+  Hp: 0
+  speed: 16
   sprintMod: 3
   jumpMax: 2
   jumpSpeed: 15
   gravity: 15
   shootDamage: 0
-  shootRate: 1
-  shootDist: 10
+  shootRate: 0
+  shootDist: 0
 --- !u!114 &700595710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2146,14 +2147,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0fd151dae2c454b9d7a793d15374d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 2
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
   Weapon1Type: 0
-  shootDamage: 3
+  shootDamage: 4
   shootRate: 0.5
-  shootDistance: 0
+  shootDistance: 15
+  MaxAmmo: 10
+  CurrAmmo: 0
 --- !u!1 &728331374
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,15 +4836,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2388451925915641339, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4
+      value: 5.25
       objectReference: {fileID: 0}
     - target: {fileID: 2388451925915641339, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.74
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 2388451925915641339, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.75
+      value: -22.75
       objectReference: {fileID: 0}
     - target: {fileID: 2388451925915641339, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_LocalRotation.w
