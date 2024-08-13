@@ -1,32 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour, IDamage
 {
     #region Test Variables
-    [SerializeField] int Hp;
     [SerializeField] LayerMask ignoreMask;
-
-    int hpOriginal;
-    bool isSprinting;
-    bool isShooting;
-
     #endregion
     #region wepon Stats
     [SerializeField] DamageEngine.damageType Weapon1Type;
     [SerializeField] int shootDamage;
     [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
+    [SerializeField] int shootDistance;
+    [SerializeField] int MaxAmmo;
+    DamageEngine[] weaponInventory= new DamageEngine[3];
 
-    int MaxAmmo;
-    int CurrAmmo;
+    public int CurrAmmo;
+    bool isShooting;
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        hpOriginal = Hp;
+        CurrAmmo = MaxAmmo;
     }
 
     // Update is called once per frame
@@ -36,47 +33,26 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             StartCoroutine(Shoot());
     }
 
-    #region Ammo Getters
-    int getMaxAmmo()
-    {
-        return MaxAmmo;
-    }
-
-    int getCurrentAmmo()
-    {
-        return CurrAmmo;
-    }
-
-    #endregion
-
     IEnumerator Shoot()
     {
         isShooting = true;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             IDamage damage = hit.collider.GetComponent<IDamage>();
 
             if (damage != null)
             {
                 damage.takeDamage(shootDamage,Weapon1Type);
+                CurrAmmo--;
             }
 
         };
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
 
-    }
-    public void takeDamage(int amount, DamageEngine.damageType DamageType)
-    {
-        Hp -= amount;
-
-        if (Hp <= 0)
-        {
-            gameManager.instance.youLose();
-        }
     }
 }
