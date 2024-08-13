@@ -938,6 +938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6023493930163666163}
   - component: {fileID: 8651392385170227875}
+  - component: {fileID: 460195234844669151}
   - component: {fileID: 7210268632664386187}
   m_Layer: 5
   m_Name: GameManager
@@ -989,6 +990,18 @@ MonoBehaviour:
   enemyCountText: {fileID: 7631197481266396190}
   isPaused: 0
   hudEnabled: 0
+--- !u!114 &460195234844669151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469404560531256551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f0d71d1c13932048ad972a8686fbfc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7210268632664386187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2305,7 +2318,7 @@ RectTransform:
   m_GameObject: {fileID: 5038584095303052715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6023493930163666163}
@@ -2319,7 +2332,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1293313339750954945
 Canvas:
   m_ObjectHideFlags: 0

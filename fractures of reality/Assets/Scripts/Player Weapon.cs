@@ -75,13 +75,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 0:
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
                 {
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
 
                     IDamage damage = hit.collider.GetComponent<IDamage>();
 
                     if (damage != null && !OutOfAmmo)
                     {
-                        damage.takeDamage(shootDamage, Weapon1Type);
+                        DamageEngine.instance.CalculateDamage(hit.collider, shootDamage, Weapon1Type);
                         CurrAmmo--;
                         AmmoTest();
                     }
@@ -89,7 +89,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 break;
             //Fireball
             case 1:
-                if ((CurrAmmo - Spell2Multiplier) > 0) { 
+                if ((CurrAmmo - Spell2Multiplier) >= 0) { 
                 Instantiate(Spell2, SpellLaunchPos.position, transform.rotation);
                 CurrAmmo -= Spell2Multiplier;
                 }

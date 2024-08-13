@@ -53,12 +53,6 @@ public class EnemyAI : MonoBehaviour,IDamage
 
     public void takeDamage(int amount, DamageEngine.damageType type)
     {
-        Hp -= amount;
-
-        if (Hp <= 0) { 
-            Destroy(gameObject);
-            gameManager.instance.updateGameGoal(-1);
-        }
         StartCoroutine(flashRed());
     }
 

@@ -4,61 +4,39 @@ using UnityEngine;
 
 public class DamageEngine : MonoBehaviour
 {
+    public static DamageEngine instance;
     // will add more spell types if necessary
     public enum damageType { spellBasic, Environmental, }
-    [SerializeField] damageType type;
-    [SerializeField] Rigidbody rb; 
-
-    [SerializeField] int damageAmount;
-    [SerializeField] int speed;
-    [SerializeField] int RemoveTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        //logic for the spell bullet itself
-        if (type == damageType.spellBasic)
-        {
-            rb.velocity = transform.forward * speed;
-            Destroy(gameObject, RemoveTime);
-        }
+    instance = this;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.isTrigger)
+
+   public void CalculateDamage(Collider OtherCollider,int DamageAmount,damageType Type){
+       
+        int TempHealth;
+        IDamage dmg = OtherCollider.GetComponent<IDamage>();
+        playerControler targetPlayer = OtherCollider.GetComponent<playerControler>();
+        EnemyAI TargetEnemyAI = OtherCollider.GetComponent<EnemyAI>();
+        dmg.takeDamage(DamageAmount, Type);
+        if (targetPlayer != null)
         {
-            return;
+
         }
-        GameObject targetObject;
-        IDamage dmg = other.GetComponent<IDamage>();
-        if (dmg != null)
+        else if (TargetEnemyAI != null)
         {
+            TempHealth = TargetEnemyAI.EnemyHP;
 
-            //targetObject = other.gameObject;
-            //playerControler targetPlayer=other.GetComponent<playerControler>();
-            //EnemyAI TargetEnemyAI = targetPlayer.GetComponent<EnemyAI>();
-            //if (targetPlayer != null) 
-            //{ 
-               
-            //}
-            //else if (TargetEnemyAI != null)
-            //{
-                
-            //}
+            // add damage calc
+            TempHealth -= DamageAmount;
+            TargetEnemyAI.EnemyHP = TempHealth;
 
-
-
-
-
-
-            dmg.takeDamage(damageAmount,type);
+            if (TempHealth <= 0)
+                Destroy(TargetEnemyAI.gameObject);
+            gameManager.instance.updateGameGoal(-1);
         }
-        Destroy(gameObject);
-
-        
-
-
-
 
     }
 }
