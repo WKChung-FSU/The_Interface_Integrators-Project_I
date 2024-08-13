@@ -119,8 +119,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8441483300417840540}
   - component: {fileID: 782011894035760111}
-  - component: {fileID: 7359180178567345916}
   - component: {fileID: 7315470601531378724}
+  - component: {fileID: 7359180178567345916}
   - component: {fileID: 2856135798366074814}
   - component: {fileID: 722136256187023}
   - component: {fileID: 5537295069211213221}
@@ -140,11 +140,12 @@ Transform:
   m_GameObject: {fileID: 5305019558992904906}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 6.25, y: 1.25, z: -14}
+  m_LocalPosition: {x: 8.5, y: 1.25, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4928155821958457504}
+  - {fileID: 4312234353505068331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &782011894035760111
@@ -159,20 +160,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc032359e9fee47935e6541d4d5ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpOriginal: 9
+  hpOriginal: 0
   controller: {fileID: 7359180178567345916}
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
-  Hp: 2
-  speed: 15
+  Hp: 5
+  speed: 16
   sprintMod: 3
   jumpMax: 2
   jumpSpeed: 15
   gravity: 15
+--- !u!114 &7315470601531378724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305019558992904906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0fd151dae2c454b9d7a793d15374d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 8
+  Weapon1Type: 0
   shootDamage: 1
-  shootRate: 1
-  shootDist: 10
+  shootRate: 0.5
+  shootDistance: 15
+  MaxAmmo: 10
+  Spell2Multiplier: 2
+  OutOfAmmo: 0
+  CurrAmmo: 0
+  MenuLimit: 2
+  SpellLaunchPos: {fileID: 4312234353505068331}
+  Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
+  currentWeapon: 0
 --- !u!143 &7359180178567345916
 CharacterController:
   m_ObjectHideFlags: 0
@@ -199,28 +224,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7315470601531378724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5305019558992904906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0fd151dae2c454b9d7a793d15374d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hp: 73
-  ignoreMask:
-    serializedVersion: 2
-    m_Bits: 0
-  Weapon1Type: 0
-  shootDamage: 0
-  shootRate: 0
-  shootDistance: 0
-  MaxAmmo: 0
-  CurrAmmo: 0
 --- !u!33 &2856135798366074814
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -294,3 +297,34 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6353705346607244251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4312234353505068331}
+  m_Layer: 3
+  m_Name: spell pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4312234353505068331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6353705346607244251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.000007376074, y: 0.5, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8441483300417840540}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
