@@ -3522,6 +3522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221328411}
   - component: {fileID: 221328410}
+  - component: {fileID: 221328412}
   m_Layer: 0
   m_Name: skeleton 4
   m_TagString: Untagged
@@ -3568,6 +3569,24 @@ Transform:
   - {fileID: 1874384518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221328412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221328409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &225670985
 GameObject:
   m_ObjectHideFlags: 0
@@ -12215,6 +12234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 716363476}
   - component: {fileID: 716363475}
+  - component: {fileID: 716363477}
   m_Layer: 0
   m_Name: skeleton 3
   m_TagString: Untagged
@@ -12261,6 +12281,24 @@ Transform:
   - {fileID: 1901974718}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -98.859, z: 0}
+--- !u!114 &716363477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716363474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &719952062
 GameObject:
   m_ObjectHideFlags: 0
@@ -14475,6 +14513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 841169792}
   - component: {fileID: 841169791}
+  - component: {fileID: 841169793}
   m_Layer: 0
   m_Name: skeleton (1)
   m_TagString: Untagged
@@ -14521,6 +14560,24 @@ Transform:
   - {fileID: 835593389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -139.188, z: 0}
+--- !u!114 &841169793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841169790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &844573745
 GameObject:
   m_ObjectHideFlags: 0
@@ -34351,6 +34408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872326780}
   - component: {fileID: 1872326779}
+  - component: {fileID: 1872326781}
   m_Layer: 0
   m_Name: skeleton 2
   m_TagString: Untagged
@@ -34397,6 +34455,24 @@ Transform:
   - {fileID: 1381110793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1872326781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872326778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &1874384517
 GameObject:
   m_ObjectHideFlags: 0
@@ -34626,6 +34702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881850155}
   - component: {fileID: 1881850154}
+  - component: {fileID: 1881850156}
   m_Layer: 0
   m_Name: skeleton 5
   m_TagString: Untagged
@@ -34672,6 +34749,24 @@ Transform:
   - {fileID: 1130568022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -73.288, z: 0}
+--- !u!114 &1881850156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881850153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &1885952252
 GameObject:
   m_ObjectHideFlags: 0
@@ -45214,6 +45309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6732673434605530486}
   - component: {fileID: 3739466606406500364}
+  - component: {fileID: 7724828989097369446}
   m_Layer: 0
   m_Name: skeleton
   m_TagString: Untagged
@@ -45221,6 +45317,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7724828989097369446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7724828989097369445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  model: {fileID: 0}
+  shootPos: {fileID: 0}
+  Hp: 10
+  bullet: {fileID: 0}
+  shootRate: 0
 --- !u!1 &7748989893921421525
 GameObject:
   m_ObjectHideFlags: 0
