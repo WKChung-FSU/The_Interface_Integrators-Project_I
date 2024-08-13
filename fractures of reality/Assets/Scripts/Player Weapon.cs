@@ -19,8 +19,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] int shootDistance;
     [SerializeField] int MaxAmmo;
     [SerializeField] int Spell2Multiplier;
-    [SerializeField] public bool OutOfAmmo;
-    public int CurrAmmo;
+    [SerializeField] bool OutOfAmmo;
+     int CurrAmmo;
     bool isShooting;
     #endregion
 
@@ -48,6 +48,22 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         
     }
 
+    #region Public Getters
+    public
+    int GetCurrentAmmo()
+    {
+        return CurrAmmo;
+    }
+    int GetMaxAmmo()
+    {
+        return MaxAmmo;
+    }
+    bool GetOutOfAmmo()
+    {
+        return OutOfAmmo;
+    }
+    private
+    #endregion
     IEnumerator Shoot()
     {
         isShooting = true;
@@ -55,8 +71,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         RaycastHit hit;
         switch (currentWeapon)
         {
+            //Basic spell
             case 0:
-                //Basic spell
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreMask))
                 {
                     Debug.Log(hit.collider.name);
@@ -78,6 +94,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 CurrAmmo -= Spell2Multiplier;
                 }
                 break;
+                
+            case 2:
+
+
+            break;
         }
        
         yield return new WaitForSeconds(shootRate);

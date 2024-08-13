@@ -126,7 +126,7 @@ public class gameManager : MonoBehaviour
 
     void UpdateAmmoBar()
     {
-        ammoCount = playerWeapon.CurrAmmo;
+        ammoCount = playerWeapon.GetCurrentAmmo();
         ammoCountText.text = ammoCount.ToString("F0");
     }
 }

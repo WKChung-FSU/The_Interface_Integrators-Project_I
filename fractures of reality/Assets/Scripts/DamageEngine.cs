@@ -23,18 +23,42 @@ public class DamageEngine : MonoBehaviour
             Destroy(gameObject, RemoveTime);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
         {
             return;
         }
+        GameObject targetObject;
         IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null)
         {
+
+            //targetObject = other.gameObject;
+            //playerControler targetPlayer=other.GetComponent<playerControler>();
+            //EnemyAI TargetEnemyAI = targetPlayer.GetComponent<EnemyAI>();
+            //if (targetPlayer != null) 
+            //{ 
+               
+            //}
+            //else if (TargetEnemyAI != null)
+            //{
+                
+            //}
+
+
+
+
+
+
             dmg.takeDamage(damageAmount,type);
         }
         Destroy(gameObject);
+
+        
+
+
+
+
     }
 }
