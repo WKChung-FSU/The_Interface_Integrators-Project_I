@@ -18,6 +18,20 @@ public class EnemyAI : MonoBehaviour,IDamage
     bool playerInRange;
     Color colorOriginal;
 
+
+    public int enemyHP
+    {
+        get
+        {
+            return Hp;
+        }
+
+        set
+        {
+            Hp = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
