@@ -41,7 +41,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Shoot") && isShooting == false)
+        if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(Shoot());
         if(Input.GetButtonDown("Switch Weapon"))
             StartCoroutine(WeaponMenuSystem());

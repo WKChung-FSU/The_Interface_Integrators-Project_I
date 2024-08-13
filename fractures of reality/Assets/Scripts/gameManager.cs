@@ -18,7 +18,7 @@ public class gameManager : MonoBehaviour
 
     #region UI
     [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuActive;
+    [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuHUD;
@@ -109,12 +109,19 @@ public class gameManager : MonoBehaviour
     public void EnableHUD()
     {
         hudEnabled = true;
-        menuHUD.SetActive(hudEnabled);
+        ToggleHUD();
     }
 
     public void DisableHUD()
     {
         hudEnabled = false;
+        ToggleHUD();
+    }
+
+    #region private functions
+    void ToggleHUD()
+    {
+        //stay DRY
         menuHUD.SetActive(hudEnabled);
     }
 
@@ -129,4 +136,6 @@ public class gameManager : MonoBehaviour
         ammoCount = playerWeapon.GetCurrentAmmo();
         ammoCountText.text = ammoCount.ToString("F0");
     }
+
+    #endregion
 }

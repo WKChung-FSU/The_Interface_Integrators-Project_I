@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc032359e9fee47935e6541d4d5ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpOriginal: 0
+  hpOriginal: 4
   controller: {fileID: 7359180178567345916}
   ignoreMask:
     serializedVersion: 2
@@ -193,7 +193,6 @@ MonoBehaviour:
   MaxAmmo: 10
   Spell2Multiplier: 2
   OutOfAmmo: 0
-  CurrAmmo: 0
   MenuLimit: 2
   SpellLaunchPos: {fileID: 4312234353505068331}
   Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
