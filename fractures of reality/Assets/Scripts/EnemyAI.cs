@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour,IDamage
     bool isShooting;
     bool playerInRange;
     Color colorOriginal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,9 +35,9 @@ public class EnemyAI : MonoBehaviour,IDamage
                  StartCoroutine(shoot());
              }
         }
-        
     }
-    public void takeDamage(int amount)
+
+    public void takeDamage(int amount, DamageEngine.damageType type)
     {
         Hp -= amount;
 
@@ -46,6 +47,7 @@ public class EnemyAI : MonoBehaviour,IDamage
         }
         StartCoroutine(flashRed());
     }
+
     IEnumerator flashRed()
     {
         model.material.color = Color.red;
