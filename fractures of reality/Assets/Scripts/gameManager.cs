@@ -13,8 +13,7 @@ public class gameManager : MonoBehaviour
     #region Player
     public GameObject player;
     public playerControler playerScript;
-
-    [SerializeField] PlayerWeapon playerWeapon;
+    public PlayerWeapon playerWeapon;
     #endregion
 
     #region UI
@@ -42,6 +41,8 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerControler>();
+        playerWeapon = player.GetComponent<PlayerWeapon>();
+
         hudEnabled = true;
     }
 
