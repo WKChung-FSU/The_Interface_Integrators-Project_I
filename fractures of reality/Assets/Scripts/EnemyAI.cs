@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour,IDamage
     Color colorOriginal;
 
 
-    public int enemyHP
+    public int EnemyHP
     {
         get
         {
