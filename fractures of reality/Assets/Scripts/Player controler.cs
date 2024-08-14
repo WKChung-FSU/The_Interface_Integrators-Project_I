@@ -39,6 +39,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         hpOriginal = Hp;
+        gameManager.instance.healthMax = hpOriginal;
     }
 
     // Update is called once per frame
