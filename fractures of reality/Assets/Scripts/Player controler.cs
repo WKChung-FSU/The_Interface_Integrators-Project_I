@@ -5,12 +5,12 @@ using UnityEngine.UIElements;
 
 public class playerControler : MonoBehaviour, IDamage
 {
-    public int hpOriginal;
+    
     //fields
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
-    [SerializeField] public int Hp;
+    [SerializeField] int Hp;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpMax;
@@ -21,7 +21,7 @@ public class playerControler : MonoBehaviour, IDamage
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
-    
+    int hpOriginal;
     public int PlayerHP
     {
         get
