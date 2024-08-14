@@ -11,6 +11,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     #endregion
     [SerializeField] LayerMask ignoreMask;
+    [SerializeField] LineRenderer lightningVisual;
 
     #region Menu 
     [SerializeField] int MenuLimit;
@@ -51,7 +52,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(Shoot());
         if (Input.GetButtonDown("Switch Weapon"))
-            StartCoroutine(WeaponMenuSystem());
+            //No longer coroutine -CM
+            WeaponMenuSystem();
     }
 
     #region Public Getters
@@ -106,11 +108,19 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             //lightning spell
             case 2:
 
+
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Weapon3Range, ~ignoreMask))
                 {
                     #region Debug
                     Debug.Log(hit.collider.name);
                     #endregion
+
+                    //test -CM
+                    //Visual of lightning being cast 
+                    lightningVisual.useWorldSpace = true;
+                    lightningVisual.SetPosition(0, SpellLaunchPos.position);
+                    lightningVisual.SetPosition(1, hit.point);
+
 
                     IDamage damage = hit.collider.GetComponent<IDamage>();
 
@@ -119,7 +129,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                         DamageEngine.instance.CalculateDamage(hit.collider, Weapon3Damage, DamageEngine.damageType.Lightning);
                         CurrAmmo--;
                         AmmoTest();
+                        //lightning delay
+                        //coconut.jpeg
+
+                        //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
                     }
+                    //if this is here it will always show the visual
+                        StartCoroutine(LightningDelay());
                 }
                 break;
         }
@@ -128,8 +144,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         isShooting = false;
 
     }
-    IEnumerator WeaponMenuSystem()
+    void WeaponMenuSystem()
     {
+        //changed from IEnumerator to void -CM
         if (Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             currentWeapon++;
@@ -149,7 +166,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         }
 
 
-        yield return new WaitForSeconds(3);
+        gameManager.instance.UpdateWeaponIconUI();
+        //yield return new WaitForSeconds(3);
     }
     void AmmoTest()
     {
@@ -162,6 +180,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             OutOfAmmo = true;
             CurrAmmo = 0;
         }
+    }
+
+    IEnumerator LightningDelay()
+    {
+        lightningVisual.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        lightningVisual.enabled = false;
     }
 
 }

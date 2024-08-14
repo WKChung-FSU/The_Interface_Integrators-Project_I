@@ -36,6 +36,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     public bool isPaused;
     public bool hudEnabled;
+
+    //weapon icons
+    [SerializeField] GameObject wMagicMissileIcon;
+    [SerializeField] GameObject wFireballIcon;
+    [SerializeField] GameObject wLightningIcon;
+
     #endregion
 
 
@@ -70,9 +76,14 @@ public class gameManager : MonoBehaviour
         }
 
         //update health bar
-        UpdateHeathBar();
-        //update ammo bar
-        UpdateAmmoBar();
+        UpdateHUD();
+
+        //check if switch weapon button is pressed
+        //then call weapon swap UI code
+        //if (Input.GetButtonDown("Switch Weapon"))
+        //{
+        //    UpdateWeaponIconUI();
+        //}
     }
     public void statePause()
     {
@@ -127,6 +138,41 @@ public class gameManager : MonoBehaviour
         StartCoroutine(DamageFlashTimer());
     }
 
+    public void UpdateWeaponIconUI()
+    {
+        int weapon = (int)playerWeapon.GetCurrentWeapon();
+        //disable all weapon icons first
+        wMagicMissileIcon.SetActive(false);
+        wFireballIcon.SetActive(false);
+        wLightningIcon.SetActive(false);
+
+        switch (weapon)
+        {
+            case 0: //magic missile
+                {
+                    //enable the correct icon
+                    wMagicMissileIcon.SetActive(true);
+                    break;
+                }
+            case 1: //Fireball
+                {
+                    wFireballIcon.SetActive(true);
+                    break;
+                }
+            case 2: //Lightning
+                {
+                    wLightningIcon.SetActive(true);
+                    break;
+                }
+        }
+    }
+
+
+
+
+
+
+
     #region private functions
     void ToggleHUD()
     {
@@ -134,15 +180,14 @@ public class gameManager : MonoBehaviour
         menuHUD.SetActive(hudEnabled);
     }
 
-    void UpdateHeathBar()
+    void UpdateHUD()
     {
+        //health bar
         healthCount = playerScript.PlayerHP;
         healthCountText.text = healthCount.ToString("F0");
         gameManager.instance.healthBar.fillAmount = (float)healthCount / healthMax;
-    }
 
-    void UpdateAmmoBar()
-    {
+        //ammo bar
         ammoCount = playerWeapon.GetCurrentAmmo();
         ammoCountText.text = ammoCount.ToString("F0");
         gameManager.instance.ammoBar.fillAmount = (float)ammoCount / ammoMax;
