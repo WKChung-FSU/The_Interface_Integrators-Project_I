@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -78,11 +79,13 @@ public class EnemyAI : MonoBehaviour,IDamage
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

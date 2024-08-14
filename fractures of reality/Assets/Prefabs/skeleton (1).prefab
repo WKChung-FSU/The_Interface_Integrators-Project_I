@@ -2173,6 +2173,7 @@ GameObject:
   - component: {fileID: 6783842558264711902}
   - component: {fileID: 3024806175926015525}
   - component: {fileID: 2904798479807662190}
+  - component: {fileID: -2555929289101370116}
   m_Layer: 0
   m_Name: skeleton (1)
   m_TagString: Untagged
@@ -2234,9 +2235,34 @@ MonoBehaviour:
   agent: {fileID: 0}
   model: {fileID: 0}
   shootPos: {fileID: 0}
+  attackPos: {fileID: 0}
   Hp: 10
+  enemyType: 0
   bullet: {fileID: 0}
   shootRate: 0
+--- !u!136 &-2555929289101370116
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2893852035738581323}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!1 &2901965665249060950
 GameObject:
   m_ObjectHideFlags: 0
