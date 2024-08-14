@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour,IDamage
     [SerializeField] Transform shootPos;
 
     [SerializeField] int Hp;
-
+    [SerializeField] DamageEngine.EnemyType enemyType;
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
 
@@ -29,6 +29,14 @@ public class EnemyAI : MonoBehaviour,IDamage
         set
         {
             Hp = value;
+        }
+    }
+
+    public DamageEngine.EnemyType EnemyType
+    {
+        get
+        {
+            return enemyType;
         }
     }
 
