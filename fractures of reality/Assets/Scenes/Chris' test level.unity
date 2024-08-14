@@ -230,7 +230,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   model: {fileID: 163003648}
   shootPos: {fileID: 0}
-  Hp: 0
+  Hp: 15
+  enemyType: 0
   bullet: {fileID: 0}
   shootRate: 0
 --- !u!4 &163003651
@@ -537,13 +538,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660771212}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.72182095, y: -0.17198645, z: 0.19341134, w: 0.64186233}
   m_LocalPosition: {x: 0, y: 39.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 96.711, y: -30, z: 0}
 --- !u!1 &1470683707
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +653,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   model: {fileID: 1470683709}
   shootPos: {fileID: 0}
-  Hp: 0
+  Hp: 15
+  enemyType: 1
   bullet: {fileID: 0}
   shootRate: 0
 --- !u!4 &1470683712
