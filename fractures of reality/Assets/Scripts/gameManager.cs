@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuHUD;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject ammoBar;
+    [SerializeField] GameObject damageFlashScreen;
     [SerializeField] TMP_Text healthCountText;
     [SerializeField] TMP_Text ammoCountText;
     [SerializeField] TMP_Text enemyCountText;
@@ -118,6 +119,11 @@ public class gameManager : MonoBehaviour
         ToggleHUD();
     }
 
+    public void DamageFlashScreen()
+    {
+        StartCoroutine(DamageFlashTimer());
+    }
+
     #region private functions
     void ToggleHUD()
     {
@@ -135,6 +141,13 @@ public class gameManager : MonoBehaviour
     {
         ammoCount = playerWeapon.GetCurrentAmmo();
         ammoCountText.text = ammoCount.ToString("F0");
+    }
+
+    IEnumerator DamageFlashTimer()
+    {
+        gameManager.instance.damageFlashScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.damageFlashScreen.SetActive(false);
     }
 
     #endregion
