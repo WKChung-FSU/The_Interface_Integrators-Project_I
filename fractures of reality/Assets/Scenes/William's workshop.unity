@@ -1268,7 +1268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: Weapon3Damage
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: Spell2CostMultiplier

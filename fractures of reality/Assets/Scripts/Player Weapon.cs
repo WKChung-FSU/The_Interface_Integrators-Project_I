@@ -47,7 +47,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(Shoot());
         if (Input.GetButtonDown("Switch Weapon"))
@@ -74,7 +73,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         weaponMenu = (WeaponMenu)currentWeapon;
         return weaponMenu;
-
     }
 
     private
@@ -82,8 +80,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     IEnumerator Shoot()
     {
         isShooting = true;
-        UnityEngine.Quaternion playerAim =
-        UnityEngine.Quaternion.Inverse(Camera.main.transform.localRotation) * transform.rotation;
 
         RaycastHit hit;
         switch (currentWeapon)
@@ -92,7 +88,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 0:
                 if ((CurrAmmo) > 0)
                 {
-                    Instantiate(Spell1, SpellLaunchPos.position, playerAim);
+                    Instantiate(Spell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
                     CurrAmmo--;
                 }
                 break;
@@ -101,7 +97,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 1:
                 if ((CurrAmmo - Spell2CostMultiplier) >= 0)
                 {
-                    Instantiate(Spell2, SpellLaunchPos.position, playerAim);
+                    Instantiate(Spell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
                     CurrAmmo -= Spell2CostMultiplier;
                 }
                 break;
