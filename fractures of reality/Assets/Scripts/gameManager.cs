@@ -127,7 +127,7 @@ public class gameManager : MonoBehaviour
 
     void UpdateHeathBar()
     {
-        healthCount = playerScript.hpOriginal;
+        healthCount = playerScript.PlayerHP;
         healthCountText.text = healthCount.ToString("F0");
     }
 
