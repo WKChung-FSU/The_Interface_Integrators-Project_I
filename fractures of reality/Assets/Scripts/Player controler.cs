@@ -45,10 +45,10 @@ public class playerControler : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        //if (!gameManager.instance.isPaused)
-        //{
+        if (!gameManager.instance.isPaused)
+        {
             Movement();
-        //}
+        }
         Sprint();
         
     }
