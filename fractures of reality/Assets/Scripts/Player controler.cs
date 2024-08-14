@@ -16,8 +16,8 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-    
 
+    
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
@@ -39,6 +39,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         hpOriginal = Hp;
+        
     }
 
     // Update is called once per frame
@@ -49,6 +50,7 @@ public class playerControler : MonoBehaviour, IDamage
             Movement();
         //}
         Sprint();
+        
     }
     void Movement()
     {
@@ -72,6 +74,7 @@ public class playerControler : MonoBehaviour, IDamage
         }
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
+       
 
     }
 
