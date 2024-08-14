@@ -231,6 +231,7 @@ MonoBehaviour:
   model: {fileID: 163003648}
   shootPos: {fileID: 0}
   Hp: 3
+  enemyType: 0
   bullet: {fileID: 0}
   shootRate: 0
 --- !u!4 &163003651
@@ -462,6 +463,7 @@ MonoBehaviour:
   model: {fileID: 408727062}
   shootPos: {fileID: 0}
   Hp: 10
+  enemyType: 0
   bullet: {fileID: 0}
   shootRate: 0
 --- !u!4 &408727065
@@ -824,6 +826,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1224525760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2623962946099652053, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+  m_PrefabInstance: {fileID: 1225634614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1225634614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -928,6 +935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'UI '
       objectReference: {fileID: 0}
+    - target: {fileID: 8651392385170227875, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: damageFlashScreen
+      value: 
+      objectReference: {fileID: 1224525760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1148,6 +1159,7 @@ MonoBehaviour:
   model: {fileID: 1558332027}
   shootPos: {fileID: 0}
   Hp: 10
+  enemyType: 0
   bullet: {fileID: 0}
   shootRate: 0
 --- !u!4 &1558332030
@@ -1234,49 +1246,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 782011894035760111, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Hp
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 782011894035760111, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: hpOriginal
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5305019558992904906, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_Name
       value: Test player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Spell1
-      value: 
-      objectReference: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: MaxAmmo
-      value: 9999999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: FireRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: shootDamage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Weapon3Range
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Weapon3Damage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Spell2CostMultiplier
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: Spell3CostMultiplier
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
