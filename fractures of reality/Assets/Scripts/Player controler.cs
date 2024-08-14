@@ -16,8 +16,8 @@ public class playerControler : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-    
 
+    
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
@@ -39,7 +39,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         hpOriginal = Hp;
-        gameManager.instance.healthMax = hpOriginal;
+        
     }
 
     // Update is called once per frame
@@ -50,6 +50,7 @@ public class playerControler : MonoBehaviour, IDamage
             Movement();
         //}
         Sprint();
+        
     }
     void Movement()
     {
@@ -73,6 +74,7 @@ public class playerControler : MonoBehaviour, IDamage
         }
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
+       
 
     }
 
@@ -91,7 +93,8 @@ public class playerControler : MonoBehaviour, IDamage
     }
     public void takeDamage(int amount, DamageEngine.damageType DamageType)
     {
-        gameManager.instance.DamageFlashScreen();
+        Hp-=amount;
+
         if (Hp <= 0) {
             gameManager.instance.youLose();
         }
