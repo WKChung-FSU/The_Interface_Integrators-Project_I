@@ -140,7 +140,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5305019558992904906}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 8.5, y: 1.25, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -160,7 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc032359e9fee47935e6541d4d5ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpOriginal: 0
   controller: {fileID: 7359180178567345916}
   ignoreMask:
     serializedVersion: 2
@@ -191,11 +190,11 @@ MonoBehaviour:
   Spell1: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   Spell2CostMultiplier: 2
-  Spell3CostMultiplier: 3
-  Weapon3Damage: 3
+  Spell3CostMultiplier: 2
+  Weapon3Damage: 2
   Weapon3Range: 10
   FireRate: 0.5
-  MaxAmmo: 100
+  MaxAmmo: 9999999
   OutOfAmmo: 0
 --- !u!143 &7359180178567345916
 CharacterController:
@@ -321,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 6353705346607244251}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 1.25}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
