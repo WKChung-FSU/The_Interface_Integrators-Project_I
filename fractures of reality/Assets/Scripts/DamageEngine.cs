@@ -27,7 +27,6 @@ public class DamageEngine : MonoBehaviour
             {
                 playerControler targetPlayer = OtherCollider.GetComponent<playerControler>();
                 EnemyAI TargetEnemyAI = OtherCollider.GetComponent<EnemyAI>();
-                dmg.takeDamage(DamageAmount, dType);
                 if (targetPlayer != null)
                 {
                     TempHealth = targetPlayer.PlayerHP;
@@ -52,6 +51,7 @@ public class DamageEngine : MonoBehaviour
                         gameManager.instance.updateGameGoal(-1);
                     }
                 }
+                dmg.takeDamage(DamageAmount, dType);
             }
         }
     }
