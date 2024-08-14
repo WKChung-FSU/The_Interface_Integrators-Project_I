@@ -2172,10 +2172,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6783842558264711902}
   - component: {fileID: 3024806175926015525}
-  - component: {fileID: 2904798479807662190}
+  - component: {fileID: -6843473043967975705}
   - component: {fileID: -2555929289101370116}
   - component: {fileID: -2677285965453637051}
   - component: {fileID: -1349187933520391179}
+  - component: {fileID: 3498422864198675644}
   m_Layer: 0
   m_Name: skeleton (1)
   m_TagString: Untagged
@@ -2191,7 +2192,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2893852035738581323}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.93724495, z: -0, w: 0.34867167}
+  m_LocalRotation: {x: 0, y: -0.9372455, z: 0, w: 0.3486703}
   m_LocalPosition: {x: -46.44, y: 0.5, z: 4.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2214,7 +2215,7 @@ Animator:
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2222,7 +2223,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2904798479807662190
+--- !u!114 &-6843473043967975705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2231,16 +2232,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2893852035738581323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a5c6e82df0520c4f9da3ceddb63a0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: -2677285965453637051}
-  model: {fileID: 0}
-  shootPos: {fileID: 0}
-  Hp: 10
+  model: {fileID: 2985764996480111690}
+  Hp: 8
   enemyType: 0
-  spell: {fileID: 0}
-  shootRate: 0
+  meleeAttack: {fileID: 5057482163057357989}
+  attackRate: 1.5
 --- !u!136 &-2555929289101370116
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2261,7 +2261,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!195 &-2677285965453637051
@@ -2306,6 +2306,29 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &3498422864198675644
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2893852035738581323}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2901965665249060950
 GameObject:
@@ -2941,6 +2964,37 @@ Transform:
   m_Children:
   - {fileID: 5726918195658448413}
   m_Father: {fileID: 286200697206060737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4007030305154370540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2223354252088539614}
+  m_Layer: 0
+  m_Name: attackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2223354252088539614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007030305154370540}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.298, y: 0.541, z: -1.225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2100390848240941355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4095543193598287500
 GameObject:
@@ -3608,7 +3662,8 @@ Transform:
   m_LocalPosition: {x: 0.22754028, y: 0.79977185, z: -0.015735663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2223354252088539614}
   m_Father: {fileID: 6783842558264711902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2792106275125303539

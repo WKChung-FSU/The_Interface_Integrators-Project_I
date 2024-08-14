@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 0b79cb9bff4a1f5419de9f93b62a0b13, type: 2}
+--- !u!1 &4776424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057482163057357989, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 21483096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9456465
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -211,10 +216,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2904798479807662190, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 21483097}
     - target: {fileID: 3024806175926015525, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -259,13 +260,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2100390848240941355, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 356605589}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1548811532}
   m_SourcePrefab: {fileID: 100100000, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
 --- !u!137 &21483097 stripped
 SkinnedMeshRenderer:
@@ -472,6 +477,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
+--- !u!1 &116782641 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057482163057357989, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 125330733}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &117076829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -545,6 +555,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 125330734}
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: meleeAttack
+      value: 
+      objectReference: {fileID: 116782641}
     - target: {fileID: -2555929289101370116, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Height
       value: 2.25
@@ -557,10 +575,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 2904798479807662190, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 125330734}
     - target: {fileID: 3024806175926015525, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -696,6 +710,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 163082130}
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: meleeAttack
+      value: 
+      objectReference: {fileID: 836592060}
     - target: {fileID: -2555929289101370116, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Height
       value: 2.25
@@ -708,10 +730,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2904798479807662190, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 163082130}
     - target: {fileID: 3024806175926015525, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -2218,6 +2236,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
+--- !u!1 &646856356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057482163057357989, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 1760723381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &683497524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2572,6 +2595,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
+--- !u!1 &836592060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057482163057357989, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 163082129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &861101265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4430,6 +4458,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0071168e779c6a4591fac5de3ee9957, type: 3}
+--- !u!1 &1408489471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5057482163057357989, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 2026118790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1410489478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4885,6 +4918,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
+--- !u!1 &1548811525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 21483096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1548811530 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: -2677285965453637051, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  m_PrefabInstance: {fileID: 21483096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1548811532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548811525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5c6e82df0520c4f9da3ceddb63a0f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1548811530}
+  model: {fileID: 21483097}
+  Hp: 8
+  enemyType: 0
+  meleeAttack: {fileID: 4776424}
+  attackRate: 1.5
 --- !u!1001 &1565359155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5952,6 +6013,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1760723382}
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: meleeAttack
+      value: 
+      objectReference: {fileID: 646856356}
     - target: {fileID: -2555929289101370116, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Height
       value: 2.25
@@ -5964,10 +6033,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 2904798479807662190, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 1760723382}
     - target: {fileID: 3024806175926015525, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -6987,6 +7052,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 2026118791}
+    - target: {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: meleeAttack
+      value: 
+      objectReference: {fileID: 1408489471}
     - target: {fileID: -2555929289101370116, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Height
       value: 2.25
@@ -6999,10 +7072,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: skeleton (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 2904798479807662190, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 2026118791}
     - target: {fileID: 3024806175926015525, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
