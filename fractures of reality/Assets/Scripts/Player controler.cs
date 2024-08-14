@@ -33,7 +33,7 @@ public class playerControler : MonoBehaviour, IDamage
             Hp = value;
         }
     }
-     
+     bool isSprinting;
     bool isShooting;
     // Start is called before the first frame update
     void Start()
