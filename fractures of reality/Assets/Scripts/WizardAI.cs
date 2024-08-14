@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WizardAI : MonoBehaviour
+public class WizardAI : MonoBehaviour , IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
 
     [SerializeField] int HP;
-    [SerializeField] int numOfSummons;
+   
 
-    [SerializeField] GameObject fireball;
+    [SerializeField] GameObject spell;
+    [SerializeField] GameObject enemyMinion;
     [SerializeField] float shootRate;
+
+    int numOfSummons;
 
     bool isShooting;
     bool playerInRange;
@@ -38,6 +41,11 @@ public class WizardAI : MonoBehaviour
                 StartCoroutine(shoot());
             }
         }
+        //as this is the boss for this mini level we will increase the shoot rate
+        if(HP <= HP / 2)
+        {
+            shootRate = shootRate * 2;
+        }
     }
 
     public void takeDamage(int amount, DamageEngine.damageType type)
@@ -61,21 +69,31 @@ public class WizardAI : MonoBehaviour
     IEnumerator shoot()
     {
         isShooting = true;
-        if (numOfSummons < 3)
+        //Will summon 3 enemies to fight for him before shooting
+        if (numOfSummons > 2)
         {
-            Instantiate(fireball, shootPos.position, transform.rotation);
+            //the spell type will be shot at the player
+            Instantiate(spell, shootPos.position, transform.rotation);
 
             yield return new WaitForSeconds(shootRate);
         }
-       /* else
+        else
         {
+            //counting the number of summons
+            numOfSummons++;
             summonEnemy();
-        }*/
+            //takes longer to summon enemies
+            yield return new WaitForSeconds(shootRate * 2);
+        }
 
         isShooting = false;
     }
 
-    //IEnumerator summonEnemy()
+    public void summonEnemy()
+    {
+        //Whatever enemy is set as the game object will be summoned
+        Instantiate(enemyMinion, shootPos.position, transform.rotation);
+    }
     
 
     private void OnTriggerEnter(Collider other)
