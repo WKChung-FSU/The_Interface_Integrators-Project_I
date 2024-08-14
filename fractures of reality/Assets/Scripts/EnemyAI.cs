@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,13 +13,12 @@ public class EnemyAI : MonoBehaviour,IDamage
 
     [SerializeField] int Hp;
     [SerializeField] DamageEngine.EnemyType enemyType;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject spell;
     [SerializeField] float shootRate;
 
     bool isShooting;
     bool playerInRange;
     Color colorOriginal;
-
 
     public int EnemyHP
     {
@@ -57,11 +57,23 @@ public class EnemyAI : MonoBehaviour,IDamage
              if (!isShooting) {
                  StartCoroutine(shoot());
              }
+
+            if (Hp <= Hp / 2)
+            {
+                shootRate = shootRate * 1.5f;
+            }
         }
     }
 
     public void takeDamage(int amount, DamageEngine.damageType type)
     {
+        Hp -= amount;
+
+        if (Hp < 0)
+        {
+            gameManager.instance.updateGameGoal(-1);
+            Destroy(gameObject);
+        }
         StartCoroutine(flashRed());
     }
 
@@ -75,7 +87,7 @@ public class EnemyAI : MonoBehaviour,IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        Instantiate(bullet,shootPos.position,transform.rotation);
+        Instantiate(spell, shootPos.position, transform.rotation);
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -91,5 +103,7 @@ public class EnemyAI : MonoBehaviour,IDamage
         if (other.CompareTag("Player"))
             playerInRange = false;
     }
+
+
 }
 
