@@ -190,12 +190,12 @@ MonoBehaviour:
   SpellLaunchPos: {fileID: 4312234353505068331}
   Spell1: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  Spell2CostMultiplier: 0
-  Spell3CostMultiplier: 0
-  Weapon3Damage: 0
-  Weapon3Range: 0
-  FireRate: 0
-  MaxAmmo: 10
+  Spell2CostMultiplier: 2
+  Spell3CostMultiplier: 3
+  Weapon3Damage: 3
+  Weapon3Range: 10
+  FireRate: 0.5
+  MaxAmmo: 100
   OutOfAmmo: 0
 --- !u!143 &7359180178567345916
 CharacterController:
