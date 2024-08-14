@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1524407541534914017
+--- !u!1 &8249964557088227797
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,67 +8,67 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2388451925915641339}
-  - component: {fileID: 178245001027392870}
-  - component: {fileID: 7135445674811662575}
-  - component: {fileID: 578067923606383865}
-  - component: {fileID: 7520967230421969509}
-  - component: {fileID: 948573705619184506}
-  - component: {fileID: 8665744176817869189}
+  - component: {fileID: 4339195441933441695}
+  - component: {fileID: 3717160555535986266}
+  - component: {fileID: 3944702819148556602}
+  - component: {fileID: 7264267397515664456}
+  - component: {fileID: 1411364140777970244}
+  - component: {fileID: 5295053372488578695}
+  - component: {fileID: 5133850188374975122}
   m_Layer: 7
-  m_Name: fireball
+  m_Name: Magic Missle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2388451925915641339
+--- !u!4 &4339195441933441695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.85, y: 1.74, z: -20.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 3, y: 1.25, z: -22.25}
+  m_LocalScale: {x: 0.45, y: 0.45013502, z: 0.45}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &178245001027392870
+--- !u!114 &3717160555535986266
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 702996875c5a91a47b614e32747853c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
-  rb: {fileID: 7520967230421969509}
-  damageAmount: 10
-  speed: 6
-  RemoveTime: 10
---- !u!33 &7135445674811662575
+  rb: {fileID: 1411364140777970244}
+  damageAmount: 1
+  speed: 10
+  RemoveTime: 5
+--- !u!33 &3944702819148556602
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &578067923606383865
+--- !u!135 &7264267397515664456
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -83,13 +83,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &7520967230421969509
+--- !u!54 &1411364140777970244
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -110,14 +110,14 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!96 &948573705619184506
+--- !u!96 &5295053372488578695
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -131,7 +131,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a0d8071695aadc459800c7215c13cf7, type: 2}
+  - {fileID: 2100000, guid: 9e596dec5a76706439eab883fdbddf2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +162,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.50131226
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -170,7 +170,16 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9217686
+        time: 0.29031855
+        value: 0.06098299
+        inSlope: -0.4978359
+        outSlope: -0.4978359
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.5586989
+        outWeight: 0.37273434
+      - serializedVersion: 3
+        time: 0.9557957
         value: 0
         inSlope: 0
         outSlope: 0
@@ -217,19 +226,19 @@ TrailRenderer:
     textureMode: 0
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!23 &8665744176817869189
+--- !u!23 &5133850188374975122
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524407541534914017}
+  m_GameObject: {fileID: 8249964557088227797}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -243,7 +252,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0a0d8071695aadc459800c7215c13cf7, type: 2}
+  - {fileID: 2100000, guid: 9e596dec5a76706439eab883fdbddf2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

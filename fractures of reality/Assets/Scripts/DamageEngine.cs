@@ -6,7 +6,8 @@ public class DamageEngine : MonoBehaviour
 {
     public static DamageEngine instance;
     // will add more spell types if necessary
-    public enum damageType { spellBasic, Environmental, }
+    public enum EnemyType { Normal,fire}
+    public enum damageType { spellBasic, Environmental,Lightning }
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +35,18 @@ public class DamageEngine : MonoBehaviour
             TargetEnemyAI.EnemyHP = TempHealth;
 
             if (TempHealth <= 0)
+            {
                 Destroy(TargetEnemyAI.gameObject);
-            gameManager.instance.updateGameGoal(-1);
+                gameManager.instance.updateGameGoal(-1);
+            }
         }
+
+        
+
+
+
+
+
 
     }
 }

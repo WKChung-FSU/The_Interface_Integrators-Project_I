@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4312234353505068331}
   m_Father: {fileID: 8441483300417840540}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5841774932662579652
@@ -145,7 +146,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4928155821958457504}
-  - {fileID: 4312234353505068331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &782011894035760111
@@ -160,12 +160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bcc032359e9fee47935e6541d4d5ec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpOriginal: 4
+  hpOriginal: 0
   controller: {fileID: 7359180178567345916}
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
-  Hp: 5
+  Hp: 10
   speed: 16
   sprintMod: 3
   jumpMax: 2
@@ -186,17 +186,17 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
-  Weapon1Type: 0
-  shootDamage: 1
-  shootRate: 0.5
-  shootDistance: 15
-  MaxAmmo: 10
-  Spell2Multiplier: 2
-  OutOfAmmo: 0
-  MenuLimit: 2
+  MenuLimit: 3
   SpellLaunchPos: {fileID: 4312234353505068331}
+  Spell1: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  currentWeapon: 0
+  Spell2CostMultiplier: 0
+  Spell3CostMultiplier: 0
+  Weapon3Damage: 0
+  Weapon3Range: 0
+  FireRate: 0
+  MaxAmmo: 10
+  OutOfAmmo: 0
 --- !u!143 &7359180178567345916
 CharacterController:
   m_ObjectHideFlags: 0
@@ -320,10 +320,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6353705346607244251}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000007376074, y: 0.5, z: 1.25}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8441483300417840540}
+  m_Father: {fileID: 4928155821958457504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
