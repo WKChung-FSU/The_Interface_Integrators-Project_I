@@ -5,6 +5,7 @@ using TMPro;
 //using UnityEditor.SearchService;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerControler playerScript;
     public PlayerWeapon playerWeapon;
+    int enemyCount;
+    int healthCount;
+    public int healthMax;
+    int ammoCount;
+    public int ammoMax;
     #endregion
 
     #region UI
@@ -22,8 +28,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuHUD;
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject ammoBar;
+    [SerializeField] Image healthBar;
+    [SerializeField] Image ammoBar;
+    [SerializeField] GameObject damageFlashScreen;
     [SerializeField] TMP_Text healthCountText;
     [SerializeField] TMP_Text ammoCountText;
     [SerializeField] TMP_Text enemyCountText;
@@ -31,9 +38,6 @@ public class gameManager : MonoBehaviour
     public bool hudEnabled;
     #endregion
 
-    int enemyCount;
-    int healthCount;
-    int ammoCount;
 
     // Start is called before the first frame update
     void Awake()
@@ -118,6 +122,11 @@ public class gameManager : MonoBehaviour
         ToggleHUD();
     }
 
+    public void DamageFlashScreen()
+    {
+        StartCoroutine(DamageFlashTimer());
+    }
+
     #region private functions
     void ToggleHUD()
     {
@@ -129,12 +138,21 @@ public class gameManager : MonoBehaviour
     {
         healthCount = playerScript.PlayerHP;
         healthCountText.text = healthCount.ToString("F0");
+        gameManager.instance.healthBar.fillAmount = (float)healthCount / healthMax;
     }
 
     void UpdateAmmoBar()
     {
         ammoCount = playerWeapon.GetCurrentAmmo();
         ammoCountText.text = ammoCount.ToString("F0");
+        gameManager.instance.ammoBar.fillAmount = (float)ammoCount / ammoMax;
+    }
+
+    IEnumerator DamageFlashTimer()
+    {
+        gameManager.instance.damageFlashScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.damageFlashScreen.SetActive(false);
     }
 
     #endregion

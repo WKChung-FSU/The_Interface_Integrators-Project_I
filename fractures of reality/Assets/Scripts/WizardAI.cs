@@ -8,6 +8,7 @@ public class WizardAI : MonoBehaviour , IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
+    [SerializeField] Transform spawnPoint;
 
     [SerializeField] int HP;
    
@@ -21,6 +22,7 @@ public class WizardAI : MonoBehaviour , IDamage
     bool isShooting;
     bool playerInRange;
 
+   
     Color colorOrig;
     // Start is called before the first frame update
     void Start()
@@ -34,18 +36,23 @@ public class WizardAI : MonoBehaviour , IDamage
     {
         if(playerInRange)
         {
-
+            
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isShooting)
             {
                 StartCoroutine(shoot());
             }
+            if (HP <= HP / 2)
+            {
+                shootRate = shootRate * 1.5f;
+            }
         }
         //as this is the boss for this mini level we will increase the shoot rate
-        if(HP <= HP / 2)
+        if(!playerInRange)
         {
-            shootRate = shootRate * 2;
+            agent.SetDestination(spawnPoint.position);
         }
+        
     }
 
     public void takeDamage(int amount, DamageEngine.damageType type)
@@ -91,8 +98,11 @@ public class WizardAI : MonoBehaviour , IDamage
 
     public void summonEnemy()
     {
+        Transform summonPos = shootPos;
+        summonPos.position.Set(
+          summonPos.position.x + 1,summonPos.position.y, summonPos.position.z + 1);
         //Whatever enemy is set as the game object will be summoned
-        Instantiate(enemyMinion, shootPos.position, transform.rotation);
+        Instantiate(enemyMinion, summonPos.position, transform.rotation);
     }
     
 
