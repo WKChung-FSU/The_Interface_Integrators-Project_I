@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpellEngine : MonoBehaviour
 {
     [SerializeField] DamageEngine.damageType damageType;
+    [SerializeField] DamageEngine.movementType movementType;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int damageAmount;
@@ -14,7 +15,7 @@ public class SpellEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (damageType == DamageEngine.damageType.spellBasic)
+        if (movementType == DamageEngine.movementType.Spell)
         {
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, RemoveTime);
@@ -28,10 +29,14 @@ public class SpellEngine : MonoBehaviour
             return;
         }
         DamageEngine.instance.CalculateDamage(other, damageAmount, damageType);
-        TrailRenderer objectTrail = gameObject.GetComponent<TrailRenderer>();
-        if (objectTrail != null)
-            objectTrail.enabled = false;
 
-        Destroy(gameObject);
+
+        if (movementType == DamageEngine.movementType.Spell)
+        {
+            //TrailRenderer objectTrail = gameObject.GetComponent<TrailRenderer>();
+            //if (objectTrail != null)
+            //    objectTrail.enabled = false;
+            Destroy(gameObject);
+        }
     }
 }
