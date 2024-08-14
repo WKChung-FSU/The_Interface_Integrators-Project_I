@@ -55,22 +55,22 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
 
     #region Public Getters
-    public
-    int GetCurrentAmmo()
+
+    public int GetCurrentAmmo()
     {
         return CurrAmmo;
     }
-    int GetMaxAmmo()
+    public int GetMaxAmmo()
     {
         return MaxAmmo;
     }
-    bool GetOutOfAmmo()
+    public bool GetOutOfAmmo()
     {
         return OutOfAmmo;
     }
 
 
-    WeaponMenu GetCurrentWeapon()
+    public WeaponMenu GetCurrentWeapon()
     {
         weaponMenu = (WeaponMenu)currentWeapon;
         return weaponMenu;
