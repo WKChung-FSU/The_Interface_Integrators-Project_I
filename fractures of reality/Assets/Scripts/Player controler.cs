@@ -39,7 +39,7 @@ public class playerControler : MonoBehaviour, IDamage
     void Start()
     {
         hpOriginal = Hp;
-        
+        gameManager.instance.healthMax = hpOriginal;
     }
 
     // Update is called once per frame
@@ -94,6 +94,7 @@ public class playerControler : MonoBehaviour, IDamage
     public void takeDamage(int amount, DamageEngine.damageType DamageType)
     {
         Hp-=amount;
+        gameManager.instance.DamageFlashScreen();
 
         if (Hp <= 0) {
             gameManager.instance.youLose();

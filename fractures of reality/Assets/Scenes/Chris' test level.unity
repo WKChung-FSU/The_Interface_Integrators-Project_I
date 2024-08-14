@@ -232,7 +232,7 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   Hp: 15
   enemyType: 0
-  bullet: {fileID: 0}
+  spell: {fileID: 0}
   shootRate: 0
 --- !u!4 &163003651
 Transform:
@@ -655,7 +655,7 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   Hp: 15
   enemyType: 1
-  bullet: {fileID: 0}
+  spell: {fileID: 0}
   shootRate: 0
 --- !u!4 &1470683712
 Transform:
