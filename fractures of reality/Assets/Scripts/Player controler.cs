@@ -22,6 +22,17 @@ public class playerControler : MonoBehaviour, IDamage
     Vector3 playerVel;
     int jumpCount;
     
+    public int PlayerHP
+    {
+        get
+        {
+            return Hp;
+        }
+        set
+        {
+            Hp = value;
+        }
+    }
      bool isSprinting;
     bool isShooting;
     // Start is called before the first frame update
