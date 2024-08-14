@@ -34,6 +34,7 @@ public class DamageEngine : MonoBehaviour
                     if (TempHealth <= 0)
                     {
                         TempHealth = 0;
+                        gameManager.instance.youLose();
                     }
                     targetPlayer.PlayerHP = TempHealth;
                 }
