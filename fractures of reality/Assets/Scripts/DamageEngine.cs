@@ -32,6 +32,11 @@ public class DamageEngine : MonoBehaviour
                 {
                     TempHealth = targetPlayer.PlayerHP;
                     TempHealth -= DamageAmount;
+                    if (TempHealth < 0)
+                    {
+                        TempHealth = 0;
+                    }
+                    targetPlayer.PlayerHP = TempHealth;
                 }
                 else if (TargetEnemyAI != null)
                 {
