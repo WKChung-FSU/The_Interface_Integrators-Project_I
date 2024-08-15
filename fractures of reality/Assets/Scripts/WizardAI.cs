@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WizardAI : MonoBehaviour , IDamage
-{
+public class WizardAI : MonoBehaviour
+{   [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform spawnPoint;
+    DestructibleHealthCore health;
 
     [SerializeField] int HP;
 
@@ -21,13 +22,10 @@ public class WizardAI : MonoBehaviour , IDamage
     bool isShooting;
     bool playerInRange;
 
-   
-    Color colorOrig;
     
     void Start()
     {
-        colorOrig = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        health = thisEnemy.GetComponent<DestructibleHealthCore>();
     }
 
     void Update()
@@ -40,10 +38,6 @@ public class WizardAI : MonoBehaviour , IDamage
             {
                 StartCoroutine(shoot());
             }
-            if (HP <= HP / 2)
-            {
-                shootRate = shootRate * 1.5f;
-            }
         }
         //as this is the boss for this mini level we will increase the shoot rate
         if(!playerInRange)
@@ -51,24 +45,6 @@ public class WizardAI : MonoBehaviour , IDamage
             agent.SetDestination(spawnPoint.position);
         }
         
-    }
-
-    public void takeDamage(int amount, DamageEngine.damageType type)
-    {
-        HP -= amount;
-
-        if(HP < 0)
-        {
-            gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
-        }
-    }
-
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(.2f);
-        model.material.color = colorOrig;
     }
 
     IEnumerator shoot()

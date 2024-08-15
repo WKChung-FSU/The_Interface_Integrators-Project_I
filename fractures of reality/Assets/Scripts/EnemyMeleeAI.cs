@@ -34,11 +34,7 @@ public class EnemyAI1 : MonoBehaviour
             {
                 StartCoroutine(MeleeAttack());
             }
-            // is this infinite? 
-            if (health.EnemyHP <= ((float)health.EnemyHP / 2f))
-            {
-                attackRate = attackRate * 1.5f;
-            }
+            
         }
     }
     IEnumerator MeleeAttack()
