@@ -8,21 +8,18 @@ using UnityEngine.AI;
 
 public class EnemyAI1 : MonoBehaviour
 {
-    [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
     //[SerializeField] Renderer model;
     [SerializeField] float attackRate;
     [SerializeField] DamageEngine.damageType mDamage;
     [SerializeField] int meleeDamage;
     UnityEngine.Collider attackTarget;
-    DestructibleHealthCore health;
     bool isAttacking;
     bool playerInRange;
     bool giveDam;
 
     void Start()
     {
-        health = thisEnemy.GetComponent<DestructibleHealthCore>();
     }
 
     void Update()

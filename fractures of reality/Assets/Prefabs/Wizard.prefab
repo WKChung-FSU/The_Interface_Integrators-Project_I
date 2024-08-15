@@ -932,6 +932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4919787624073222859}
   - component: {fileID: 3741458135571954267}
+  - component: {fileID: 8892066353546178148}
   - component: {fileID: 1743674964336590827}
   - component: {fileID: 4912450175580407751}
   - component: {fileID: 1448441157183264116}
@@ -982,6 +983,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8892066353546178148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947782225511599394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 20
+  model: {fileID: 6086052596565084807}
+  enemyType: 1
 --- !u!114 &1743674964336590827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1748,7 +1764,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c33a548d6df8c8a4daca736f3300dd9c, type: 2}
+  - {fileID: 2100000, guid: c26121a20697c5a49a8beb41fbd1c8cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
