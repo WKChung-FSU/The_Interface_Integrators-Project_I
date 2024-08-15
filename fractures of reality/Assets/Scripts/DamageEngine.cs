@@ -15,7 +15,7 @@ public class DamageEngine : MonoBehaviour
     {
         instance = this;
     }
-
+    // remember that this is a instance
     public void CalculateDamage(Collider OtherCollider, int DamageAmount, damageType dType)
     {
         if (OtherCollider != null)
@@ -26,7 +26,7 @@ public class DamageEngine : MonoBehaviour
             if (dmg != null)
             {
                 playerControler targetPlayer = OtherCollider.GetComponent<playerControler>();
-                EnemyAI TargetEnemyAI = OtherCollider.GetComponent<EnemyAI>();
+                DestructibleHealthCore TargetEnemyAI = OtherCollider.GetComponent<DestructibleHealthCore>();
                 if (targetPlayer != null)
                 {
                     TempHealth = targetPlayer.PlayerHP;

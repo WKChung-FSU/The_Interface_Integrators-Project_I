@@ -1,51 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI1 : MonoBehaviour, IDamage
+public class EnemyAI1 : MonoBehaviour
 {
+    [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Renderer model;
-    [SerializeField] int Hp;
-    [SerializeField] DamageEngine.EnemyType enemyType;
+    //[SerializeField] Renderer model;
     [SerializeField] float attackRate;
     [SerializeField] DamageEngine.damageType mDamage;
     [SerializeField] int meleeDamage;
     UnityEngine.Collider attackTarget;
-
+    DestructibleHealthCore health;
     bool isAttacking;
     bool playerInRange;
     bool giveDam;
-    Color colorOriginal;
-
-    public int EnemyHP
-    {
-        get
-        {
-            return Hp;
-        }
-
-        set
-        {
-            Hp = value;
-        }
-    }
-
-    public DamageEngine.EnemyType EnemyType
-    {
-        get
-        {
-            return enemyType;
-        }
-    }
 
     void Start()
     {
-        colorOriginal = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        health = thisEnemy.GetComponent<DestructibleHealthCore>();
     }
 
     void Update()
@@ -57,26 +34,13 @@ public class EnemyAI1 : MonoBehaviour, IDamage
             {
                 StartCoroutine(MeleeAttack());
             }
-
-            if (Hp <= Hp / 2)
+            // is this infinite? 
+            if (health.EnemyHP <= ((float)health.EnemyHP / 2f))
             {
                 attackRate = attackRate * 1.5f;
             }
         }
     }
-
-    public void takeDamage(int amount, DamageEngine.damageType type)
-    {
-        StartCoroutine(flashRed());
-    }
-
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOriginal;
-    }
-
     IEnumerator MeleeAttack()
     {
         isAttacking = true;

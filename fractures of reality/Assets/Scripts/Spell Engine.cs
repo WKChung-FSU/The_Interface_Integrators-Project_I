@@ -33,9 +33,6 @@ public class SpellEngine : MonoBehaviour
 
         if (movementType == DamageEngine.movementType.Spell)
         {
-            //TrailRenderer objectTrail = gameObject.GetComponent<TrailRenderer>();
-            //if (objectTrail != null)
-            //    objectTrail.enabled = false;
             Destroy(gameObject);
         }
     }
