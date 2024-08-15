@@ -971,7 +971,7 @@ Animator:
   m_GameObject: {fileID: 4947782225511599394}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bed7a092d53e7c748bd65db98cebf9d6, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21ce615f59c44344781804fdbe184962, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1012,8 +1012,11 @@ MonoBehaviour:
   thisEnemy: {fileID: 4947782225511599394}
   agent: {fileID: 1448441157183264116}
   model: {fileID: 6086052596565084807}
-  shootPos: {fileID: 4793287556529228937}
+  shootPos: {fileID: 413618850530997804}
   spawnPoint: {fileID: 0}
+  headPos: {fileID: 3454290574927365244}
+  viewAngle: 70
+  facePlayerSpeed: 1
   spell: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   enemyMinion: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
   shootRate: 1
@@ -1031,7 +1034,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 8
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
