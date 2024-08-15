@@ -16,6 +16,7 @@ public class WizardAI : MonoBehaviour
     [SerializeField] int viewAngle;
     float angleToPlayer;
     Vector3 playerDir;
+    [SerializeField] int facePlayerSpeed;
 
     [SerializeField] GameObject spell;
     [SerializeField] GameObject enemyMinion;
@@ -71,13 +72,23 @@ public class WizardAI : MonoBehaviour
                 if (!isShooting)
                 {
                     StartCoroutine(shoot());
-
-
+                    //face the player in range
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        facePlayer();
+                    }
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    void facePlayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 
+            Time.deltaTime * facePlayerSpeed);
     }
 
 IEnumerator shoot()
