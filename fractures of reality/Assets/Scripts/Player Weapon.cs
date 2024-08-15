@@ -120,21 +120,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     #region Debug
                     Debug.Log(hit.collider.name);
                     #endregion
-
-                    //test -CM
-                    //Visual of lightning being cast 
-                    lightningVisual.useWorldSpace = true;
+                    if ((CurrAmmo - Spell3CostMultiplier) >= 0) { 
+                        //test -CM
+                        //Visual of lightning being cast 
+                        lightningVisual.useWorldSpace = true;
                     lightningVisual.SetPosition(0, SpellLaunchPos.position);
                     lightningVisual.SetPosition(1, hit.point);
-
+                        CurrAmmo--;
+                    }
                     IDamage damage = hit.collider.GetComponent<IDamage>();
-
-
-                    if (damage != null && (CurrAmmo - Spell3CostMultiplier) >= 0)
+                    if (damage != null)
                     {
                         DamageEngine.instance.CalculateDamage(hit.collider, spell3Damage, DamageEngine.damageType.Lightning);
-                        CurrAmmo--;
-                        AmmoTest();
                         //lightning delay
                         //coconut.jpeg
 
@@ -146,6 +143,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     {
                         StartCoroutine(LightningDelay());
                     }
+                    AmmoTest();
                 }
                 break;
         }
