@@ -1056,11 +1056,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
---- !u!4 &354169988 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8733149843498322512, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-  m_PrefabInstance: {fileID: 1794204339}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &385253838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1994,36 +1989,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
---- !u!1 &687040269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-  m_PrefabInstance: {fileID: 1794204339}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &687040272 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: -2677285965453637051, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-  m_PrefabInstance: {fileID: 1794204339}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &687040278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 687040269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445bb04d61399ff4b88e004abb86c919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 687040269}
-  agent: {fileID: 687040272}
-  attackRate: 1
-  mDamage: 0
-  meleeDamage: 1
-  shootPos: {fileID: 354169988}
-  spell: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
-  isMelee: 1
 --- !u!1001 &699412763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5894,13 +5859,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2677285965453637051, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -1349187933520391179, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: m_Radius
-      value: 7
+    - target: {fileID: -2722448681644862550, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Name
@@ -5946,14 +5907,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: -6843473043967975705, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 687040278}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
 --- !u!1001 &1833724374
 PrefabInstance:
