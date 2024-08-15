@@ -29,6 +29,8 @@ public class BasicEnemyAI : MonoBehaviour
 
     void Update()
     {
+
+
         if (playerInRange)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);

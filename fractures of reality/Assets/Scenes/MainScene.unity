@@ -3301,6 +3301,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60918d9f214b9dd4aafe24ac48cd46f1, type: 3}
+--- !u!4 &1118738939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3454290574927365244, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+  m_PrefabInstance: {fileID: 1866507005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1143524868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5465,11 +5470,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0f85288238c30b43a8b3cdaa15eeed4, type: 3}
---- !u!4 &1694166551 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1037697067599247347, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-  m_PrefabInstance: {fileID: 1715751589}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1698181175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5673,14 +5673,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1640500788002741117, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1640500788002741117, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-      propertyPath: thisEnemy
-      value: 
-      objectReference: {fileID: 1715751590}
     - target: {fileID: 8094233446992353698, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
       propertyPath: m_Name
       value: Demon (1)
@@ -5728,64 +5720,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8094233446992353698, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1715751592}
-    - targetCorrespondingSourceObject: {fileID: 8094233446992353698, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1715751600}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
---- !u!1 &1715751590 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8094233446992353698, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-  m_PrefabInstance: {fileID: 1715751589}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1715751591 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 3254817030537133231, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-  m_PrefabInstance: {fileID: 1715751589}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1715751592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715751590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Hp: 12
-  model: {fileID: 1715751591}
-  enemyType: 1
---- !u!195 &1715751595 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 4705880419799364059, guid: c814a1ff3b5a8c14686e8b7eee853b5e, type: 3}
-  m_PrefabInstance: {fileID: 1715751589}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1715751600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715751590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445bb04d61399ff4b88e004abb86c919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 1715751590}
-  agent: {fileID: 1715751595}
-  attackRate: 2
-  mDamage: 2
-  meleeDamage: 2
-  shootPos: {fileID: 1694166551}
-  spell: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  isMelee: 0
 --- !u!1001 &1717685693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6111,6 +6047,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1448441157183264116, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743674964336590827, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: headPos
+      value: 
+      objectReference: {fileID: 1118738939}
+    - target: {fileID: 1743674964336590827, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: viewAngle
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1743674964336590827, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: spawnPoint
       value: 

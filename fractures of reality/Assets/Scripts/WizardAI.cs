@@ -11,6 +11,12 @@ public class WizardAI : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     DestructibleHealthCore health;
 
+    //values for raycast to see player and updated AI
+    [SerializeField] Transform headPos;
+    [SerializeField] int viewAngle;
+    float angleToPlayer;
+    Vector3 playerDir;
+
     [SerializeField] GameObject spell;
     [SerializeField] GameObject enemyMinion;
     [SerializeField] float shootRate;
@@ -28,7 +34,7 @@ public class WizardAI : MonoBehaviour
 
     void Update()
     {
-        if(playerInRange)
+        /*if(playerInRange)
         {
             
             agent.SetDestination(gameManager.instance.player.transform.position);
@@ -41,11 +47,40 @@ public class WizardAI : MonoBehaviour
         if(!playerInRange)
         {
             agent.SetDestination(spawnPoint.position);
+        }*/
+        if (playerInRange && canSeePlayer())
+        {
+
         }
-        
+
+    }
+    bool canSeePlayer()
+    {
+        playerDir = gameManager.instance.player.transform.position - headPos.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPos.position, playerDir);
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (!isShooting)
+                {
+                    StartCoroutine(shoot());
+
+
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    IEnumerator shoot()
+IEnumerator shoot()
     {
         isShooting = true;
         //Will summon 3 enemies to fight for him before shooting
