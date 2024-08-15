@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 4919787624073222859}
   - component: {fileID: 3741458135571954267}
   - component: {fileID: 1743674964336590827}
+  - component: {fileID: 4912450175580407751}
   - component: {fileID: 1448441157183264116}
   - component: {fileID: 7346255865319433979}
   - component: {fileID: 5372817235139114396}
@@ -993,14 +994,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5277f93933c1641acdc6a914531092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisEnemy: {fileID: 4947782225511599394}
   agent: {fileID: 1448441157183264116}
   model: {fileID: 6086052596565084807}
   shootPos: {fileID: 4793287556529228937}
   spawnPoint: {fileID: 0}
-  HP: 10
   spell: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   enemyMinion: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
   shootRate: 1
+--- !u!114 &4912450175580407751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947782225511599394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 15
+  model: {fileID: 6086052596565084807}
+  enemyType: 1
 --- !u!195 &1448441157183264116
 NavMeshAgent:
   m_ObjectHideFlags: 0

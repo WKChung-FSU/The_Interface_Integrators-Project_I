@@ -7,9 +7,11 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour,IDamage
 {
+    [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
+    DestructibleHealthCore health;
 
     [SerializeField] int Hp;
     [SerializeField] DamageEngine.EnemyType enemyType;
@@ -20,18 +22,11 @@ public class EnemyAI : MonoBehaviour,IDamage
     bool playerInRange;
     Color colorOriginal;
 
-    public int EnemyHP
+    void Start()
     {
-        get
-        {
-            return Hp;
-        }
-
-        set
-        {
-            Hp = value;
-        }
+        health = thisEnemy.GetComponent<DestructibleHealthCore>();
     }
+
 
     public DamageEngine.EnemyType EnemyType
     {
@@ -49,24 +44,7 @@ public class EnemyAI : MonoBehaviour,IDamage
              if (!isShooting) {
                  StartCoroutine(shoot());
              }
-
-            if (Hp <= Hp / 2)
-            {
-                shootRate = shootRate * 1.5f;
-            }
         }
-    }
-
-    public void takeDamage(int amount, DamageEngine.damageType type)
-    {
-        StartCoroutine(flashRed());
-    }
-
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = colorOriginal;
     }
 
     IEnumerator shoot()
