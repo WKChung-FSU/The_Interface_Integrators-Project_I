@@ -9,15 +9,18 @@ public class EnemyAI1 : MonoBehaviour,IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-
+    UnityEngine.Collider attackTarget;
     [SerializeField] int Hp;
     [SerializeField] DamageEngine.EnemyType enemyType;
-    [SerializeField] GameObject meleeAttack;
     [SerializeField] float attackRate;
+    [SerializeField] DamageEngine.damageType mDamage;
 
     bool isAttacking;
     bool playerInRange;
+
+    bool giveDam;
     Color colorOriginal;
+    [SerializeField] int meleedamage;
 
     public int EnemyHP
     {
@@ -53,8 +56,11 @@ public class EnemyAI1 : MonoBehaviour,IDamage
         if (playerInRange)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
-             if (!isAttacking) {
-                 StartCoroutine(MeleeAttack());
+             if (!isAttacking && playerInRange) 
+             {
+
+                StartCoroutine(MeleeAttack());
+                
              }
 
             if (Hp <= Hp / 2)
@@ -86,23 +92,39 @@ public class EnemyAI1 : MonoBehaviour,IDamage
     IEnumerator MeleeAttack()
     {
         isAttacking = true;
-        Instantiate(meleeAttack);
+        
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
+
         if (other.CompareTag("Player"))
+        {
+            attackTarget = other;
             playerInRange = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger)
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
+        {
+            attackTarget = null;
             playerInRange = false;
+        }
+           
     }
 
-
+   
 }
 
