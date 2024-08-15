@@ -9,7 +9,7 @@ public class WizardAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
-    [SerializeField] Transform spawnPoint;
+    
     DestructibleHealthCore health;
 
     //values for raycast to see player and updated AI
@@ -25,12 +25,15 @@ public class WizardAI : MonoBehaviour
 
     int numOfSummons;
 
+    Vector3 startingPos;
+
     bool isShooting;
     bool playerInRange;
 
     
     void Start()
     {
+        startingPos = transform.position;  
         health = thisEnemy.GetComponent<DestructibleHealthCore>();
     }
 
@@ -48,7 +51,7 @@ public class WizardAI : MonoBehaviour
         //as this is the boss for this mini level we will increase the shoot rate
         if (!playerInRange)
         {
-            agent.SetDestination(spawnPoint.position);
+            agent.SetDestination(startingPos);
         }
         
 
