@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 12
+  Hp: 18
   model: {fileID: 3254817030537133231}
   enemyType: 1
 --- !u!114 &1407474784287971099
