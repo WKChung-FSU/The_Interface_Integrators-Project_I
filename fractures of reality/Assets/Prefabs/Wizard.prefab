@@ -996,10 +996,11 @@ MonoBehaviour:
   agent: {fileID: 1448441157183264116}
   model: {fileID: 6086052596565084807}
   shootPos: {fileID: 4793287556529228937}
+  spawnPoint: {fileID: 0}
   HP: 10
-  fireball: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  enemyMinion: {fileID: 0}
-  shootRate: 0.5
+  spell: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
+  enemyMinion: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+  shootRate: 1
 --- !u!195 &1448441157183264116
 NavMeshAgent:
   m_ObjectHideFlags: 0
