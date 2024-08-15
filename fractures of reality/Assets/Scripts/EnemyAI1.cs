@@ -5,22 +5,21 @@ using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI1 : MonoBehaviour,IDamage
+public class EnemyAI1 : MonoBehaviour, IDamage
 {
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Renderer model;
-    UnityEngine.Collider attackTarget;
     [SerializeField] int Hp;
     [SerializeField] DamageEngine.EnemyType enemyType;
     [SerializeField] float attackRate;
     [SerializeField] DamageEngine.damageType mDamage;
+    [SerializeField] int meleeDamage;
+    UnityEngine.Collider attackTarget;
 
     bool isAttacking;
     bool playerInRange;
-
     bool giveDam;
     Color colorOriginal;
-    [SerializeField] int meleedamage;
 
     public int EnemyHP
     {
@@ -56,12 +55,10 @@ public class EnemyAI1 : MonoBehaviour,IDamage
         if (playerInRange)
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
-             if (!isAttacking && playerInRange) 
-             {
-
+            if (!isAttacking && playerInRange)
+            {
                 StartCoroutine(MeleeAttack());
-                
-             }
+            }
 
             if (Hp <= Hp / 2)
             {
@@ -72,13 +69,6 @@ public class EnemyAI1 : MonoBehaviour,IDamage
 
     public void takeDamage(int amount, DamageEngine.damageType type)
     {
-        Hp -= amount;
-
-        if (Hp < 0)
-        {
-            gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
-        }
         StartCoroutine(flashRed());
     }
 
@@ -92,7 +82,7 @@ public class EnemyAI1 : MonoBehaviour,IDamage
     IEnumerator MeleeAttack()
     {
         isAttacking = true;
-        
+        DamageEngine.instance.CalculateDamage(attackTarget, meleeDamage, mDamage);
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
@@ -122,9 +112,7 @@ public class EnemyAI1 : MonoBehaviour,IDamage
             attackTarget = null;
             playerInRange = false;
         }
-           
-    }
 
-   
+    }
 }
 

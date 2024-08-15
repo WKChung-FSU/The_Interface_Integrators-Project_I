@@ -121,7 +121,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4786bee9a2365514ba6bfe621ba4189e, type: 2}
 --- !u!1 &163003646
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   Hp: 20
   enemyType: 1
-  bullet: {fileID: 0}
+  spell: {fileID: 0}
   shootRate: 0
 --- !u!4 &163003651
 Transform:
@@ -265,8 +265,8 @@ GameObject:
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &398468322
 BoxCollider:
@@ -464,7 +464,7 @@ MonoBehaviour:
   shootPos: {fileID: 0}
   Hp: 20
   enemyType: 0
-  bullet: {fileID: 0}
+  spell: {fileID: 0}
   shootRate: 0
 --- !u!4 &408727065
 Transform:
@@ -498,7 +498,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &453618596
 BoxCollider:
@@ -602,8 +602,8 @@ GameObject:
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &459344405
 Transform:
@@ -1065,8 +1065,8 @@ GameObject:
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1502725761
 BoxCollider:

@@ -18,26 +18,26 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] Transform SpellLaunchPos;
     [SerializeField] GameObject Spell1;
     [SerializeField] GameObject Spell2;
-    [SerializeField] int Spell2CostMultiplier;
-    [SerializeField] int Spell3CostMultiplier;
+   
     #endregion
 
     #region wepon Stats
-    [SerializeField] int Weapon3Damage;
-    [SerializeField] int Weapon3Range;
-
+    [SerializeField] int Spell2CostMultiplier;
+    [SerializeField] int spell3Damage;
+    [SerializeField] int spell3Range;
+    [SerializeField] int Spell3CostMultiplier;
     [SerializeField] float FireRate;
     [SerializeField] int MaxAmmo;
     [SerializeField] bool OutOfAmmo;
 
-
-
     public enum WeaponMenu { MagicMissile, Fireball, Lightning }
+
     int CurrAmmo;
     bool isShooting;
     WeaponMenu weaponMenu;
     //0= magic missile, 1=fireball, 2=lightning
     int currentWeapon;
+
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Switch Weapon"))
             //No longer coroutine -CM
             WeaponMenuSystem();
+
+        if (Input.GetButtonDown("Reload"))
+        {
+            CurrAmmo=MaxAmmo;
+        }
+
     }
 
     #region Public Getters
@@ -109,7 +115,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 2:
 
 
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Weapon3Range, ~ignoreMask))
+                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, spell3Range, ~ignoreMask))
                 {
                     #region Debug
                     Debug.Log(hit.collider.name);
@@ -121,12 +127,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     lightningVisual.SetPosition(0, SpellLaunchPos.position);
                     lightningVisual.SetPosition(1, hit.point);
 
-
                     IDamage damage = hit.collider.GetComponent<IDamage>();
 
-                    if (damage != null && !OutOfAmmo)
+
+                    if (damage != null && (CurrAmmo - Spell3CostMultiplier) >= 0)
                     {
-                        DamageEngine.instance.CalculateDamage(hit.collider, Weapon3Damage, DamageEngine.damageType.Lightning);
+                        DamageEngine.instance.CalculateDamage(hit.collider, spell3Damage, DamageEngine.damageType.Lightning);
                         CurrAmmo--;
                         AmmoTest();
                         //lightning delay
@@ -135,7 +141,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                         //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
                     }
                     //if this is here it will always show the visual
+
+                    if (!OutOfAmmo)
+                    {
                         StartCoroutine(LightningDelay());
+                    }
                 }
                 break;
         }

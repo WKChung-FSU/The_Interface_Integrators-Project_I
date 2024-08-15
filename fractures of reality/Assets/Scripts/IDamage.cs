@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IDamage
 {
-    //causes damage to object or player, will default to basic magic bullet
+    // all you need to do is flash
     void takeDamage(int amount, DamageEngine.damageType DamageType = 0)
     {
 

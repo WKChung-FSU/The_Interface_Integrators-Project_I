@@ -2203,14 +2203,13 @@ GameObject:
   m_Component:
   - component: {fileID: 6783842558264711902}
   - component: {fileID: 3024806175926015525}
-  - component: {fileID: 8540382985685408785}
   - component: {fileID: -6843473043967975705}
   - component: {fileID: -2555929289101370116}
   - component: {fileID: -2677285965453637051}
   - component: {fileID: -1349187933520391179}
   - component: {fileID: -2722448681644862550}
   m_Layer: 0
-  m_Name: skeleton (1)
+  m_Name: skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2255,24 +2254,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8540382985685408785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2893852035738581323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5c6e82df0520c4f9da3ceddb63a0f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: -2677285965453637051}
-  model: {fileID: 2985764996480111690}
-  Hp: 8
-  enemyType: 0
-  meleeAttack: {fileID: 4007030305154370540}
-  attackRate: 1.5
 --- !u!114 &-6843473043967975705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2289,8 +2270,9 @@ MonoBehaviour:
   model: {fileID: 2985764996480111690}
   Hp: 3
   enemyType: 0
-  meleeAttack: {fileID: 5057482163057357989}
   attackRate: 1.5
+  mDamage: 0
+  meleeDamage: 1
 --- !u!136 &-2555929289101370116
 CapsuleCollider:
   m_ObjectHideFlags: 0

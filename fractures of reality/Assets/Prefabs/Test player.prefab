@@ -167,8 +167,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   Hp: 10
-  speed: 3
-  sprintMod: 9
+  speed: 5
+  sprintMod: 2
   jumpMax: 2
   jumpSpeed: 12
   gravity: 28
@@ -187,16 +187,17 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
+  lightningVisual: {fileID: 0}
   MenuLimit: 3
   SpellLaunchPos: {fileID: 4312234353505068331}
   Spell1: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   Spell2CostMultiplier: 2
-  Spell3CostMultiplier: 2
-  Weapon3Damage: 2
-  Weapon3Range: 10
+  spell3Damage: 4
+  spell3Range: 20
+  Spell3CostMultiplier: 3
   FireRate: 0.5
-  MaxAmmo: 9999999
+  MaxAmmo: 10
   OutOfAmmo: 0
 --- !u!143 &7359180178567345916
 CharacterController:
