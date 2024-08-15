@@ -41,12 +41,6 @@ public class EnemyAI : MonoBehaviour,IDamage
         }
     }
 
-    void Start()
-    {
-        colorOriginal = model.material.color;
-        gameManager.instance.updateGameGoal(1);
-    }
-
     void Update()
     {
         if (playerInRange)
