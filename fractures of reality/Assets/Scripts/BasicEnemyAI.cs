@@ -16,14 +16,13 @@ public class BasicEnemyAI : MonoBehaviour
     DestructibleHealthCore health;
 
     [SerializeField] Transform shootPos;
+    [SerializeField] GameObject spell;
 
 
     [SerializeField] bool isMelee;
 
     bool isAttacking;
     bool playerInRange;
-    bool giveDam;
-
     void Start()
     {
         health = thisEnemy.GetComponent<DestructibleHealthCore>();
