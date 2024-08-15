@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,7 +36,7 @@ public class WizardAI : MonoBehaviour
 
     void Update()
     {
-        /*if(playerInRange)
+        if(playerInRange && canSeePlayer())
         {
             
             agent.SetDestination(gameManager.instance.player.transform.position);
@@ -45,14 +46,11 @@ public class WizardAI : MonoBehaviour
             }
         }
         //as this is the boss for this mini level we will increase the shoot rate
-        if(!playerInRange)
+        if (!playerInRange)
         {
             agent.SetDestination(spawnPoint.position);
-        }*/
-        if (playerInRange && canSeePlayer())
-        {
-
         }
+        
 
     }
     bool canSeePlayer()
@@ -68,17 +66,15 @@ public class WizardAI : MonoBehaviour
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
-
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePlayer();
+                }
                 if (!isShooting)
                 {
                     StartCoroutine(shoot());
-                    //face the player in range
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        facePlayer();
-                    }
-                    return true;
                 }
+                return true;
             }
         }
         return false;

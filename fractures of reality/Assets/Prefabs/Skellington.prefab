@@ -2204,7 +2204,7 @@ GameObject:
   - component: {fileID: 6783842558264711902}
   - component: {fileID: 3024806175926015525}
   - component: {fileID: 6304708475781813074}
-  - component: {fileID: -6843473043967975705}
+  - component: {fileID: 2470289077977300253}
   - component: {fileID: -2555929289101370116}
   - component: {fileID: -2677285965453637051}
   - component: {fileID: -1349187933520391179}
@@ -2269,7 +2269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hp: 3
   model: {fileID: 2985764996480111690}
---- !u!114 &-6843473043967975705
+  enemyType: 0
+--- !u!114 &2470289077977300253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2278,15 +2279,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2893852035738581323}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a5c6e82df0520c4f9da3ceddb63a0f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 445bb04d61399ff4b88e004abb86c919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   thisEnemy: {fileID: 2893852035738581323}
   agent: {fileID: -2677285965453637051}
-  enemyType: 0
-  attackRate: 1.5
+  attackRate: 1
   mDamage: 0
   meleeDamage: 1
+  shootPos: {fileID: 8733149843498322512}
+  spell: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
+  isMelee: 1
 --- !u!136 &-2555929289101370116
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2324,7 +2327,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -2349,9 +2352,9 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &-2722448681644862550
 BoxCollider:
@@ -2370,7 +2373,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.17, y: 1.28, z: 1.24}
   m_Center: {x: -0.49, y: 0.74, z: 0.89}
