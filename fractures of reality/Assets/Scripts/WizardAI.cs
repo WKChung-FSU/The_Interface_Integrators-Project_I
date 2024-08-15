@@ -11,8 +11,6 @@ public class WizardAI : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     DestructibleHealthCore health;
 
-    [SerializeField] int HP;
-
     [SerializeField] GameObject spell;
     [SerializeField] GameObject enemyMinion;
     [SerializeField] float shootRate;
