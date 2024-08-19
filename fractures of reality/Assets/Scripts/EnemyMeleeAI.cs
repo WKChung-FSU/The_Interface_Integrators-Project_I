@@ -6,12 +6,12 @@ using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI1 : MonoBehaviour
+public class EnemyMeleeAI : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
     //[SerializeField] Renderer model;
     [SerializeField] float attackRate;
-    [SerializeField] DamageEngine.damageType mDamage;
+    [SerializeField] DamageEngine.ElementType mDamage;
     [SerializeField] int meleeDamage;
     UnityEngine.Collider attackTarget;
     bool isAttacking;

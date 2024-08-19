@@ -6,7 +6,7 @@ using UnityEngine;
 public interface IDamage
 {
     // all you need to do is flash
-    void takeDamage(int amount, DamageEngine.damageType DamageType = 0)
+    void takeDamage(int amount, DamageEngine.ElementType Element = 0)
     {
 
     }

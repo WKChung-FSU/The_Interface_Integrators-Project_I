@@ -6,9 +6,8 @@ public class DamageEngine : MonoBehaviour
 {
     public static DamageEngine instance;
     // will add more spell types if necessary
-    public enum EnemyType { Normal, fire }
+    public enum ElementType { Normal, fire, Lightning }
     public enum movementType { Spell, Environmental }
-    public enum damageType { spellBasic, Lightning, fire }
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +15,7 @@ public class DamageEngine : MonoBehaviour
         instance = this;
     }
     // remember that this is a instance
-    public void CalculateDamage(Collider OtherCollider, int DamageAmount, damageType dType)
+    public void CalculateDamage(Collider OtherCollider, int DamageAmount, ElementType attackType)
     {
         if (OtherCollider != null)
         {
@@ -43,7 +42,7 @@ public class DamageEngine : MonoBehaviour
                     TempHealth = TargetEnemyAI.EnemyHP;
 
                     // add damage calc
-                    TempHealth -= EnemyTypeMultiplier(TargetEnemyAI.EnemyType,DamageAmount,dType);
+                    TempHealth -= EnemyTypeMultiplier(TargetEnemyAI.EnemyType,DamageAmount,attackType);
                     TargetEnemyAI.EnemyHP = TempHealth;
 
                     if (TempHealth <= 0)
@@ -52,42 +51,43 @@ public class DamageEngine : MonoBehaviour
                         gameManager.instance.updateGameGoal(-1);
                     }
                 }
-                dmg.takeDamage(DamageAmount, dType);
+                dmg.takeDamage(DamageAmount, attackType);
             }
         }
     }
 
-    int EnemyTypeMultiplier(EnemyType enemyType, int damageAmount, damageType type)
+    int EnemyTypeMultiplier(ElementType enemyType, int damageAmount, ElementType attackType)
     {
         float floatDamage = damageAmount;
         float basicMult = 0, fireMult = 0, lightningMult = 0;
         switch (enemyType)
         {
-            case EnemyType.Normal:
+            case ElementType.Normal:
                 //nothing
                 basicMult = 1f;
                 fireMult = 1f;
                 lightningMult = 1f;
                 break;
 
-            case EnemyType.fire:
+            case ElementType.fire:
                 basicMult = 1f;
                 fireMult = 0.5f;
                 lightningMult = 0.8f;
                 break;
         }
 
-        switch (type)
+        switch (attackType)
         {
-            case damageType.spellBasic:
+            case ElementType.Normal:
                 damageAmount = (int)(floatDamage * basicMult);
                 break;
-            case damageType.Lightning:
+            case ElementType.fire:
+                damageAmount = (int)(floatDamage * fireMult);
+                break;
+            case ElementType.Lightning:
                 damageAmount= (int)(floatDamage * lightningMult);
                 break;
-            case damageType.fire:
-                damageAmount =(int) (floatDamage * fireMult);
-                break;
+            
         }
         return damageAmount;
     }

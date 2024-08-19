@@ -5,7 +5,7 @@ using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour,IDamage
+public class EnemyRangedAI : MonoBehaviour,IDamage
 {
     [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour,IDamage
     DestructibleHealthCore health;
 
     [SerializeField] int Hp;
-    [SerializeField] DamageEngine.EnemyType enemyType;
     [SerializeField] GameObject spell;
     [SerializeField] float shootRate;
 
@@ -25,15 +24,6 @@ public class EnemyAI : MonoBehaviour,IDamage
     void Start()
     {
         health = thisEnemy.GetComponent<DestructibleHealthCore>();
-    }
-
-
-    public DamageEngine.EnemyType EnemyType
-    {
-        get
-        {
-            return enemyType;
-        }
     }
 
     void Update()

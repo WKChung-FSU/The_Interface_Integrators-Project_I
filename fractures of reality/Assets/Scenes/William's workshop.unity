@@ -136,8 +136,8 @@ GameObject:
   - component: {fileID: 163003649}
   - component: {fileID: 163003648}
   - component: {fileID: 163003647}
-  m_Layer: 0
-  m_Name: test dummy
+  m_Layer: 6
+  m_Name: test dummy(fire)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,12 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 0}
+  thisEnemy: {fileID: 163003646}
   agent: {fileID: 0}
   model: {fileID: 163003648}
   shootPos: {fileID: 0}
   Hp: 20
-  enemyType: 1
   spell: {fileID: 0}
   shootRate: 0
 --- !u!4 &163003651
@@ -263,9 +262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 10
+  Hp: 20
   model: {fileID: 163003648}
-  enemyType: 0
+  enemyType: 1
 --- !u!1 &398468321
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skellington
       objectReference: {fileID: 0}
+    - target: {fileID: 2893852035738581323, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6783842558264711902, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.5
@@ -1145,8 +1148,8 @@ GameObject:
   - component: {fileID: 2069079546}
   - component: {fileID: 2069079545}
   - component: {fileID: 2069079544}
-  m_Layer: 0
-  m_Name: test dummy (1)
+  m_Layer: 6
+  m_Name: test dummy (normal)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1237,12 +1240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 0}
+  thisEnemy: {fileID: 2069079543}
   agent: {fileID: 0}
   model: {fileID: 2069079545}
   shootPos: {fileID: 0}
   Hp: 20
-  enemyType: 1
   spell: {fileID: 0}
   shootRate: 0
 --- !u!114 &2069079548
@@ -1257,7 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 10
+  Hp: 20
   model: {fileID: 2069079545}
   enemyType: 0
 --- !u!4 &2069079549
@@ -1283,6 +1285,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3717160555535986266, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
+      propertyPath: damageAmount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4339195441933441695, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.75
@@ -1401,45 +1407,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Autodestruct
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
-      value: 0.36581033
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[2].time
-      value: 0.9217686
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0.04673001
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
-      value: -0.47886035
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
-      value: 0.48240283
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
-      value: -0.47886035
-      objectReference: {fileID: 0}
-    - target: {fileID: 948573705619184506, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
     - target: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_Name
       value: fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
       propertyPath: m_IsActive
@@ -1485,9 +1459,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7520967230421969509, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
+    - target: {fileID: 3254448861379666274, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

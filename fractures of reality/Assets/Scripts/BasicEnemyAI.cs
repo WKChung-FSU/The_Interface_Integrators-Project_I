@@ -9,7 +9,7 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     //[SerializeField] Renderer model;
     [SerializeField] float attackRate;
-    [SerializeField] DamageEngine.damageType mDamage;
+    [SerializeField] DamageEngine.ElementType mDamage;
     [SerializeField] int meleeDamage;
     UnityEngine.Collider attackTarget;
     DestructibleHealthCore health;

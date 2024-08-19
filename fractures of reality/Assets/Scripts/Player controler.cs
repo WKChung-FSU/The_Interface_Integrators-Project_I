@@ -91,7 +91,7 @@ public class playerControler : MonoBehaviour, IDamage
             isSprinting = false;
         }
     }
-    public void takeDamage(int amount, DamageEngine.damageType DamageType)
+    public void takeDamage(int amount, DamageEngine.ElementType ElementType)
     {
         gameManager.instance.DamageFlashScreen();
     }

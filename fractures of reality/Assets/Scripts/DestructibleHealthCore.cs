@@ -6,7 +6,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
     [SerializeField] int Hp;
     [SerializeField] Renderer model;
-    [SerializeField] DamageEngine.EnemyType enemyType;
+    [SerializeField] DamageEngine.ElementType enemyType;
     int MaxHealth;
     Color colorOriginal;
     // Start is called before the first frame update
@@ -16,7 +16,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         colorOriginal = model.material.color;
         gameManager.instance.updateGameGoal(1);
     }
-    public DamageEngine.EnemyType EnemyType
+    public DamageEngine.ElementType EnemyType
     {
         get
         {
@@ -36,7 +36,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             Hp = value;
         }
     }
-    public void takeDamage(int amount, DamageEngine.damageType type)
+    public void takeDamage(int amount, DamageEngine.ElementType type)
     {
         StartCoroutine(flashRed());
     }

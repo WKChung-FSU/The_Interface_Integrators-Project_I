@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7520967230421969509}
   - component: {fileID: 948573705619184506}
   - component: {fileID: 8665744176817869189}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702996875c5a91a47b614e32747853c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 2
+  attackElement: 1
   movementType: 0
   rb: {fileID: 7520967230421969509}
-  damageAmount: 10
+  damageAmount: 5
   speed: 6
   RemoveTime: 10
 --- !u!33 &7135445674811662575
@@ -172,6 +172,15 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.36581033
+        value: 0.04673001
+        inSlope: -0.47886035
+        outSlope: -0.47886035
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.48240283
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.9217686
         value: 0
         inSlope: 0
@@ -277,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1612166617016378804}
   - component: {fileID: 7145264739710961626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

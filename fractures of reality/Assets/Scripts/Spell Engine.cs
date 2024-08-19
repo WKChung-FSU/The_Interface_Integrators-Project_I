@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpellEngine : MonoBehaviour
 {
-    [SerializeField] DamageEngine.damageType damageType;
+    [SerializeField] DamageEngine.ElementType attackElement;
     [SerializeField] DamageEngine.movementType movementType;
     [SerializeField] Rigidbody rb;
 
@@ -28,7 +28,7 @@ public class SpellEngine : MonoBehaviour
         {
             return;
         }
-        DamageEngine.instance.CalculateDamage(other, damageAmount, damageType);
+        DamageEngine.instance.CalculateDamage(other, damageAmount, attackElement);
 
 
         if (movementType == DamageEngine.movementType.Spell)

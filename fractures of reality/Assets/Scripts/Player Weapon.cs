@@ -131,7 +131,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     IDamage damage = hit.collider.GetComponent<IDamage>();
                     if (damage != null)
                     {
-                        DamageEngine.instance.CalculateDamage(hit.collider, spell3Damage, DamageEngine.damageType.Lightning);
+                        DamageEngine.instance.CalculateDamage(hit.collider, spell3Damage, DamageEngine.ElementType.Lightning);
                         //lightning delay
                         //coconut.jpeg
 
