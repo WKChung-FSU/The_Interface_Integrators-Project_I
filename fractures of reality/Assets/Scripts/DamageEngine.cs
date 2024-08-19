@@ -6,7 +6,7 @@ public class DamageEngine : MonoBehaviour
 {
     public static DamageEngine instance;
     // will add more spell types if necessary
-    public enum ElementType { Normal, fire, Lightning }
+    public enum ElementType { Normal, fire, Lightning,  }
     public enum movementType { Spell, Environmental }
 
     // Start is called before the first frame update
@@ -60,22 +60,25 @@ public class DamageEngine : MonoBehaviour
     {
         float floatDamage = damageAmount;
         float basicMult = 0, fireMult = 0, lightningMult = 0;
+        
         switch (enemyType)
         {
+            // change numbers below to change the multipliers for specific elements
             case ElementType.Normal:
-                //nothing
+                // edit these for global multipliers for basic spells
                 basicMult = 1f;
                 fireMult = 1f;
                 lightningMult = 1f;
                 break;
 
             case ElementType.fire:
+                // edit these for global multipliers for fire attacks
                 basicMult = 1f;
-                fireMult = 0.5f;
-                lightningMult = 0.8f;
+                fireMult = 0f;
+                lightningMult = 0.5f;
                 break;
         }
-
+        // no need to touch below
         switch (attackType)
         {
             case ElementType.Normal:

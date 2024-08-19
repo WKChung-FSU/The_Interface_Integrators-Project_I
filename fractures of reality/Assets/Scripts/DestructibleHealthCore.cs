@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
-    [SerializeField] int Hp;
+    [SerializeField] int Hp = 20;
     [SerializeField] Renderer model;
     [SerializeField] DamageEngine.ElementType enemyType;
+    [SerializeField] bool IsMandatory = true;
     int MaxHealth;
     Color colorOriginal;
     // Start is called before the first frame update
@@ -14,7 +15,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         MaxHealth = Hp;
         colorOriginal = model.material.color;
-        gameManager.instance.updateGameGoal(1);
+        if (IsMandatory)
+            gameManager.instance.updateGameGoal(1);
     }
     public DamageEngine.ElementType EnemyType
     {

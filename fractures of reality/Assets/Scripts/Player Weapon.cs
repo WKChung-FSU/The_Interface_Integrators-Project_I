@@ -16,11 +16,21 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     #region Menu 
     [SerializeField] int MenuLimit;
     [SerializeField] Transform SpellLaunchPos;
-    [SerializeField] GameObject Spell1;
-    [SerializeField] GameObject Spell2;
    
+
     #endregion
 
+    #region Spells
+
+    [SerializeField] GameObject bSpell1;
+    [SerializeField] GameObject bSpell2;
+    [SerializeField] GameObject bSpell3;
+
+    [SerializeField] GameObject sSpell1;
+    [SerializeField] GameObject sSpell2;
+
+
+    #endregion
     #region wepon Stats
     [SerializeField] int Spell2CostMultiplier;
     [SerializeField] int spell3Damage;
@@ -50,14 +60,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     void Update()
     {
         if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
-            StartCoroutine(Shoot());
+            StartCoroutine(ShootPrimary());
+
+        if (Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false)
+            StartCoroutine(ShootSecondary());
+
         if (Input.GetButtonDown("Switch Weapon"))
             //No longer coroutine -CM
             WeaponMenuSystem();
 
         if (Input.GetButtonDown("Reload"))
         {
-            CurrAmmo=MaxAmmo;
+            CurrAmmo = MaxAmmo;
         }
 
     }
@@ -86,7 +100,37 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     private
     #endregion
-    IEnumerator Shoot()
+        IEnumerator ShootPrimary()
+    {
+        isShooting = true;
+
+        switch (currentWeapon)
+        {
+            //Basic spell
+            case 0:
+                Instantiate(bSpell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
+
+                break;
+
+            //Fireball
+            case 1:
+
+                Instantiate(bSpell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
+
+                break;
+
+            //lightning spell
+            case 2:
+
+                Instantiate(bSpell3, SpellLaunchPos.position, SpellLaunchPos.rotation);
+                break;
+        }
+        yield return new WaitForSeconds(FireRate);
+        isShooting = false;
+    }
+
+
+    IEnumerator ShootSecondary()
     {
         isShooting = true;
 
@@ -97,7 +141,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 0:
                 if ((CurrAmmo) > 0)
                 {
-                    Instantiate(Spell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
+                    Instantiate(sSpell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
                     CurrAmmo--;
                 }
                 break;
@@ -106,7 +150,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             case 1:
                 if ((CurrAmmo - Spell2CostMultiplier) >= 0)
                 {
-                    Instantiate(Spell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
+                    Instantiate(sSpell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
                     CurrAmmo -= Spell2CostMultiplier;
                 }
                 break;
@@ -120,12 +164,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     #region Debug
                     Debug.Log(hit.collider.name);
                     #endregion
-                    if ((CurrAmmo - Spell3CostMultiplier) >= 0) { 
+                    if ((CurrAmmo - Spell3CostMultiplier) >= 0)
+                    {
                         //test -CM
                         //Visual of lightning being cast 
                         lightningVisual.useWorldSpace = true;
-                    lightningVisual.SetPosition(0, SpellLaunchPos.position);
-                    lightningVisual.SetPosition(1, hit.point);
+                        lightningVisual.SetPosition(0, SpellLaunchPos.position);
+                        lightningVisual.SetPosition(1, hit.point);
                         CurrAmmo--;
                     }
                     IDamage damage = hit.collider.GetComponent<IDamage>();
