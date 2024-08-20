@@ -1026,8 +1026,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 30
-  model: {fileID: 6086052596565084807}
-  enemyType: 1
+  mObject: {fileID: 7019192745736286073}
+  mObjectCollider: {fileID: 7346255865319433979}
+  elementType: 0
+  IsMandatory: 1
+  isPlayer: 0
+  burnTickDelay: 3
+  modelColor: {fileID: 6086052596565084807}
 --- !u!114 &1743674964336590827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,7 +1049,6 @@ MonoBehaviour:
   agent: {fileID: 1448441157183264116}
   model: {fileID: 6086052596565084807}
   shootPos: {fileID: 2842912695581522923}
-  spawnPoint: {fileID: 0}
   headPos: {fileID: 3454290574927365244}
   viewAngle: 90
   facePlayerSpeed: 360

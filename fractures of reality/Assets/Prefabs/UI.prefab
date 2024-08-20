@@ -925,7 +925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1214928849589770985
@@ -1246,8 +1246,6 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerWeapon: {fileID: 0}
-  healthMax: 0
-  ammoMax: 0
   menuPause: {fileID: 3336832533848130226}
   menuActive: {fileID: 0}
   menuWin: {fileID: 4110882093435686449}
@@ -1261,6 +1259,7 @@ MonoBehaviour:
   enemyCountText: {fileID: 7631197481266396190}
   isPaused: 0
   hudEnabled: 0
+  playerDead: 0
   wMagicMissileIcon: {fileID: 5603616500540061610}
   wFireballIcon: {fileID: 7963076986528578731}
   wLightningIcon: {fileID: 808710139357063345}

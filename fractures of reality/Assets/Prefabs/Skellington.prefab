@@ -2268,9 +2268,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 5
-  model: {fileID: 2985764996480111690}
-  enemyType: 0
+  Hp: 10000
+  mObject: {fileID: 5328014127606521171}
+  mObjectCollider: {fileID: -2555929289101370116}
+  elementType: 0
+  IsMandatory: 1
+  isPlayer: 0
+  burnTickDelay: 0
+  modelColor: {fileID: 2985764996480111690}
 --- !u!114 &2470289077977300253
 MonoBehaviour:
   m_ObjectHideFlags: 0
