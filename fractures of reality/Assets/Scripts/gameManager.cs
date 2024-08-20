@@ -164,6 +164,7 @@ public class gameManager : MonoBehaviour
                     wLightningIcon.SetActive(true);
                     break;
                 }
+                //TODO: Add the rest of the spells (Ice, water, earth, air)
         }
     }
 
