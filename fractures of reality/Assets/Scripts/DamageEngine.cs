@@ -30,13 +30,13 @@ public class DamageEngine : MonoBehaviour
                 // add damage calculation
                 int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                 TempHealth -= damageDealt;
-                healthCore.HP = TempHealth;
                 if (TempHealth <= 0)
                 {
                     TempHealth = 0;
                     // if player do player things if not do enemy things.
                     if (targetPlayer != null)
                     {
+                        if(gameManager.instance.playerDead == false)
                         gameManager.instance.youLose();
                     }
                     else
@@ -46,6 +46,7 @@ public class DamageEngine : MonoBehaviour
                     if (healthCore.IsMandatory)
                         gameManager.instance.updateGameGoal(-1);
                 }
+                healthCore.HP = TempHealth;
                 // does the specific damage effect
                 //Debug.Log("Damage Engine: "+ DamageAmount);
                 dmg.damageEffect(damageDealt, attackType);

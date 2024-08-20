@@ -13,13 +13,9 @@ public class gameManager : MonoBehaviour
 
     #region Player
     public GameObject player;
-    public playerControler playerScript;
+    public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
     int enemyCount;
-    int healthCount;
-    public int healthMax;
-    int ammoCount;
-    public int ammoMax;
     #endregion
 
     #region UI
@@ -36,6 +32,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     public bool isPaused;
     public bool hudEnabled;
+    public bool playerDead;
 
     //weapon icons
     [SerializeField] GameObject wMagicMissileIcon;
@@ -50,7 +47,7 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerControler>();
+        playerScript = player.GetComponent<DestructibleHealthCore>();
         playerWeapon = player.GetComponent<PlayerWeapon>();
 
         hudEnabled = true;
@@ -117,8 +114,11 @@ public class gameManager : MonoBehaviour
     public void youLose()
     {
         statePause();
+        Debug.Log("YOU LOSE MENU OPEN?");
         menuActive = menuLose;
+        Debug.Log("menu should appear");
         menuActive.SetActive(isPaused);
+        playerDead = true;
     }
 
     public void EnableHUD()
@@ -183,14 +183,12 @@ public class gameManager : MonoBehaviour
     void UpdateHUD()
     {
         //health bar
-        //healthCount = playerScript.PlayerHP;
-        healthCountText.text = healthCount.ToString("F0");
-        gameManager.instance.healthBar.fillAmount = (float)healthCount / healthMax;
+        healthCountText.text = playerScript.HP.ToString("F0");
+        gameManager.instance.healthBar.fillAmount = (float)playerScript.HP / playerScript.HPMax;
 
         //ammo bar
-        ammoCount = playerWeapon.GetCurrentAmmo();
-        ammoCountText.text = ammoCount.ToString("F0");
-        gameManager.instance.ammoBar.fillAmount = (float)ammoCount / ammoMax;
+        ammoCountText.text = playerWeapon.GetCurrentAmmo().ToString("F0");
+        gameManager.instance.ammoBar.fillAmount = (float)playerWeapon.GetCurrentAmmo() / playerWeapon.GetMaxAmmo();
     }
 
     IEnumerator DamageFlashTimer()

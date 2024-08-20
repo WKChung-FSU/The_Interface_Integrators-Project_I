@@ -20,9 +20,9 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         MaxHealth = Hp;
         colorOriginal = model.material.color;
-        if (isPlayer)
-            gameManager.instance.healthMax = MaxHealth;
-        else if (IsMandatory)
+       // if (isPlayer)
+          //  gameManager.instance.healthMax = MaxHealth;
+         if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
     }
     public DamageEngine.ElementType ElementType
@@ -43,6 +43,18 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         set
         {
             Hp = value;
+        }
+    }
+    public int HPMax
+    {
+        get
+        {
+            return MaxHealth;
+        }
+
+        set
+        {
+            MaxHealth = value;
         }
     }
     public void damageEffect(int amount, DamageEngine.ElementType type)

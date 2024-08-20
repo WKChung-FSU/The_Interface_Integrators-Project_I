@@ -20,14 +20,13 @@ public class playerControler : MonoBehaviour
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
-    int hpOriginal;
      bool isSprinting;
     bool isShooting;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager.instance.healthMax = hpOriginal;
+
     }
 
     // Update is called once per frame

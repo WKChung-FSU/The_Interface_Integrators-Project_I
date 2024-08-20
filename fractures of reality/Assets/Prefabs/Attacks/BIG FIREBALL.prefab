@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702996875c5a91a47b614e32747853c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageType: 2
+  attackElement: 0
   movementType: 0
   rb: {fileID: 7520967230421969509}
   damageAmount: 8

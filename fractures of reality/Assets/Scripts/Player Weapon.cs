@@ -53,7 +53,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     void Start()
     {
         CurrAmmo = MaxAmmo;
-        gameManager.instance.ammoMax = MaxAmmo;
+        //gameManager.instance.ammoMax = MaxAmmo;
     }
 
     // Update is called once per frame
