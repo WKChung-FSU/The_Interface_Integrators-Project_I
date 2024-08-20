@@ -183,7 +183,7 @@ public class gameManager : MonoBehaviour
     void UpdateHUD()
     {
         //health bar
-        healthCount = playerScript.PlayerHP;
+        //healthCount = playerScript.PlayerHP;
         healthCountText.text = healthCount.ToString("F0");
         gameManager.instance.healthBar.fillAmount = (float)healthCount / healthMax;
 

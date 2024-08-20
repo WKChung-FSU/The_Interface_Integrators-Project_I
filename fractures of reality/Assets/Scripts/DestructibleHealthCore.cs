@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
+
+    public enum statusEffect { Burning, Wet, Electrocuted, FrostBitten, WindBorn, Stunned }
     [SerializeField] int Hp = 20;
     [SerializeField] Renderer model;
-    [SerializeField] DamageEngine.ElementType enemyType;
-    [SerializeField] bool IsMandatory = true;
+    [SerializeField] DamageEngine.ElementType elementType;
+    [SerializeField] public bool IsMandatory = true;
+    [SerializeField] bool isPlayer=false;
+
+    Dictionary<statusEffect, bool> statusEffects;
     int MaxHealth;
     Color colorOriginal;
     // Start is called before the first frame update
@@ -15,18 +20,20 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         MaxHealth = Hp;
         colorOriginal = model.material.color;
-        if (IsMandatory)
+        if (isPlayer)
+            gameManager.instance.healthMax = MaxHealth;
+        else if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
     }
-    public DamageEngine.ElementType EnemyType
+    public DamageEngine.ElementType ElementType
     {
         get
         {
-            return enemyType;
+            return elementType;
         }
     }
 
-    public int EnemyHP
+    public int HP
     {
         get
         {
@@ -38,9 +45,13 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             Hp = value;
         }
     }
-    public void takeDamage(int amount, DamageEngine.ElementType type)
+    public void damageEffect(int amount, DamageEngine.ElementType type)
     {
-        StartCoroutine(flashRed());
+        if (!isPlayer)
+        {
+            StartCoroutine(flashRed());
+
+        }
     }
 
     IEnumerator flashRed()

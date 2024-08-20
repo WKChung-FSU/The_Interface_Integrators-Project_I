@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class playerControler : MonoBehaviour, IDamage
+public class playerControler : MonoBehaviour
 {
     
     //fields
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
-    [SerializeField] int Hp;
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpMax;
@@ -22,23 +21,12 @@ public class playerControler : MonoBehaviour, IDamage
     Vector3 playerVel;
     int jumpCount;
     int hpOriginal;
-    public int PlayerHP
-    {
-        get
-        {
-            return Hp;
-        }
-        set
-        {
-            Hp = value;
-        }
-    }
      bool isSprinting;
     bool isShooting;
+
     // Start is called before the first frame update
     void Start()
     {
-        hpOriginal = Hp;
         gameManager.instance.healthMax = hpOriginal;
     }
 
@@ -91,7 +79,7 @@ public class playerControler : MonoBehaviour, IDamage
             isSprinting = false;
         }
     }
-    public void takeDamage(int amount, DamageEngine.ElementType ElementType)
+    public void damageEffect(int amount, DamageEngine.ElementType ElementType)
     {
         gameManager.instance.DamageFlashScreen();
     }

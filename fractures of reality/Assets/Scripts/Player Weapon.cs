@@ -73,7 +73,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             CurrAmmo = MaxAmmo;
         }
-
     }
 
     #region Public Getters
@@ -90,7 +89,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return OutOfAmmo;
     }
-
 
     public WeaponMenu GetCurrentWeapon()
     {
@@ -217,10 +215,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             currentWeapon = 0;
         }
-
-
         gameManager.instance.UpdateWeaponIconUI();
-        //yield return new WaitForSeconds(3);
+        
     }
     void AmmoTest()
     {

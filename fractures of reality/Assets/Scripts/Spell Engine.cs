@@ -24,10 +24,12 @@ public class SpellEngine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.isTrigger)
         {
             return;
         }
+        //do damage
         DamageEngine.instance.CalculateDamage(other, damageAmount, attackElement);
 
 

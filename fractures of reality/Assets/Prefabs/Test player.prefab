@@ -119,6 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8441483300417840540}
+  - component: {fileID: 6244551520300405113}
   - component: {fileID: 782011894035760111}
   - component: {fileID: 7315470601531378724}
   - component: {fileID: 7359180178567345916}
@@ -151,6 +152,23 @@ Transform:
   - {fileID: 4928155821958457504}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &6244551520300405113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305019558992904906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 20
+  model: {fileID: 722136256187023}
+  elementType: 0
+  IsMandatory: 0
+  isPlayer: 1
 --- !u!114 &782011894035760111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +185,6 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 8
-  Hp: 15
   speed: 5
   sprintMod: 2
   jumpMax: 2
@@ -191,11 +208,11 @@ MonoBehaviour:
   lightningVisual: {fileID: 614663942991988680}
   MenuLimit: 3
   SpellLaunchPos: {fileID: 4312234353505068331}
-  Spell1: {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
-  Spell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   bSpell1: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   bSpell2: {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}
   bSpell3: {fileID: 1180295084170229988, guid: fe2189af410d89c419e636969d7e3504, type: 3}
+  sSpell1: {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
+  sSpell2: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   Spell2CostMultiplier: 2
   spell3Damage: 4
   spell3Range: 20
