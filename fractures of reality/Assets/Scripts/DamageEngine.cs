@@ -28,7 +28,8 @@ public class DamageEngine : MonoBehaviour
 
                 TempHealth = healthCore.HP;
                 // add damage calculation
-                TempHealth -= ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
+                int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
+                TempHealth -= damageDealt;
                 healthCore.HP = TempHealth;
                 if (TempHealth <= 0)
                 {
@@ -46,7 +47,8 @@ public class DamageEngine : MonoBehaviour
                         gameManager.instance.updateGameGoal(-1);
                 }
                 // does the specific damage effect
-                dmg.damageEffect(DamageAmount, attackType);
+                //Debug.Log("Damage Engine: "+ DamageAmount);
+                dmg.damageEffect(damageDealt, attackType);
             }
         }
     }

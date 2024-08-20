@@ -49,14 +49,19 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         if (!isPlayer)
         {
-            StartCoroutine(flashRed());
-
+                Debug.Log(amount);
+            if (amount == 0)
+                StartCoroutine(flashColor(Color.grey));
+            else if (amount > 0)
+                StartCoroutine(flashColor(Color.red));
+            else
+                StartCoroutine(flashColor(Color.green));
         }
     }
 
-    IEnumerator flashRed()
+    IEnumerator flashColor(Color color)
     {
-        model.material.color = Color.red;
+        model.material.color = color;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOriginal;
     }
