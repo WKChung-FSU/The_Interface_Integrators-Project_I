@@ -1275,6 +1275,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0d71d1c13932048ad972a8686fbfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMultiplier:
+    normalMult: 0
+    fireMult: 0
+    lightningMult: 0
+    iceMult: 0
+    earthMult: 0
+    windMult: 2
+    waterMult: 0
+  FireMultiplier:
+    normalMult: 0
+    fireMult: 4
+    lightningMult: 3
+    iceMult: 1
+    earthMult: 0
+    windMult: 2
+    waterMult: 1
+  LightningMultiplier:
+    normalMult: 0
+    fireMult: 2
+    lightningMult: 4
+    iceMult: 3
+    earthMult: 1
+    windMult: 2
+    waterMult: 1
+  IceMultiplier:
+    normalMult: 0
+    fireMult: 1
+    lightningMult: 2
+    iceMult: 0
+    earthMult: 1
+    windMult: 2
+    waterMult: 4
+  EarthMultiplier:
+    normalMult: 0
+    fireMult: 3
+    lightningMult: 3
+    iceMult: 3
+    earthMult: 0
+    windMult: 2
+    waterMult: 0
+  WindMultiplier:
+    normalMult: 0
+    fireMult: 0
+    lightningMult: 0
+    iceMult: 0
+    earthMult: 0
+    windMult: 0
+    waterMult: 0
+  WaterMultiplier:
+    normalMult: 0
+    fireMult: 0
+    lightningMult: 0
+    iceMult: 0
+    earthMult: 0
+    windMult: 0
+    waterMult: 0
 --- !u!114 &7210268632664386187
 MonoBehaviour:
   m_ObjectHideFlags: 0

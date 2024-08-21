@@ -15,7 +15,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] int burnTickDelay = 3;
     [SerializeField] Renderer modelColor;
 
-    private Dictionary<statusEffect, bool> statusDictionary = new Dictionary<statusEffect, bool>();
+    public Dictionary<DamageEngine.ElementType, bool> statusDictionary=new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
     Color colorOriginal;
 
@@ -31,15 +31,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         //  gameManager.instance.healthMax = MaxHealth;
         if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
-
-        //initialize the keys
-        statusDictionary.Add(statusEffect.normal, false);
-        statusDictionary.Add(statusEffect.fireBurning, false);
-        statusDictionary.Add(statusEffect.LightningShocked, false);
-        statusDictionary.Add(statusEffect.IceFrozen, false);
-        statusDictionary.Add(statusEffect.Earth, false);
-        statusDictionary.Add(statusEffect.Windborn, false);
-        statusDictionary.Add(statusEffect.WaterWet, false);
     }
     public DamageEngine.ElementType ElementType
     {
@@ -77,66 +68,76 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     //The flash of color upon damage and status effect being applied
     public void damageEffect(int amount, DamageEngine.ElementType type)
     {
-        if (statusDictionary[(statusEffect)type] == false)
+        // updated the key generator
+        if (statusDictionary.ContainsKey(type))
         {
-            statusDictionary[(statusEffect)type] = true;
+            if (statusDictionary[type] == false)
+            {
+                statusDictionary[type] = true;
+            }
         }
-        // if stacking multiple different effects becomes an issue, put the following switch in an else statement
-
-        switch (type)
+        else
         {
-            case DamageEngine.ElementType.Normal:
-                {
-                    damageColor(amount);
-                    break;
-                }
-            case DamageEngine.ElementType.fire:
-                {
-                    if (burnTick >=5 )
+            statusDictionary.Add(type,true);
+        }
+
+        // if stacking multiple different effects becomes an issue, put the following switch in an else statement
+        
+            switch (type)
+            {
+                case DamageEngine.ElementType.Normal:
                     {
-                        burnTick = 0;
-                        ClearStatusEffect(statusEffect.fireBurning);
-                        return;
+                        damageColor(amount);
+                        break;
                     }
-                    StartCoroutine(BurnDelay(amount));
-                    //TODO particles
-                    burnTick++;
-                    break;
-                }
-            case DamageEngine.ElementType.Lightning:
-                {
-                    damageColor(amount);
+                case DamageEngine.ElementType.fire:
+                    {
+                        if (burnTick >= 5)
+                        {
+                            burnTick = 0;
+                            ClearStatusEffect(DamageEngine.ElementType.fire);
+                            return;
+                        }
+                        StartCoroutine(BurnDelay(amount));
+                        //TODO particles
+                        burnTick++;
+                        break;
+                    }
+                case DamageEngine.ElementType.Lightning:
+                    {
+                        damageColor(amount);
 
-                    break;
-                }
-            case DamageEngine.ElementType.Ice:
-                {
-                    damageColor(amount);
+                        break;
+                    }
+                case DamageEngine.ElementType.Ice:
+                    {
+                        damageColor(amount);
 
-                    break;
-                }
-            case DamageEngine.ElementType.Earth:
-                {
-                    damageColor(amount);
+                        break;
+                    }
+                case DamageEngine.ElementType.Earth:
+                    {
+                        damageColor(amount);
 
-                    break;
-                }
-            case DamageEngine.ElementType.Wind:
-                {
-                    damageColor(amount);
+                        break;
+                    }
+                case DamageEngine.ElementType.Wind:
+                    {
+                        damageColor(amount);
 
-                    break;
-                }
-            case DamageEngine.ElementType.Water:
-                {
-                    damageColor(amount);
+                        break;
+                    }
+                case DamageEngine.ElementType.Water:
+                    {
+                        damageColor(amount);
 
-                    break;
-                }
+                        break;
+                    }
+            
         }
     }
 
-    void ClearStatusEffect(statusEffect effect)
+    void ClearStatusEffect(DamageEngine.ElementType effect)
     {
         statusDictionary[effect] = false;
     }

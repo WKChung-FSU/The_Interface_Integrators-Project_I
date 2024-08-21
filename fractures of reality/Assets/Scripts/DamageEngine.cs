@@ -1,9 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class DamageEngine : MonoBehaviour
 {
+    public enum DamageEffect { Normal, critical, nullified, Weak, Heal }
+
+    [System.Serializable]
+    public struct DamageMultipliers
+    {
+        [SerializeField] public DamageEffect normalMult;
+        [SerializeField] public DamageEffect fireMult;
+        [SerializeField] public DamageEffect lightningMult;
+        [SerializeField] public DamageEffect iceMult;
+        [SerializeField] public DamageEffect earthMult;
+        [SerializeField] public DamageEffect windMult;
+        [SerializeField] public DamageEffect waterMult;
+    }
+
+    [SerializeField] DamageMultipliers normalMultiplier, FireMultiplier, LightningMultiplier;
+    [SerializeField] DamageMultipliers IceMultiplier, EarthMultiplier, WindMultiplier, WaterMultiplier;
+
     public static DamageEngine instance;
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
@@ -20,13 +36,13 @@ public class DamageEngine : MonoBehaviour
         {
             int TempHealth;
             IDamage dmg = OtherCollider.GetComponent<IDamage>();
-            
+
             if (dmg != null)
             {
                 playerControler targetPlayer = OtherCollider.GetComponent<playerControler>();
                 DestructibleHealthCore healthCore = OtherCollider.GetComponent<DestructibleHealthCore>();
-
                 TempHealth = healthCore.HP;
+
                 // add damage calculation
                 int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                 TempHealth -= damageDealt;
@@ -36,8 +52,8 @@ public class DamageEngine : MonoBehaviour
                     // if player do player things if not do enemy things.
                     if (targetPlayer != null)
                     {
-                        if(gameManager.instance.playerDead == false)
-                        gameManager.instance.youLose();
+                        if (gameManager.instance.playerDead == false)
+                            gameManager.instance.youLose();
                     }
                     else
                     {
@@ -54,80 +70,94 @@ public class DamageEngine : MonoBehaviour
         }
     }
 
-    int ElementTypeMultiplier(ElementType enemyType, int damageAmount, ElementType attackType)
+     int ElementTypeMultiplier(ElementType enemyType, int damageAmount, ElementType attackType)
     {
         float floatDamage = damageAmount;
-        float fireMult = 1, lightningMult = 1, iceMult=1,earthMult=1,windMult=0,waterMult = 1;
-
+        DamageMultipliers CurrentMult = normalMultiplier;
+        DamageEffect currentEffect;
         switch (enemyType)
         {
-            // change numbers below to change the multipliers for specific elements
-            case ElementType.Normal:
-                break;
-// edit these for global multipliers for attacks
+            // Set enemies Multiplier
             case ElementType.fire:
-                
-                fireMult = 0f;
-                lightningMult = 0.5f;
-                iceMult = 1.5f;
-                windMult = -0.5f;
-                waterMult = 2f;
+                CurrentMult = FireMultiplier;
                 break;
+
             case ElementType.Lightning:
-                lightningMult = 0f;
-                earthMult = 2f;
-                windMult = -0.5f;
-                waterMult = 2f;
-
+                CurrentMult = LightningMultiplier;
                 break;
-            case ElementType.Ice:
-               
-                fireMult = 2f;
-                iceMult = 0f;
-                earthMult = 1f;
-                waterMult = -1f;
 
+            case ElementType.Ice:
+                CurrentMult = IceMultiplier;
                 break;
 
             case ElementType.Earth:
-                fireMult = 0f;
-                lightningMult = 0f;
-                iceMult = 1.5f;
+                CurrentMult = EarthMultiplier;
+                break;
 
-                break;
             case ElementType.Wind:
-                // wind is immortal
+                CurrentMult = WindMultiplier;
                 break;
+
             case ElementType.Water:
-                lightningMult = 3f;
-                iceMult = 2f;
-                waterMult = 0f;
+                CurrentMult = WaterMultiplier;
                 break;
         }
         // no need to touch below
         switch (attackType)
         {
             case ElementType.Normal:
+                currentEffect = CurrentMult.normalMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
             case ElementType.fire:
-                damageAmount = (int)(floatDamage * fireMult);
+                currentEffect = CurrentMult.fireMult;
+                damageAmount = DamageMult(currentEffect,floatDamage);
                 break;
             case ElementType.Lightning:
-                damageAmount = (int)(floatDamage * lightningMult);
+                currentEffect = CurrentMult.lightningMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
             case ElementType.Ice:
-                damageAmount = (int)(floatDamage * iceMult);
+                currentEffect = CurrentMult.iceMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
             case ElementType.Earth:
-                damageAmount = (int)(floatDamage * earthMult);
+                currentEffect = CurrentMult.earthMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
             case ElementType.Wind:
-                damageAmount = (int)(floatDamage * windMult);
+                currentEffect = CurrentMult.windMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
             case ElementType.Water:
-                damageAmount = (int)(floatDamage * waterMult);
+                currentEffect = CurrentMult.waterMult;
+                damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
         }
         return damageAmount;
     }
+
+    int DamageMult(DamageEffect AttackElement, float damageAmount)
+    {
+        float Multiplier=1f;
+        switch (AttackElement)
+        {
+            case DamageEffect.critical:
+                Multiplier = 2f;
+                break;
+            case DamageEffect.nullified:
+                Multiplier = 0f;
+                break;
+
+            case DamageEffect.Weak:
+                Multiplier = 0.5f;
+                break;
+
+            case DamageEffect.Heal:
+                Multiplier = -1f;
+                break;
+        }
+        return (int)(damageAmount * Multiplier);
+    }
+
 }
