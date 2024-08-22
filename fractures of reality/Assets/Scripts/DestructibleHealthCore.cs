@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] bool isPlayer = false;
     [SerializeField] int burnTickDelay = 1;
     [SerializeField] Renderer modelColor;
+    [SerializeField] TMP_Text textHP;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
@@ -32,6 +34,11 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         //  gameManager.instance.healthMax = MaxHealth;
         if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
+
+        if(!isPlayer)
+        {
+            textHP.text = HP.ToString("F0");
+        }
     }
     public DamageEngine.ElementType ElementType
     {
@@ -151,6 +158,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             {
                 StartCoroutine(flashColor(Color.green));
             }
+
+            textHP.text = HP.ToString("F0");
 
             //TODO: Particles
         }
