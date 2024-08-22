@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class WizardAI : MonoBehaviour
-{   [SerializeField] GameObject thisEnemy;
+{
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animator;
+    [SerializeField] int animationSpeedTransition;
     [SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
-    
-    DestructibleHealthCore health;
+    [SerializeField] Transform summonPos;
 
     //values for raycast to see player and updated AI
     [SerializeField] Transform headPos;
@@ -29,18 +30,20 @@ public class WizardAI : MonoBehaviour
     bool isShooting;
     bool playerInRange;
 
-    
+
     void Start()
     {
-        startingPos = transform.position;  
-        health = thisEnemy.GetComponent<DestructibleHealthCore>();
+        startingPos = transform.position;
     }
 
     void Update()
     {
-        if(playerInRange && canSeePlayer())
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animationSpeedTransition));
+
+        if (playerInRange && canSeePlayer())
         {
-            
+
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isShooting)
             {
@@ -52,7 +55,7 @@ public class WizardAI : MonoBehaviour
         {
             agent.SetDestination(startingPos);
         }
-        
+
 
     }
     bool canSeePlayer()
@@ -85,11 +88,10 @@ public class WizardAI : MonoBehaviour
     void facePlayer()
     {
         Quaternion rot = Quaternion.LookRotation(playerDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 
-            Time.deltaTime * facePlayerSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * facePlayerSpeed);
     }
 
-IEnumerator shoot()
+    public IEnumerator shoot()
     {
         isShooting = true;
         //Will summon 3 enemies to fight for him before shooting
@@ -104,7 +106,7 @@ IEnumerator shoot()
         {
             //counting the number of summons
             numOfSummons++;
-            summonEnemy();
+            animator.SetTrigger("CastSkele");   //Use the animator to call the summonEnemy code
             //takes longer to summon enemies
             yield return new WaitForSeconds(shootRate * 2);
         }
@@ -114,17 +116,14 @@ IEnumerator shoot()
 
     public void summonEnemy()
     {
-        Transform summonPos = shootPos;
-        summonPos.position.Set(
-          summonPos.position.x + 1,summonPos.position.y, summonPos.position.z + 1);
         //Whatever enemy is set as the game object will be summoned
         Instantiate(enemyMinion, summonPos.position, transform.rotation);
     }
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             playerInRange = true;
         }
@@ -132,8 +131,8 @@ IEnumerator shoot()
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        { 
-            playerInRange = false; 
+        {
+            playerInRange = false;
         }
     }
 }

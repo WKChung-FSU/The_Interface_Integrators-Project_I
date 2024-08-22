@@ -2246,7 +2246,7 @@ Animator:
   m_GameObject: {fileID: 2893852035738581323}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8861fe0d9e356ea41b3e18aa8398db1b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2291,12 +2291,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisEnemy: {fileID: 2893852035738581323}
   agent: {fileID: -2677285965453637051}
+  animator: {fileID: 3024806175926015525}
+  animationSpeedTransition: 80
   attackRate: 1
   mDamage: 0
   meleeDamage: 1
   shootPos: {fileID: 8436033068805132073}
   spell: {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   isMelee: 0
+  canRoam: 1
 --- !u!136 &-2555929289101370116
 CapsuleCollider:
   m_ObjectHideFlags: 0

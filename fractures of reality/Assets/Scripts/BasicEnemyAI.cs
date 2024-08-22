@@ -7,29 +7,35 @@ public class BasicEnemyAI : MonoBehaviour
 {
     [SerializeField] GameObject thisEnemy;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animator;
+    [SerializeField] int animationSpeedTransition = 80;
     //[SerializeField] Renderer model;
     [SerializeField] float attackRate;
     [SerializeField] DamageEngine.ElementType mDamage;
     [SerializeField] int meleeDamage;
     UnityEngine.Collider attackTarget;
-    DestructibleHealthCore health;
 
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject spell;
 
 
     [SerializeField] bool isMelee;
+    [SerializeField] bool canRoam = true;
 
     bool isAttacking;
     bool playerInRange;
+
+    Vector3 startingPos;
+
     void Start()
     {
-        health = thisEnemy.GetComponent<DestructibleHealthCore>();
+        startingPos = transform.position;
     }
 
     void Update()
     {
-
+        float agentSpeed = agent.velocity.normalized.magnitude;
+        animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animationSpeedTransition));
 
         if (playerInRange)
         {
