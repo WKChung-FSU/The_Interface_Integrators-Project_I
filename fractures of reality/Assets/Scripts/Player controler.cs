@@ -78,8 +78,8 @@ public class playerControler : MonoBehaviour
             isSprinting = false;
         }
     }
-    public void damageEffect(int amount, DamageEngine.ElementType ElementType)
-    {
-        gameManager.instance.DamageFlashScreen();
-    }
+    //public void damageEffect(int amount, DamageEngine.ElementType ElementType)
+    //{
+    //    //gameManager.instance.DamageFlashScreen();
+    //}
 }

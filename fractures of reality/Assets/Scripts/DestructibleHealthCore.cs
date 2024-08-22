@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
@@ -12,10 +13,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
     [SerializeField] bool isPlayer = false;
-    [SerializeField] int burnTickDelay = 3;
+    [SerializeField] int burnTickDelay = 1;
     [SerializeField] Renderer modelColor;
 
-    public Dictionary<DamageEngine.ElementType, bool> statusDictionary=new Dictionary<DamageEngine.ElementType, bool>();
+    public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
     Color colorOriginal;
 
@@ -78,63 +79,58 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
         else
         {
-            statusDictionary.Add(type,true);
+            statusDictionary.Add(type, true);
         }
 
         // if stacking multiple different effects becomes an issue, put the following switch in an else statement
-        
-            switch (type)
-            {
-                case DamageEngine.ElementType.Normal:
-                    {
-                        damageColor(amount);
-                        break;
-                    }
-                case DamageEngine.ElementType.fire:
-                    {
-                        if (burnTick >= 5)
-                        {
-                            burnTick = 0;
-                            ClearStatusEffect(DamageEngine.ElementType.fire);
-                            return;
-                        }
-                        StartCoroutine(BurnDelay(amount));
-                        //TODO particles
-                        burnTick++;
-                        break;
-                    }
-                case DamageEngine.ElementType.Lightning:
-                    {
-                        damageColor(amount);
 
-                        break;
-                    }
-                case DamageEngine.ElementType.Ice:
-                    {
-                        damageColor(amount);
+        switch (type)
+        {
+            case DamageEngine.ElementType.Normal:
+                {
 
-                        break;
-                    }
-                case DamageEngine.ElementType.Earth:
+                    break;
+                }
+            case DamageEngine.ElementType.fire:
+                {
+                    if (burnTick >= 5)
                     {
-                        damageColor(amount);
-
-                        break;
+                        burnTick = 0;
+                        ClearStatusEffect(DamageEngine.ElementType.fire);
+                        return;
                     }
-                case DamageEngine.ElementType.Wind:
-                    {
-                        damageColor(amount);
+                    StartCoroutine(BurnDelay(amount));
+                    burnTick++;
+                    break;
+                }
+            case DamageEngine.ElementType.Lightning:
+                {
 
-                        break;
-                    }
-                case DamageEngine.ElementType.Water:
-                    {
-                        damageColor(amount);
+                    break;
+                }
+            case DamageEngine.ElementType.Ice:
+                {
 
-                        break;
-                    }
-            
+                    break;
+                }
+            case DamageEngine.ElementType.Earth:
+                {
+
+                    break;
+                }
+            case DamageEngine.ElementType.Wind:
+                {
+
+                    break;
+                }
+            case DamageEngine.ElementType.Water:
+                {
+
+                    break;
+                }
+
         }
+        damageColor(amount);
     }
 
     void ClearStatusEffect(DamageEngine.ElementType effect)
@@ -142,8 +138,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         statusDictionary[effect] = false;
     }
 
-    private void damageColor(int amount) 
-    { 
+    private void damageColor(int amount)
+    {
         if (!isPlayer)
         {
             //Debug.Log(amount);
@@ -152,7 +148,29 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             else if (amount > 0)
                 StartCoroutine(flashColor(Color.red));
             else
+            {
                 StartCoroutine(flashColor(Color.green));
+            }
+
+            //TODO: Particles
+        }
+        else
+        {
+            if (amount == 0)
+            {
+                Color transparentGrey = new Color(0.5f, 0.5f, 0.5f, 0.2f);
+                gameManager.instance.DamageFlashScreen(transparentGrey);
+            }
+            else if (amount > 0)
+            {
+                Color transparentRed = new Color(1, 0, 0, 0.2f);
+                gameManager.instance.DamageFlashScreen(transparentRed);
+            }
+            else
+            {
+                Color transparentGreen = new Color(0,1,0,0.2f);
+                gameManager.instance.DamageFlashScreen(transparentGreen);
+            }
         }
     }
 
@@ -167,7 +185,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(burnTickDelay);
         DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.fire);
-        damageColor(amount);
 
     }
 }

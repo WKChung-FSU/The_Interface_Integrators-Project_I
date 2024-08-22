@@ -133,9 +133,9 @@ public class gameManager : MonoBehaviour
         ToggleHUD();
     }
 
-    public void DamageFlashScreen()
+    public void DamageFlashScreen(Color color)
     {
-        StartCoroutine(DamageFlashTimer());
+        StartCoroutine(DamageFlashTimer(color));
     }
 
     public void UpdateWeaponIconUI()
@@ -192,8 +192,9 @@ public class gameManager : MonoBehaviour
         gameManager.instance.ammoBar.fillAmount = (float)playerWeapon.GetCurrentAmmo() / playerWeapon.GetMaxAmmo();
     }
 
-    IEnumerator DamageFlashTimer()
+    IEnumerator DamageFlashTimer(Color color)
     {
+        gameManager.instance.damageFlashScreen.GetComponent<Image>().color = color;
         gameManager.instance.damageFlashScreen.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlashScreen.SetActive(false);

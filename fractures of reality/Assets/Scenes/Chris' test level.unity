@@ -484,9 +484,9 @@ PrefabInstance:
       value: Skellington
       objectReference: {fileID: 0}
     - target: {fileID: 6304708475781813074, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-      propertyPath: mGameObject
+      propertyPath: healParticles
       value: 
-      objectReference: {fileID: 1216541510}
+      objectReference: {fileID: 0}
     - target: {fileID: 6783842558264711902, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -19.83131
@@ -626,11 +626,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 96.711, y: -30, z: 0}
---- !u!1 &1216541510 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5328014127606521171, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
-  m_PrefabInstance: {fileID: 599690925}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1502725760
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +792,14 @@ PrefabInstance:
       propertyPath: mGameObject
       value: 
       objectReference: {fileID: 1907701526}
+    - target: {fileID: 8892066353546178148, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: burnTickDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892066353546178148, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -820,9 +823,17 @@ PrefabInstance:
       value: Test player
       objectReference: {fileID: 0}
     - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: mGameObject
       value: 
       objectReference: {fileID: 1503965476}
+    - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.25
