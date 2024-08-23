@@ -9,7 +9,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
 
     public enum statusEffect { normal, fireBurning, LightningShocked, IceFrozen, Earth, Windborn, WaterWet }
-    [SerializeField] int Hp = 20;
+    [Range(0, 500)][SerializeField] int Hp = 100;
     [SerializeField] Collider mObjectCollider;
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
