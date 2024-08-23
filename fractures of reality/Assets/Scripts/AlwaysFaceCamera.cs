@@ -5,15 +5,24 @@ using UnityEngine.Animations;
 
 public class AlwaysFaceCamera : MonoBehaviour
 {
-    GameObject mainCamera;
+    [SerializeField] GameObject target;
+    [SerializeField] bool invert;
 
     private void Start()
     {
-        mainCamera = GameObject.FindWithTag("MainCamera");
+        if (target == null)
+        target = GameObject.FindWithTag("MainCamera");
     }
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(transform.position + mainCamera.transform.rotation * Vector3.forward, mainCamera.transform.rotation * Vector3.up);
+        if (invert)
+        {
+            transform.LookAt(target.transform.position, target.transform.rotation * Vector3.up);
+        }
+        else
+        {
+            transform.LookAt(transform.position + target.transform.rotation * Vector3.forward, target.transform.rotation * Vector3.up);
+        }
     }
 }

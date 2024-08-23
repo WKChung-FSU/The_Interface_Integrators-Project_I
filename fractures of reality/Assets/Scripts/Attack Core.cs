@@ -28,6 +28,7 @@ public class AttackCore : MonoBehaviour
             rb.velocity = transform.forward * speed;
             Destroy(gameObject, RemoveTime);
         }
+
     }
 
     private void Update()

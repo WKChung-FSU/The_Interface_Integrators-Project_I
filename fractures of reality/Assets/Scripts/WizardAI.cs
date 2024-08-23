@@ -8,7 +8,7 @@ public class WizardAI : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animator;
     [SerializeField] int animationSpeedTransition;
-    [SerializeField] Renderer model;
+    //[SerializeField] Renderer model;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform summonPos;
 

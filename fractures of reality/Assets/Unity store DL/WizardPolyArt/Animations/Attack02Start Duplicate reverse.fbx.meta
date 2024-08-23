@@ -1,98 +1,98 @@
 fileFormatVersion: 2
-guid: 4a412c425e347044d9bd20cf127cd4c9
+guid: bae7d9a366ebeb149a347d4995015743
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
-    second: ball_l
+    second: //RootNode
   - first:
       1: 100002
-    second: ball_r
+    second: ball_l
   - first:
       1: 100004
-    second: calf_l
+    second: ball_r
   - first:
       1: 100006
-    second: calf_r
+    second: calf_l
   - first:
       1: 100008
-    second: clavicle_l
+    second: calf_r
   - first:
       1: 100010
-    second: clavicle_r
+    second: clavicle_l
   - first:
       1: 100012
-    second: foot_l
+    second: clavicle_r
   - first:
       1: 100014
-    second: foot_r
+    second: foot_l
   - first:
       1: 100016
-    second: FrontGarment01_l
+    second: foot_r
   - first:
       1: 100018
-    second: FrontGarment01_r
+    second: FrontGarment01_l
   - first:
       1: 100020
-    second: FrontGarment02_l
+    second: FrontGarment01_r
   - first:
       1: 100022
-    second: FrontGarment02_r
+    second: FrontGarment02_l
   - first:
       1: 100024
-    second: FrontGarment03_l
+    second: FrontGarment02_r
   - first:
       1: 100026
-    second: FrontGarment03_r
+    second: FrontGarment03_l
   - first:
       1: 100028
-    second: Hair01_l
+    second: FrontGarment03_r
   - first:
       1: 100030
-    second: Hair01_r
+    second: Hair01_l
   - first:
       1: 100032
-    second: Hair02_l
+    second: Hair01_r
   - first:
       1: 100034
-    second: Hair02_r
+    second: Hair02_l
   - first:
       1: 100036
-    second: Hair03_l
+    second: Hair02_r
   - first:
       1: 100038
-    second: Hair03_r
+    second: Hair03_l
   - first:
       1: 100040
-    second: hand_l
+    second: Hair03_r
   - first:
       1: 100042
-    second: hand_r
+    second: hand_l
   - first:
       1: 100044
-    second: head
+    second: hand_r
   - first:
       1: 100046
-    second: index_01_l
+    second: head
   - first:
       1: 100048
-    second: index_01_r
+    second: index_01_l
   - first:
       1: 100050
-    second: index_02_l
+    second: index_01_r
   - first:
       1: 100052
-    second: index_02_r
+    second: index_02_l
   - first:
       1: 100054
-    second: index_03_l
+    second: index_02_r
   - first:
       1: 100056
-    second: index_03_r
+    second: index_03_l
   - first:
       1: 100058
-    second: //RootNode
+    second: index_03_r
   - first:
       1: 100060
     second: lowerarm_l
@@ -209,94 +209,94 @@ ModelImporter:
     second: WizardBody
   - first:
       4: 400000
-    second: ball_l
+    second: //RootNode
   - first:
       4: 400002
-    second: ball_r
+    second: ball_l
   - first:
       4: 400004
-    second: calf_l
+    second: ball_r
   - first:
       4: 400006
-    second: calf_r
+    second: calf_l
   - first:
       4: 400008
-    second: clavicle_l
+    second: calf_r
   - first:
       4: 400010
-    second: clavicle_r
+    second: clavicle_l
   - first:
       4: 400012
-    second: foot_l
+    second: clavicle_r
   - first:
       4: 400014
-    second: foot_r
+    second: foot_l
   - first:
       4: 400016
-    second: FrontGarment01_l
+    second: foot_r
   - first:
       4: 400018
-    second: FrontGarment01_r
+    second: FrontGarment01_l
   - first:
       4: 400020
-    second: FrontGarment02_l
+    second: FrontGarment01_r
   - first:
       4: 400022
-    second: FrontGarment02_r
+    second: FrontGarment02_l
   - first:
       4: 400024
-    second: FrontGarment03_l
+    second: FrontGarment02_r
   - first:
       4: 400026
-    second: FrontGarment03_r
+    second: FrontGarment03_l
   - first:
       4: 400028
-    second: Hair01_l
+    second: FrontGarment03_r
   - first:
       4: 400030
-    second: Hair01_r
+    second: Hair01_l
   - first:
       4: 400032
-    second: Hair02_l
+    second: Hair01_r
   - first:
       4: 400034
-    second: Hair02_r
+    second: Hair02_l
   - first:
       4: 400036
-    second: Hair03_l
+    second: Hair02_r
   - first:
       4: 400038
-    second: Hair03_r
+    second: Hair03_l
   - first:
       4: 400040
-    second: hand_l
+    second: Hair03_r
   - first:
       4: 400042
-    second: hand_r
+    second: hand_l
   - first:
       4: 400044
-    second: head
+    second: hand_r
   - first:
       4: 400046
-    second: index_01_l
+    second: head
   - first:
       4: 400048
-    second: index_01_r
+    second: index_01_l
   - first:
       4: 400050
-    second: index_02_l
+    second: index_01_r
   - first:
       4: 400052
-    second: index_02_r
+    second: index_02_l
   - first:
       4: 400054
-    second: index_03_l
+    second: index_02_r
   - first:
       4: 400056
-    second: index_03_r
+    second: index_03_l
   - first:
       4: 400058
-    second: //RootNode
+    second: index_03_r
   - first:
       4: 400060
     second: lowerarm_l
@@ -416,7 +416,7 @@ ModelImporter:
     second: WizardBody
   - first:
       74: 7400000
-    second: Interact
+    second: Attack02StartDuplicate
   - first:
       95: 9500000
     second: //RootNode
@@ -453,18 +453,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Interact
+      name: Attack02StartDuplicate
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -477,8 +477,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.80244815
-        functionName: summonEnemy
+      - time: 0.7034558
+        functionName: DisableMelee
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -987,18 +987,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Interact(Clone)
+    - name: Attack02Start(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: WizardBody
-      parentName: Interact(Clone)
+      parentName: Attack02Start(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 0.01, y: 0.01, z: 0.01}
     - name: root
-      parentName: Interact(Clone)
+      parentName: Attack02Start(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
       scale: {x: 0.01, y: 0.01, z: 0.01}
