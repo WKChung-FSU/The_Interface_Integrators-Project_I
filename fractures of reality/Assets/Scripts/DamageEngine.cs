@@ -5,6 +5,11 @@ public class DamageEngine : MonoBehaviour
 {
     public enum DamageEffect { Normal, critical, nullified, Weak, Heal }
 
+    public static DamageEngine instance;
+    // will add more spell types if necessary
+    public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
+    public enum movementType { Spell, Environmental, melee }
+    // Start is called before the first frame update
     [System.Serializable]
     public struct DamageMultipliers
     {
@@ -20,11 +25,7 @@ public class DamageEngine : MonoBehaviour
     [SerializeField] DamageMultipliers normalMultiplier, FireMultiplier, LightningMultiplier;
     [SerializeField] DamageMultipliers IceMultiplier, EarthMultiplier, WindMultiplier, WaterMultiplier;
 
-    public static DamageEngine instance;
-    // will add more spell types if necessary
-    public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
-    public enum movementType { Spell, Environmental }
-    // Start is called before the first frame update
+    
     void Start()
     {
         instance = this;
