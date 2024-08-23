@@ -106,9 +106,7 @@ public class gameManager : MonoBehaviour
 
         if (enemyCount <= 0)
         {
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(isPaused);
+            youWin();
         }
     }
     public void youLose()
@@ -119,6 +117,13 @@ public class gameManager : MonoBehaviour
         Debug.Log("menu should appear");
         menuActive.SetActive(isPaused);
         playerDead = true;
+    }
+
+    public void youWin()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(isPaused);
     }
 
     public void EnableHUD()
