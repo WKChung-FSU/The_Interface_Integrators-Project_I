@@ -1243,6 +1243,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 460195234844669151, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: normalMultiplier.normalMult
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960317488747032494, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5038584095303052715, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_Name
       value: 'UI '

@@ -33,6 +33,7 @@ public class WizardAI : MonoBehaviour
 
     void Start()
     {
+
         startingPos = transform.position;
     }
 
