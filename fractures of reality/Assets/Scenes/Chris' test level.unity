@@ -270,6 +270,7 @@ MonoBehaviour:
   burnTickDelay: 0
   modelColor: {fileID: 0}
   textHP: {fileID: 0}
+  healParticles: {fileID: 0}
 --- !u!1001 &198220445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -282,6 +283,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skellington
       objectReference: {fileID: 0}
+    - target: {fileID: 6304708475781813074, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304708475781813074, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 4451642314222001982, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
     - target: {fileID: 6783842558264711902, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.21639
@@ -793,11 +802,72 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 8892066353546178148, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 4451642314222001982, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+--- !u!1001 &3674615057475269912
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117464173852926497, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9172319086593061214, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+      propertyPath: m_Name
+      value: HealParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
 --- !u!1001 &7994993492293305036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,6 +880,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test player
       objectReference: {fileID: 0}
+    - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: elementType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: healParticles
+      value: 
+      objectReference: {fileID: 4451642314222001982, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.25
@@ -867,3 +945,4 @@ SceneRoots:
   - {fileID: 163003651}
   - {fileID: 1902393793}
   - {fileID: 198220445}
+  - {fileID: 3674615057475269912}

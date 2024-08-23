@@ -17,6 +17,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] int burnTickDelay = 1;
     [SerializeField] Renderer modelColor;
     [SerializeField] TMP_Text textHP;
+    [SerializeField] ParticleSystem healParticles;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
@@ -157,6 +158,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             else
             {
                 StartCoroutine(flashColor(Color.green));
+                Instantiate(healParticles, mObjectCollider.transform);
             }
 
             textHP.text = HP.ToString("F0");
@@ -179,6 +181,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             {
                 Color transparentGreen = new Color(0,1,0,0.2f);
                 gameManager.instance.DamageFlashScreen(transparentGreen);
+                Instantiate(healParticles, mObjectCollider.transform);
             }
         }
     }
