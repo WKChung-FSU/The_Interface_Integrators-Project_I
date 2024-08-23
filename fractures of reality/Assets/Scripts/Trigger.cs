@@ -11,6 +11,7 @@ public class Trigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         onTrigEnter.Invoke();
+        gameManager.instance.youLose();
 
     }
 
