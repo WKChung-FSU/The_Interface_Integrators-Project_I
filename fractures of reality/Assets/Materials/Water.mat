@@ -7,15 +7,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Magic Missle
+  m_Name: Water
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHAPREMULTIPLY_ON
-  - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 1
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -69,7 +68,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _GlossMapScale: 1
-    - _Glossiness: 0.638
+    - _Glossiness: 0.639
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 3
@@ -81,6 +80,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.3047552, g: 0, b: 1, a: 0.5529412}
-    - _EmissionColor: {r: 0.024638683, g: 0, b: 0.72955966, a: 1}
+    - _Color: {r: 0.36950666, g: 0.98742133, b: 0.9432492, a: 1}
+    - _EmissionColor: {r: 0.111932434, g: 0.9734455, b: 0.8796226, a: 1}
   m_BuildTextureStacks: []
