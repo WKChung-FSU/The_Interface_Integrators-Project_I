@@ -231,6 +231,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2007699665808668528, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1166102552}
     - target: {fileID: 4597720660390183410, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.097443
@@ -1004,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: elementType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: healParticles
@@ -1065,8 +1069,8 @@ SceneRoots:
   - {fileID: 7994993492293305036}
   - {fileID: 453618599}
   - {fileID: 5787226890192312918}
-  - {fileID: 716731746218764881}
   - {fileID: 355147657}
   - {fileID: 1312929289}
   - {fileID: 828260618}
   - {fileID: 347104063}
+  - {fileID: 716731746218764881}

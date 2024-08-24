@@ -6,12 +6,15 @@ using UnityEngine.Animations;
 public class AlwaysFaceCamera : MonoBehaviour
 {
     [SerializeField] GameObject target;
+    [SerializeField] bool targetPlayerBody;
     [SerializeField] bool invert;
 
     private void Start()
     {
-        if (target == null)
-        target = GameObject.FindWithTag("MainCamera");
+        if (targetPlayerBody == false)
+            target = GameObject.FindWithTag("MainCamera");
+        else if (target == null)
+            target = GameObject.FindWithTag("Player");
     }
     // Update is called once per frame
     void Update()

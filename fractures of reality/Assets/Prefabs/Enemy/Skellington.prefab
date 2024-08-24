@@ -1965,6 +1965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetPlayerBody: 0
   invert: 0
 --- !u!1 &2240441973758265132
 GameObject:
@@ -2245,7 +2246,7 @@ Transform:
   m_GameObject: {fileID: 2569465304018023891}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.307, z: 0.84}
+  m_LocalPosition: {x: 0, y: 1, z: 0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2264,6 +2265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetPlayerBody: 1
   invert: 1
 --- !u!1 &2704466120977501344
 GameObject:
@@ -3562,7 +3564,7 @@ Transform:
   m_GameObject: {fileID: 4713686830246885100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -10.91, y: 0.5, z: -28.36}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3704,7 +3706,7 @@ MonoBehaviour:
   facePlayerSpeed: 10
   playerInRange: 0
   isAttacking: 0
-  stoppingDistanceOriginal: 3
+  stoppingDistanceOriginal: 2.25
   spellsList:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   shootPos: {fileID: 3186620901102437523}
@@ -5895,7 +5897,7 @@ CapsuleCollider:
   m_Radius: 0.14906138
   m_Height: 0.8
   m_Direction: 1
-  m_Center: {x: -0.000000983196, y: -1.03, z: 0.00000044675414}
+  m_Center: {x: -0.000000983196, y: -1.1, z: 0.00000044675414}
 --- !u!54 &5453197329881815727
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5939,9 +5941,12 @@ MonoBehaviour:
   movementType: 2
   rb: {fileID: 5453197329881815727}
   damageAmount: 5
-  speed: 0
   RemoveTime: 0
+  speed: 1
+  SpellRange: 1
   AttackSpeed: 1
+  AoeObject: {fileID: 0}
+  targets: []
 --- !u!1 &7442783791793326799
 GameObject:
   m_ObjectHideFlags: 0
