@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150771090958517760}
   - component: {fileID: 4716961824852829481}
-  - component: {fileID: 8821130770356576760}
+  - component: {fileID: 5069694317739915286}
   - component: {fileID: 8486473783064360525}
   - component: {fileID: 7957265650269834791}
   - component: {fileID: 6256651226493589165}
@@ -385,25 +385,38 @@ MonoBehaviour:
   modelColor: {fileID: 7957265650269834791}
   textHP: {fileID: 3067703354700436421}
   healParticles: {fileID: 4451642314222001982, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
---- !u!114 &8821130770356576760
+--- !u!114 &5069694317739915286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5761515687412306492}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c723775b9cd7b1542adf91758d84ea5a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0111e810762a0d643af6267f27406c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 5761515687412306492}
   agent: {fileID: 0}
-  model: {fileID: 7957265650269834791}
+  animator: {fileID: 0}
+  animationSpeedTransition: 5
+  startingPosition: {x: 0, y: 0, z: 0}
+  playerDirection: {x: 0, y: 0, z: 0}
+  angleToPlayer: 0
+  headPos: {fileID: 0}
+  viewAngle: 90
+  castAngle: 45
+  facePlayerSpeed: 10
+  playerInRange: 0
+  isAttacking: 0
+  stoppingDistanceOriginal: 0
+  spellsList: []
   shootPos: {fileID: 0}
-  Hp: 20
-  spell: {fileID: 0}
-  shootRate: 0
+  attackRate: 0
+  canRoam: 0
+  isRoaming: 0
+  roamDistance: 15
+  roamTimer: 15
 --- !u!33 &8486473783064360525
 MeshFilter:
   m_ObjectHideFlags: 0
