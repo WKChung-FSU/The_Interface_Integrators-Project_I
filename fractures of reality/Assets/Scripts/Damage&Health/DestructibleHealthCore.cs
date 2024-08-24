@@ -17,7 +17,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] int burnTickDelay = 1;
     [SerializeField] Renderer modelColor;
     [SerializeField] TMP_Text textHP;
-    [SerializeField] ParticleSystem healParticles;
+    [SerializeField] DamageParticlesList particles;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
@@ -40,6 +40,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             textHP.text = HP.ToString("F0");
         }
+
+        //particles = GameObject.FindAnyObjectByType<DamageParticlesList>();
     }
     public DamageEngine.ElementType ElementType
     {
@@ -152,13 +154,19 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             //Debug.Log(amount);
             if (amount == 0)
+            {
                 StartCoroutine(flashColor(Color.grey));
+                Instantiate(particles.blockParticle, mObjectCollider.transform);
+            }
             else if (amount > 0)
+            {
                 StartCoroutine(flashColor(Color.red));
+                Instantiate(particles.damageParticle, mObjectCollider.transform);
+            }
             else
             {
                 StartCoroutine(flashColor(Color.green));
-                Instantiate(healParticles, mObjectCollider.transform);
+                Instantiate(particles.healParticle, mObjectCollider.transform);
             }
 
             textHP.text = HP.ToString("F0");
@@ -171,17 +179,19 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             {
                 Color transparentGrey = new Color(0.5f, 0.5f, 0.5f, 0.2f);
                 gameManager.instance.DamageFlashScreen(transparentGrey);
+                Instantiate(particles.blockParticle, mObjectCollider.transform);
             }
             else if (amount > 0)
             {
                 Color transparentRed = new Color(1, 0, 0, 0.2f);
                 gameManager.instance.DamageFlashScreen(transparentRed);
+                Instantiate(particles.damageParticle, mObjectCollider.transform);
             }
             else
             {
                 Color transparentGreen = new Color(0,1,0,0.2f);
                 gameManager.instance.DamageFlashScreen(transparentGreen);
-                Instantiate(healParticles, mObjectCollider.transform);
+                Instantiate(particles.healParticle, mObjectCollider.transform);
             }
         }
     }
