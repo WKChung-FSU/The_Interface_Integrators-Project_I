@@ -2,50 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour, IDamage
 {
-    #region Test Variables
-
-
-    #endregion
+    [Header("-----RequiredFields-----")]
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] LineRenderer lightningVisual;
-
-    #region Menu 
-    [SerializeField] int MenuLimit;
     [SerializeField] Transform SpellLaunchPos;
-   
-
-    #endregion
 
     #region Spells
+    [Header("-----PlayerSpells-----")]
+    //all should be summonable
+    [SerializeField] List<GameObject> primarySpells = new List<GameObject>();
+    [Header("remember element 2 will not be used")]
+    [SerializeField] List<GameObject> secondarySpells = new List<GameObject>();
+    [SerializeField] List<int> SpellCost = new List<int>();
+    [SerializeField] List<float> SpellFireRate = new List<float>();
+    [Range(0.05f, 2)][SerializeField] float FireRate;
 
-    [SerializeField] GameObject bSpell1;
-    [SerializeField] GameObject bSpell2;
-    [SerializeField] GameObject bSpell3;
-
-    [SerializeField] GameObject sSpell1;
-    [SerializeField] GameObject sSpell2;
-
-
-    #endregion
-    #region wepon Stats
-    [SerializeField] int Spell2CostMultiplier;
-    [SerializeField] int spell3Damage;
-    [SerializeField] int spell3Range;
-    [SerializeField] int Spell3CostMultiplier;
-    [SerializeField] float FireRate;
-    [SerializeField] int MaxAmmo;
-    [SerializeField] bool OutOfAmmo;
-
+    [Range(1, 100)][SerializeField]int MaxAmmo;
+    bool OutOfAmmo;
+    // remove(depreciated)
     public enum WeaponMenu { MagicMissile, Fireball, Lightning }
 
     int CurrAmmo;
     bool isShooting;
+    // remove(depreciated)
     WeaponMenu weaponMenu;
-    //0= magic missile, 1=fireball, 2=lightning
+
     int currentWeapon;
 
     #endregion
@@ -54,6 +40,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         CurrAmmo = MaxAmmo;
         //gameManager.instance.ammoMax = MaxAmmo;
+
     }
 
     // Update is called once per frame
@@ -65,7 +52,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(ShootSecondary());
 
-        if (Input.GetButtonDown("Switch Weapon"))
+        if (Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0)
             //No longer coroutine -CM
             WeaponMenuSystem();
 
@@ -90,6 +77,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         return OutOfAmmo;
     }
 
+    // remove(depreciated)
     public WeaponMenu GetCurrentWeapon()
     {
         weaponMenu = (WeaponMenu)currentWeapon;
@@ -104,23 +92,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
         switch (currentWeapon)
         {
-            //Basic spell
-            case 0:
-                Instantiate(bSpell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
-
-                break;
-
-            //Fireball
-            case 1:
-
-                Instantiate(bSpell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
-
-                break;
-
-            //lightning spell
-            case 2:
-
-                Instantiate(bSpell3, SpellLaunchPos.position, SpellLaunchPos.rotation);
+            // All primary spells are summons
+            default:
+                Instantiate(primarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
                 break;
         }
         yield return new WaitForSeconds(FireRate);
@@ -136,52 +110,43 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         switch (currentWeapon)
         {
             //Basic spell
-            case 0:
-                if ((CurrAmmo) > 0)
+            default:
+              
+                if (((CurrAmmo - SpellCost[currentWeapon]) >= 0) && secondarySpells[currentWeapon] != null)
                 {
-                    Instantiate(sSpell1, SpellLaunchPos.position, SpellLaunchPos.rotation);
-                    CurrAmmo--;
+                    Instantiate(secondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+                    CurrAmmo -= SpellCost[currentWeapon];
                 }
-                break;
-
-            //Fireball
-            case 1:
-                if ((CurrAmmo - Spell2CostMultiplier) >= 0)
+                else
                 {
-                    Instantiate(sSpell2, SpellLaunchPos.position, SpellLaunchPos.rotation);
-                    CurrAmmo -= Spell2CostMultiplier;
+                 Debug.Log("Something Failed in ShootSecondary");
                 }
-                break;
 
+                break;
             //lightning spell
             case 2:
-
-
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, spell3Range, ~ignoreMask))
+               
                 {
                     #region Debug
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
                     #endregion
-                    if ((CurrAmmo - Spell3CostMultiplier) >= 0)
+                    if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
                     {
+                        AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
+                        hit = SpellCore.CastHitScanAttack(ignoreMask);
                         //test -CM
                         //Visual of lightning being cast 
                         lightningVisual.useWorldSpace = true;
                         lightningVisual.SetPosition(0, SpellLaunchPos.position);
                         lightningVisual.SetPosition(1, hit.point);
-                        CurrAmmo--;
+                        CurrAmmo-=SpellCost[currentWeapon];
                     }
-                    IDamage damage = hit.collider.GetComponent<IDamage>();
-                    if (damage != null)
-                    {
-                        DamageEngine.instance.CalculateDamage(hit.collider, spell3Damage, DamageEngine.ElementType.Lightning);
-                        //lightning delay
-                        //coconut.jpeg
 
-                        //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
-                    }
+                    //lightning delay
+                    //coconut.jpeg
+                    //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
+             
                     //if this is here it will always show the visual
-
                     if (!OutOfAmmo)
                     {
                         StartCoroutine(LightningDelay());
@@ -198,25 +163,16 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     void WeaponMenuSystem()
     {
         //changed from IEnumerator to void -CM
-        if (Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0)
+        if ((Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < primarySpells.Count - 1)
         {
             currentWeapon++;
         }
-        else if (Input.GetAxis("Switch Weapon") < 0 || Input.GetAxis("Mouse ScrollWheel") < 0)
+        else if ((Input.GetAxis("Switch Weapon") < 0 || Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
         {
             currentWeapon--;
         }
-
-        if (currentWeapon < 0)
-        {
-            currentWeapon = (MenuLimit - 1);
-        }
-        else if (currentWeapon > (MenuLimit - 1))
-        {
-            currentWeapon = 0;
-        }
         gameManager.instance.UpdateWeaponIconUI();
-        
+
     }
     void AmmoTest()
     {

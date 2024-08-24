@@ -8,7 +8,7 @@ public class DamageEngine : MonoBehaviour
     public static DamageEngine instance;
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
-    public enum movementType { Spell, Environmental, melee }
+    public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeSpell }
     // Start is called before the first frame update
     [System.Serializable]
     public struct DamageMultipliers
