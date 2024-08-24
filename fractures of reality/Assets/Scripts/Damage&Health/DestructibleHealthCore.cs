@@ -14,7 +14,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
     [SerializeField] bool isPlayer = false;
-    [SerializeField] int burnTickDelay = 1;
+    [SerializeField] int effectTickDelay = 1;
     [SerializeField] Renderer modelColor;
     [SerializeField] TMP_Text textHP;
     [SerializeField] DamageParticlesList particles;
@@ -24,6 +24,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     Color colorOriginal;
 
     private int burnTick = 0;
+    private int tickDamage = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,9 +37,15 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
 
-        if(!isPlayer)
+        if (!isPlayer)
         {
             textHP.text = HP.ToString("F0");
+        }
+
+        //add each type to the status effect dictionary and set it false
+        for (int i = 0; i <= 6; i++)
+        {
+            statusDictionary.Add((DamageEngine.ElementType)i, false);
         }
 
         //particles = GameObject.FindAnyObjectByType<DamageParticlesList>();
@@ -80,17 +87,12 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     public void damageEffect(int amount, DamageEngine.ElementType type)
     {
         // updated the key generator
-        if (statusDictionary.ContainsKey(type))
-        {
-            if (statusDictionary[type] == false)
-            {
-                statusDictionary[type] = true;
-            }
-        }
-        else
-        {
-            statusDictionary.Add(type, true);
-        }
+
+        //if (statusDictionary[type] == false)
+        //{
+        //    statusDictionary[type] = true;
+        //}
+
 
         // if stacking multiple different effects becomes an issue, put the following switch in an else statement
 
@@ -103,13 +105,21 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.fire:
                 {
-                    if (burnTick >= 5)
+                    //if you are wet
+                    if (burnTick >= 5 || statusDictionary[DamageEngine.ElementType.Water] == true)
                     {
                         burnTick = 0;
-                        ClearStatusEffect(DamageEngine.ElementType.fire);
-                        return;
+                        ClearStatusEffect(DamageEngine.ElementType.Water);
+                        StopCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
+                        break;
                     }
-                    StartCoroutine(BurnDelay(amount));
+                    SetStatusEffect(DamageEngine.ElementType.fire);
+                    if (amount > 0)
+                    {
+                        Instantiate(particles.burnParticle, mObjectCollider.transform);
+                    }
+                    tickDamage = 1;
+                    StartCoroutine(EffectTickDelay(DamageEngine.ElementType.fire, tickDamage));
                     burnTick++;
                     break;
                 }
@@ -135,7 +145,20 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.Water:
                 {
-
+                    //if you are on fire
+                    if (burnTick >= 5 || statusDictionary[DamageEngine.ElementType.fire] == true)
+                    {
+                        burnTick = 0;
+                        ClearStatusEffect(DamageEngine.ElementType.fire);
+                        //ClearStatusEffect(DamageEngine.ElementType.Water);
+                        //StopCoroutine(EffectTickDelay(DamageEngine.ElementType.fire, tickDamage));
+                        break;
+                    }
+                    //otherwise
+                    SetStatusEffect(DamageEngine.ElementType.Water);
+                    tickDamage = 0;
+                    StartCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
+                    burnTick++;
                     break;
                 }
 
@@ -143,9 +166,24 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         damageColor(amount);
     }
 
+    void SetStatusEffect(DamageEngine.ElementType effect)
+    {
+        statusDictionary[effect] = true;
+        Debug.Log(effect + " = true");
+    }
+
     void ClearStatusEffect(DamageEngine.ElementType effect)
     {
         statusDictionary[effect] = false;
+        Debug.Log(effect + " = false");
+    }
+
+    public void ClearALLStatusEffects()
+    {
+        for (int i = 0; i <= 6; i++)
+        {
+            statusDictionary[(DamageEngine.ElementType)i] = false;
+        }
     }
 
     private void damageColor(int amount)
@@ -189,7 +227,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             }
             else
             {
-                Color transparentGreen = new Color(0,1,0,0.2f);
+                Color transparentGreen = new Color(0, 1, 0, 0.2f);
                 gameManager.instance.DamageFlashScreen(transparentGreen);
                 Instantiate(particles.healParticle, mObjectCollider.transform);
             }
@@ -203,10 +241,16 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         modelColor.material.color = colorOriginal;
     }
 
-    private IEnumerator BurnDelay(int amount)
+    private IEnumerator EffectTickDelay(DamageEngine.ElementType type, int damage)
     {
-        yield return new WaitForSeconds(burnTickDelay);
-        DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.fire);
-
+        yield return new WaitForSeconds(effectTickDelay);
+        DamageEngine.instance.CalculateDamage(mObjectCollider, damage, type);
     }
 }
+
+//NOTE TO SELF =====================================================================================================
+//I think there is a coroutine issue with timings here
+//POTENTIAL FIX
+//take the calculate damage call out of the coroutine and place it after the coroutine,
+//now in between the coroutine and calculate damage call put an if statement that checks
+//if you should still continue with the code or not

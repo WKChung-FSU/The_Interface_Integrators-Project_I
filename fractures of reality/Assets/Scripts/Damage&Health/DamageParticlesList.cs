@@ -8,4 +8,7 @@ public class DamageParticlesList : ScriptableObject
     public GameObject damageParticle;
     public GameObject healParticle;
     public GameObject blockParticle;
+
+    [Header("StatusEffects")]
+    public GameObject burnParticle;
 }
