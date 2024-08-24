@@ -23,7 +23,7 @@ public class AICore : MonoBehaviour
 
 
     [Header(" --- Attacks --- ")]
-    [SerializeField] public bool isMelee;
+    //[SerializeField] public bool isMelee;
     [SerializeField] public List<GameObject> spellsList = new List<GameObject>();
     [SerializeField] public Transform shootPos;
     [SerializeField] public float attackRate;
@@ -32,7 +32,7 @@ public class AICore : MonoBehaviour
     [SerializeField] public bool canRoam;
     public bool isRoaming;
     [SerializeField] public int roamDistance = 15;
-    [SerializeField] public int roamTimer = 15;
+    [Range(6,25)][SerializeField] public int roamTimer = 15;
 
     void Start()
     {
@@ -46,8 +46,9 @@ public class AICore : MonoBehaviour
     //this is the function that actually creates the spell
     {
         isAttacking = true;
-        yield return new WaitForSeconds(attackRate);
+        Debug.Log("CastRandomSpell");
         animator.SetTrigger("CastRandomSpell");
+        yield return new WaitForSeconds(attackRate);
         isAttacking = false;
     }
 
@@ -59,36 +60,26 @@ public class AICore : MonoBehaviour
         Instantiate(spellsList[thisSpell], shootPos.position, shootPos.rotation);
     }
 
-    //public bool CanSeePlayer()
-    //{
-    //    playerDirection = gameManager.instance.player.transform.position - headPos.position;
-    //    angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
+    public bool CanSeePlayer()
+    {
+        //know where the player is at all times
+        playerDirection = gameManager.instance.player.transform.position - headPos.position;
+        Debug.DrawRay(headPos.position, playerDirection, Color.red);
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
 
-    //    //Debug.Log(angleToPlayer);
-    //    Debug.DrawRay(headPos.position, playerDirection, Color.red);
-
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(headPos.position, playerDirection, out hit))
-    //    {
-    //        if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle) //is this right?
-    //        {
-    //            agent.SetDestination(gameManager.instance.player.transform.position);
-    //            if (agent.remainingDistance <= agent.stoppingDistance)
-    //            {
-    //                FacePlayer();
-    //            }
-    //            if (!isAttacking && angleToPlayer <= castAngle && !isMelee)
-    //            {
-    //                StartCoroutine(shoot());
-    //            }
-    //            agent.stoppingDistance = stoppingDistanceOriginal;
-    //            return true;
-    //        }
-    //    }
-    //    //enemy can't see us, 
-    //    agent.stoppingDistance = 0;
-    //    return false;
-    //}
+        RaycastHit hit;
+        //if there is nothing in the way
+        if (Physics.Raycast(headPos.position, playerDirection, out hit))
+        {
+            //if the player is within your sightlines
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
+            {
+                return true;
+            }
+        }
+        //enemy can't see us, 
+        return false;
+    }
 
     public IEnumerator Roam()
     {
@@ -114,8 +105,11 @@ public class AICore : MonoBehaviour
 
     public void FacePlayer()
     {
-        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        Vector3 playerDirY = playerDirection;
+        playerDirY.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDirY);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
+
     }
 
     public void SmoothAnimations()
@@ -163,7 +157,6 @@ public class AICore : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            // attackTarget = other;
             playerInRange = true;
             agent.stoppingDistance = stoppingDistanceOriginal;
         }
@@ -179,6 +172,7 @@ public class AICore : MonoBehaviour
         {
             //attackTarget = null;
             playerInRange = false;
+            agent.stoppingDistance = stoppingDistanceOriginal;
         }
 
     }

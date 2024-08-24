@@ -1147,7 +1147,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8872001946767115032}
   - component: {fileID: 1853200037383801938}
-  - component: {fileID: 1407474784287971099}
   - component: {fileID: 4705880419799364059}
   - component: {fileID: 5676672420800373463}
   - component: {fileID: 4426345098342361473}
@@ -1196,26 +1195,7 @@ MonoBehaviour:
   burnTickDelay: 1
   modelColor: {fileID: 3254817030537133231}
   textHP: {fileID: 4789518180626902513}
---- !u!114 &1407474784287971099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094233446992353698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 445bb04d61399ff4b88e004abb86c919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisEnemy: {fileID: 8094233446992353698}
-  agent: {fileID: 4705880419799364059}
-  attackRate: 2
-  mDamage: 2
-  meleeDamage: 2
-  shootPos: {fileID: 1037697067599247347}
-  spell: {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  isMelee: 0
+  healParticles: {fileID: 0}
 --- !u!195 &4705880419799364059
 NavMeshAgent:
   m_ObjectHideFlags: 0

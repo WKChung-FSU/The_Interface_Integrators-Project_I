@@ -53,10 +53,10 @@ public class AICoreWizard : MonoBehaviour
     public bool CanSeePlayer()
     {
         aiCore.playerDirection = gameManager.instance.player.transform.position - aiCore.headPos.position;
+        Debug.DrawRay(aiCore.headPos.position, aiCore.playerDirection, Color.red);
         aiCore.angleToPlayer = Vector3.Angle(aiCore.playerDirection, transform.forward);
 
         //Debug.Log(angleToPlayer);
-        Debug.DrawRay(aiCore.headPos.position, aiCore.playerDirection, Color.red);
 
         RaycastHit hit;
         //If you can see the player
@@ -68,7 +68,7 @@ public class AICoreWizard : MonoBehaviour
                 if (summonCount < summonCountAllowance - 1)
                 {
                     aiCore.isAttacking = true;
-                    StartCoroutine(SummonMinions(minion));
+                    StartCoroutine(SummonMinions());
                     aiCore.isAttacking = false;
                 }
                 //otherwise
@@ -95,7 +95,7 @@ public class AICoreWizard : MonoBehaviour
         return false;
     }
 
-    IEnumerator SummonMinions(GameObject minion)
+    IEnumerator SummonMinions()
     {
         // aiCore.isAttacking = true;
         aiCore.animator.SetTrigger("CastSkele");   //Use the animator to call the summonEnemy code
