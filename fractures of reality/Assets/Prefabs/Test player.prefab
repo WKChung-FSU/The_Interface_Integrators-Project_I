@@ -251,7 +251,7 @@ MonoBehaviour:
   burnTickDelay: 1
   modelColor: {fileID: 722136256187023}
   textHP: {fileID: 0}
-  healParticles: {fileID: 0}
+  particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
 --- !u!114 &782011894035760111
 MonoBehaviour:
   m_ObjectHideFlags: 0

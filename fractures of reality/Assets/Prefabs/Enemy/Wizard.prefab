@@ -2769,7 +2769,7 @@ MonoBehaviour:
   burnTickDelay: 1
   modelColor: {fileID: 8754720520323907299}
   textHP: {fileID: 5433173237363511893}
-  healParticles: {fileID: 4451642314222001982, guid: e892ad803ce90874c85a9c1d8231b84b, type: 3}
+  particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
 --- !u!195 &2613484270084608751
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -153,6 +153,11 @@ public class gameManager : MonoBehaviour
 
         switch (weapon)
         {
+            default:
+                {
+                    wMagicMissileIcon.SetActive(true);
+                    break;
+                }
             case 0: //magic missile
                 {
                     //enable the correct icon
