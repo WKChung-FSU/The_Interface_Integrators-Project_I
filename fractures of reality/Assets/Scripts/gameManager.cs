@@ -145,7 +145,7 @@ public class gameManager : MonoBehaviour
 
     public void UpdateWeaponIconUI()
     {
-        int weapon = (int)playerWeapon.GetCurrentWeapon();
+        int weapon =playerWeapon.GetCurrentWeapon();
         //disable all weapon icons first
         wMagicMissileIcon.SetActive(false);
         wFireballIcon.SetActive(false);

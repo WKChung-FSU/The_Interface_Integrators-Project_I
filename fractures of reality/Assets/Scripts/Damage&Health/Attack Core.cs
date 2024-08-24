@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class AttackCore : MonoBehaviour
 {
@@ -26,14 +27,13 @@ public class AttackCore : MonoBehaviour
 
     [Header("-----Aoe Components-----")]
     [SerializeField] GameObject AoeObject;
-
-    Collider target;
-    bool EntityInRange;
+    
+    public List<Collider> targets=new List<Collider>();
     bool Attacking;
     // Start is called before the first frame update
     void Start()
     {
-        if (movementType == DamageEngine.movementType.Spell)
+        if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeSpell)
         {
             rb.velocity = transform.forward * speed;
             if (RemoveTime != 0)
@@ -43,18 +43,17 @@ public class AttackCore : MonoBehaviour
             }
         }
 
-        if ( movementType == DamageEngine.movementType.AoeSpell)
+        if (movementType == DamageEngine.movementType.Environmental)
         {
-            if (RemoveTime != 0)
-            {
-                Destroy(gameObject, RemoveTime);
-            }
+            if (RemoveTime != 0){ 
+            Destroy(gameObject, RemoveTime);
+             }
         }
     }
 
     private void Update()
     {
-        if (EntityInRange && !Attacking)
+        if (!Attacking)
         {
             StartCoroutine(environmentalAttack());
         }
@@ -64,15 +63,19 @@ public class AttackCore : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
+
+        if (other.isTrigger ||other == gameManager.instance.player.GetComponent<CapsuleCollider>())
         {
             return;
         }
         //do damage
         if (movementType == DamageEngine.movementType.Environmental)
         {
-            EntityInRange = true;
-            target = other;
+            IDamage dmg = other.GetComponent<IDamage>();
+            if (dmg != null)
+            {
+                targets.Add(other);
+            }
         }
         else
         {
@@ -83,8 +86,17 @@ public class AttackCore : MonoBehaviour
         {
             if (AoeObject != null)
             {
-                Quaternion rotation = Quaternion.identity;
-                Instantiate(AoeObject, transform.position, rotation);
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, (transform.up*-1), out hit))
+                {
+                    Debug.DrawRay(transform.position, (transform.up * -1), Color.red);
+                    #region Debug
+                    Debug.Log(hit.collider.name);
+                    #endregion
+                  
+                    Instantiate(AoeObject, hit.point, hit.transform.rotation);
+                }
+
             }
             else
             {
@@ -106,14 +118,21 @@ public class AttackCore : MonoBehaviour
     {
         if (movementType == DamageEngine.movementType.Environmental)
         {
-            EntityInRange = false;
-            target = null;
+            targets.Remove(other);
+        
+        
+        
         }
+
+            return;
     }
     IEnumerator environmentalAttack()
     {
         Attacking = true;
-        DamageEngine.instance.CalculateDamage(target, damageAmount, attackElement);
+        for (int Target = 0; Target < targets.Count; Target++)
+        {
+            DamageEngine.instance.CalculateDamage(targets[Target], damageAmount, attackElement,targets);
+        }
         yield return new WaitForSeconds(AttackSpeed);
         Attacking = false;
     }

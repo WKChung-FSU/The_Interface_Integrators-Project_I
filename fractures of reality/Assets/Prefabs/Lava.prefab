@@ -53,9 +53,11 @@ MonoBehaviour:
   movementType: 1
   rb: {fileID: 5295002665034653958}
   damageAmount: 3
-  speed: 0
   RemoveTime: 0
+  speed: 1
+  SpellRange: 1
   AttackSpeed: 1
+  AoeObject: {fileID: 0}
 --- !u!33 &5110903215843918557
 MeshFilter:
   m_ObjectHideFlags: 0

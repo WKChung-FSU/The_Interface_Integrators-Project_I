@@ -16,10 +16,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [Header("-----PlayerSpells-----")]
     //all should be summonable
     [SerializeField] List<GameObject> primarySpells = new List<GameObject>();
-    [Header("remember element 2 will not be used")]
+    [Header("remember element 2 Must Be lightning Bolt")]
     [SerializeField] List<GameObject> secondarySpells = new List<GameObject>();
     [SerializeField] List<int> SpellCost = new List<int>();
-    [SerializeField] List<float> SpellFireRate = new List<float>();
     [Range(0.05f, 2)][SerializeField] float FireRate;
 
     [Range(1, 100)][SerializeField]int MaxAmmo;
@@ -78,10 +77,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
 
     // remove(depreciated)
-    public WeaponMenu GetCurrentWeapon()
+    public int GetCurrentWeapon()
     {
-        weaponMenu = (WeaponMenu)currentWeapon;
-        return weaponMenu;
+      
+        return currentWeapon;
     }
 
     private
@@ -109,7 +108,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         RaycastHit hit;
         switch (currentWeapon)
         {
-            //Basic spell
             default:
               
                 if (((CurrAmmo - SpellCost[currentWeapon]) >= 0) && secondarySpells[currentWeapon] != null)
@@ -117,10 +115,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     Instantiate(secondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
                     CurrAmmo -= SpellCost[currentWeapon];
                 }
-                else
+                else if (secondarySpells[currentWeapon] == null)
                 {
-                 Debug.Log("Something Failed in ShootSecondary");
+                    Debug.Log("Something Failed in ShootSecondary");
                 }
+               
 
                 break;
             //lightning spell

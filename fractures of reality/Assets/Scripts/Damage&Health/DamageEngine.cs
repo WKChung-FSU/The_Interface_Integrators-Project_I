@@ -31,7 +31,7 @@ public class DamageEngine : MonoBehaviour
         instance = this;
     }
     // remember that this is a instance
-    public void CalculateDamage(Collider OtherCollider, int DamageAmount, ElementType attackType)
+    public void CalculateDamage(Collider OtherCollider, int DamageAmount, ElementType attackType, List<Collider>AttackList=null)
     {
         if (OtherCollider != null)
         {
@@ -58,6 +58,10 @@ public class DamageEngine : MonoBehaviour
                     }
                     else
                     {
+                        if (AttackList != null)
+                        {
+                            AttackList.Remove(OtherCollider);
+                        }
                         Destroy(healthCore.gameObject);
                     }
                     if (healthCore.IsMandatory)

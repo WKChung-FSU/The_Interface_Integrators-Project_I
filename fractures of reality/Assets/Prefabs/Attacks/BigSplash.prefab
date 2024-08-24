@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4037457198636128959}
   - component: {fileID: 6155590155768544599}
   - component: {fileID: 1015079078155334484}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: BigSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackElement: 6
-  movementType: 0
+  movementType: 4
   rb: {fileID: 4037457198636128959}
   damageAmount: 8
-  speed: 30
   RemoveTime: 10
+  speed: 30
   SpellRange: 1
   AttackSpeed: 1
   AoeObject: {fileID: 5602369512909197254, guid: 92e39186ab5beb247a8f196def88adbb, type: 3}
