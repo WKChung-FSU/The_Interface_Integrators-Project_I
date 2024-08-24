@@ -11,12 +11,6 @@ public class breakingPlatforms : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         onTrigEnt.Invoke();
-
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        onTrigExi.Invoke();
-
+        Destroy(gameObject, 3);
     }
 }
