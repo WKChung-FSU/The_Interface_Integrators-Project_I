@@ -10,7 +10,7 @@ public class AttackCore : MonoBehaviour
     [SerializeField] DamageEngine.movementType movementType;
     [SerializeField] Rigidbody rb;
     [Range(0, 10)][SerializeField] int damageAmount;
-    [Header("if 0 then it will nor despawn")]
+    [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] int RemoveTime=0;
 
     [Header("-----Spell Attributes-----")]
@@ -21,7 +21,8 @@ public class AttackCore : MonoBehaviour
     [Range(1, 100)][SerializeField] int SpellRange;
 
     [Header("-----Environmental Attributes-----")]
-    [Range(0.05f, 1)][SerializeField] float AttackSpeed = 1;
+    [Header("will not attack if 0")]
+    [Range(0, 1)][SerializeField] float AttackSpeed = 1;
  
 
 
@@ -53,7 +54,7 @@ public class AttackCore : MonoBehaviour
 
     private void Update()
     {
-        if (!Attacking)
+        if (!Attacking&&AttackSpeed!=0)
         {
             StartCoroutine(environmentalAttack());
         }
@@ -119,9 +120,6 @@ public class AttackCore : MonoBehaviour
         if (movementType == DamageEngine.movementType.Environmental)
         {
             targets.Remove(other);
-        
-        
-        
         }
 
             return;

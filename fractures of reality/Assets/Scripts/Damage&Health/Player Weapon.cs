@@ -21,16 +21,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] List<int> SpellCost = new List<int>();
     [Range(0.05f, 2)][SerializeField] float FireRate;
 
-    [Range(1, 100)][SerializeField]int MaxAmmo;
-    bool OutOfAmmo;
-    // remove(depreciated)
-    public enum WeaponMenu { MagicMissile, Fireball, Lightning }
+    [Range(1, 100)][SerializeField] int MaxAmmo;
 
+
+    bool OutOfAmmo;
     int CurrAmmo;
     bool isShooting;
-    // remove(depreciated)
-    WeaponMenu weaponMenu;
-
     int currentWeapon;
 
     #endregion
@@ -75,11 +71,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return OutOfAmmo;
     }
-
-    // remove(depreciated)
     public int GetCurrentWeapon()
     {
-      
+
         return currentWeapon;
     }
 
@@ -109,7 +103,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         switch (currentWeapon)
         {
             default:
-              
+
                 if (((CurrAmmo - SpellCost[currentWeapon]) >= 0) && secondarySpells[currentWeapon] != null)
                 {
                     Instantiate(secondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
@@ -119,39 +113,35 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 {
                     Debug.Log("Something Failed in ShootSecondary");
                 }
-               
+
 
                 break;
             //lightning spell
             case 2:
-               
-                {
-                    #region Debug
-                    //Debug.Log(hit.collider.name);
-                    #endregion
-                    if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
-                    {
-                        AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
-                        hit = SpellCore.CastHitScanAttack(ignoreMask);
-                        //test -CM
-                        //Visual of lightning being cast 
-                        lightningVisual.useWorldSpace = true;
-                        lightningVisual.SetPosition(0, SpellLaunchPos.position);
-                        lightningVisual.SetPosition(1, hit.point);
-                        CurrAmmo-=SpellCost[currentWeapon];
-                    }
 
-                    //lightning delay
-                    //coconut.jpeg
-                    //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
-             
-                    //if this is here it will always show the visual
-                    if (!OutOfAmmo)
-                    {
-                        StartCoroutine(LightningDelay());
-                    }
-                    AmmoTest();
+                if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
+                {
+                    AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
+                    hit = SpellCore.CastHitScanAttack(ignoreMask);
+                    //test -CM
+                    //Visual of lightning being cast 
+                    lightningVisual.useWorldSpace = true;
+                    lightningVisual.SetPosition(0, SpellLaunchPos.position);
+                    lightningVisual.SetPosition(1, hit.point);
+                    CurrAmmo -= SpellCost[currentWeapon];
                 }
+
+                //lightning delay
+                //coconut.jpeg
+                //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
+
+                //if this is here it will always show the visual
+                if (!OutOfAmmo)
+                {
+                    StartCoroutine(LightningDelay());
+                }
+                AmmoTest();
+
                 break;
         }
 

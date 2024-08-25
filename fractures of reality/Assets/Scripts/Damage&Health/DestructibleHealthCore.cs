@@ -93,7 +93,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         //    statusDictionary[type] = true;
         //}
 
-
         // if stacking multiple different effects becomes an issue, put the following switch in an else statement
 
         switch (type)
@@ -110,7 +109,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                     {
                         burnTick = 0;
                         ClearStatusEffect(DamageEngine.ElementType.Water);
-                        StopCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
+                        //StopCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
                         break;
                     }
                     SetStatusEffect(DamageEngine.ElementType.fire);
