@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
@@ -37,7 +38,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         if (IsMandatory)
             gameManager.instance.updateGameGoal(1);
 
-        if (!isPlayer)
+        if (isPlayer == false && textHP != null)
         {
             textHP.text = HP.ToString("F0");
         }
@@ -247,7 +248,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 Instantiate(particles.healParticle, mObjectCollider.transform);
             }
 
-            textHP.text = HP.ToString("F0");
+            if(textHP != null)
+            { 
+                textHP.text = HP.ToString("F0");
+            }
 
             //TODO: Particles
         }

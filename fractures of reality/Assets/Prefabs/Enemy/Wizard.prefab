@@ -2766,7 +2766,7 @@ MonoBehaviour:
   elementType: 0
   IsMandatory: 1
   isPlayer: 0
-  burnTickDelay: 1
+  effectTickDelay: 1
   modelColor: {fileID: 8754720520323907299}
   textHP: {fileID: 5433173237363511893}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
