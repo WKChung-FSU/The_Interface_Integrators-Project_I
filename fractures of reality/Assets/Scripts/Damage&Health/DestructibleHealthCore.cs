@@ -104,71 +104,94 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.fire:
                 {
-                    //if you are wet
-                    if (burnTick >= 5 || statusDictionary[DamageEngine.ElementType.Water] == true)
+                    if (statusDictionary[DamageEngine.ElementType.Water] == true)
                     {
-                        burnTick = 0;
                         ClearStatusEffect(DamageEngine.ElementType.Water);
-                        //StopCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
                         break;
                     }
-                    SetStatusEffect(DamageEngine.ElementType.fire);
-                    if (amount > 0)
+                    Instantiate(particles.burnParticle, mObjectCollider.transform);
+
+                    if (burnTick <= 5)
                     {
-                        Instantiate(particles.burnParticle, mObjectCollider.transform);
+                        StartCoroutine(FireBurn());
                     }
-                    tickDamage = 1;
-                    StartCoroutine(EffectTickDelay(DamageEngine.ElementType.fire, tickDamage));
-                    burnTick++;
+                    else
+                    {
+                        burnTick = 0;
+                    }
                     break;
                 }
             case DamageEngine.ElementType.Lightning:
                 {
+                    //if you are wet, deal big damage
 
+                    //also check those around you
+                    //  if they are wet and not lightning
+                    //      cast the line renderer from you to the others
+                    //          make them lightning
+                    //          repeat
+                    //      
                     break;
                 }
             case DamageEngine.ElementType.Ice:
                 {
-
+                    //if you are wet
+                    //  freeze
+                    //or if you are fire
+                    //  extinguish and you are now wet
                     break;
                 }
             case DamageEngine.ElementType.Earth:
                 {
-
+                    //if you are wet
+                    //  do big damage
+                    //if you are lightning
+                    //  not anymore
                     break;
                 }
             case DamageEngine.ElementType.Wind:
                 {
-
+                    //if you are on fire
+                    //  deal big damage
+                    //if you are wet
+                    //  not anymore
                     break;
                 }
             case DamageEngine.ElementType.Water:
                 {
                     //if you are on fire
-                    if (burnTick >= 5 || statusDictionary[DamageEngine.ElementType.fire] == true)
+                    if (statusDictionary[DamageEngine.ElementType.fire] == true)
                     {
                         burnTick = 0;
                         ClearStatusEffect(DamageEngine.ElementType.fire);
-                        //ClearStatusEffect(DamageEngine.ElementType.Water);
-                        //StopCoroutine(EffectTickDelay(DamageEngine.ElementType.fire, tickDamage));
+                        Debug.Log("You were on fire but now you are not");
                         break;
                     }
                     //otherwise
+                    else
                     SetStatusEffect(DamageEngine.ElementType.Water);
-                    tickDamage = 0;
-                    StartCoroutine(EffectTickDelay(DamageEngine.ElementType.Water, tickDamage));
-                    burnTick++;
                     break;
                 }
-
         }
         damageColor(amount);
     }
 
+    //SetStatusEffect sets the effect and clears it after 5 seconds
     void SetStatusEffect(DamageEngine.ElementType effect)
     {
+        //if you already have that status effect, go back
+        if (statusDictionary[effect] == true)
+            return;
+
+        //otherwise
         statusDictionary[effect] = true;
         Debug.Log(effect + " = true");
+        StartCoroutine(EffectDuration(effect, 5));
+    }
+    IEnumerator EffectDuration(DamageEngine.ElementType effect, int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        ClearStatusEffect(effect);
     }
 
     void ClearStatusEffect(DamageEngine.ElementType effect)
@@ -185,6 +208,24 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
     }
 
+    private IEnumerator flashColor(Color color)
+    {
+        modelColor.material.color = color;
+        yield return new WaitForSeconds(0.1f);
+        modelColor.material.color = colorOriginal;
+    }
+
+    IEnumerator FireBurn()
+    {
+        yield return new WaitForSeconds(1);
+
+        if (statusDictionary[DamageEngine.ElementType.Water] == false)
+        {
+            burnTick++;
+            DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.fire);
+            Instantiate(particles.burnParticle, mObjectCollider.transform);
+        }
+    }
     private void damageColor(int amount)
     {
         if (!isPlayer)
@@ -232,24 +273,4 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             }
         }
     }
-
-    private IEnumerator flashColor(Color color)
-    {
-        modelColor.material.color = color;
-        yield return new WaitForSeconds(0.1f);
-        modelColor.material.color = colorOriginal;
-    }
-
-    private IEnumerator EffectTickDelay(DamageEngine.ElementType type, int damage)
-    {
-        yield return new WaitForSeconds(effectTickDelay);
-        DamageEngine.instance.CalculateDamage(mObjectCollider, damage, type);
-    }
 }
-
-//NOTE TO SELF =====================================================================================================
-//I think there is a coroutine issue with timings here
-//POTENTIAL FIX
-//take the calculate damage call out of the coroutine and place it after the coroutine,
-//now in between the coroutine and calculate damage call put an if statement that checks
-//if you should still continue with the code or not
