@@ -16,19 +16,7 @@ public class gameManager : MonoBehaviour
     public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
     int enemyCount;
-    public Vector3 startPosition
-    {
-        get
-        {
-            return startPosition;
-        }
-
-        set
-        {
-            startPosition = value;
-        }
-    }
-
+    Vector3 startPosition;
     #endregion
 
     #region UI
@@ -159,7 +147,7 @@ public class gameManager : MonoBehaviour
 
     public void UpdateWeaponIconUI()
     {
-        int weapon =playerWeapon.GetCurrentWeapon();
+        int weapon = playerWeapon.GetCurrentWeapon();
         //disable all weapon icons first
         wMagicMissileIcon.SetActive(false);
         wFireballIcon.SetActive(false);
@@ -188,14 +176,25 @@ public class gameManager : MonoBehaviour
                     wLightningIcon.SetActive(true);
                     break;
                 }
-            //TODO: Add the rest of the spells (Ice, water, earth, air)
+                //TODO: Add the rest of the spells (Ice, water, earth, air)
         }
     }
 
 
 
 
+    #region Getters and Setter
+    Vector3 StartPosition()
+    {
+        return startPosition;
+    }
 
+    void StartPosition(Vector3 newPosition)
+    {
+        startPosition = newPosition;
+    }
+
+    #endregion
 
 
     #region private functions
