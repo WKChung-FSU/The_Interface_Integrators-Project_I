@@ -57,6 +57,11 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             return elementType;
         }
+        set
+        {
+            elementType = value;
+        }
+
     }
 
     public int HP
