@@ -16,6 +16,19 @@ public class gameManager : MonoBehaviour
     public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
     int enemyCount;
+    public Vector3 startPosition
+    {
+        get
+        {
+            return startPosition;
+        }
+
+        set
+        {
+            startPosition = value;
+        }
+    }
+
     #endregion
 
     #region UI
@@ -51,6 +64,7 @@ public class gameManager : MonoBehaviour
         playerWeapon = player.GetComponent<PlayerWeapon>();
 
         hudEnabled = true;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
