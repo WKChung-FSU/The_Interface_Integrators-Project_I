@@ -265,7 +265,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             else if (amount > 0)
             {
                 StartCoroutine(flashColor(Color.red));
-                Instantiate(particles.damageParticle, mObjectCollider.transform);
             }
             else
             {

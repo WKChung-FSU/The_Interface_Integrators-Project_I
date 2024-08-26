@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public PlayerWeapon playerWeapon;
     int enemyCount;
     Vector3 startPosition;
+    CheckpointSystem lastCheckPoint;
     #endregion
 
     #region UI
@@ -180,7 +181,17 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void Respawn(bool trueRespawn = false)
+    {
+        if(trueRespawn == false)
+        {
+            
+        }
+        else
+        {
 
+        }
+    }
 
 
     #region Getters and Setter
@@ -192,6 +203,16 @@ public class gameManager : MonoBehaviour
     public void StartPosition(Vector3 newPosition)
     {
         startPosition = newPosition;
+    }
+
+    public CheckpointSystem Checkpoint()
+    {
+        return lastCheckPoint;
+    }
+
+    public void Checkpoint(CheckpointSystem checkpoint)
+    {
+        lastCheckPoint = checkpoint;
     }
 
     #endregion

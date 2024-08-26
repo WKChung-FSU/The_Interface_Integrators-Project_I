@@ -66,6 +66,7 @@ MonoBehaviour:
   effectTickDelay: 1
   modelColor: {fileID: 5609348160701333442}
   textHP: {fileID: 0}
+  enemyHud: {fileID: 0}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
 --- !u!114 &1718932134943434034
 MonoBehaviour:
@@ -84,6 +85,7 @@ MonoBehaviour:
   rb: {fileID: 8378974488720191712}
   damageAmount: 0
   RemoveTime: 15
+  destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 1
   SpellRange: 1
   AttackSpeed: 0
