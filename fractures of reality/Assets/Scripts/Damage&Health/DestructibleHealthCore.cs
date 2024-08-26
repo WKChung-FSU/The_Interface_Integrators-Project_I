@@ -21,9 +21,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] DamageParticlesList particles;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
+    public int currHealth;
     int MaxHealth;
     Color colorOriginal;
-
+    
     private int burnTick = 0;
     private int tickDamage = 0;
 
@@ -68,7 +69,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         get
         {
-            return Hp;
+            currHealth = Hp;
+            return currHealth;
         }
 
         set
