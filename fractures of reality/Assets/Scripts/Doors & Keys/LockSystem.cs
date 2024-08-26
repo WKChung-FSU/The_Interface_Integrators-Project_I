@@ -9,6 +9,8 @@ public class LockSystem : MonoBehaviour
     [SerializeField] KeySystem keySystem;
     [Header("----- KEY Attributes -----")]
     [SerializeField] bool IsKey;
+    [Header("Keys will have triggers, Glyphs will not")]
+    [SerializeField] bool IsGlyph;
     [Header("----- Lock Attributes -----")]
     [SerializeField] Collider boxCollider;
     [SerializeField] MeshRenderer meshRenderer;
@@ -30,7 +32,6 @@ public class LockSystem : MonoBehaviour
         {
             return;
         }
-
         playerControler player = other.GetComponent<playerControler>();
         if (player != null)
         {
