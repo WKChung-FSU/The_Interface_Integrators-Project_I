@@ -53,20 +53,38 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
         if (Input.GetButtonDown("Reload"))
         {
-            CurrAmmo = MaxAmmo;
+            ReloadAmmo();
         }
     }
 
     #region Public Getters
 
+    public int Ammo
+    {
+        get
+        {
+            return CurrAmmo;
+        }
+        set
+        {
+            CurrAmmo = value;
+        }
+    }
+    public int maxAmmo
+    {
+        get
+        {
+            return MaxAmmo;
+        }
+        set
+        {
+            MaxAmmo = value;
+        }
+    }
     public int GetCurrentAmmo()
-    {
-        return CurrAmmo;
-    }
+    { return CurrAmmo; }
     public int GetMaxAmmo()
-    {
-        return MaxAmmo;
-    }
+    { return MaxAmmo; }
     public bool GetOutOfAmmo()
     {
         return OutOfAmmo;
@@ -173,6 +191,17 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             OutOfAmmo = true;
             CurrAmmo = 0;
+        }
+    }
+    public void ReloadAmmo(int amount = 0)
+    {
+        if (amount == 0)
+        {
+            CurrAmmo = MaxAmmo;
+        }
+        else
+        {
+            CurrAmmo += amount;
         }
     }
 
