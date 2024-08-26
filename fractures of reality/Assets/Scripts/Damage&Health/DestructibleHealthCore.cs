@@ -58,7 +58,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             statusDictionary.Add((DamageEngine.ElementType)i, false);
         }
 
-        //particles = GameObject.FindAnyObjectByType<DamageParticlesList>();
     }
     public DamageEngine.ElementType ElementType
     {

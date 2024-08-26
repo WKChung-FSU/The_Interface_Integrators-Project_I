@@ -21,6 +21,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] List<int> SpellCost = new List<int>();
     [Range(0.05f, 2)][SerializeField] float FireRate;
 
+    [SerializeField] int lightningRange = 50;
+
     [Range(1, 100)][SerializeField] int MaxAmmo;
 
 
@@ -117,7 +119,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        RaycastHit hit;
+
         switch (currentWeapon)
         {
             default:
@@ -137,34 +139,75 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             //lightning spell
             case 2:
 
-                if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
-                {
-                    AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
-                    hit = SpellCore.CastHitScanAttack(ignoreMask);
-                    //test -CM
-                    //Visual of lightning being cast 
-                    lightningVisual.useWorldSpace = true;
-                    lightningVisual.SetPosition(0, SpellLaunchPos.position);
-                    lightningVisual.SetPosition(1, hit.point);
-                    CurrAmmo -= SpellCost[currentWeapon];
-                }
+                StartCoroutine(LightningSpell());
+                //if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
+                //{
+                //    AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
+                //    hit = SpellCore.CastHitScanAttack(ignoreMask);
+                //    //test -CM
+                //    //Visual of lightning being cast 
+                //    lightningVisual.useWorldSpace = true;
+                //    lightningVisual.SetPosition(0, SpellLaunchPos.position);
+                //    lightningVisual.SetPosition(1, hit.point);
+                //    CurrAmmo -= SpellCost[currentWeapon];
+                //}
 
-                //lightning delay
-                //coconut.jpeg
-                //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
+                ////lightning delay
+                ////coconut.jpeg
+                ////if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
 
-                //if this is here it will always show the visual
-                if (!OutOfAmmo)
-                {
-                    StartCoroutine(LightningDelay());
-                }
-                AmmoTest();
+                ////if this is here it will always show the visual
+                //if (!OutOfAmmo)
+                //{
+                //    StartCoroutine(LightningDelay());
+                //}
+                //AmmoTest();
 
                 break;
         }
 
         yield return new WaitForSeconds(FireRate);
         isShooting = false;
+
+    }
+
+    IEnumerator LightningSpell()
+    {
+        if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
+        {
+            //Visual of lightning being cast 
+            lightningVisual.useWorldSpace = true;
+            lightningVisual.SetPosition(0, SpellLaunchPos.position);
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, lightningRange, ~ignoreMask))
+            {
+                Collider other = hit.collider.GetComponent<Collider>();
+                //AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
+                DestructibleHealthCore dmg = other.GetComponent<DestructibleHealthCore>();
+                if (dmg != null)
+                {
+                    DamageEngine.instance.CalculateDamage(hit.collider, 1, DamageEngine.ElementType.Lightning);
+                }
+
+                lightningVisual.SetPosition(1, hit.point);
+                CurrAmmo -= SpellCost[currentWeapon];
+                lightningVisual.enabled = true;
+                yield return new WaitForSeconds(0.1f);
+                lightningVisual.enabled = false;
+            }
+        }
+
+        //lightning delay
+        //coconut.jpeg
+        //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
+
+        //if this is here it will always show the visual
+        //if (!OutOfAmmo)
+        //{
+        //    StartCoroutine(LightningDelay());
+        //}
+        AmmoTest();
 
     }
     void WeaponMenuSystem()
@@ -205,11 +248,5 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator LightningDelay()
-    {
-        lightningVisual.enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        lightningVisual.enabled = false;
-    }
 
 }

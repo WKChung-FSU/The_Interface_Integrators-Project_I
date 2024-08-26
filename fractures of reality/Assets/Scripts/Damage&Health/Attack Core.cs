@@ -143,21 +143,18 @@ public class AttackCore : MonoBehaviour
     }
 
     //currently player only
-   public RaycastHit CastHitScanAttack(LayerMask ignoreMask)
-    {
+   //public RaycastHit CastHitScanAttack(LayerMask ignoreMask)
+   // {
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, SpellRange, ~ignoreMask))
-        {
-            #region Debug
-            //Debug.Log(hit.collider.name);
-            #endregion    
-            IDamage damage = hit.collider.GetComponent<IDamage>();
-            if (damage != null)
-            {
-                DamageEngine.instance.CalculateDamage(hit.collider, damageAmount, DamageEngine.ElementType.Lightning); 
-            }
-        }
-       return hit;
-    }
+   //     RaycastHit hit;
+   //     if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, SpellRange, ~ignoreMask))
+   //     {
+   //         //IDamage damage = hit.collider.GetComponent<IDamage>();
+   //         //if (damage != null)
+   //         //{
+   //         //}
+   //             DamageEngine.instance.CalculateDamage(hit.collider, damageAmount, DamageEngine.ElementType.Lightning); 
+   //     }
+   //    return hit;
+   // }
 }

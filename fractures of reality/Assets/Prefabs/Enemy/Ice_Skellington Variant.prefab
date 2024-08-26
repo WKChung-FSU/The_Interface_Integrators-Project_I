@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5512625528478136733}
   - component: {fileID: 4171685590848578031}
   - component: {fileID: 8598194717943471980}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IceAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}

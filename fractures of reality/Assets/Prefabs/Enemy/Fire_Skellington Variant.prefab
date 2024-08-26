@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5713591298706945932}
   - component: {fileID: 5649117395679350404}
   - component: {fileID: 6208525038929796414}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
