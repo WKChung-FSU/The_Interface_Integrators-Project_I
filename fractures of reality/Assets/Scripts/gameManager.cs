@@ -184,12 +184,12 @@ public class gameManager : MonoBehaviour
 
 
     #region Getters and Setter
-    Vector3 StartPosition()
+    public Vector3 StartPosition()
     {
         return startPosition;
     }
 
-    void StartPosition(Vector3 newPosition)
+    public void StartPosition(Vector3 newPosition)
     {
         startPosition = newPosition;
     }
