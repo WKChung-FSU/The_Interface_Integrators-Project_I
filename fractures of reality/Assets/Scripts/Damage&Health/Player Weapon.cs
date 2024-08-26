@@ -59,14 +59,32 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     #region Public Getters
 
+    public int Ammo
+    {
+        get
+        {
+            return CurrAmmo;
+        }
+        set
+        {
+            CurrAmmo = value;
+        }
+    }
+    public int maxAmmo
+    {
+        get
+        {
+            return MaxAmmo;
+        }
+        set
+        {
+            MaxAmmo = value;
+        }
+    }
     public int GetCurrentAmmo()
-    {
-        return CurrAmmo;
-    }
+    { return CurrAmmo; }
     public int GetMaxAmmo()
-    {
-        return MaxAmmo;
-    }
+    { return MaxAmmo; }
     public bool GetOutOfAmmo()
     {
         return OutOfAmmo;
@@ -183,7 +201,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         }
         else
         {
-            CurrAmmo = amount;
+            CurrAmmo += amount;
         }
     }
 

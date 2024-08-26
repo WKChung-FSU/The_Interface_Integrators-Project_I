@@ -4,29 +4,48 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
-    DestructibleHealthCore health;
+   
     public int healthBonus =25;
+    public int AmmoBonus = 10;
+    
 
-    private void Awake()
-    {
-        health = FindObjectOfType<DestructibleHealthCore>();
-    }
+    [SerializeField] bool Health = true;
+    
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<DestructibleHealthCore>())
+        if (Health)
         {
-            if (other.GetComponent<DestructibleHealthCore>().HP < other.GetComponent<DestructibleHealthCore>().HPMax)
+            if (other.GetComponent<DestructibleHealthCore>())
             {
-                Destroy(gameObject);
-                other.GetComponent<DestructibleHealthCore>().HP += healthBonus;
-                if (other.GetComponent<DestructibleHealthCore>().HP > other.GetComponent<DestructibleHealthCore>().HPMax)
+                if (other.GetComponent<DestructibleHealthCore>().HP < other.GetComponent<DestructibleHealthCore>().HPMax)
                 {
-                    other.GetComponent<DestructibleHealthCore>().HP = other.GetComponent<DestructibleHealthCore>().HPMax;
+                    Destroy(gameObject);
+                    other.GetComponent<DestructibleHealthCore>().HP += healthBonus;
+                    if (other.GetComponent<DestructibleHealthCore>().HP > other.GetComponent<DestructibleHealthCore>().HPMax)
+                    {
+                        other.GetComponent<DestructibleHealthCore>().HP = other.GetComponent<DestructibleHealthCore>().HPMax;
+                    }
                 }
+
             }
-            
         }
-        
+        else 
+        {
+            if (other.GetComponent<PlayerWeapon>())
+            {
+                if (other.GetComponent<PlayerWeapon>().Ammo < other.GetComponent<PlayerWeapon>().maxAmmo)
+                {
+                    Destroy(gameObject);
+                    other.GetComponent<PlayerWeapon>().Ammo += AmmoBonus;
+                    if (other.GetComponent<PlayerWeapon>().Ammo > other.GetComponent<PlayerWeapon>().maxAmmo)
+                    {
+                        other.GetComponent<PlayerWeapon>().Ammo = other.GetComponent<PlayerWeapon>().maxAmmo;
+                    }
+                }
+
+            }
+        }
         
     }
 }

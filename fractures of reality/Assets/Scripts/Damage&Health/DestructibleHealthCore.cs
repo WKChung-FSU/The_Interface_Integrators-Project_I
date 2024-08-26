@@ -77,8 +77,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         get
         {
-            currHealth = Hp;
-            return currHealth;
+             
+            return Hp;
         }
 
         set
