@@ -95,6 +95,15 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
     }
 
+    public void SetNewElementType(DamageEngine.ElementType type)
+    {
+        elementType = type;
+        if(textHP != null)
+        {
+            enemyHud.GetComponent<TypeIcon>().EnableElementTypeGraphic(elementType);
+        }
+    }
+
     //The flash of color upon damage and status effect being applied
     public void damageEffect(int amount, DamageEngine.ElementType type)
     {

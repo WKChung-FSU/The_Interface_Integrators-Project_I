@@ -5,7 +5,6 @@ public class CheckpointSystem : MonoBehaviour
 {
     [Header("----- Main Attributes -----")]
     Color colorOriginal;
-    [SerializeField] Renderer model;
     [SerializeField] List<GameObject> WaypointParticles = new List<GameObject>();
       [Header("----- Special Attributes -----")]
     [SerializeField] DamageEngine.ElementType NewElement;
@@ -26,7 +25,6 @@ public class CheckpointSystem : MonoBehaviour
         if (IsCheckpoint) 
         isTeleporter=false;
 
-        colorOriginal = model.material.color;
     }   
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +48,7 @@ public class CheckpointSystem : MonoBehaviour
         DestructibleHealthCore otherHealth = other.GetComponent<DestructibleHealthCore>();
         if (IsElementPoint && otherHealth != null)
         {
-            otherHealth.ElementType= NewElement;
+            otherHealth.SetNewElementType(NewElement);
             ToggleParticles(true);
         }
 
