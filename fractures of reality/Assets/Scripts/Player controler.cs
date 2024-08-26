@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class playerControler : MonoBehaviour
 {
-    
+
     //fields
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
@@ -16,17 +16,31 @@ public class playerControler : MonoBehaviour
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
-    
+
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
-     bool isSprinting;
+    bool isSprinting;
     bool isShooting;
+    public List<KeySystem> Keys = new List<KeySystem>();
 
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    public List<KeySystem> PlayerKeys
+    {
+        get
+        {
+            return Keys;
+        }
+
+        set 
+        { 
+        Keys= value;
+        }
     }
 
     // Update is called once per frame
