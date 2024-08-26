@@ -15,8 +15,10 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
+    CharacterController playerController;
     int enemyCount;
     Vector3 startPosition;
+    CheckpointSystem lastCheckPoint;
     #endregion
 
     #region UI
@@ -49,10 +51,11 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<DestructibleHealthCore>();
+        playerController= player.GetComponent<CharacterController>();
         playerWeapon = player.GetComponent<PlayerWeapon>();
 
         hudEnabled = true;
-        startPosition = transform.position;
+        startPosition = player.transform.position;
     }
 
     // Update is called once per frame
@@ -90,6 +93,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        Debug.Log("paused");
     }
     public void stateUnPaused()
     {
@@ -100,6 +104,7 @@ public class gameManager : MonoBehaviour
         menuActive.SetActive(isPaused);
         menuActive = null;
         EnableHUD();
+        Debug.Log("un Paused");
     }
     public void updateGameGoal(int amount)
     {
@@ -180,7 +185,19 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void Respawn(bool trueRespawn = false)
+    {
+        playerController.enabled = false;
+        player.transform.position = startPosition;
+        playerController.enabled = true;
 
+        if (trueRespawn == true)
+        {
+            playerScript.HP=playerScript.HPMax;
+            playerWeapon.ReloadAmmo();
+            playerScript.ClearALLStatusEffects();
+        }
+    }
 
 
     #region Getters and Setter
@@ -192,6 +209,16 @@ public class gameManager : MonoBehaviour
     public void StartPosition(Vector3 newPosition)
     {
         startPosition = newPosition;
+    }
+
+    public CheckpointSystem Checkpoint()
+    {
+        return lastCheckPoint;
+    }
+
+    public void Checkpoint(CheckpointSystem checkpoint)
+    {
+        lastCheckPoint = checkpoint;
     }
 
     #endregion

@@ -6,40 +6,72 @@ public class CheckpointSystem : MonoBehaviour
 {
     [Header("----- Main Attributes -----")]
     Color colorOriginal;
-    [SerializeField] Renderer model;
+    [SerializeField] List<GameObject> WaypointParticles = new List<GameObject>();
+      [Header("----- Special Attributes -----")]
     [SerializeField] DamageEngine.ElementType NewElement;
-    [Header("----- Special Attributes -----")]
-
     [SerializeField] bool IsCheckpoint;
     [SerializeField] bool IsElementPoint;
-
+    [SerializeField] bool isTeleporter;
+    [SerializeField] GameObject TLGameObject;
+    [SerializeField] Vector3 TransportPosition;
+    [SerializeField] int TypeChangeAnimationDelay;
     void Start()
     {
-        colorOriginal = model.material.color;
-    }
+        if (TLGameObject != null)
+        {
+            TransportPosition = TLGameObject.transform.position;
+        }
+        ///COCONUT.JPG IS REAL!!!!!!!!!!!!
+        ToggleParticles(false);
+
+        if (IsCheckpoint) 
+        isTeleporter=false;
+
+    }   
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger)
             return;
-        if ((other.CompareTag("Player") && gameManager.instance.StartPosition() != this.transform.position)&&IsCheckpoint)
+        if (other.CompareTag("Player")  && ((IsCheckpoint && gameManager.instance.Checkpoint() != this) || isTeleporter))
         {
-            gameManager.instance.StartPosition(transform.position);
-            StartCoroutine(FlashModel());
+            if (isTeleporter)
+            {
+                gameManager.instance.StartPosition(TransportPosition);
+                gameManager.instance.Respawn();
+            }
+            else
+            {
+                if (gameManager.instance.Checkpoint() != null)
+                {
+                    gameManager.instance.Checkpoint().ToggleParticles(false);
+                }
+                gameManager.instance.Checkpoint(this);
+                gameManager.instance.StartPosition(transform.position);
+                ToggleParticles(true);
+            }
+           
+            // disable previous waypoint particle
         }
         DestructibleHealthCore otherHealth = other.GetComponent<DestructibleHealthCore>();
         if (IsElementPoint && otherHealth != null)
         {
-            otherHealth.ElementType= NewElement;
+            otherHealth.SetNewElementType(NewElement);
+            StartCoroutine(typeChangeTimer());
         }
 
     }
-    IEnumerator FlashModel()
+    public void ToggleParticles(bool Particle)
     {
-       
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
-        model.material.color = colorOriginal;
-       
+       foreach (GameObject Object in WaypointParticles)
+        {
+            Object.SetActive(Particle);
+        }
+    }
+    IEnumerator typeChangeTimer()
+    {
+        ToggleParticles(true);
+        yield return new WaitForSeconds(TypeChangeAnimationDelay);
+        ToggleParticles(false);
     }
 }

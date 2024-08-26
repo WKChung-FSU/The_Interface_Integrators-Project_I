@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 
 public class AttackCore : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class AttackCore : MonoBehaviour
     [Range(0, 10)][SerializeField] int damageAmount;
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] int RemoveTime=0;
+    [SerializeField] GameObject destroyParticle;
 
     [Header("-----Spell Attributes-----")]
     [Range(1, 30)][SerializeField] int speed;
@@ -111,7 +114,11 @@ public class AttackCore : MonoBehaviour
             if (this.GetComponent<TrailRenderer>()!=null) {
                 this.GetComponent<TrailRenderer>().enabled = false;
             }
+            
+            Instantiate(destroyParticle,gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
+
+            //play particle - CM
         }
     }
 

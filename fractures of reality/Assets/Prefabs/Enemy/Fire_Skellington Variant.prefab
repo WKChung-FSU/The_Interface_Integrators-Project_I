@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -665,14 +665,14 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 8
-    angle: 6.95
+    angle: 4
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 0.44}
+    m_Scale: {x: 1, y: 1, z: 0.35}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4842,6 +4842,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 61826084fafe04148a3633205ae289eb, type: 2}
+    - target: {fileID: 3302662432230603298, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: typeIcons
+      value: 
+      objectReference: {fileID: 11400000, guid: 63ed1561fe3b3b84c88996a6cb45334a, type: 2}
     - target: {fileID: 3302662432230603298, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: elementType
       value: 1

@@ -11,4 +11,5 @@ public class DamageParticlesList : ScriptableObject
 
     [Header("StatusEffects")]
     public GameObject burnParticle;
+    public GameObject wetParticle;
 }

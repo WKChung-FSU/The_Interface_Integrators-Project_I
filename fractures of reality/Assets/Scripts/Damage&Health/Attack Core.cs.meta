@@ -3,7 +3,10 @@ guid: 702996875c5a91a47b614e32747853c8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - destroyParticle: {instanceID: 0}
+  - AoeObject: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

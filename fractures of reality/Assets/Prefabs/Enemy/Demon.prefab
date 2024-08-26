@@ -1192,10 +1192,12 @@ MonoBehaviour:
   elementType: 0
   IsMandatory: 1
   isPlayer: 0
-  burnTickDelay: 1
+  effectTickDelay: 1
   modelColor: {fileID: 3254817030537133231}
   textHP: {fileID: 4789518180626902513}
-  healParticles: {fileID: 0}
+  typeIconImage: {fileID: 0}
+  typeIcons: {fileID: 11400000, guid: 63ed1561fe3b3b84c88996a6cb45334a, type: 2}
+  particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
 --- !u!195 &4705880419799364059
 NavMeshAgent:
   m_ObjectHideFlags: 0
