@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094dddbc337424a4092ba3a1c61de3c4, type: 3}
+  m_Name: HudIcons
+  m_EditorClassIdentifier: 
+  defaultIco: {fileID: 0}
+  fireIco: {fileID: 21300000, guid: fc497d05d166f21449926e09ea722b70, type: 3}
+  lightningIco: {fileID: 21300000, guid: 2796199c0b8b7cd4f9da1629a569f251, type: 3}
+  iceIco: {fileID: 21300000, guid: dc20a24902ff93749a1b071a9c5ea876, type: 3}
+  windIco: {fileID: 0}
+  earthIco: {fileID: 21300000, guid: be10b4d2e5f906743a6c2ee8bd4d6e8a, type: 3}
+  waterIco: {fileID: 21300000, guid: 5a53dc7cd3127bb4eab493dcabd36768, type: 3}

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
@@ -18,7 +19,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] int effectTickDelay = 1;
     [SerializeField] Renderer modelColor;
     [SerializeField] TMP_Text textHP;
+    [SerializeField] GameObject enemyHud;
     [SerializeField] DamageParticlesList particles;
+
+    private TypeIcon iconType;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
@@ -41,6 +45,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         if (isPlayer == false && textHP != null)
         {
             textHP.text = HP.ToString("F0");
+            //Tell the hud object to change the icon
+            enemyHud.GetComponent<TypeIcon>().EnableElementTypeGraphic(elementType);
         }
 
         //add each type to the status effect dictionary and set it false
@@ -170,7 +176,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                     }
                     //otherwise
                     else
-                    SetStatusEffect(DamageEngine.ElementType.Water);
+                    {
+                        SetStatusEffect(DamageEngine.ElementType.Water);
+                        Instantiate(particles.wetParticle, mObjectCollider.transform);
+                    }
                     break;
                 }
         }
@@ -227,6 +236,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             Instantiate(particles.burnParticle, mObjectCollider.transform);
         }
     }
+
+    
     private void damageColor(int amount)
     {
         if (!isPlayer)
@@ -248,8 +259,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 Instantiate(particles.healParticle, mObjectCollider.transform);
             }
 
-            if(textHP != null)
-            { 
+            if (textHP != null)
+            {
                 textHP.text = HP.ToString("F0");
             }
 
