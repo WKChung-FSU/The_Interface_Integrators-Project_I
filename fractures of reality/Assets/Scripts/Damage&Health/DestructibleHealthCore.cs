@@ -267,7 +267,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             if (amount == 0)
             {
                 StartCoroutine(flashColor(Color.grey));
-                Instantiate(particles.blockParticle, mObjectCollider.transform);
+                //I'm commenting this out because it's obnoxious
+                //Instantiate(particles.blockParticle, mObjectCollider.transform);
             }
             else if (amount > 0)
             {
@@ -292,7 +293,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             {
                 Color transparentGrey = new Color(0.5f, 0.5f, 0.5f, 0.2f);
                 gameManager.instance.DamageFlashScreen(transparentGrey);
-                Instantiate(particles.blockParticle, mObjectCollider.transform);
+                //I'm commenting this out because it's obnoxious
+                //Instantiate(particles.blockParticle, mObjectCollider.transform);
             }
             else if (amount > 0)
             {
