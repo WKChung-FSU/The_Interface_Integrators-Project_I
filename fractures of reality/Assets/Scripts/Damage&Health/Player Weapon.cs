@@ -53,7 +53,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
         if (Input.GetButtonDown("Reload"))
         {
-            CurrAmmo = MaxAmmo;
+            ReloadAmmo();
         }
     }
 
@@ -173,6 +173,17 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             OutOfAmmo = true;
             CurrAmmo = 0;
+        }
+    }
+    public void ReloadAmmo(int amount = 0)
+    {
+        if (amount == 0)
+        {
+            CurrAmmo = MaxAmmo;
+        }
+        else
+        {
+            CurrAmmo = amount;
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -27,7 +28,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
     int MaxHealth;
     Color colorOriginal;
-
+    
     private int burnTick = 0;
     private int tickDamage = 0;
 
@@ -50,6 +51,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
 
         //add each type to the status effect dictionary and set it false
+       
         for (int i = 0; i <= 6; i++)
         {
             statusDictionary.Add((DamageEngine.ElementType)i, false);
@@ -125,6 +127,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.fire:
                 {
+                    
                     if (statusDictionary[DamageEngine.ElementType.Water] == true)
                     {
                         ClearStatusEffect(DamageEngine.ElementType.Water);
@@ -230,6 +233,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             statusDictionary[(DamageEngine.ElementType)i] = false;
         }
+        burnTick = 5;
+        StopCoroutine(FireBurn());
     }
 
     private IEnumerator flashColor(Color color)

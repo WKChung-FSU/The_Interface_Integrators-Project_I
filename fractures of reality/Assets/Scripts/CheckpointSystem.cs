@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class CheckpointSystem : MonoBehaviour
     [SerializeField] bool isTeleporter;
     [SerializeField] GameObject TLGameObject;
     [SerializeField] Vector3 TransportPosition;
+    [SerializeField] int TypeChangeAnimationDelay;
     void Start()
     {
         if (TLGameObject != null)
@@ -31,33 +33,45 @@ public class CheckpointSystem : MonoBehaviour
     {
         if (other.isTrigger)
             return;
-        if ((other.CompareTag("Player") && gameManager.instance.StartPosition() != this.transform.position)&&IsCheckpoint||isTeleporter)
+        if (other.CompareTag("Player")  && ((IsCheckpoint && gameManager.instance.Checkpoint() != this) || isTeleporter))
         {
             if (isTeleporter)
             {
                 gameManager.instance.StartPosition(TransportPosition);
-                // sent player to start position
+                gameManager.instance.Respawn();
             }
             else
             {
+                if (gameManager.instance.Checkpoint() != null)
+                {
+                    gameManager.instance.Checkpoint().ToggleParticles(false);
+                }
+                gameManager.instance.Checkpoint(this);
                 gameManager.instance.StartPosition(transform.position);
+                ToggleParticles(true);
             }
-            ToggleParticles(true);
+           
             // disable previous waypoint particle
         }
         DestructibleHealthCore otherHealth = other.GetComponent<DestructibleHealthCore>();
         if (IsElementPoint && otherHealth != null)
         {
             otherHealth.SetNewElementType(NewElement);
-            ToggleParticles(true);
+            StartCoroutine(typeChangeTimer());
         }
 
     }
-    void ToggleParticles(bool Particle)
+    public void ToggleParticles(bool Particle)
     {
        foreach (GameObject Object in WaypointParticles)
         {
             Object.SetActive(Particle);
         }
+    }
+    IEnumerator typeChangeTimer()
+    {
+        ToggleParticles(true);
+        yield return new WaitForSeconds(TypeChangeAnimationDelay);
+        ToggleParticles(false);
     }
 }
