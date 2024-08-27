@@ -25,6 +25,16 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     [Range(1, 100)][SerializeField] int MaxAmmo;
 
+    [Header("-----Player Sounds-----")]
+    [SerializeField] AudioClip[] AudioJump;
+    [Range(0, 1)][SerializeField] float AudioJumpVol = 0.5f;
+
+    [SerializeField] AudioClip[] AudioHurt;
+    [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
+
+    [SerializeField] AudioClip[] AudioSteps;
+    [Range(0, 1)][SerializeField] float AudioStepsVol = 0.5f;
+
 
     bool OutOfAmmo;
     int CurrAmmo;
