@@ -180,18 +180,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             lightningVisual.SetPosition(0, SpellLaunchPos.position);
 
             RaycastHit hit;
+            
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, lightningRange, ~ignoreMask))
             {
-                Collider other = hit.collider.GetComponent<Collider>();
-                //AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
-                DestructibleHealthCore dmg = other.GetComponent<DestructibleHealthCore>();
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
                 if (dmg != null)
                 {
                     DamageEngine.instance.CalculateDamage(hit.collider, 1, DamageEngine.ElementType.Lightning);
                 }
 
-                lightningVisual.SetPosition(1, hit.point);
                 CurrAmmo -= SpellCost[currentWeapon];
+                lightningVisual.SetPosition(1, hit.point);
                 lightningVisual.enabled = true;
                 yield return new WaitForSeconds(0.1f);
                 lightningVisual.enabled = false;

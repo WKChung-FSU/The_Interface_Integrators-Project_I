@@ -10,7 +10,6 @@ public class AttackCore : MonoBehaviour
     [Header("-----MainAttributes-----")]
     [SerializeField] DamageEngine.ElementType attackElement;
     [SerializeField] DamageEngine.movementType movementType;
-    [SerializeField] Rigidbody rb;
     [Range(0, 10)][SerializeField] int damageAmount;
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] int RemoveTime=0;
@@ -18,6 +17,7 @@ public class AttackCore : MonoBehaviour
 
     [Header("-----Spell Attributes-----")]
     [Range(1, 30)][SerializeField] int speed;
+    [SerializeField] Rigidbody rb;
    
 
     [Header("HitScan info(Currently player only)")]

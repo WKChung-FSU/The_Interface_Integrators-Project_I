@@ -25,6 +25,9 @@ public class DamageEngine : MonoBehaviour
     [SerializeField] DamageMultipliers normalMultiplier, FireMultiplier, LightningMultiplier;
     [SerializeField] DamageMultipliers IceMultiplier, EarthMultiplier, WindMultiplier, WaterMultiplier;
 
+    [Header("AOE Effects Zones")]
+    [SerializeField] public GameObject lightningAOE;
+
     
     void Start()
     {

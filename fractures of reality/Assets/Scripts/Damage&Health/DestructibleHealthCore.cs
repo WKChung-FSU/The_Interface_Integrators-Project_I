@@ -148,14 +148,22 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.Lightning:
                 {
-                    //if you are wet, deal big damage
+                    //spawn a sphere around you that checks the enemies status effects in that sphere
+                    if (statusDictionary[DamageEngine.ElementType.Water] == true && statusDictionary[DamageEngine.ElementType.Lightning] == false)
+                    {
+                        Debug.Log("water true and lightning false, create lightning zone");
+                        SetStatusEffect(DamageEngine.ElementType.Lightning);
+                        Instantiate(DamageEngine.instance.lightningAOE, mObjectCollider.transform);
+                    }
+                    DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.Lightning);
+                    SetStatusEffect(DamageEngine.ElementType.Lightning);
 
-                    //also check those around you
+                    //check those around you
                     //  if they are wet and not lightning
                     //      cast the line renderer from you to the others
                     //          make them lightning
                     //          repeat
-                    //      
+                    
                     break;
                 }
             case DamageEngine.ElementType.Ice:
