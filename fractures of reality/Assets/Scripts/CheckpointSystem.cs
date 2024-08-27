@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CheckpointSystem : MonoBehaviour
 {
+    enum WaypointType { Checkpoint,Teleporter,WinPoint}
     [Header("----- Main Attributes -----")]
-    Color colorOriginal;
     [SerializeField] List<GameObject> WaypointParticles = new List<GameObject>();
-      [Header("----- Special Attributes -----")]
-    [SerializeField] DamageEngine.ElementType NewElement;
-    [SerializeField] bool IsCheckpoint;
+    [SerializeField] WaypointType waypoint;
     [SerializeField] bool IsElementPoint;
-    [SerializeField] bool isTeleporter;
+    [Header("----- type change Attributes -----")]
+    [SerializeField] DamageEngine.ElementType NewElement;
+    [SerializeField] int TypeChangeAnimationDelay;
+    [Header("----- Teleportation Attributes -----")]
     [SerializeField] GameObject TLGameObject;
     [SerializeField] Vector3 TransportPosition;
-    [SerializeField] int TypeChangeAnimationDelay;
+   
     void Start()
     {
         if (TLGameObject != null)
@@ -22,10 +23,8 @@ public class CheckpointSystem : MonoBehaviour
             TransportPosition = TLGameObject.transform.position;
         }
         ///COCONUT.JPG IS REAL!!!!!!!!!!!!
+       if(waypoint != WaypointType.WinPoint) 
         ToggleParticles(false);
-
-        if (IsCheckpoint) 
-        isTeleporter=false;
 
     }   
 
@@ -33,24 +32,30 @@ public class CheckpointSystem : MonoBehaviour
     {
         if (other.isTrigger)
             return;
-        if (other.CompareTag("Player")  && ((IsCheckpoint && gameManager.instance.Checkpoint() != this) || isTeleporter))
+        if (other.CompareTag("Player")  && (((waypoint==WaypointType.Checkpoint && gameManager.instance.Checkpoint() != this) || waypoint != WaypointType.Checkpoint)))
         {
-            if (isTeleporter)
+
+            switch (waypoint)
             {
-                gameManager.instance.StartPosition(TransportPosition);
-                gameManager.instance.Respawn();
+                case WaypointType.Checkpoint:
+                    if (gameManager.instance.Checkpoint() != null)
+                    {
+                        gameManager.instance.Checkpoint().ToggleParticles(false);
+                    }
+                    gameManager.instance.Checkpoint(this);
+                    gameManager.instance.StartPosition(transform.position);
+                    ToggleParticles(true);
+                    break;
+                case WaypointType.Teleporter:
+                    gameManager.instance.StartPosition(TransportPosition);
+                    gameManager.instance.Respawn();
+                    break;
+                case WaypointType.WinPoint:
+                    gameManager.instance.youWin();
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                if (gameManager.instance.Checkpoint() != null)
-                {
-                    gameManager.instance.Checkpoint().ToggleParticles(false);
-                }
-                gameManager.instance.Checkpoint(this);
-                gameManager.instance.StartPosition(transform.position);
-                ToggleParticles(true);
-            }
-           
             // disable previous waypoint particle
         }
         DestructibleHealthCore otherHealth = other.GetComponent<DestructibleHealthCore>();

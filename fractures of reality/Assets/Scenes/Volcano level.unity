@@ -4168,6 +4168,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 460195234844669151, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: critMult
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1960317488747032494, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -5994,13 +5998,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 1
   movementType: 1
-  rb: {fileID: 2108037422449236452}
   damageAmount: 3
   RemoveTime: 0
   destroyParticle: {fileID: 0}
   speed: 1
+  rb: {fileID: 2108037422449236452}
   SpellRange: 1
-  AttackSpeed: 1
+  AttackSpeed: 0.5
   AoeObject: {fileID: 0}
   targets: []
 --- !u!23 &249513231485589954

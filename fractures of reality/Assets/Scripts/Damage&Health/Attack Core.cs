@@ -12,7 +12,7 @@ public class AttackCore : MonoBehaviour
     [SerializeField] DamageEngine.movementType movementType;
     [Range(0, 10)][SerializeField] int damageAmount;
     [Header("if 0 then it will not deSpawn")]
-    [Range(0, 30)][SerializeField] int RemoveTime=0;
+    [Range(0, 30)][SerializeField] float RemoveTime=0;
     [SerializeField] GameObject destroyParticle;
 
     [Header("-----Spell Attributes-----")]
@@ -63,7 +63,7 @@ public class AttackCore : MonoBehaviour
         }
     }
 
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -142,6 +142,15 @@ public class AttackCore : MonoBehaviour
         Attacking = false;
     }
 
+
+    public DamageEngine.ElementType ElementType
+    {
+        get
+        {
+            return attackElement;
+
+        }
+    }
     //currently player only
    //public RaycastHit CastHitScanAttack(LayerMask ignoreMask)
    // {
