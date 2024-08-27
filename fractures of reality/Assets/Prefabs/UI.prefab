@@ -1331,6 +1331,7 @@ MonoBehaviour:
     earthMult: 0
     windMult: 0
     waterMult: 0
+  lightningAOE: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
 --- !u!114 &7210268632664386187
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -148,15 +148,16 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.Lightning:
                 {
-                    //spawn a sphere around you that checks the enemies status effects in that sphere
+                    //if you are wet and not lightning
                     if (statusDictionary[DamageEngine.ElementType.Water] == true && statusDictionary[DamageEngine.ElementType.Lightning] == false)
                     {
-                        Debug.Log("water true and lightning false, create lightning zone");
                         SetStatusEffect(DamageEngine.ElementType.Lightning);
-                        Instantiate(DamageEngine.instance.lightningAOE, mObjectCollider.transform);
+                        Instantiate(DamageEngine.instance.lightningAOE, mObjectCollider.transform.position, mObjectCollider.transform.rotation);
                     }
-                    DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.Lightning);
-                    SetStatusEffect(DamageEngine.ElementType.Lightning);
+                    else
+                    {
+                        SetStatusEffect(DamageEngine.ElementType.Lightning);
+                    }
 
                     //check those around you
                     //  if they are wet and not lightning
@@ -221,7 +222,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 
         //otherwise
         statusDictionary[effect] = true;
-        Debug.Log(effect + " = true");
+        //Debug.Log(effect + " = true");
         StartCoroutine(EffectDuration(effect, 5));
     }
     IEnumerator EffectDuration(DamageEngine.ElementType effect, int duration)
@@ -233,7 +234,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     void ClearStatusEffect(DamageEngine.ElementType effect)
     {
         statusDictionary[effect] = false;
-        Debug.Log(effect + " = false");
+        //Debug.Log(effect + " = false");
     }
 
     public void ClearALLStatusEffects()

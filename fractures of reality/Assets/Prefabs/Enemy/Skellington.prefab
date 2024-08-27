@@ -3430,6 +3430,7 @@ GameObject:
   - component: {fileID: 6061673659705238347}
   - component: {fileID: 3744692766403397622}
   - component: {fileID: 4171396310415516251}
+  - component: {fileID: -2188282063221667436}
   m_Layer: 7
   m_Name: Skellington
   m_TagString: Enemy
@@ -3614,6 +3615,33 @@ MonoBehaviour:
   weapon: {fileID: 7403270909451607216}
   canCastSpell: 1
   spellCastTimer: 15
+--- !u!54 &-2188282063221667436
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713686830246885100}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4781242229725236917
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,11 +5641,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 0
   movementType: 2
-  rb: {fileID: 5453197329881815727}
   damageAmount: 5
   RemoveTime: 0
   destroyParticle: {fileID: 0}
   speed: 1
+  rb: {fileID: 5453197329881815727}
   SpellRange: 1
   AttackSpeed: 1
   AoeObject: {fileID: 0}
