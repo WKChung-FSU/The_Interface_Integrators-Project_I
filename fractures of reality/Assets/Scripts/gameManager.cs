@@ -40,7 +40,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] string[] goalText=new string[3];
     public bool isPaused;
     public bool hudEnabled;
-    public bool playerDead;
+
+    [Header("----- sounds -----")]
+    [SerializeField] AudioSource AudioSource;
+    
+    bool playerDead;
 
     //weapon icons
     [SerializeField] TypeIcon wCurrentSpellIcon;
@@ -224,6 +228,20 @@ public class gameManager : MonoBehaviour
     {
         lastCheckPoint = checkpoint;
     }
+
+    public bool PlayerDead 
+    {
+        get
+        {
+        return playerDead; 
+        }
+        set
+        {
+            playerDead = value;
+        }
+    }
+
+
 
     #endregion
 

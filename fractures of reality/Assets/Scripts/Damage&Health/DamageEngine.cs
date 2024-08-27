@@ -73,7 +73,7 @@ public class DamageEngine : MonoBehaviour
                             gameManager.instance.updateGameGoal(-1);
                         if (targetPlayer != null)
                         {
-                            if (gameManager.instance.playerDead == false)
+                            if (gameManager.instance.PlayerDead == false)
                                 gameManager.instance.youLose();
                         }
                         else
