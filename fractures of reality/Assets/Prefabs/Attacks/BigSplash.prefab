@@ -146,11 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 6
   movementType: 4
-  rb: {fileID: 4037457198636128959}
   damageAmount: 8
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 30
+  rb: {fileID: 4037457198636128959}
   SpellRange: 1
   AttackSpeed: 1
   AoeObject: {fileID: 5602369512909197254, guid: 92e39186ab5beb247a8f196def88adbb, type: 3}
@@ -344,7 +344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b3a113863eca8443b585d75f5f52d3d, type: 2}
+  - {fileID: 2100000, guid: 4ea5c2b792f3d234ab1880cd2a89bc36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
