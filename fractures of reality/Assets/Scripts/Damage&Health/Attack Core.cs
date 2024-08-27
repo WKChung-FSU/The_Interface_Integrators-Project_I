@@ -25,7 +25,7 @@ public class AttackCore : MonoBehaviour
 
     [Header("-----Environmental Attributes-----")]
     [Header("will not attack if 0")]
-    [Range(0, 1)][SerializeField] float AttackSpeed = 1;
+    [Range(0, 1)][SerializeField] float AttackSpeed = 0.5f;
  
 
 

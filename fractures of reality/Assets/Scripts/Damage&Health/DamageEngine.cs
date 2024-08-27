@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class DamageEngine : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class DamageEngine : MonoBehaviour
     public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeSpell }
     // Start is called before the first frame update
     [System.Serializable]
-    public struct DamageMultipliers
+     struct DamageMultipliers
     {
         [SerializeField] public DamageEffect normalMult;
         [SerializeField] public DamageEffect fireMult;
@@ -22,8 +23,16 @@ public class DamageEngine : MonoBehaviour
         [SerializeField] public DamageEffect waterMult;
     }
 
-    [SerializeField] DamageMultipliers normalMultiplier, FireMultiplier, LightningMultiplier;
-    [SerializeField] DamageMultipliers IceMultiplier, EarthMultiplier, WindMultiplier, WaterMultiplier;
+    [Header("---- Global Effect Multipliers ----")]
+    [SerializeField] float critMult = 2f;
+    [SerializeField] float nullMult = 0f;
+    [SerializeField] float weakMult = 0.5f;
+    [SerializeField] float healMult = -1f;
+
+    [Header("---- Damage Multipliers ----")]
+    [SerializeField] DamageMultipliers normalMultiplier;
+    [SerializeField] DamageMultipliers FireMultiplier, LightningMultiplier, IceMultiplier, EarthMultiplier, WindMultiplier, WaterMultiplier;
+
 
     [Header("AOE Effects Zones")]
     [SerializeField] public GameObject lightningAOE;
@@ -47,33 +56,40 @@ public class DamageEngine : MonoBehaviour
                 DestructibleHealthCore healthCore = OtherCollider.GetComponent<DestructibleHealthCore>();
                 TempHealth = healthCore.HP;
 
-                // add damage calculation
-                int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
-                TempHealth -= damageDealt;
-                if (TempHealth <= 0)
+                if (DamageAmount == 0)
                 {
-                    TempHealth = 0;
-                    // if player do player things if not do enemy things.
-                    if (targetPlayer != null)
-                    {
-                        if (gameManager.instance.playerDead == false)
-                            gameManager.instance.youLose();
-                    }
-                    else
-                    {
-                        if (AttackList != null)
-                        {
-                            AttackList.Remove(OtherCollider);
-                        }
-                        Destroy(healthCore.gameObject);
-                    }
-                    if (healthCore.IsMandatory)
-                        gameManager.instance.updateGameGoal(-1);
+                    dmg.damageEffect(DamageAmount, attackType);
                 }
-                healthCore.HP = TempHealth;
-                // does the specific damage effect
-                //Debug.Log("Damage Engine: "+ DamageAmount);
-                dmg.damageEffect(damageDealt, attackType);
+                else
+                {
+                    // add damage calculation
+                    int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
+                    TempHealth -= damageDealt;
+                    if (TempHealth <= 0)
+                    {
+                        TempHealth = 0;
+                        // if player do player things if not do enemy things.
+                        if (targetPlayer != null)
+                        {
+                            if (gameManager.instance.playerDead == false)
+                                gameManager.instance.youLose();
+                        }
+                        else
+                        {
+                            if (AttackList != null)
+                            {
+                                AttackList.Remove(OtherCollider);
+                            }
+                            Destroy(healthCore.gameObject);
+                        }
+                        if (healthCore.IsMandatory)
+                            gameManager.instance.updateGameGoal(-1);
+                    }
+                    healthCore.HP = TempHealth;
+                    // does the specific damage effect
+                    //Debug.Log("Damage Engine: "+ DamageAmount);
+                    dmg.damageEffect(damageDealt, attackType);
+                }
             }
         }
     }
@@ -151,18 +167,18 @@ public class DamageEngine : MonoBehaviour
         switch (AttackElement)
         {
             case DamageEffect.critical:
-                Multiplier = 2f;
+                Multiplier = critMult;
                 break;
             case DamageEffect.nullified:
-                Multiplier = 0f;
+                Multiplier = nullMult;
                 break;
 
             case DamageEffect.Weak:
-                Multiplier = 0.5f;
+                Multiplier = weakMult;
                 break;
 
             case DamageEffect.Heal:
-                Multiplier = -1f;
+                Multiplier = healMult;
                 break;
         }
         return (int)(damageAmount * Multiplier);
