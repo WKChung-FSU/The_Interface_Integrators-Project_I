@@ -47568,7 +47568,7 @@ PrefabInstance:
     - target: {fileID: 6568835609702683295, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: minion
       value: 
-      objectReference: {fileID: 8568607709419824845, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      objectReference: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
     - target: {fileID: 6568835609702683295, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: summonRefreshTimer
       value: 30
@@ -47579,15 +47579,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47628,6 +47628,10 @@ PrefabInstance:
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7389733548724252210, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: spellsList.Array.data[0]

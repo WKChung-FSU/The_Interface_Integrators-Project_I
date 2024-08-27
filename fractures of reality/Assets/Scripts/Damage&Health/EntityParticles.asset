@@ -17,3 +17,4 @@ MonoBehaviour:
   blockParticle: {fileID: 1289543790355709915, guid: b99922c2f59b1a542bdd06ae8bee47ae, type: 3}
   burnParticle: {fileID: 5766691976136461342, guid: 43d1d06cf70fcb2488255051aaae40a5, type: 3}
   wetParticle: {fileID: 5766691976136461342, guid: 0bf33158335197240b923201b28d6e88, type: 3}
+  iceParticle: {fileID: 5766691976136461342, guid: 903b4c4b0e2d83047954ac756bd3f39e, type: 3}

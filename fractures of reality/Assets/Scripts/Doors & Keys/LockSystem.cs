@@ -32,7 +32,7 @@ public class LockSystem : MonoBehaviour
         {
             return;
         }
-        playerControler player = other.GetComponent<playerControler>();
+        playerController player = other.GetComponent<playerController>();
         if (player != null)
         {
             if ((keySystem != null && IsKey))
@@ -55,7 +55,7 @@ public class LockSystem : MonoBehaviour
         {
             return;
         }
-        playerControler player = other.GetComponent<playerControler>();
+        playerController player = other.GetComponent<playerController>();
         if (KeysSearch(player))
         {
             {
@@ -64,7 +64,7 @@ public class LockSystem : MonoBehaviour
         }
     }
 
-    bool KeysSearch(playerControler player)
+    bool KeysSearch(playerController player)
     {
         bool keyFound=false;
 
