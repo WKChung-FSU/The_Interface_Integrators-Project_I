@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Volcano level.unity
+    guid: d29093131c5d69f46aa6a4b6f9b3016e
   m_configObjects: {}

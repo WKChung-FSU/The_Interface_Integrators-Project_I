@@ -91,10 +91,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return OutOfAmmo;
     }
-    public int GetCurrentWeapon()
+    public GameObject GetCurrentWeapon(bool Secondary=false)
     {
-
-        return currentWeapon;
+        if(!Secondary)
+            return primarySpells[currentWeapon];
+        else 
+            return secondarySpells[currentWeapon];
     }
 
     private

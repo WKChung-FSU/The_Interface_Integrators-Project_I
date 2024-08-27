@@ -10,18 +10,21 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-
+    public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects}
+    [SerializeField] GameGoal CurrentGoal;
     #region Player
+    [Header("----- Player Attributes -----")]
     public GameObject player;
     public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
     CharacterController playerController;
-    int enemyCount;
+    int GoalCount;
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
     #endregion
 
     #region UI
+    [Header("----- Ui settings/Objects -----")]
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
@@ -33,14 +36,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text healthCountText;
     [SerializeField] TMP_Text ammoCountText;
     [SerializeField] TMP_Text enemyCountText;
+    [SerializeField] TMP_Text enemyCountValue;
+    [SerializeField] string[] goalText=new string[3];
     public bool isPaused;
     public bool hudEnabled;
     public bool playerDead;
 
     //weapon icons
-    [SerializeField] GameObject wMagicMissileIcon;
-    [SerializeField] GameObject wFireballIcon;
-    [SerializeField] GameObject wLightningIcon;
+    [SerializeField] TypeIcon wCurrentSpellIcon;
 
     #endregion
 
@@ -56,6 +59,7 @@ public class gameManager : MonoBehaviour
 
         hudEnabled = true;
         startPosition = player.transform.position;
+        GoalTextUpdate();
     }
 
     // Update is called once per frame
@@ -75,8 +79,9 @@ public class gameManager : MonoBehaviour
                 stateUnPaused();
                 EnableHUD();
             }
+            
         }
-
+        GoalTextUpdate();
         //update health bar
         UpdateHUD();
 
@@ -86,6 +91,26 @@ public class gameManager : MonoBehaviour
         //{
         //    UpdateWeaponIconUI();
         //}
+    }
+     void GoalTextUpdate()
+    {
+        switch (CurrentGoal)
+        {
+            case GameGoal.KillAllEnemies:
+                enemyCountValue.enabled = true;
+                enemyCountText.text = goalText[0];
+                break;
+            case GameGoal.ReachGoal:
+                enemyCountText.text = goalText[1];
+                enemyCountValue.enabled = false;
+                break;
+            case GameGoal.AcquireObjects:
+                enemyCountValue.enabled = true;
+                enemyCountText.text = goalText[2];
+                break;
+            default:
+                break;
+        }
     }
     public void statePause()
     {
@@ -106,12 +131,14 @@ public class gameManager : MonoBehaviour
         EnableHUD();
         Debug.Log("un Paused");
     }
-    public void updateGameGoal(int amount)
-    {
-        enemyCount += amount;
-        enemyCountText.text = enemyCount.ToString("f0");
 
-        if (enemyCount <= 0)
+    public void updateGameGoal(int amount=0)
+    {
+        GoalCount += amount;
+
+        enemyCountValue.text = GoalCount.ToString("f0");
+
+        if (GoalCount <= 0&&CurrentGoal==GameGoal.KillAllEnemies)
         {
             youWin();
         }
@@ -152,37 +179,9 @@ public class gameManager : MonoBehaviour
 
     public void UpdateWeaponIconUI()
     {
-        int weapon = playerWeapon.GetCurrentWeapon();
+        AttackCore weapon = playerWeapon.GetCurrentWeapon().GetComponent<AttackCore>();
         //disable all weapon icons first
-        wMagicMissileIcon.SetActive(false);
-        wFireballIcon.SetActive(false);
-        wLightningIcon.SetActive(false);
-
-        switch (weapon)
-        {
-            default:
-                {
-                    wMagicMissileIcon.SetActive(true);
-                    break;
-                }
-            case 0: //magic missile
-                {
-                    //enable the correct icon
-                    wMagicMissileIcon.SetActive(true);
-                    break;
-                }
-            case 1: //Fireball
-                {
-                    wFireballIcon.SetActive(true);
-                    break;
-                }
-            case 2: //Lightning
-                {
-                    wLightningIcon.SetActive(true);
-                    break;
-                }
-                //TODO: Add the rest of the spells (Ice, water, earth, air)
-        }
+        wCurrentSpellIcon.EnableElementTypeGraphic(weapon.ElementType);
     }
 
     public void Respawn(bool trueRespawn = false)
@@ -199,6 +198,11 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void ChangeGameGoal(GameGoal NewGoal)
+    {
+        CurrentGoal = NewGoal;
+        updateGameGoal();
+    }
 
     #region Getters and Setter
     public Vector3 StartPosition()
