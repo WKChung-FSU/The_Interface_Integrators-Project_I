@@ -53,7 +53,7 @@ MonoBehaviour:
   movementType: 1
   rb: {fileID: 6075092318007807120}
   damageAmount: 0
-  RemoveTime: 10
+  RemoveTime: 8
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 1
   SpellRange: 1
