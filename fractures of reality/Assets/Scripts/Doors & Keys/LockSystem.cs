@@ -14,6 +14,8 @@ public class LockSystem : MonoBehaviour
     [SerializeField] Collider boxCollider;
     [SerializeField] MeshRenderer meshRenderer;
     [Range(1, 10)][SerializeField] int OpenTime;
+    [SerializeField] AudioClip[] doorSounds;
+    [Range(0, 1)][SerializeField] float doorSoundVol;
     bool Open;
     void Start()
     {
@@ -42,6 +44,7 @@ public class LockSystem : MonoBehaviour
             }
             else if (!IsKey&& KeysSearch(player))
             {
+                gameManager.instance.playAudio(doorSounds[Random.Range(0, doorSounds.Length)], doorSoundVol);
                 meshRenderer.enabled = false;
                 boxCollider.enabled = false;
             }

@@ -16,18 +16,28 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
 
+    [Header("-----Player Sounds-----")]
+    [SerializeField] AudioClip[] AudioJump;
+    [Range(0, 1)][SerializeField] float AudioJumpVol = 0.5f;
+
+    [SerializeField] AudioClip[] AudioHurt;
+    [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
+
+    [SerializeField] AudioClip[] AudioSteps;
+    [Range(0, 1)][SerializeField] float AudioStepsVol = 0.5f;
 
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
     bool isSprinting;
     bool isShooting;
+    bool isPlayingSteps;
     public List<KeySystem> Keys = new List<KeySystem>();
 
     // Start is called before the first frame update
     void Start()
     {
-
+     
     }
 
     public List<KeySystem> PlayerKeys
@@ -69,13 +79,17 @@ public class playerController : MonoBehaviour
         // jump/grav
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            gameManager.instance.playAudio(AudioJump[Random.Range(0, AudioJump.Length)], AudioJumpVol);
             jumpCount++;
             playerVel.y = jumpSpeed;
         }
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
-       
 
+        if (controller.isGrounded && move.magnitude > 0.3f && !isPlayingSteps)
+        {
+            StartCoroutine(PlayStep());
+        }
     }
 
     void Sprint()
@@ -90,6 +104,17 @@ public class playerController : MonoBehaviour
             speed /= sprintMod;
             isSprinting = false;
         }
+    }
+
+    IEnumerator PlayStep()
+    {
+        isPlayingSteps = true;
+        gameManager.instance.playAudio(AudioSteps[Random.Range(0, AudioSteps.Length)], AudioStepsVol);
+        if (!isSprinting)
+            yield return new WaitForSeconds(0.5f);
+        else
+            yield return new WaitForSeconds(0.3f);
+        isPlayingSteps = false;
     }
 
     public float GetSpeed()

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-//using UnityEditor.SearchService;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.UI;
 
@@ -244,6 +242,13 @@ public class gameManager : MonoBehaviour
 
 
     #endregion
+
+
+    public void playAudio(AudioClip audio,float volume=0.5f)
+    {
+        AudioSource.PlayOneShot(audio, volume);
+    }
+
 
 
     #region private functions
