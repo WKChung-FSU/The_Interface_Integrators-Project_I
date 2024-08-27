@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class loseTrigger : MonoBehaviour
 {
     [SerializeField] UnityEvent onTrigDeathEnt;
+    
 
     private void OnTriggerEnter(Collider other)
     {
