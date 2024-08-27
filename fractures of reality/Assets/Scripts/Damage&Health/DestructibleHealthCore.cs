@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
@@ -17,7 +18,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
     [SerializeField] bool isPlayer = false;
-    [SerializeField] int effectTickDelay = 1;
     [SerializeField] Renderer modelColor;
     [SerializeField] TMP_Text textHP;
     [SerializeField] GameObject enemyHud;
@@ -26,12 +26,11 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     private TypeIcon iconType;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
-    public int currHealth;
+    int currHealth;
     int MaxHealth;
     Color colorOriginal;
-    
+
     private int burnTick = 0;
-    private int tickDamage = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +51,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
 
         //add each type to the status effect dictionary and set it false
-       
+
         for (int i = 0; i <= 6; i++)
         {
             statusDictionary.Add((DamageEngine.ElementType)i, false);
@@ -76,7 +75,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
         get
         {
-             
+
             return Hp;
         }
 
@@ -101,7 +100,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     public void SetNewElementType(DamageEngine.ElementType type)
     {
         elementType = type;
-        if(textHP != null)
+        if (textHP != null)
         {
             enemyHud.GetComponent<TypeIcon>().EnableElementTypeGraphic(elementType);
         }
@@ -128,13 +127,14 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.fire:
                 {
-                    
+
                     if (statusDictionary[DamageEngine.ElementType.Water] == true)
                     {
                         ClearStatusEffect(DamageEngine.ElementType.Water);
                         break;
                     }
                     Instantiate(particles.burnParticle, mObjectCollider.transform);
+                    SetStatusEffect(DamageEngine.ElementType.fire);
 
                     if (burnTick <= 5)
                     {
@@ -164,13 +164,49 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                     //      cast the line renderer from you to the others
                     //          make them lightning
                     //          repeat
-                    
+
                     break;
                 }
             case DamageEngine.ElementType.Ice:
                 {
+                    //if target has a navmesh agent, it's an enemy
+                    //  use the navmesh speed to change the enemy speed
+                    //or if it has a playercontroller, it's the player
+                    //  the player controller has a speed variable
+                    if (statusDictionary[DamageEngine.ElementType.fire] == true)
+                    {
+                        ClearStatusEffect(DamageEngine.ElementType.fire);
+                        SetStatusEffect(DamageEngine.ElementType.Water);
+                        break;
+                    }
+
+                    else if (statusDictionary[DamageEngine.ElementType.Ice] == false)
+                    {
+
+                        SetStatusEffect(DamageEngine.ElementType.Ice);
+
+                        NavMeshAgent target = this.GetComponent<NavMeshAgent>();
+                        if (target != null)
+                        {
+                            //enemy hit
+                            StartCoroutine(SlowTarget(target));
+                        }
+                        else
+                        {
+                            playerController player = this.GetComponent<playerController>();
+                            if (player != null)
+                            {
+                                StartCoroutine(SlowPlayer(player));
+                            }
+                        }
+                        Instantiate(particles.iceParticle, mObjectCollider.transform);
+
+                    }
+
                     //if you are wet
                     //  freeze
+
+
                     //or if you are fire
                     //  extinguish and you are now wet
                     break;
@@ -256,9 +292,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 
     IEnumerator FireBurn()
     {
+
         yield return new WaitForSeconds(1);
 
-        if (statusDictionary[DamageEngine.ElementType.Water] == false)
+        if (statusDictionary[DamageEngine.ElementType.Water] == false && statusDictionary[DamageEngine.ElementType.fire] == true)
         {
             burnTick++;
             DamageEngine.instance.CalculateDamage(mObjectCollider, 1, DamageEngine.ElementType.fire);
@@ -266,7 +303,24 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         }
     }
 
-    
+    IEnumerator SlowTarget(NavMeshAgent target)
+    {
+        float speedCache = target.speed;
+        target.speed = 1;
+        yield return new WaitForSeconds(5);
+        target.speed = speedCache;
+    }
+
+    IEnumerator SlowPlayer(playerController controller)
+    {
+        float speedCache = controller.GetSpeed();
+        controller.SetSpeed(1);
+        yield return new WaitForSeconds(5);
+        controller.SetSpeed(speedCache);
+    }
+
+
+
     private void damageColor(int amount)
     {
         if (!isPlayer)
@@ -299,8 +353,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             if (amount == 0)
             {
-                Color transparentGrey = new Color(0.5f, 0.5f, 0.5f, 0.2f);
-                gameManager.instance.DamageFlashScreen(transparentGrey);
+                //Color transparentGrey = new Color(0.5f, 0.5f, 0.5f, 0.2f);
+                //gameManager.instance.DamageFlashScreen(transparentGrey);
                 //I'm commenting this out because it's obnoxious
                 //Instantiate(particles.blockParticle, mObjectCollider.transform);
             }

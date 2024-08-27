@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class playerControler : MonoBehaviour
+public class playerController : MonoBehaviour
 {
 
     //fields
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreMask;
 
-    [SerializeField] int speed;
+    [SerializeField] float speed = 5;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
@@ -63,10 +63,9 @@ public class playerControler : MonoBehaviour
             playerVel.y = 0;
         }
 
-        move = Input.GetAxis("Vertical") * transform.forward +
-            Input.GetAxis("Horizontal") * transform.right;
+        move = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move.normalized * speed * Time.deltaTime);
         // jump/grav
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
@@ -92,8 +91,15 @@ public class playerControler : MonoBehaviour
             isSprinting = false;
         }
     }
-    //public void damageEffect(int amount, DamageEngine.ElementType ElementType)
-    //{
-    //    //gameManager.instance.DamageFlashScreen();
-    //}
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
 }

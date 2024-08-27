@@ -52,7 +52,7 @@ public class DamageEngine : MonoBehaviour
 
             if (dmg != null)
             {
-                playerControler targetPlayer = OtherCollider.GetComponent<playerControler>();
+                playerController targetPlayer = OtherCollider.GetComponent<playerController>();
                 DestructibleHealthCore healthCore = OtherCollider.GetComponent<DestructibleHealthCore>();
                 TempHealth = healthCore.HP;
 
