@@ -1282,6 +1282,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 89001e92ca492453599bb2bc49326e85, type: 3}
   - {fileID: 8300000, guid: 670023a95d5524aa79ad7583b1534d22, type: 3}
   impactSoundsVol: 0.3
+  AudioHurt:
+  - {fileID: 8300000, guid: 7dc5517bc96b84f47a81d0c1bb0786a9, type: 3}
+  - {fileID: 8300000, guid: af2610f1a56156a408a34cede00b3b3c, type: 3}
+  - {fileID: 8300000, guid: 810ceae8bd556804b9ba502c40d53ac4, type: 3}
+  - {fileID: 8300000, guid: 4c736f05bd67b5344bc87b1eace9af6a, type: 3}
+  - {fileID: 8300000, guid: 6caeb6e03da3c7e4d85ebb80ccfe95a8, type: 3}
+  - {fileID: 8300000, guid: e27cd208d9ee4a04c95fc6bed7710b10, type: 3}
+  AudioHurtVol: 0.5
 --- !u!114 &7210268632664386187
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] GameObject enemyHud;
     [SerializeField] DamageParticlesList particles;
 
+  
+
     private TypeIcon iconType;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();

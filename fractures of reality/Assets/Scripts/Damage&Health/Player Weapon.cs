@@ -28,7 +28,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     int CurrAmmo;
     bool isShooting;
     int currentWeapon;
-
+    bool Cheat=false;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0)
             //No longer coroutine -CM
             WeaponMenuSystem();
-
-        if (Input.GetButtonDown("Reload"))
+        if (Input.GetButton("Cheat"))
+        {
+            Cheat=!Cheat;
+        }
+        if (Input.GetButtonDown("Reload")&&Cheat)
         {
             ReloadAmmo();
         }

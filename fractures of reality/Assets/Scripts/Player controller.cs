@@ -20,9 +20,6 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] AudioJump;
     [Range(0, 1)][SerializeField] float AudioJumpVol = 0.5f;
 
-    [SerializeField] AudioClip[] AudioHurt;
-    [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
-
     [SerializeField] AudioClip[] AudioSteps;
     [Range(0, 1)][SerializeField] float AudioStepsVol = 0.5f;
 
@@ -75,7 +72,7 @@ public class playerController : MonoBehaviour
 
         move = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
 
-        controller.Move(move.normalized * speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
         // jump/grav
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {

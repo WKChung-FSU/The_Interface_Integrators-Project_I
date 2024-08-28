@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test player
       objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: ignoreMask.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.86

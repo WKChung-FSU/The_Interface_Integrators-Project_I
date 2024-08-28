@@ -64,7 +64,6 @@ public class AttackCore : MonoBehaviour
         }
     }
 
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -96,7 +95,7 @@ public class AttackCore : MonoBehaviour
                 {
                     Debug.DrawRay(transform.position, (transform.up * -1), Color.red);
                     #region Debug
-                    Debug.Log(hit.collider.name);
+                    //Debug.Log(hit.collider.name);
                     #endregion
                   
                     Instantiate(AoeObject, hit.point, hit.transform.rotation);
@@ -107,7 +106,6 @@ public class AttackCore : MonoBehaviour
             {
                 Debug.Log("Error in Aoe Spell");
             }
-
         }
 
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeSpell)
