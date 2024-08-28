@@ -127,19 +127,6 @@ public class AttackCore : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.isTrigger || other == gameManager.instance.player.GetComponent<CapsuleCollider>())
-        {
-            return;
-        }
-        if (!targets.Contains(other))
-        {
-            targets.Add(other);
-        }
-    }
-
-
     private void OnTriggerExit(Collider other)
     {
         if (movementType == DamageEngine.movementType.Environmental)
