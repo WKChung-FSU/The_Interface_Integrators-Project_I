@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,13 @@ public class AttackCore : MonoBehaviour
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] float RemoveTime=0;
     [SerializeField] GameObject destroyParticle;
-
+    [SerializeField] AudioSource impactSource;
     [Header("-----Spell Attributes-----")]
     [Range(1, 30)][SerializeField] int speed;
     [SerializeField] Rigidbody rb;
-   
+  
+    [Header("-----Aoe Components-----")]
+    [SerializeField] GameObject AoeObject;
 
     [Header("HitScan info(Currently player only)")]
     [Range(1, 100)][SerializeField] int SpellRange;
@@ -26,18 +29,17 @@ public class AttackCore : MonoBehaviour
     [Header("will not attack if 0")]
     [Range(0, 1)][SerializeField] float AttackSpeed = 0.5f;
  
+ 
 
-
-    [Header("-----Aoe Components-----")]
-    [SerializeField] GameObject AoeObject;
-    
     public List<Collider> targets=new List<Collider>();
     bool Attacking;
     // Start is called before the first frame update
     void Start()
     {
+        impactSource = GetComponent<AudioSource>();
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeSpell)
         {
+            gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement,false), DamageEngine.instance.GetSpellVolume(false));
             rb.velocity = transform.forward * speed;
             if (RemoveTime != 0)
             {
@@ -108,16 +110,22 @@ public class AttackCore : MonoBehaviour
 
         }
 
-        if (movementType == DamageEngine.movementType.Spell|| movementType==DamageEngine.movementType.AoeSpell)
+        if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeSpell)
         {
-            if (this.GetComponent<TrailRenderer>()!=null) {
+            if (this.GetComponent<TrailRenderer>() != null)
+            {
                 this.GetComponent<TrailRenderer>().enabled = false;
             }
-            
-            Instantiate(destroyParticle,gameObject.transform.position, Quaternion.identity);
+            gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement,true), DamageEngine.instance.GetSpellVolume(true));
+            //impactSource.PlayOneShot(DamageEngine.instance.GetSpellSound(attackElement, true), DamageEngine.instance.GetSpellVolume(true));
+            Instantiate(destroyParticle, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
 
             //play particle - CM
+        }
+        else if (movementType == DamageEngine.movementType.Spell_HitScan)
+        {
+            gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, true), DamageEngine.instance.GetSpellVolume(true));
         }
     }
 
@@ -147,7 +155,6 @@ public class AttackCore : MonoBehaviour
         get
         {
             return attackElement;
-
         }
     }
     //currently player only

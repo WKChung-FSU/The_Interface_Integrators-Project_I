@@ -36,7 +36,14 @@ public class DamageEngine : MonoBehaviour
     [Header("AOE Effects Zones")]
     [SerializeField] public GameObject lightningAOE;
 
+    [Header("---- Spell sounds ----")]
     
+    [SerializeField] AudioClip[] castSounds;
+    [Range(0, 1)][SerializeField] float castSoundsVol = 0.5f;
+    [SerializeField] AudioClip[] impactSounds;
+    [Range(0, 1)][SerializeField] float impactSoundsVol = 0.5f;
+
+
     void Start()
     {
         instance = this;
@@ -184,4 +191,55 @@ public class DamageEngine : MonoBehaviour
         return (int)(damageAmount * Multiplier);
     }
 
+    public AudioClip GetSpellSound(ElementType spellElement, bool IsImpact)
+    {
+        AudioClip[] Output;
+        AudioClip outClip;
+        if (IsImpact)
+            Output = impactSounds;
+        else
+            Output = castSounds;
+        switch (spellElement)
+        {
+            default:
+                outClip = Output[0];
+                break;
+
+            case ElementType.fire:
+                outClip = Output[1];
+                break;
+
+            case ElementType.Lightning:
+                outClip = Output[2];
+                break;
+
+            case ElementType.Ice:
+                outClip = Output[3];
+                break;
+
+            case ElementType.Earth:
+                outClip = Output[4];
+                break;
+
+            case ElementType.Wind:
+                outClip = Output[5];
+                break;
+
+            case ElementType.Water:
+                outClip = Output[6];
+                break;
+        }
+        return outClip;
+    }
+    public float GetSpellVolume(bool IsImpact)
+    {
+        float volume=0.5f;
+        if (IsImpact)
+            volume = impactSoundsVol;
+        else
+            volume = castSoundsVol;
+
+        return volume;
+
+    }
 }
