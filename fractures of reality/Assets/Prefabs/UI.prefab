@@ -1264,6 +1264,24 @@ MonoBehaviour:
     windMult: 0
     waterMult: 0
   lightningAOE: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
+  castSounds:
+  - {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
+  - {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}
+  - {fileID: 8300000, guid: 81dbc2b345d4a4d8aa98f60aa04e5145, type: 3}
+  - {fileID: 8300000, guid: 8171342f1983747b3a1e3a85ad95097b, type: 3}
+  - {fileID: 8300000, guid: 076c674d9627d49d7bc9428ecb754613, type: 3}
+  - {fileID: 8300000, guid: 2b26cbea232414fcfab41a84fc7a1c55, type: 3}
+  - {fileID: 8300000, guid: cbabab23c893648bda632823ccbe5d31, type: 3}
+  castSoundsVol: 0.5
+  impactSounds:
+  - {fileID: 8300000, guid: f08ce2b0c20924bfe844560b4770fe5a, type: 3}
+  - {fileID: 8300000, guid: 8a44b12d3e3f24b1a89dc7f0b66756f4, type: 3}
+  - {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
+  - {fileID: 8300000, guid: 90af38775c5bd43c084091ac77fe7257, type: 3}
+  - {fileID: 8300000, guid: cdfae31f0b58546d3ac1015effc38f01, type: 3}
+  - {fileID: 8300000, guid: 89001e92ca492453599bb2bc49326e85, type: 3}
+  - {fileID: 8300000, guid: 670023a95d5524aa79ad7583b1534d22, type: 3}
+  impactSoundsVol: 0.3
 --- !u!114 &7210268632664386187
 MonoBehaviour:
   m_ObjectHideFlags: 0
