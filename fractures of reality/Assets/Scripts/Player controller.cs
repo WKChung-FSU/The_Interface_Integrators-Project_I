@@ -72,7 +72,7 @@ public class playerController : MonoBehaviour
 
         move = Input.GetAxis("Vertical") * transform.forward + Input.GetAxis("Horizontal") * transform.right;
 
-        controller.Move(move.normalized * speed * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
         // jump/grav
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
