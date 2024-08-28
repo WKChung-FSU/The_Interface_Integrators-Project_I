@@ -43,6 +43,9 @@ public class DamageEngine : MonoBehaviour
     [SerializeField] AudioClip[] impactSounds;
     [Range(0, 1)][SerializeField] float impactSoundsVol = 0.5f;
 
+    [Header("---- Player Sounds ----")]
+    [SerializeField] AudioClip[] AudioHurt;
+    [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
 
     void Start()
     {
@@ -71,6 +74,13 @@ public class DamageEngine : MonoBehaviour
                     // add damage calculation
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                     TempHealth -= damageDealt;
+
+                    if(targetPlayer != null)
+                    {
+                        gameManager.instance.playAudio(AudioHurt[Random.Range(0, AudioHurt.Length)], AudioHurtVol);
+                    }
+
+
                     if (TempHealth <= 0)
                     {
                         TempHealth = 0;
