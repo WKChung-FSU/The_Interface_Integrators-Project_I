@@ -90,4 +90,16 @@ public class AICoreSkeleton : MonoBehaviour
         Debug.Log(this.name + " Mana refreshed!");
         castTimerResetting = false;
     }
+
+    public void EnableMeleeHitbox()
+    {
+        weapon.GetComponent<CapsuleCollider>().enabled = true;
+        aiCore.isAttacking = true;
+    }
+
+    public void DisableMeleeHitbox()
+    {
+        weapon.GetComponent<CapsuleCollider>().enabled = false;
+        aiCore.isAttacking = false;
+    }
 }
