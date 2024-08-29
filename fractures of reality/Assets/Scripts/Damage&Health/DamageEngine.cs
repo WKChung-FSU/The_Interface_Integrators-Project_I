@@ -75,8 +75,12 @@ public class DamageEngine : MonoBehaviour
                     // add damage calculation
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                     TempHealth -= damageDealt;
+                    if (AttackList != null)
+                    {
+                        AttackList.Remove(OtherCollider);
+                    }
 
-                    if(targetPlayer != null)
+                    if (targetPlayer != null)
                     {
                         gameManager.instance.playAudio(AudioHurt[Random.Range(0, AudioHurt.Length)], AudioHurtVol);
                     }
@@ -88,10 +92,7 @@ public class DamageEngine : MonoBehaviour
                         // if player do player things if not do enemy things.
                         if (healthCore.IsMandatory)
                             gameManager.instance.updateGameGoal(-1);
-                        if (AttackList != null)
-                        {
-                            AttackList.Remove(OtherCollider);
-                        }
+                      
                         if (targetPlayer != null)
                         {
                             if (gameManager.instance.PlayerDead == false)
