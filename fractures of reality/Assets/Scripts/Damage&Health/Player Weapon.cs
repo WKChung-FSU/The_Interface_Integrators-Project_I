@@ -181,6 +181,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             //Visual of lightning being cast 
             lightningVisual.useWorldSpace = true;
             lightningVisual.SetPosition(0, SpellLaunchPos.position);
+             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(DamageEngine.ElementType.Lightning, false), DamageEngine.instance.GetSpellVolume(false));
 
             RaycastHit hit;
             
