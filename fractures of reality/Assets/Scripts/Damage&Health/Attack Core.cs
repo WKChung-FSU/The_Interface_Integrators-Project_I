@@ -58,12 +58,15 @@ public class AttackCore : MonoBehaviour
 
     private void Update()
     {
-        if (!Attacking&&AttackSpeed!=0)
-        {
-            StartCoroutine(environmentalAttack());
-        }
-    }
+        
 
+
+            if (!Attacking && AttackSpeed != 0)
+            {
+                StartCoroutine(environmentalAttack());
+            }
+       
+    }
 
     private void OnTriggerEnter(Collider other)
     {

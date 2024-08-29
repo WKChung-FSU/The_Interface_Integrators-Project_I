@@ -88,11 +88,14 @@ public class DamageEngine : MonoBehaviour
                         // if player do player things if not do enemy things.
                         if (healthCore.IsMandatory)
                             gameManager.instance.updateGameGoal(-1);
+                        if (AttackList != null)
+                        {
+                            AttackList.Remove(OtherCollider);
+                        }
                         if (targetPlayer != null)
                         {
                             if (gameManager.instance.PlayerDead == false)
                                 gameManager.instance.youLose();
-                            return;
                         }
                         else
                         {
@@ -100,10 +103,7 @@ public class DamageEngine : MonoBehaviour
                             Quaternion spawnRotation= new Quaternion();
                             GameObject SpawnObject=null;
                             bool isSpawning = false;
-                            if (AttackList != null)
-                            {
-                                AttackList.Remove(OtherCollider);
-                            }
+                        
                             if (healthCore.GETSpawnsItemOnDeath())
                             {
                                 spawnLocation = healthCore.transform.position;
@@ -116,7 +116,6 @@ public class DamageEngine : MonoBehaviour
                             if (isSpawning)
                                 Instantiate(SpawnObject, spawnLocation + Vector3.up, spawnRotation);
                         }
-                        
                     }
                     healthCore.HP = TempHealth;
                     // does the specific damage effect
