@@ -29,7 +29,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     private TypeIcon iconType;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
-    int currHealth;
     int MaxHealth;
     Color colorOriginal;
 

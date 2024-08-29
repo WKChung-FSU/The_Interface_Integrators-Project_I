@@ -159,12 +159,12 @@ public class gameManager : MonoBehaviour
     }
     public void youLose()
     {
+        playerDead = true;
         statePause();
         Debug.Log("YOU LOSE MENU OPEN?");
         menuActive = menuLose;
         Debug.Log("menu should appear");
         menuActive.SetActive(isPaused);
-        playerDead = true;
     }
 
     public void youWin()
@@ -206,10 +206,13 @@ public class gameManager : MonoBehaviour
 
         if (trueRespawn == true)
         {
-            playerScript.HP=playerScript.HPMax;
+            playerScript.HP = playerScript.HPMax;
             playerWeapon.ReloadAmmo();
+            playerScript.StopAllCoroutines();
             playerScript.ClearALLStatusEffects();
+            playerDead = false;
         }
+         
     }
 
    

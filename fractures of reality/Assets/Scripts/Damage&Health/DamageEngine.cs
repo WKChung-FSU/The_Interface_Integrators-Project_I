@@ -92,6 +92,7 @@ public class DamageEngine : MonoBehaviour
                         {
                             if (gameManager.instance.PlayerDead == false)
                                 gameManager.instance.youLose();
+                            return;
                         }
                         else
                         {
