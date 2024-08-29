@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6884707817370252553}
   - component: {fileID: 5429547325057587852}
   - component: {fileID: 8475581837791821377}
+  - component: {fileID: 1602483000438985170}
   m_Layer: 0
   m_Name: RockWall
   m_TagString: Untagged
@@ -72,11 +73,28 @@ MonoBehaviour:
   elementType: 4
   IsMandatory: 0
   isPlayer: 0
-  effectTickDelay: 1
   modelColor: {fileID: 7565028655371056059}
   textHP: {fileID: 0}
   enemyHud: {fileID: 0}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
+  SpawnsItemOnDeath: 0
+  deathSpawnItems: []
+--- !u!208 &1602483000438985170
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961309169809318619}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 4.345, y: 3.565, z: 0.815}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3.15, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &2598197778090289066
 GameObject:
   m_ObjectHideFlags: 0

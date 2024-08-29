@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 2906023006067330561}
   - component: {fileID: 8347255244390014611}
   m_Layer: 7
-  m_Name: BeholderPolyartDefault
+  m_Name: Beholder
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
