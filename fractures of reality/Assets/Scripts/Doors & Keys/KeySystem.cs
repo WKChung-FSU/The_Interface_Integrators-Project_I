@@ -4,5 +4,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class KeySystem : ScriptableObject
 {
-    public LockSystem PairedDoor;
+    public bool isGoal;
 }

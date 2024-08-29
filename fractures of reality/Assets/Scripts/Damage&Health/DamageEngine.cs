@@ -86,7 +86,7 @@ public class DamageEngine : MonoBehaviour
                     {
                         TempHealth = 0;
                         // if player do player things if not do enemy things.
-                        if (healthCore.IsMandatory)
+                        if (healthCore.IsMandatory&& gameManager.instance.gameGoal() == gameManager.GameGoal.KillAllEnemies)
                             gameManager.instance.updateGameGoal(-1);
                         if (targetPlayer != null)
                         {

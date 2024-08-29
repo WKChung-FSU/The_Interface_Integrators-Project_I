@@ -43,7 +43,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         colorOriginal = modelColor.material.color;
         // if (isPlayer)
         //  gameManager.instance.healthMax = MaxHealth;
-        if (IsMandatory)
+        if (IsMandatory&&gameManager.instance.gameGoal()==gameManager.GameGoal.KillAllEnemies)
             gameManager.instance.updateGameGoal(1);
 
         if (isPlayer == false && textHP != null)

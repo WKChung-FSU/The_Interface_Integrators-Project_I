@@ -10,6 +10,8 @@ public class gameManager : MonoBehaviour
     public static gameManager instance;
     public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects}
     [SerializeField] GameGoal CurrentGoal;
+
+
     #region Player
     [Header("----- Player Attributes -----")]
     public GameObject player;
@@ -36,6 +38,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text enemyCountValue;
     [SerializeField] string[] goalText=new string[3];
+
     public bool isPaused;
     public bool hudEnabled;
 
@@ -140,9 +143,18 @@ public class gameManager : MonoBehaviour
 
         enemyCountValue.text = GoalCount.ToString("f0");
 
-        if (GoalCount <= 0&&CurrentGoal==GameGoal.KillAllEnemies)
+        if (GoalCount <= 0)
         {
-            youWin();
+
+            switch (CurrentGoal)
+            {
+                case GameGoal.KillAllEnemies:
+                    youWin();
+                    break;
+                case GameGoal.AcquireObjects:
+                   gameGoal(GameGoal.ReachGoal);
+                    break;
+            }
         }
     }
     public void youLose()
@@ -200,11 +212,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void ChangeGameGoal(GameGoal NewGoal)
-    {
-        CurrentGoal = NewGoal;
-        updateGameGoal();
-    }
+   
 
     #region Getters and Setter
     public Vector3 StartPosition()
@@ -239,7 +247,16 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void gameGoal(GameGoal NewGoal)
+    {
+        CurrentGoal = NewGoal;
+        updateGameGoal();
+    }
 
+    public GameGoal gameGoal()
+    {
+        return CurrentGoal;
+    }
 
     #endregion
 

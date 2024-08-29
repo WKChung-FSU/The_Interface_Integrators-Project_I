@@ -20,6 +20,12 @@ public class LockSystem : MonoBehaviour
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+
+        if (keySystem.isGoal && gameManager.instance.gameGoal() == gameManager.GameGoal.AcquireObjects)
+            gameManager.instance.updateGameGoal(1);
+
+
+
     }
 
     // Update is called once per frame
@@ -40,6 +46,10 @@ public class LockSystem : MonoBehaviour
             {
                 if (!player.PlayerKeys.Contains(keySystem))
                     player.PlayerKeys.Add(keySystem);
+
+                if(keySystem.isGoal&&gameManager.instance.gameGoal() == gameManager.GameGoal.AcquireObjects)
+                    gameManager.instance.updateGameGoal(-1);
+
                 Destroy(this.gameObject);
             }
             else if (!IsKey&& KeysSearch(player))
