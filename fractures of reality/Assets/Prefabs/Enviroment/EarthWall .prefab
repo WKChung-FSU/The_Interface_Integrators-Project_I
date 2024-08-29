@@ -177,7 +177,7 @@ MonoBehaviour:
   elementType: 4
   IsMandatory: 0
   isPlayer: 0
-  effectTickDelay: 1
   modelColor: {fileID: 7927867979171939316}
   textHP: {fileID: 0}
+  enemyHud: {fileID: 0}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}

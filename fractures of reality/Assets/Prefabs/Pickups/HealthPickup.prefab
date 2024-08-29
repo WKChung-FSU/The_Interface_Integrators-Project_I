@@ -76,7 +76,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab099d9c18daeb843b8e7d9fed5b4403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioHealth:
+  - {fileID: 8300000, guid: bf63ae08ca9ef4e46b54c2444001cb32, type: 3}
+  AudioHealthVol: 0.5
+  AudioAmmo:
+  - {fileID: 8300000, guid: ca9591a383a10034385e8788ea1ae025, type: 3}
+  AudioAmmoVol: 0
   healthBonus: 25
+  AmmoBonus: 10
+  Health: 1
 --- !u!23 &7561295978378111185
 MeshRenderer:
   m_ObjectHideFlags: 0
