@@ -250,6 +250,5 @@ public class DamageEngine : MonoBehaviour
             volume = castSoundsVol;
 
         return volume;
-
     }
 }

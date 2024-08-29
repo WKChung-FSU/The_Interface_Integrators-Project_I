@@ -201,6 +201,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
 
+
         //lightning delay
         //coconut.jpeg
         //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
