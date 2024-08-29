@@ -15,10 +15,11 @@ public class LockSystem : MonoBehaviour
     [SerializeField] MeshRenderer meshRenderer;
     [Range(1, 10)][SerializeField] int OpenTime;
     [SerializeField] AudioClip[] doorSounds;
-    [Range(0, 1)][SerializeField] float doorSoundVol;
-    bool Open;
+    [Range(0, 1)][SerializeField] float doorSoundVol=0.5f;
+    bool Open;  
     void Start()
     {
+        boxCollider=GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -73,7 +74,7 @@ public class LockSystem : MonoBehaviour
         if (keySystem != null && player != null) {
             foreach (var key in player.PlayerKeys)
             {
-                if (key.PairedDoor == keySystem.PairedDoor)
+                if (key == keySystem)
                 {
                     keyFound = true;
                     break;
