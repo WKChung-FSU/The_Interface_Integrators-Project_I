@@ -52,7 +52,7 @@ MonoBehaviour:
   keySystem: {fileID: 11400000, guid: ea8ba44733ef3a440a577e2726ba4d8c, type: 2}
   IsKey: 0
   IsGlyph: 0
-  boxCollider: {fileID: 3599850042017869546}
+  boxCollider: {fileID: 2388172840109333548}
   meshRenderer: {fileID: 2234571785905152750}
   OpenTime: 3
   doorSounds:
