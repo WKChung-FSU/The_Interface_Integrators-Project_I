@@ -19,7 +19,6 @@ public class LockSystem : MonoBehaviour
     bool Open;  
     void Start()
     {
-        boxCollider=GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
