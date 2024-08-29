@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3008052837280836992}
   - component: {fileID: 3576099462898943614}
   - component: {fileID: 7561295978378111185}
+  - component: {fileID: 3145985851716869239}
   m_Layer: 0
   m_Name: HealthPickup
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2204590691455072910}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28, y: 1, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
@@ -105,7 +106,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 951029886044803264, guid: 81990b1212ea60b40a40b25139f973be, type: 3}
+  - {fileID: 2100000, guid: 51369d960ac15bf4ea18e083a8c8c47b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,3 +128,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3145985851716869239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2204590691455072910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb1f1bae6fa26b4c93ecb514ac4d3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeedX: 0
+  scrollSpeedY: 1
+  renderer: {fileID: 0}
