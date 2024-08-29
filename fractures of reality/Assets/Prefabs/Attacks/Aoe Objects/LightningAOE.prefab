@@ -72,11 +72,12 @@ MonoBehaviour:
   damageAmount: 1
   RemoveTime: 1
   destroyParticle: {fileID: 0}
+  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
+  AoeObject: {fileID: 0}
   SpellRange: 1
   AttackSpeed: 0.5
-  AoeObject: {fileID: 0}
   targets: []
 --- !u!1001 &5082833751932503227
 PrefabInstance:
