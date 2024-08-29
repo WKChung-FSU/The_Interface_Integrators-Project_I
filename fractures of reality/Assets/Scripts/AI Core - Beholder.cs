@@ -50,6 +50,10 @@ public class AICoreBeholder : MonoBehaviour
                 StartCoroutine(aiCore.Roam());
                 //aiCore.agent.stoppingDistance = aiCore.stoppingDistanceOriginal;
             }
+            else if (aiCore.canRoam == true && aiCore.isRoaming == false)
+            {
+                StartCoroutine(aiCore.Roam());
+            }
         }
     }
 }

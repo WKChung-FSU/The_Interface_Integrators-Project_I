@@ -1235,7 +1235,7 @@ MonoBehaviour:
     normalMult: 0
     fireMult: 1
     lightningMult: 2
-    iceMult: 0
+    iceMult: 4
     earthMult: 1
     windMult: 2
     waterMult: 4
@@ -1244,9 +1244,9 @@ MonoBehaviour:
     fireMult: 3
     lightningMult: 3
     iceMult: 3
-    earthMult: 0
+    earthMult: 4
     windMult: 2
-    waterMult: 0
+    waterMult: 1
   WindMultiplier:
     normalMult: 0
     fireMult: 0
@@ -1257,12 +1257,12 @@ MonoBehaviour:
     waterMult: 0
   WaterMultiplier:
     normalMult: 0
-    fireMult: 0
-    lightningMult: 0
+    fireMult: 1
+    lightningMult: 2
     iceMult: 0
     earthMult: 0
     windMult: 0
-    waterMult: 0
+    waterMult: 4
   lightningAOE: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
   castSounds:
   - {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}

@@ -16,6 +16,6 @@ MonoBehaviour:
   fireIco: {fileID: 21300000, guid: fc497d05d166f21449926e09ea722b70, type: 3}
   lightningIco: {fileID: 21300000, guid: 2796199c0b8b7cd4f9da1629a569f251, type: 3}
   iceIco: {fileID: 21300000, guid: dc20a24902ff93749a1b071a9c5ea876, type: 3}
-  windIco: {fileID: 0}
+  windIco: {fileID: 21300000, guid: f4f10257889a4984bb920f30dbc27595, type: 3}
   earthIco: {fileID: 21300000, guid: be10b4d2e5f906743a6c2ee8bd4d6e8a, type: 3}
   waterIco: {fileID: 21300000, guid: 5a53dc7cd3127bb4eab493dcabd36768, type: 3}
