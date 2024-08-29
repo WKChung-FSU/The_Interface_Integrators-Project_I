@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public class DamageEngine : MonoBehaviour
 {
@@ -94,11 +95,25 @@ public class DamageEngine : MonoBehaviour
                         }
                         else
                         {
+                            Vector3 spawnLocation=new Vector3();
+                            Quaternion spawnRotation= new Quaternion();
+                            GameObject SpawnObject=null;
+                            bool isSpawning = false;
                             if (AttackList != null)
                             {
                                 AttackList.Remove(OtherCollider);
                             }
+                            if (healthCore.GETSpawnsItemOnDeath())
+                            {
+                                spawnLocation = healthCore.transform.position;
+                                spawnRotation=healthCore.transform.rotation;
+                                 SpawnObject = healthCore.GETDeathSpawnItems();
+                                isSpawning = true;
+                            }
                             Destroy(healthCore.gameObject);
+
+                            if (isSpawning)
+                                Instantiate(SpawnObject, spawnLocation + Vector3.up, spawnRotation);
                         }
                         
                     }

@@ -2442,6 +2442,10 @@ MonoBehaviour:
   textHP: {fileID: 7456758072609256808}
   enemyHud: {fileID: 5098261599886310834}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
+  SpawnsItemOnDeath: 1
+  deathSpawnItems:
+  - {fileID: 1023890850902764449, guid: 4be35c669ac99cd4e8206a44cbba55dd, type: 3}
+  - {fileID: 2204590691455072910, guid: cae617ed3eea0ea438ab0bc658634241, type: 3}
 --- !u!195 &2613484270084608751
 NavMeshAgent:
   m_ObjectHideFlags: 0
