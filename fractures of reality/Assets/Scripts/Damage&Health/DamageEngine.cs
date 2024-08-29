@@ -75,10 +75,7 @@ public class DamageEngine : MonoBehaviour
                     // add damage calculation
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                     TempHealth -= damageDealt;
-                    if (AttackList != null)
-                    {
-                        AttackList.Remove(OtherCollider);
-                    }
+                   
 
                     if (targetPlayer != null)
                     {
@@ -89,6 +86,10 @@ public class DamageEngine : MonoBehaviour
                     if (TempHealth <= 0)
                     {
                         TempHealth = 0;
+                        if (AttackList != null)
+                        {
+                            AttackList.Remove(OtherCollider);
+                        }
                         // if player do player things if not do enemy things.
                         if (healthCore.IsMandatory)
                             gameManager.instance.updateGameGoal(-1);

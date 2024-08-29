@@ -293,7 +293,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             statusDictionary[(DamageEngine.ElementType)i] = false;
         }
         burnTick = 5;
-        StopCoroutine(FireBurn());
     }
 
     private IEnumerator flashColor(Color color)

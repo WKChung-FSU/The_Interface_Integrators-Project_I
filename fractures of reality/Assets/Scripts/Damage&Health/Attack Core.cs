@@ -14,7 +14,6 @@ public class AttackCore : MonoBehaviour
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] float RemoveTime=0;
     [SerializeField] GameObject destroyParticle;
-    [SerializeField] AudioSource impactSource;
     [Header("-----Spell Attributes-----")]
     [Range(1, 30)][SerializeField] int speed;
     [SerializeField] Rigidbody rb;
@@ -36,7 +35,6 @@ public class AttackCore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        impactSource = GetComponent<AudioSource>();
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeSpell)
         {
             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement,false), DamageEngine.instance.GetSpellVolume(false));

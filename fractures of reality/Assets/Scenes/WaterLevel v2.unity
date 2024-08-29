@@ -52032,7 +52032,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!23 &1382476066
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52097,15 +52097,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 1
   movementType: 1
-  damageAmount: 10
+  damageAmount: 2
   RemoveTime: 0
   destroyParticle: {fileID: 0}
-  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 1382476063}
   AoeObject: {fileID: 0}
   SpellRange: 1
-  AttackSpeed: 0.2
+  AttackSpeed: 0.5
   targets: []
 --- !u!1 &1383733948
 GameObject:
