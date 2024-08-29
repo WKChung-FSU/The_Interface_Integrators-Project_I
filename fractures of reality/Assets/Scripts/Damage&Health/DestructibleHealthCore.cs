@@ -21,10 +21,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] TMP_Text textHP;
     [SerializeField] GameObject enemyHud;
     [SerializeField] DamageParticlesList particles;
-    [Header("-----Item Spawning-----")]
-    [SerializeField] bool SpawnsItemOnDeath;
-    [SerializeField] GameObject[] deathSpawnItems;
 
+  
 
     private TypeIcon iconType;
 
@@ -98,17 +96,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
         {
             MaxHealth = value;
         }
-    }
-
-    public GameObject GETDeathSpawnItems()
-    {
-
-        return deathSpawnItems[UnityEngine.Random.Range(0, deathSpawnItems.Length)];
-        
-    }
-    public bool GETSpawnsItemOnDeath()
-    {
-        return SpawnsItemOnDeath;
     }
 
     public void SetNewElementType(DamageEngine.ElementType type)
@@ -334,7 +321,6 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     }
 
 
-  
 
     private void damageColor(int amount)
     {

@@ -3498,10 +3498,6 @@ MonoBehaviour:
   textHP: {fileID: 2997215250095145737}
   enemyHud: {fileID: 586364601505172435}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
-  SpawnsItemOnDeath: 1
-  deathSpawnItems:
-  - {fileID: 1023890850902764449, guid: 4be35c669ac99cd4e8206a44cbba55dd, type: 3}
-  - {fileID: 2204590691455072910, guid: cae617ed3eea0ea438ab0bc658634241, type: 3}
 --- !u!136 &3683724265528122240
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5590,12 +5586,11 @@ MonoBehaviour:
   damageAmount: 5
   RemoveTime: 0
   destroyParticle: {fileID: 0}
-  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
-  AoeObject: {fileID: 0}
   SpellRange: 1
   AttackSpeed: 1
+  AoeObject: {fileID: 0}
   targets: []
 --- !u!1 &7442783791793326799
 GameObject:
