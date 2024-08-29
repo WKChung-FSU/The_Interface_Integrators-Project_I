@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class WindSpell : MonoBehaviour
 {
-    [SerializeField] private float 
+    [SerializeField] private float wind;
 }
