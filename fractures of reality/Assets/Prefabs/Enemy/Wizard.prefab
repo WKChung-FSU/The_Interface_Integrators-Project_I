@@ -2436,7 +2436,7 @@ MonoBehaviour:
   Hp: 100
   mObjectCollider: {fileID: 6725909310829867033}
   elementType: 0
-  IsMandatory: 1
+  IsMandatory: 0
   isPlayer: 0
   modelColor: {fileID: 8754720520323907299}
   textHP: {fileID: 7456758072609256808}

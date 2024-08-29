@@ -21,10 +21,8 @@ public class LockSystem : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
 
-        if (keySystem.isGoal && gameManager.instance.gameGoal() == gameManager.GameGoal.AcquireObjects)
+        if (keySystem.isGoal && gameManager.instance.gameGoal() == gameManager.GameGoal.AcquireObjects&&IsKey)
             gameManager.instance.updateGameGoal(1);
-
-
 
     }
 

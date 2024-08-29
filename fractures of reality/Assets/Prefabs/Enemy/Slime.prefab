@@ -225,12 +225,14 @@ MonoBehaviour:
   Hp: 100
   mObjectCollider: {fileID: 4842317544548119145}
   elementType: 0
-  IsMandatory: 1
+  IsMandatory: 0
   isPlayer: 0
   modelColor: {fileID: 13700000, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
   textHP: {fileID: 0}
   enemyHud: {fileID: 0}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
+  SpawnsItemOnDeath: 0
+  deathSpawnItems: []
 --- !u!195 &4534907262140342829
 NavMeshAgent:
   m_ObjectHideFlags: 0
