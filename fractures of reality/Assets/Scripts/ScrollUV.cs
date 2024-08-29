@@ -12,7 +12,7 @@ public class ScrollUV : MonoBehaviour
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
+        renderer = transform.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
