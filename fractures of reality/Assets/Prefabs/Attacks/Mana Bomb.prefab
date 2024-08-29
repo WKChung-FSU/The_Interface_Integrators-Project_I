@@ -52,14 +52,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 0
   movementType: 0
-  rb: {fileID: 6785290704942885050}
-  damageAmount: 8
+  damageAmount: 9
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
+  impactSource: {fileID: 0}
   speed: 3
+  rb: {fileID: 6785290704942885050}
+  AoeObject: {fileID: 0}
   SpellRange: 1
   AttackSpeed: 1
-  AoeObject: {fileID: 0}
   targets: []
 --- !u!33 &6046441367146011375
 MeshFilter:

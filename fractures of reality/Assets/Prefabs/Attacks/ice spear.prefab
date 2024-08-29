@@ -49,14 +49,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 3
   movementType: 0
-  rb: {fileID: 5791687774503595315}
-  damageAmount: 5
+  damageAmount: 9
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
+  impactSource: {fileID: 0}
   speed: 10
+  rb: {fileID: 5791687774503595315}
+  AoeObject: {fileID: 0}
   SpellRange: 1
   AttackSpeed: 1
-  AoeObject: {fileID: 0}
   targets: []
 --- !u!136 &8164682717192602827
 CapsuleCollider:

@@ -52,14 +52,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 3
   movementType: 0
-  rb: {fileID: 5732414323505783303}
   damageAmount: 2
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
-  speed: 10
+  impactSource: {fileID: 0}
+  speed: 20
+  rb: {fileID: 5732414323505783303}
+  AoeObject: {fileID: 0}
   SpellRange: 1
   AttackSpeed: 1
-  AoeObject: {fileID: 0}
   targets: []
 --- !u!54 &5732414323505783303
 Rigidbody:

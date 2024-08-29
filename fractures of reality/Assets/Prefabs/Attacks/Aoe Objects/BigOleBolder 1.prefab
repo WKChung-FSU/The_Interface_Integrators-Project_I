@@ -67,6 +67,8 @@ MonoBehaviour:
   textHP: {fileID: 0}
   enemyHud: {fileID: 0}
   particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
+  SpawnsItemOnDeath: 0
+  deathSpawnItems: []
 --- !u!114 &1718932134943434034
 MonoBehaviour:
   m_ObjectHideFlags: 0

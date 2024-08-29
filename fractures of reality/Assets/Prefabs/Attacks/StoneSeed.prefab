@@ -50,11 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 0
   movementType: 4
-  damageAmount: 10
+  damageAmount: 9
   RemoveTime: 11
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   impactSource: {fileID: 0}
-  speed: 5
+  speed: 30
   rb: {fileID: 8318975303973965118}
   AoeObject: {fileID: 7368385114756841254, guid: 6b67073f96ad770409cdc95c1fd11967, type: 3}
   SpellRange: 1
