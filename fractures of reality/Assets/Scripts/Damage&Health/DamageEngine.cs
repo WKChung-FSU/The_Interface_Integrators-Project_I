@@ -10,7 +10,6 @@ public class DamageEngine : MonoBehaviour
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
     public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeSpell }
-    // Start is called before the first frame update
     [System.Serializable]
      struct DamageMultipliers
     {
@@ -76,12 +75,11 @@ public class DamageEngine : MonoBehaviour
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
                     TempHealth -= damageDealt;
                    
-
+                    // if it is the player
                     if (targetPlayer != null)
                     {
                         gameManager.instance.playAudio(AudioHurt[Random.Range(0, AudioHurt.Length)], AudioHurtVol);
                     }
-
 
                     if (TempHealth <= 0)
                     {
@@ -90,10 +88,11 @@ public class DamageEngine : MonoBehaviour
                         {
                             AttackList.Remove(OtherCollider);
                         }
-                        // if player do player things if not do enemy things.
+                        //  if not do enemy things.
                         if (healthCore.IsMandatory)
                             gameManager.instance.updateGameGoal(-1);
-                      
+
+                        // if it is the player
                         if (targetPlayer != null)
                         {
                             if (gameManager.instance.PlayerDead == false)
