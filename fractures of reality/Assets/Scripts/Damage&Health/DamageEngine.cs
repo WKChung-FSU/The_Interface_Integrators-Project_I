@@ -10,6 +10,7 @@ public class DamageEngine : MonoBehaviour
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
     public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeSpell }
+    // struct framework for the damage multipliers, will eventually change it to a scriptable game object
     [System.Serializable]
      struct DamageMultipliers
     {
@@ -47,11 +48,20 @@ public class DamageEngine : MonoBehaviour
     [SerializeField] AudioClip[] AudioHurt;
     [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
 
+
+    // remember that this is a instance
     void Start()
     {
         instance = this;
     }
-    // remember that this is a instance
+
+    /// <summary>
+    /// the Main Function of this class, to make something take damage all you need to add is the collider of what you hit
+    /// </summary>
+    /// <param name="OtherCollider">Collider of the thing that is taking damage</param>
+    /// <param name="DamageAmount">the amount of damage that the entity takes</param>
+    /// <param name="attackType">the element of the attack</param>
+    /// <param name="AttackList">if you are attacking in a list(Aoe) you can send it in the function and it will be auto deleted if it dies</param>
     public void CalculateDamage(Collider OtherCollider, int DamageAmount, ElementType attackType, List<Collider>AttackList=null)
     {
         if (OtherCollider != null)
@@ -65,6 +75,7 @@ public class DamageEngine : MonoBehaviour
                 DestructibleHealthCore healthCore = OtherCollider.GetComponent<DestructibleHealthCore>();
                 TempHealth = healthCore.HP;
 
+                // skips damage calc if damage is zero
                 if (DamageAmount == 0)
                 {
                     dmg.damageEffect(DamageAmount, attackType);
@@ -88,16 +99,17 @@ public class DamageEngine : MonoBehaviour
                         {
                             AttackList.Remove(OtherCollider);
                         }
-                        //  if not do enemy things.
+                        //  checks if the enemy is mandatory then you remove it form the game goal.
                         if (healthCore.IsMandatory)
                             gameManager.instance.updateGameGoal(-1);
 
-                        // if it is the player
+                        // death code for the player
                         if (targetPlayer != null)
                         {
                             if (gameManager.instance.PlayerDead == false)
                                 gameManager.instance.youLose();
                         }
+                        // death code for the enemies
                         else
                         {
                             Vector3 spawnLocation=new Vector3();
@@ -126,6 +138,15 @@ public class DamageEngine : MonoBehaviour
             }
         }
     }
+
+
+    /// <summary>
+    /// Finds the proper damage for the attack
+    /// </summary>
+    /// <param name="enemyType">the element type of the entity being attacked</param>
+    /// <param name="damageAmount">the base amount of damage</param>
+    /// <param name="attackType">the element of the attack</param>
+    /// <returns></returns>
 
      int ElementTypeMultiplier(ElementType enemyType, int damageAmount, ElementType attackType)
     {
