@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage
 {
@@ -25,10 +26,16 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     [SerializeField] bool SpawnsItemOnDeath;
     [SerializeField] GameObject[] deathSpawnItems;
 
+    private playerController player;
+    private NavMeshAgent target;
+    private float speedCache;
+    int sprintModCache;
 
     private TypeIcon iconType;
 
     public Dictionary<DamageEngine.ElementType, bool> statusDictionary = new Dictionary<DamageEngine.ElementType, bool>();
+
+
     int MaxHealth;
     Color colorOriginal;
 
@@ -59,6 +66,18 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             statusDictionary.Add((DamageEngine.ElementType)i, false);
         }
 
+        //if has navmesh, it's an enemy, else it's the player
+        if (GetComponent<NavMeshAgent>() != null)
+        {
+            target = GetComponent<NavMeshAgent>();
+            speedCache = target.speed;
+        }
+        else if (GetComponent<playerController>())
+        {
+            player = GetComponent<playerController>();
+            sprintModCache = player.GetSprintMod();
+            speedCache = player.GetOriginalSpeed();
+        }
     }
     public DamageEngine.ElementType ElementType
     {
@@ -103,7 +122,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     {
 
         return deathSpawnItems[UnityEngine.Random.Range(0, deathSpawnItems.Length)];
-        
+
     }
     public bool GETSpawnsItemOnDeath()
     {
@@ -182,12 +201,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 }
             case DamageEngine.ElementType.Ice:
                 {
-                    //if target has a navmesh agent, it's an enemy
-                    //  use the navmesh speed to change the enemy speed
-                    //or if it has a playercontroller, it's the player
-                    //  the player controller has a speed variable
+                    //if you are fire
                     if (statusDictionary[DamageEngine.ElementType.fire] == true)
                     {
+                        //extinguish and you are now wet
                         ClearStatusEffect(DamageEngine.ElementType.fire);
                         SetStatusEffect(DamageEngine.ElementType.Water);
                         break;
@@ -195,33 +212,23 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 
                     else if (statusDictionary[DamageEngine.ElementType.Ice] == false)
                     {
-
-                        SetStatusEffect(DamageEngine.ElementType.Ice);
-
-                        NavMeshAgent target = this.GetComponent<NavMeshAgent>();
+                        //if target has a navmesh agent, it's an enemy
+                        //  use the navmesh speed to change the enemy speed
                         if (target != null)
                         {
                             //enemy hit
                             StartCoroutine(SlowTarget(target));
                         }
+                        //or if it has a playercontroller, it's the player
                         else
                         {
-                            playerController player = this.GetComponent<playerController>();
-                            if (player != null)
-                            {
-                                StartCoroutine(SlowPlayer(player));
-                            }
+                            //  the player controller has a speed variable
+                            StartCoroutine(SlowPlayer());
                         }
+                        SetStatusEffect(DamageEngine.ElementType.Ice);
                         Instantiate(particles.iceParticle, mObjectCollider.transform);
 
                     }
-
-                    //if you are wet
-                    //  freeze
-
-
-                    //or if you are fire
-                    //  extinguish and you are now wet
                     break;
                 }
             case DamageEngine.ElementType.Earth:
@@ -283,7 +290,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
     void ClearStatusEffect(DamageEngine.ElementType effect)
     {
         statusDictionary[effect] = false;
-        //Debug.Log(effect + " = false");
+        Debug.Log(effect + " = false");
     }
 
     public void ClearALLStatusEffects()
@@ -293,6 +300,15 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             statusDictionary[(DamageEngine.ElementType)i] = false;
         }
         burnTick = 5;
+    }
+    public void ResetAllStatuses()
+    {
+        StopAllCoroutines();
+        ClearALLStatusEffects();
+        //reset variables now
+        HP = HPMax;
+        player.SetBaseSpeed(player.GetOriginalSpeed());
+        player.SetSprintMod(sprintModCache);
     }
 
     private IEnumerator flashColor(Color color)
@@ -317,22 +333,26 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 
     IEnumerator SlowTarget(NavMeshAgent target)
     {
-        float speedCache = target.speed;
-        target.speed = 1;
+        target.speed /= 10;
         yield return new WaitForSeconds(5);
         target.speed = speedCache;
     }
 
-    IEnumerator SlowPlayer(playerController controller)
+    IEnumerator SlowPlayer()
     {
-        float speedCache = controller.GetSpeed();
-        controller.SetSpeed(1);
+        player.SetSprintMod(1);
+        player.SetBaseSpeed(player.GetBaseSpeed() / 10);
         yield return new WaitForSeconds(5);
-        controller.SetSpeed(speedCache);
+        player.SetBaseSpeed(player.GetOriginalSpeed());
+        if (Input.GetButton("Sprint"))
+        {
+            player.SetBaseSpeed(player.GetBaseSpeed() * 2);
+        }
+        player.SetSprintMod(sprintModCache);
     }
 
 
-  
+
 
     private void damageColor(int amount)
     {

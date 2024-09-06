@@ -206,10 +206,9 @@ public class gameManager : MonoBehaviour
 
         if (trueRespawn == true)
         {
-            playerScript.HP = playerScript.HPMax;
             playerWeapon.ReloadAmmo();
             playerScript.StopAllCoroutines();
-            playerScript.ClearALLStatusEffects();
+            playerScript.ResetAllStatuses();
             playerDead = false;
         }
          

@@ -11,6 +11,8 @@ public class playerController : MonoBehaviour
     [SerializeField] LayerMask ignoreMask;
 
     [SerializeField] float speed = 5;
+    float originalSpeed;
+    float baseSpeed;
     [SerializeField] int sprintMod;
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
@@ -26,7 +28,7 @@ public class playerController : MonoBehaviour
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
-    bool isSprinting;
+    public bool isSprinting;
     bool isShooting;
     bool isPlayingSteps;
     public List<KeySystem> Keys = new List<KeySystem>();
@@ -34,7 +36,8 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        originalSpeed = speed;
+        baseSpeed = speed;
     }
 
     public List<KeySystem> PlayerKeys
@@ -93,14 +96,15 @@ public class playerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed *= sprintMod;
+            baseSpeed *= sprintMod;
             isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            speed /= sprintMod;
+            baseSpeed /= sprintMod;
             isSprinting = false;
         }
+        speed = baseSpeed;
     }
 
     IEnumerator PlayStep()
@@ -122,6 +126,26 @@ public class playerController : MonoBehaviour
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+    public void SetBaseSpeed(float newSpeed)
+    {
+        baseSpeed = newSpeed;
+    }
+    public float GetBaseSpeed()
+    {
+        return baseSpeed;
+    }
+    public float GetOriginalSpeed()
+    {
+        return originalSpeed;
+    }
+    public int GetSprintMod()
+    {
+        return sprintMod;
+    }
+    public void SetSprintMod(int newSprintMod)
+    {
+        sprintMod = newSprintMod;
     }
 
 }
