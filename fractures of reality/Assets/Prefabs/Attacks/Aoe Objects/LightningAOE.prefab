@@ -47,14 +47,14 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
+    m_Bits: 256
+  m_LayerOverridePriority: 1
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.10530853, z: 0}
 --- !u!114 &4962654620278403350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,12 +72,20 @@ MonoBehaviour:
   damageAmount: 1
   RemoveTime: 1
   destroyParticle: {fileID: 0}
-  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
-  AoeObject: {fileID: 0}
+  IsInfectious: 1
+  AoeObject: {fileID: 8561355821137050106}
+  colliderRadius: 5
+  TargetMask1:
+    serializedVersion: 2
+    m_Bits: 8
+  TargetMask2:
+    serializedVersion: 2
+    m_Bits: 128
+  RequiredElement: 6
   SpellRange: 1
-  AttackSpeed: 0.5
+  AttackSpeed: 0.4
   targets: []
 --- !u!1001 &5082833751932503227
 PrefabInstance:

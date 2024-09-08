@@ -42,6 +42,8 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool hudEnabled;
 
+    
+
     [Header("----- sounds -----")]
     [SerializeField] AudioSource AudioSource;
     

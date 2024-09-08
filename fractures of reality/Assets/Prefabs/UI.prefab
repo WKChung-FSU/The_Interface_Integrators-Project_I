@@ -1264,6 +1264,7 @@ MonoBehaviour:
     windMult: 0
     waterMult: 4
   lightningAOE: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
+  MaxInfectAoe: 10
   castSounds:
   - {fileID: 8300000, guid: 87a2e502ddd174591af0e35f76e448a2, type: 3}
   - {fileID: 8300000, guid: 674258a055e994b72bbb15a28eb79838, type: 3}

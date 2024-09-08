@@ -49,10 +49,11 @@ MonoBehaviour:
   damageAmount: 9
   RemoveTime: 0
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
-  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
   AoeObject: {fileID: 0}
+  IsInfectious: 1
+  InfectiousSpawn: {fileID: 0}
   SpellRange: 50
   AttackSpeed: 1
   targets: []

@@ -184,7 +184,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                     if (statusDictionary[DamageEngine.ElementType.Water] == true && statusDictionary[DamageEngine.ElementType.Lightning] == false)
                     {
                         SetStatusEffect(DamageEngine.ElementType.Lightning);
-                        Instantiate(DamageEngine.instance.lightningAOE, mObjectCollider.transform.position, mObjectCollider.transform.rotation);
+                        //Instantiate(DamageEngine.instance.lightningAOE, mObjectCollider.transform.position, mObjectCollider.transform.rotation);
                     }
                     else
                     {

@@ -9,7 +9,7 @@ public class DamageEngine : MonoBehaviour
     public static DamageEngine instance;
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth, Wind, Water }
-    public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeSpell }
+    public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeInitialization }
     // struct framework for the damage multipliers, will eventually change it to a scriptable game object
     [System.Serializable]
      struct DamageMultipliers
@@ -36,7 +36,7 @@ public class DamageEngine : MonoBehaviour
 
     [Header("AOE Effects Zones")]
     [SerializeField] public GameObject lightningAOE;
-
+    [SerializeField] int MaxInfectAoe;
     [Header("---- Spell sounds ----")]
     
     [SerializeField] AudioClip[] castSounds;
@@ -47,14 +47,33 @@ public class DamageEngine : MonoBehaviour
     [Header("---- Player Sounds ----")]
     [SerializeField] AudioClip[] AudioHurt;
     [Range(0, 1)][SerializeField] float AudioHurtVol = 0.5f;
-
+    int currInfectAoeAmount;
 
     // remember that this is a instance
     void Start()
     {
         instance = this;
     }
+    #region Getters/Setters
+    public int MaxInfectedAOE
+    {
+        get 
+        {
+            return MaxInfectAoe;
+        }
+    }
+    public int CurrentInfectedAOE
+    {
+        get { return currInfectAoeAmount; }
+    }
 
+    public void UpdateAOEs(int amount = 0)
+    {
+        currInfectAoeAmount += amount;
+
+    }
+
+    #endregion
     /// <summary>
     /// the Main Function of this class, to make something take damage all you need to add is the collider of what you hit
     /// </summary>

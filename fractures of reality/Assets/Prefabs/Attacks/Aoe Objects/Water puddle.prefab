@@ -56,9 +56,11 @@ MonoBehaviour:
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 1
   rb: {fileID: 6075092318007807120}
+  IsInfectious: 0
+  AoeObject: {fileID: 0}
+  RequiredElement: 0
   SpellRange: 1
   AttackSpeed: 0.5
-  AoeObject: {fileID: 0}
   targets: []
 --- !u!33 &5424128543524452040
 MeshFilter:
@@ -87,7 +89,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -150,7 +152,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

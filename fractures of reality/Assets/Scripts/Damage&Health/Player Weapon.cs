@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Numerics;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerWeapon : MonoBehaviour, IDamage
 {
@@ -192,7 +193,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 if (dmg != null)
                 {
                     DamageEngine.instance.CalculateDamage(hit.collider, 1, DamageEngine.ElementType.Lightning);
+                    Instantiate(DamageEngine.instance.lightningAOE, hit.transform.position, hit.transform.rotation);
                 }
+
+
+
 
                 CurrAmmo -= SpellCost[currentWeapon];
                 lightningVisual.SetPosition(1, hit.point);
