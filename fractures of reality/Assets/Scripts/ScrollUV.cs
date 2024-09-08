@@ -7,12 +7,12 @@ public class ScrollUV : MonoBehaviour
 
     [SerializeField] float scrollSpeedX;
     [SerializeField] float scrollSpeedY;
-    [SerializeField] Renderer renderer;
+    [SerializeField] Renderer theRenderer;
 
 
     private void Start()
     {
-        renderer = transform.GetComponent<Renderer>();
+        theRenderer = transform.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -21,6 +21,6 @@ public class ScrollUV : MonoBehaviour
         float offsetX = scrollSpeedX * Time.time;
         float offsetY = scrollSpeedY * Time.time;
 
-        renderer.material.mainTextureOffset = new Vector2(offsetX, offsetY);
+        theRenderer.material.mainTextureOffset = new Vector2(offsetX, offsetY);
     }
 }
