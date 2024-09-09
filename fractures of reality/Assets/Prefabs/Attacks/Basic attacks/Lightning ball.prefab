@@ -53,14 +53,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackElement: 2
-  movementType: 0
+  movementType: 4
   damageAmount: 2
   RemoveTime: 5
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
-  impactSource: {fileID: 0}
   speed: 20
   rb: {fileID: 8547237560318088247}
-  AoeObject: {fileID: 0}
+  IsInfectious: 0
+  AoeObject: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
+  colliderRadius: 0
+  TargetMask1:
+    serializedVersion: 2
+    m_Bits: 0
+  TargetMask2:
+    serializedVersion: 2
+    m_Bits: 0
+  RequiredElement: 0
   SpellRange: 1
   AttackSpeed: 1
   targets: []
