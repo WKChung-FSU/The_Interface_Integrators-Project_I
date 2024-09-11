@@ -63,11 +63,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] TypeIcon wCurrentSpellIcon;
 
     #endregion
-
+    bool StopSpawning;
 
     // Start is called before the first frame update
     void Awake()
     {
+
+        StopSpawning = false;
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<DestructibleHealthCore>();
@@ -306,6 +308,11 @@ public class gameManager : MonoBehaviour
         return enemiesAllowedToCrowdThePlayer;
     }
 
+    public bool stopSpawning
+    {
+        get { return StopSpawning; }
+        set {StopSpawning = value;}
+    }
     #endregion
 
 

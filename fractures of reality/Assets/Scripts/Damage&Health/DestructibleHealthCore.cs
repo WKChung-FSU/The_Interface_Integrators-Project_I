@@ -82,12 +82,12 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
 
     private void OnDestroy()
     {
-        if (SpawnsItemOnDeath)
+        if (!gameManager.instance.stopSpawning&&SpawnsItemOnDeath)
             Instantiate(GETDeathSpawnItems(), transform.position + Vector3.up, transform.rotation);
     }
     void OnApplicationQuit()
     {
-        SpawnsItemOnDeath = false;
+        gameManager.instance.stopSpawning = true;
     }
     public DamageEngine.ElementType ElementType
     {
