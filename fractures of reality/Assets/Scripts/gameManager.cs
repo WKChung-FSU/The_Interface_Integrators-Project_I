@@ -21,6 +21,10 @@ public class gameManager : MonoBehaviour
     int GoalCount;
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
+
+    [SerializeField] int enemiesAllowedToCrowdThePlayer = 3;
+    private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
+
     #endregion
 
     #region UI
@@ -67,6 +71,7 @@ public class gameManager : MonoBehaviour
         hudEnabled = true;
         startPosition = player.transform.position;
         GoalTextUpdate();
+        enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
     }
 
     // Update is called once per frame
@@ -206,6 +211,9 @@ public class gameManager : MonoBehaviour
         player.transform.position = startPosition;
         playerController.enabled = true;
 
+        //clear the crowd list
+        enemiesInMeleeRangeOfPlayer.Clear();
+
         if (trueRespawn == true)
         {
             playerWeapon.ReloadAmmo();
@@ -260,6 +268,34 @@ public class gameManager : MonoBehaviour
     public GameGoal gameGoal()
     {
         return CurrentGoal;
+    }
+
+    public void AddToPlayerMeleeRangeList(GameObject other)
+    {
+        enemiesInMeleeRangeOfPlayer.Add(other);
+    }
+
+    public void RemoveFromPlayerMeleeRangeList(GameObject other)
+    {
+        enemiesInMeleeRangeOfPlayer.Remove(other);
+    }
+
+    public bool CrowdListContains(GameObject other)
+    {
+        if(enemiesInMeleeRangeOfPlayer.Contains(other))
+            return true;
+        else
+            return false;
+    }
+
+    public int GetCrowdCapacity()
+    {
+        return enemiesInMeleeRangeOfPlayer.Count;
+    }
+
+    public int GetCrowdAllowance()
+    {
+        return enemiesAllowedToCrowdThePlayer;
     }
 
     #endregion

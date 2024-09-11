@@ -17,9 +17,10 @@ public class AICore : MonoBehaviour
     [SerializeField] public int castAngle = 45;
     [SerializeField] public int facePlayerSpeed = 10;
     public bool playerInRange;
+    [SerializeField] Vector3 floatingAroundPlayerDistance = Vector3.zero;
     public bool isAttacking;
     public float stoppingDistanceOriginal;
-
+    [SerializeField]LayerMask enemyLayerMask;
 
 
     [Header(" --- Attacks --- ")]
@@ -41,6 +42,7 @@ public class AICore : MonoBehaviour
         startingPosition = transform.position;
         agent.stoppingDistance = stoppingDistanceOriginal;
         startingPosition = transform.position;
+        //enemyLayerMask =~ LayerMask.GetMask("EnemyHitbox");
     }
     public IEnumerator shoot()
     //this is the function that actually creates the spell
@@ -69,7 +71,7 @@ public class AICore : MonoBehaviour
 
         RaycastHit hit;
         //if there is nothing in the way
-        if (Physics.Raycast(headPos.position, playerDirection, out hit))
+        if (Physics.Raycast(headPos.position, playerDirection, out hit, enemyLayerMask))//, enemyLayerMask
         {
             //if the player is within your sightlines
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
@@ -147,6 +149,19 @@ public class AICore : MonoBehaviour
     //    isAttacking = false;
     //}
 
+    /// <summary>
+    /// Returns a Vector3 that is somewhere random inbetween the original stopping distance*2 and *3
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 FloatAroundBounds()
+    {
+        floatingAroundPlayerDistance += new Vector3(
+            (stoppingDistanceOriginal + (Random.Range(stoppingDistanceOriginal, stoppingDistanceOriginal * 2))),
+            0,
+            (stoppingDistanceOriginal + (Random.Range(stoppingDistanceOriginal, stoppingDistanceOriginal * 2)))
+            );
+        return floatingAroundPlayerDistance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

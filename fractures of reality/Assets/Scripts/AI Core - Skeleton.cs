@@ -28,33 +28,50 @@ public class AICoreSkeleton : MonoBehaviour
         if (aiCore.playerInRange && aiCore.CanSeePlayer() == true)
         {
             aiCore.isRoaming = false;
-            //Debug.Log("I can see you");
-            //Your new destination is the players location
-            aiCore.agent.SetDestination(gameManager.instance.player.transform.position);
-            aiCore.agent.stoppingDistance = aiCore.stoppingDistanceOriginal;
-
             aiCore.FacePlayer();
+            //Debug.Log("I can see you");
+            //check if the crowd list is full
+    //                  if (gameManager.instance.GetCrowdCapacity() < gameManager.instance.GetCrowdAllowance())
+    //                  {
+    //                  }
+                          //Your new destination is the players location
+                          aiCore.agent.SetDestination(gameManager.instance.player.transform.position);
+                          aiCore.agent.stoppingDistance = aiCore.stoppingDistanceOriginal;
 
             //if you are at the player
             if (aiCore.agent.remainingDistance <= aiCore.stoppingDistanceOriginal)
             {
-                //if you are currently not attacking 
-                if (aiCore.isAttacking == false)
-                {
-                    //do a melee attack
-                    StartCoroutine(SwingSword());
-                }
+                //if you are not in the crowd list and the list is not full
+    //                  if (gameManager.instance.CrowdListContains(this.gameObject) == false && gameManager.instance.GetCrowdCapacity() < gameManager.instance.GetCrowdAllowance())
+    //                  {
+    //                      //add yourself to the crowd list
+    //                      gameManager.instance.AddToPlayerMeleeRangeList(this.gameObject);
+    //                      //if you are currently not attacking 
+    //                  }
+                    if (aiCore.isAttacking == false)
+                    {
+                        //do a melee attack
+                        StartCoroutine(SwingSword());
+                    }
             }
             //if you're not at the player, you can cast spells and your cast is not on cooldown,
             else if (canCastSpell == true && castTimerResetting == false)
             {
+             
                 StartCoroutine(aiCore.shoot());
                 StartCoroutine(CastRecharge());
             }
+            //if you were on the crowd list
+    //              else if (gameManager.instance.CrowdListContains(this.gameObject))
+    //              {
+    //                  //remove yourself from the crowd list
+    //                  gameManager.instance.RemoveFromPlayerMeleeRangeList(this.gameObject);
+    //              }
         }
         //if you cannot see the player and they're not in range
         else
         {
+            
             //if you are at your destination and you can roam and you are not already
             if (aiCore.canRoam == true && aiCore.agent.remainingDistance < 0.05f && aiCore.isRoaming == false)
             {

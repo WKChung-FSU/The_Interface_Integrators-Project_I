@@ -143,6 +143,13 @@ public class DamageEngine : MonoBehaviour
                                  SpawnObject = healthCore.GETDeathSpawnItems();
                                 isSpawning = true;
                             }
+
+                            //if this thing with health was part of the crowd surrounding the player
+                            if (gameManager.instance.CrowdListContains(healthCore.gameObject))
+                            {
+                                //remove it from the crowd list
+                                gameManager.instance.RemoveFromPlayerMeleeRangeList(healthCore.gameObject);
+                            }
                             Destroy(healthCore.gameObject);
 
                             if (isSpawning)
