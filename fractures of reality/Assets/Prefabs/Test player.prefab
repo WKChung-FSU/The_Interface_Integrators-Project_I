@@ -323,6 +323,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb9acde1b19309545aca4aa1d05b3b1e, type: 3}
   - {fileID: 8300000, guid: 2fbb212e49b926549ab2685094ade70b, type: 3}
   AudioStepsVol: 0.2
+  isSprinting: 0
   Keys: []
 --- !u!114 &7315470601531378724
 MonoBehaviour:
@@ -341,24 +342,12 @@ MonoBehaviour:
     m_Bits: 8
   lightningVisual: {fileID: 8967944993132212243}
   SpellLaunchPos: {fileID: 4312234353505068331}
-  primarySpells:
-  - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
-  - {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}
-  - {fileID: 1180295084170229988, guid: fe2189af410d89c419e636969d7e3504, type: 3}
-  - {fileID: 7836639226435765880, guid: f6d8d1d6e1e0fb848867f4202d92e1a8, type: 3}
-  - {fileID: 2276658285452781468, guid: a496e94fe50bb634fa8d05948dd02282, type: 3}
-  - {fileID: 8214835987957181740, guid: 3314fa8649defd1408f4d104f99e97fb, type: 3}
-  secondarySpells:
-  - {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
-  - {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
-  - {fileID: 7050129238098773698, guid: 6e1ea347e817f4440982907405458473, type: 3}
-  - {fileID: 3301163221280946089, guid: 56b2b8194e0b3af409a6837685837f08, type: 3}
-  - {fileID: 2672346145174393885, guid: 09c06d6cc76f33c4c968f01087aa6db7, type: 3}
-  - {fileID: 1349258718501700888, guid: 7d21449f15b56894f8a08eab77609cea, type: 3}
-  SpellCost: 010000000200000003000000030000000300000003000000
-  FireRate: 0.5
-  lightningRange: 50
+  MenuDelay: 0.05
+  basicSpells: {fileID: 11400000, guid: 707be2d6edfd5334992323608ff83b48, type: 2}
+  upgradedSpells: {fileID: 11400000, guid: 5c6cd20b29547444a8d3b93a4c178700, type: 2}
+  currentSpellList: {fileID: 11400000, guid: 0fb4bec252ead694e98298d0fdbf897a, type: 2}
   MaxAmmo: 20
+  UpgradedElements: 
 --- !u!120 &8967944993132212243
 LineRenderer:
   serializedVersion: 2
