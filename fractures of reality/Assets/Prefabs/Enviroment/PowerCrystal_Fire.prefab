@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358226638112727987}
-  m_Mesh: {fileID: 4702925393065980420, guid: 1f5f3f2920d032047b2bf0ac9df2ff1d, type: 3}
+  m_Mesh: {fileID: 4702925393065980420, guid: 7adf626739da85a45b4bc47043464b20, type: 3}
 --- !u!23 &3164331531719304700
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108,8 +108,8 @@ CapsuleCollider:
   serializedVersion: 2
   m_Radius: 0.82
   m_Height: 5.63
-  m_Direction: 0
-  m_Center: {x: -0.13150918, y: -0.0000000337216, z: -0.00000000391928}
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.0000000337216, z: 0}
 --- !u!114 &798092536020106741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,15 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 30
-  mObjectCollider: {fileID: 0}
+  Hp: 1
+  mObjectCollider: {fileID: 933005273812490278}
   elementType: 1
   IsMandatory: 1
   isPlayer: 0
   modelColor: {fileID: 3164331531719304700}
   textHP: {fileID: 0}
   enemyHud: {fileID: 0}
-  particles: {fileID: 0}
+  particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
   SpawnsItemOnDeath: 0
   deathSpawnItems: []
 --- !u!114 &8884275690112951010
