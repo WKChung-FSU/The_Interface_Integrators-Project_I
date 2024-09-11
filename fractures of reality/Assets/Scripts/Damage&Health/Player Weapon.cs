@@ -19,13 +19,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] SpellList basicSpells;
     [SerializeField] SpellList upgradedSpells;
     [SerializeField] SpellList currentSpellList;
-    
+
     [Range(1, 100)][SerializeField] int MaxAmmo;
 
     [SerializeField] List<DamageEngine.ElementType> UpgradedElements;
     bool OutOfAmmo;
     bool isShooting;
-    bool Cheat=false;
+    bool Cheat = false;
     bool SwitchingWeapon;
     int CurrAmmo;
     int currentWeapon;
@@ -53,14 +53,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(ShootSecondary());
 
-        if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0)&& SwitchingWeapon==false)
+        if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0) && SwitchingWeapon == false)
             //No longer coroutine -CM, changed it back to implement menu lock-wc
-            StartCoroutine( WeaponMenuSystem());
+            StartCoroutine(WeaponMenuSystem());
         if (Input.GetButton("Cheat"))
         {
-            Cheat=!Cheat;
+            Cheat = !Cheat;
         }
-        if (Input.GetButtonDown("Reload")&&Cheat)
+        if (Input.GetButtonDown("Reload") && Cheat)
         {
             ReloadAmmo();
         }
@@ -108,36 +108,44 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return lightningVisual;
     }
-    public GameObject GetCurrentWeapon(bool Secondary=false)
+    public GameObject GetCurrentWeapon(bool Secondary = false)
     {
-        if(!Secondary)
+        if (!Secondary)
             return currentSpellList.PrimarySpells[currentWeapon];
-        else 
+        else
             return currentSpellList.SecondarySpells[currentWeapon];
     }
 
     public DamageEngine.ElementType GetCurrentElement()
     {
-        
+
         return GetCurrentWeapon().GetComponent<AttackCore>().ElementType;
     }
 
     public List<DamageEngine.ElementType> UpgradedList()
     {
-     return UpgradedElements;
+        return UpgradedElements;
     }
 
-    public void UpgradedList(DamageEngine.ElementType Upgrade)
+
+    /// <summary>
+    /// Adds The ability for the player to use a upgraded spell type
+    /// </summary>
+    /// <param name="Element"></param>
+    /// <param name="Upgrade">if true upgrade, if false downgrade</param>
+    public void UpgradedList(DamageEngine.ElementType Element, bool Upgrade = true)
     {
-        if (!UpgradedElements.Contains(Upgrade))
-        {
-            UpgradedElements.Add(Upgrade);
-        }
+
+        if (Upgrade && !UpgradedElements.Contains(Element))
+            UpgradedElements.Add(Element);
+        else if (!Upgrade && UpgradedElements.Contains(Element))
+            UpgradedElements.Remove(Element);
+
+        UpdateSpellList();
     }
 
-    private
     #endregion
-        IEnumerator ShootPrimary()
+    IEnumerator ShootPrimary()
     {
         isShooting = true;
         // All primary spells are summons
@@ -160,15 +168,15 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-                if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
-                {
-                    Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
-                    CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
-                }
-                else if (currentSpellList.SecondarySpells[currentWeapon] == null)
-                {
-                    Debug.Log("Something Failed in ShootSecondary");
-                }
+        if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
+        {
+            Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+            CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
+        }
+        else if (currentSpellList.SecondarySpells[currentWeapon] == null)
+        {
+            Debug.Log("Something Failed in ShootSecondary");
+        }
         AmmoTest();
         yield return new WaitForSeconds(currentSpellList.SecondaryFireRate[currentWeapon]);
         isShooting = false;
@@ -176,7 +184,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
     IEnumerator WeaponMenuSystem()
     {
-        SwitchingWeapon=true;
+        SwitchingWeapon = true;
         //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
         if ((Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
         {
@@ -189,7 +197,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         gameManager.instance.UpdateWeaponIconUI();
         UpdateSpellList();
         yield return new WaitForSeconds(MenuDelay);
-        SwitchingWeapon=false;
+        SwitchingWeapon = false;
     }
     void AmmoTest()
     {
@@ -216,7 +224,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
     public void AddSpell(DamageEngine.ElementType spellType)
     {
-       bool spellTypeFound=false;
+        bool spellTypeFound = false;
 
         foreach (var spell in currentSpellList.PrimarySpells)
         {
@@ -230,10 +238,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             for (int i = 0; i < basicSpells.PrimarySpells.Count; i++)
             {
-               if(basicSpells.PrimarySpells[i].GetComponent<AttackCore>().ElementType == spellType)
+                if (basicSpells.PrimarySpells[i].GetComponent<AttackCore>().ElementType == spellType)
                 {
-                    AddSpell(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost, currentSpellList.PrimaryFireRate, 
-                        basicSpells.PrimarySpells[i],basicSpells.PrimarySpellCost[i], basicSpells.PrimaryFireRate[i]);
+                    AddSpell(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost, currentSpellList.PrimaryFireRate,
+                        basicSpells.PrimarySpells[i], basicSpells.PrimarySpellCost[i], basicSpells.PrimaryFireRate[i]);
 
                     AddSpell(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost, currentSpellList.SecondaryFireRate,
                       basicSpells.SecondarySpells[i], basicSpells.SecondarySpellCost[i], basicSpells.SecondaryFireRate[i]);
@@ -242,7 +250,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         }
     }
 
-    void AddSpell(List<GameObject> MasterList,List<int>MasterSpellCost,List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
+    void AddSpell(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
     {
         MasterList.Add(Spell);
         MasterSpellCost.Add(SpellCost);
@@ -252,30 +260,37 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     public void UpdateSpellList()
     {
         UpdateSpellList(currentSpellList.PrimarySpells, true);
-        UpdateSpellList(currentSpellList.SecondarySpells,false);
+        UpdateSpellList(currentSpellList.SecondarySpells, false);
     }
 
     void UpdateSpellList(List<GameObject> list, bool isPrimary)
     {
-        List < GameObject > newSpells = new List < GameObject >();
-  
+        List<GameObject> newSpells = new List<GameObject>();
+
         for (int i = 0; i < list.Count; i++)
         {
             DamageEngine.ElementType SpellElement = list[i].GetComponent<AttackCore>().ElementType;
             if (UpgradedElements.Contains(SpellElement))
-            { 
+            {
                 if (isPrimary)
                     newSpells = upgradedSpells.PrimarySpells;
                 else
                     newSpells = upgradedSpells.SecondarySpells;
 
-                foreach (var spell in newSpells)
+            }
+            else if (currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i])
+            {
+                if (isPrimary)
+                    newSpells = basicSpells.PrimarySpells;
+                else
+                    newSpells = basicSpells.SecondarySpells;
+            }
+            foreach (var spell in newSpells)
+            {
+                if (spell.GetComponent<AttackCore>().ElementType == SpellElement)
                 {
-                    if (spell.GetComponent<AttackCore>().ElementType == SpellElement) 
-                    {
-                        list[i]=spell;
-                    };
-                }
+                    list[i] = spell;
+                };
             }
         }
     }

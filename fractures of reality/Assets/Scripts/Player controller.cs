@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour
     bool isPlayingSteps;
     bool IsFractured;
     bool IsRegenFracture;
+    bool UpgradedSpell=false;
     public List<KeySystem> Keys = new List<KeySystem>();
 
     // Start is called before the first frame update
@@ -143,17 +144,26 @@ public class playerController : MonoBehaviour
     {
         CurrentFractureBar += amount;
 
-        if (CurrentFractureBar <= 0&&IsFractured) 
+        if (CurrentFractureBar <= 0 && IsFractured)
         {
             CurrentFractureBar = 0;
             IsFractured = false;
             gameManager.instance.playerWeapon.MenuLock = false;
+            if (UpgradedSpell) { 
+            gameManager.instance.playerWeapon.UpgradedList(gameManager.instance.playerWeapon.GetCurrentElement());
+                UpgradedSpell = false;
+            }
         }
         else if(CurrentFractureBar >= MaxFractureResistance)
         {
             CurrentFractureBar=MaxFractureResistance;
             gameManager.instance.playerWeapon.MenuLock = true;
             IsFractured = true;
+            if (gameManager.instance.playerWeapon.UpgradedList().Contains(gameManager.instance.playerWeapon.GetCurrentElement()))
+            {
+                gameManager.instance.playerWeapon.UpgradedList(gameManager.instance.playerWeapon.GetCurrentElement(), false);
+                UpgradedSpell=true;
+            }
         }
     }
     IEnumerator RegenFracture()
