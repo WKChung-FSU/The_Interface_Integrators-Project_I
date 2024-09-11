@@ -25,6 +25,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] int enemiesAllowedToCrowdThePlayer = 3;
     private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
 
+
+    #endregion
+
+    #region CrystalStates
+    [SerializeField] public PowerCrystalManifest crystalManifest;
+
     #endregion
 
     #region UI
@@ -72,6 +78,8 @@ public class gameManager : MonoBehaviour
         startPosition = player.transform.position;
         GoalTextUpdate();
         enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
+
+        crystalManifest.ResetManifest();
     }
 
     // Update is called once per frame
