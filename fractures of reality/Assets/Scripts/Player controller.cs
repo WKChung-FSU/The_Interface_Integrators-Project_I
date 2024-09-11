@@ -28,7 +28,7 @@ public class playerController : MonoBehaviour
     [Range(0, 10)][SerializeField] float fractureRegenRate =0.5f;
     [Range(1, 50)][SerializeField] int MaxFractureResistance=5;
     [Range(1, 10)][SerializeField] int fractureRegenAmount = 1;
-    public Dictionary<DamageEngine.ElementType, int> FractureBars=new Dictionary<DamageEngine.ElementType, int>();
+    Dictionary<DamageEngine.ElementType, int> FractureBars=new Dictionary<DamageEngine.ElementType, int>();
     int CurrentFractureBar;
     Vector3 move;
     Vector3 playerVel;
@@ -39,19 +39,12 @@ public class playerController : MonoBehaviour
     bool IsFractured;
     bool IsRegenFracture;
     bool UpgradedSpell=false;
-    public List<KeySystem> Keys = new List<KeySystem>();
+     List<KeySystem> Keys = new List<KeySystem>();
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (DamageEngine.ElementType type in Enum.GetValues(typeof(DamageEngine.ElementType)))
-        {
-            if (!FractureBars.TryAdd(type, 0))
-            {
-                Debug.LogError("Fracture bar has failed to build");
-            }
-        }
-        FractureListUpdate(DamageEngine.ElementType.Normal);
+        InitializeFractureBars();
         originalSpeed = speed;
         baseSpeed = speed;
     }
@@ -68,6 +61,30 @@ public class playerController : MonoBehaviour
         Keys= value;
         }
     }
+
+    public void InitializeFractureBars()
+    {
+        FractureBars.Clear();
+        foreach (DamageEngine.ElementType type in Enum.GetValues(typeof(DamageEngine.ElementType)))
+        {
+            if (!FractureBars.TryAdd(type, 0))
+            {
+                Debug.LogError("Fracture bar has failed to build");
+            }
+        }
+        FractureListUpdate(DamageEngine.ElementType.Normal);
+    }
+
+    public Dictionary<DamageEngine.ElementType, int> fractureBars
+    {
+        get { return FractureBars; }
+    }
+
+    public int getMaxFractureAmount()
+    {
+        return MaxFractureResistance;
+    }
+  
 
     // Update is called once per frame
     void Update()
@@ -149,6 +166,8 @@ public class playerController : MonoBehaviour
             CurrentFractureBar = 0;
             IsFractured = false;
             gameManager.instance.playerWeapon.MenuLock = false;
+            gameManager.instance.playerScript.ElementType = gameManager.instance.playerWeapon.GetCurrentElement();
+
             if (UpgradedSpell) { 
             gameManager.instance.playerWeapon.UpgradedList(gameManager.instance.playerWeapon.GetCurrentElement());
                 UpgradedSpell = false;
@@ -159,6 +178,7 @@ public class playerController : MonoBehaviour
             CurrentFractureBar=MaxFractureResistance;
             gameManager.instance.playerWeapon.MenuLock = true;
             IsFractured = true;
+            gameManager.instance.playerScript.ElementType =DamageEngine.ElementType.Normal;
             if (gameManager.instance.playerWeapon.UpgradedList().Contains(gameManager.instance.playerWeapon.GetCurrentElement()))
             {
                 gameManager.instance.playerWeapon.UpgradedList(gameManager.instance.playerWeapon.GetCurrentElement(), false);

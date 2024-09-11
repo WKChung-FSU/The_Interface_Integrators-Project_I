@@ -18,6 +18,7 @@ public class ButtonFunctions : MonoBehaviour
     public void respawn(){
 
         gameManager.instance.Respawn(true);
+        gameManager.instance.PlayerController.InitializeFractureBars();
         gameManager.instance.stateUnPaused();
 
     }

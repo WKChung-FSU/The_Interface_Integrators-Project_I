@@ -196,6 +196,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         }
         gameManager.instance.UpdateWeaponIconUI();
         UpdateSpellList();
+        gameManager.instance.playerScript.ElementType = GetCurrentElement();
         yield return new WaitForSeconds(MenuDelay);
         SwitchingWeapon = false;
     }

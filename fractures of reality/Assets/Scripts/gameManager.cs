@@ -17,7 +17,8 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public DestructibleHealthCore playerScript;
     public PlayerWeapon playerWeapon;
-    CharacterController playerController;
+    CharacterController CharacterController;
+    playerController playerController;
     int GoalCount;
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
@@ -48,7 +49,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text enemyCountValue;
     [SerializeField] string[] goalText=new string[3];
-
+    [SerializeField] Image fractureBar;
     public bool isPaused;
     public bool hudEnabled;
 
@@ -73,9 +74,9 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<DestructibleHealthCore>();
-        playerController= player.GetComponent<CharacterController>();
+        CharacterController= player.GetComponent<CharacterController>();
         playerWeapon = player.GetComponent<PlayerWeapon>();
-
+        playerController=player.GetComponent<playerController>();
         hudEnabled = true;
         startPosition = player.transform.position;
         GoalTextUpdate();
@@ -106,7 +107,7 @@ public class gameManager : MonoBehaviour
         GoalTextUpdate();
         //update health bar
         UpdateHUD();
-
+        UpdateFractureBar();
         //check if switch weapon button is pressed
         //then call weapon swap UI code
         //if (Input.GetButtonDown("Switch Weapon"))
@@ -134,6 +135,7 @@ public class gameManager : MonoBehaviour
                 break;
         }
     }
+
     public void statePause()
     {
         isPaused = !isPaused;
@@ -217,9 +219,9 @@ public class gameManager : MonoBehaviour
 
     public void Respawn(bool trueRespawn = false)
     {
-        playerController.enabled = false;
+        CharacterController.enabled = false;
         player.transform.position = startPosition;
-        playerController.enabled = true;
+        CharacterController.enabled = true;
 
         //clear the crowd list
         enemiesInMeleeRangeOfPlayer.Clear();
@@ -321,7 +323,10 @@ public class gameManager : MonoBehaviour
         AudioSource.PlayOneShot(audio, volume);
     }
 
-
+    public playerController PlayerController
+    {
+        get { return playerController; }
+    }
 
     #region private functions
     void ToggleHUD()
@@ -348,6 +353,12 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlashScreen.SetActive(false);
     }
+    void UpdateFractureBar()
+    {
+        playerController PlControl = player.GetComponent<playerController>();
+        fractureBar.fillAmount= ((float) PlControl.fractureBars[playerWeapon.GetCurrentElement()]/ (float)PlControl.getMaxFractureAmount());
+    }
+
 
     #endregion
 }
