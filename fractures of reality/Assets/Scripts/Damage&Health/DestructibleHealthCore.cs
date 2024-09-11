@@ -79,6 +79,16 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
             speedCache = player.GetOriginalSpeed();
         }
     }
+
+    private void OnDestroy()
+    {
+        if (SpawnsItemOnDeath)
+            Instantiate(GETDeathSpawnItems(), transform.position + Vector3.up, transform.rotation);
+    }
+    void OnApplicationQuit()
+    {
+        SpawnsItemOnDeath = false;
+    }
     public DamageEngine.ElementType ElementType
     {
         get

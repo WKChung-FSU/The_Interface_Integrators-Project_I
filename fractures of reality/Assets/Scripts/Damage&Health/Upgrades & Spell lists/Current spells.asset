@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primarySpells:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
-  - {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
+  - {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}
   - {fileID: 1180295084170229988, guid: fe2189af410d89c419e636969d7e3504, type: 3}
   - {fileID: 2276658285452781468, guid: a496e94fe50bb634fa8d05948dd02282, type: 3}
   - {fileID: 8214835987957181740, guid: 3314fa8649defd1408f4d104f99e97fb, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
   - 1.27
   secondarySpells:
   - {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
-  - {fileID: 1524407541534914017, guid: 118cec37d79e2c34d88f14f78221a49c, type: 3}
+  - {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   - {fileID: 7050129238098773698, guid: 6e1ea347e817f4440982907405458473, type: 3}
   - {fileID: 2672346145174393885, guid: 09c06d6cc76f33c4c968f01087aa6db7, type: 3}
   - {fileID: 1349258718501700888, guid: 7d21449f15b56894f8a08eab77609cea, type: 3}

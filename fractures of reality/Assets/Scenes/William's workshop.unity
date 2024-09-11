@@ -2790,7 +2790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
@@ -3723,26 +3723,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 782011894035760111, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: fractureRegenRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 782011894035760111, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: MaxFractureResistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5305019558992904906, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_Name
       value: Test player
       objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: MenuDelay
-      value: 0.05
+    - target: {fileID: 6244551520300405113, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: elementType
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: basicSpells
-      value: 
-      objectReference: {fileID: 11400000, guid: 707be2d6edfd5334992323608ff83b48, type: 2}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: upgradedSpells
-      value: 
-      objectReference: {fileID: 11400000, guid: 5c6cd20b29547444a8d3b93a4c178700, type: 2}
-    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
-      propertyPath: currentSpellList
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fb4bec252ead694e98298d0fdbf897a, type: 2}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.25

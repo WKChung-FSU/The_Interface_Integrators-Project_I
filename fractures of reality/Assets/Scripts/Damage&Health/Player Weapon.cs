@@ -99,6 +99,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     { return CurrAmmo; }
     public int GetMaxAmmo()
     { return MaxAmmo; }
+    //May depreciate
     public bool GetOutOfAmmo()
     {
         return OutOfAmmo;
@@ -113,6 +114,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             return currentSpellList.PrimarySpells[currentWeapon];
         else 
             return currentSpellList.SecondarySpells[currentWeapon];
+    }
+
+    public DamageEngine.ElementType GetCurrentElement()
+    {
+        
+        return GetCurrentWeapon().GetComponent<AttackCore>().ElementType;
     }
 
     public List<DamageEngine.ElementType> UpgradedList()

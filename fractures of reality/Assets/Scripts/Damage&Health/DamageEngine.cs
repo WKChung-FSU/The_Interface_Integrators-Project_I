@@ -103,6 +103,13 @@ public class DamageEngine : MonoBehaviour
                 {
                     // add damage calculation
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
+
+                    if (damageDealt <0&&targetPlayer)
+                    {
+                        // hardcoded for debug purposes
+                        targetPlayer.updateFractureBar(-(damageDealt));
+                    }
+
                     TempHealth -= damageDealt;
                    
                     // if it is the player
@@ -131,19 +138,6 @@ public class DamageEngine : MonoBehaviour
                         // death code for the enemies
                         else
                         {
-                            Vector3 spawnLocation=new Vector3();
-                            Quaternion spawnRotation= new Quaternion();
-                            GameObject SpawnObject=null;
-                            bool isSpawning = false;
-                        
-                            if (healthCore.GETSpawnsItemOnDeath())
-                            {
-                                spawnLocation = healthCore.transform.position;
-                                spawnRotation=healthCore.transform.rotation;
-                                 SpawnObject = healthCore.GETDeathSpawnItems();
-                                isSpawning = true;
-                            }
-
                             //if this thing with health was part of the crowd surrounding the player
                             if (gameManager.instance.CrowdListContains(healthCore.gameObject))
                             {
@@ -151,9 +145,6 @@ public class DamageEngine : MonoBehaviour
                                 gameManager.instance.RemoveFromPlayerMeleeRangeList(healthCore.gameObject);
                             }
                             Destroy(healthCore.gameObject);
-
-                            if (isSpawning)
-                                Instantiate(SpawnObject, spawnLocation + Vector3.up, spawnRotation);
                         }
                     }
                     healthCore.HP = TempHealth;
