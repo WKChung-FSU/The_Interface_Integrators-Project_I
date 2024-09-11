@@ -16,7 +16,7 @@ public class pickup : MonoBehaviour
     
 
     [SerializeField] bool Health = true;
-    
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -54,6 +54,5 @@ public class pickup : MonoBehaviour
 
             }
         }
-        
     }
 }
