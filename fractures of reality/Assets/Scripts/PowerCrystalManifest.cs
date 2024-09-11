@@ -13,6 +13,8 @@ public class PowerCrystalManifest : ScriptableObject
 
     private int amountOfCrystals = 5;
 
+    private PlayerWeapon weapon;
+
     public void SetDestroyedCrystalOfType(DamageEngine.ElementType type)
     {
         switch (type)
@@ -43,6 +45,9 @@ public class PowerCrystalManifest : ScriptableObject
                     break;
                 }
         }
+        weapon = gameManager.instance.playerWeapon;
+        weapon.UpgradedList(type);
+        weapon.UpdateSpellList();
         CrystalDestroyed();
     }
 

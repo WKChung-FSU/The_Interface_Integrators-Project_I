@@ -1171,6 +1171,8 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerWeapon: {fileID: 0}
+  enemiesAllowedToCrowdThePlayer: 3
+  crystalManifest: {fileID: 11400000, guid: 8ea92698243cdae408a3f70048859109, type: 2}
   menuPause: {fileID: 3336832533848130226}
   menuActive: {fileID: 0}
   menuWin: {fileID: 4110882093435686449}
