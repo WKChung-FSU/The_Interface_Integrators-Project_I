@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -11,25 +12,23 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] LineRenderer lightningVisual;
     [SerializeField] Transform SpellLaunchPos;
-
+    [Range(0.01f, 2)][SerializeField] float MenuDelay;
     #region Spells
-    [Header("-----PlayerSpells-----")]
+    [Header("-----Player Spell Lists-----")]
     //all should be summonable
-    [SerializeField] List<GameObject> primarySpells = new List<GameObject>();
-    [Header("remember element 2 Must Be lightning Bolt")]
-    [SerializeField] List<GameObject> secondarySpells = new List<GameObject>();
-    [SerializeField] List<int> SpellCost = new List<int>();
-    [Range(0.05f, 2)][SerializeField] float FireRate;
-
-    [SerializeField] int lightningRange = 50;
-
+    [SerializeField] SpellList basicSpells;
+    [SerializeField] SpellList upgradedSpells;
+    [SerializeField] SpellList currentSpellList;
+    
     [Range(1, 100)][SerializeField] int MaxAmmo;
 
+    [SerializeField] List<DamageEngine.ElementType> UpgradedElements;
     bool OutOfAmmo;
-    int CurrAmmo;
     bool isShooting;
-    int currentWeapon;
     bool Cheat=false;
+    bool SwitchingWeapon;
+    int CurrAmmo;
+    int currentWeapon;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -37,6 +36,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         CurrAmmo = MaxAmmo;
         //gameManager.instance.ammoMax = MaxAmmo;
 
+        //debug for now, btw enums are pain
+        //AddSpell(DamageEngine.ElementType.Lightning);
+        for (int SpellType = 0; SpellType <= (int)DamageEngine.ElementType.Water; SpellType++)
+        {
+            AddSpell((DamageEngine.ElementType)SpellType);
+        }
     }
 
     // Update is called once per frame
@@ -48,9 +53,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(ShootSecondary());
 
-        if (Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0)
-            //No longer coroutine -CM
-            WeaponMenuSystem();
+        if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0)&& SwitchingWeapon==false)
+            //No longer coroutine -CM, changed it back to implement menu lock-wc
+            StartCoroutine( WeaponMenuSystem());
         if (Input.GetButton("Cheat"))
         {
             Cheat=!Cheat;
@@ -85,6 +90,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             MaxAmmo = value;
         }
     }
+    public bool MenuLock
+    {
+        get { return SwitchingWeapon; }
+        set { SwitchingWeapon = value; }
+    }
     public int GetCurrentAmmo()
     { return CurrAmmo; }
     public int GetMaxAmmo()
@@ -93,12 +103,29 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         return OutOfAmmo;
     }
+    public LineRenderer GetLineRenderer()
+    {
+        return lightningVisual;
+    }
     public GameObject GetCurrentWeapon(bool Secondary=false)
     {
         if(!Secondary)
-            return primarySpells[currentWeapon];
+            return currentSpellList.PrimarySpells[currentWeapon];
         else 
-            return secondarySpells[currentWeapon];
+            return currentSpellList.SecondarySpells[currentWeapon];
+    }
+
+    public List<DamageEngine.ElementType> UpgradedList()
+    {
+     return UpgradedElements;
+    }
+
+    public void UpgradedList(DamageEngine.ElementType Upgrade)
+    {
+        if (!UpgradedElements.Contains(Upgrade))
+        {
+            UpgradedElements.Add(Upgrade);
+        }
     }
 
     private
@@ -106,15 +133,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         IEnumerator ShootPrimary()
     {
         isShooting = true;
-
-        switch (currentWeapon)
+        // All primary spells are summons
+        if (((CurrAmmo - currentSpellList.PrimarySpellCost[currentWeapon]) >= 0) && currentSpellList.PrimarySpells[currentWeapon] != null)
         {
-            // All primary spells are summons
-            default:
-                Instantiate(primarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
-                break;
+            Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+            CurrAmmo -= currentSpellList.PrimarySpellCost[currentWeapon];
         }
-        yield return new WaitForSeconds(FireRate);
+        else if (currentSpellList.PrimarySpells[currentWeapon] == null)
+        {
+            Debug.Log("Something Failed in ShootPrimary");
+        }
+        AmmoTest();
+        yield return new WaitForSeconds(currentSpellList.PrimaryFireRate[currentWeapon]);
         isShooting = false;
     }
 
@@ -123,107 +153,25 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-
-        switch (currentWeapon)
-        {
-            default:
-
-                if (((CurrAmmo - SpellCost[currentWeapon]) >= 0) && secondarySpells[currentWeapon] != null)
+                if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
                 {
-                    Instantiate(secondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
-                    CurrAmmo -= SpellCost[currentWeapon];
+                    Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+                    CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
                 }
-                else if (secondarySpells[currentWeapon] == null)
+                else if (currentSpellList.SecondarySpells[currentWeapon] == null)
                 {
                     Debug.Log("Something Failed in ShootSecondary");
                 }
-
-
-                break;
-            //lightning spell
-            case 2:
-
-                StartCoroutine(LightningSpell());
-                //if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
-                //{
-                //    AttackCore SpellCore = secondarySpells[currentWeapon].GetComponent<AttackCore>();
-                //    hit = SpellCore.CastHitScanAttack(ignoreMask);
-                //    //test -CM
-                //    //Visual of lightning being cast 
-                //    lightningVisual.useWorldSpace = true;
-                //    lightningVisual.SetPosition(0, SpellLaunchPos.position);
-                //    lightningVisual.SetPosition(1, hit.point);
-                //    CurrAmmo -= SpellCost[currentWeapon];
-                //}
-
-                ////lightning delay
-                ////coconut.jpeg
-                ////if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
-
-                ////if this is here it will always show the visual
-                //if (!OutOfAmmo)
-                //{
-                //    StartCoroutine(LightningDelay());
-                //}
-                //AmmoTest();
-
-                break;
-        }
-
-        yield return new WaitForSeconds(FireRate);
+        AmmoTest();
+        yield return new WaitForSeconds(currentSpellList.SecondaryFireRate[currentWeapon]);
         isShooting = false;
 
     }
-
-    IEnumerator LightningSpell()
+    IEnumerator WeaponMenuSystem()
     {
-        if ((CurrAmmo - SpellCost[currentWeapon]) >= 0)
-        {
-            //Visual of lightning being cast 
-            lightningVisual.useWorldSpace = true;
-            lightningVisual.SetPosition(0, SpellLaunchPos.position);
-             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(DamageEngine.ElementType.Lightning, false), DamageEngine.instance.GetSpellVolume(false));
-
-            RaycastHit hit;
-            
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, lightningRange, ~ignoreMask))
-            {
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-                if (dmg != null)
-                {
-                    DamageEngine.instance.CalculateDamage(hit.collider, 1, DamageEngine.ElementType.Lightning);
-                    Instantiate(DamageEngine.instance.lightningAOE, hit.transform.position, hit.transform.rotation);
-                }
-
-
-
-
-                CurrAmmo -= SpellCost[currentWeapon];
-                lightningVisual.SetPosition(1, hit.point);
-                lightningVisual.enabled = true;
-                yield return new WaitForSeconds(0.1f);
-                lightningVisual.enabled = false;
-            }
-        }
-
-
-        //lightning delay
-        //coconut.jpeg
-        //if lightning delay is here it won't show unless you can deal damage to whatever you are looking at 
-
-        //if this is here it will always show the visual
-        //if (!OutOfAmmo)
-        //{
-        //    StartCoroutine(LightningDelay());
-        //}
-        AmmoTest();
-
-    }
-    void WeaponMenuSystem()
-    {
-        //changed from IEnumerator to void -CM
-        if ((Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < primarySpells.Count - 1)
+        SwitchingWeapon=true;
+        //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
+        if ((Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
         {
             currentWeapon++;
         }
@@ -232,7 +180,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             currentWeapon--;
         }
         gameManager.instance.UpdateWeaponIconUI();
-
+        UpdateSpellList();
+        yield return new WaitForSeconds(MenuDelay);
+        SwitchingWeapon=false;
     }
     void AmmoTest()
     {
@@ -257,6 +207,69 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             CurrAmmo += amount;
         }
     }
+    public void AddSpell(DamageEngine.ElementType spellType)
+    {
+       bool spellTypeFound=false;
 
+        foreach (var spell in currentSpellList.PrimarySpells)
+        {
+            if (spell.GetComponent<AttackCore>().ElementType == spellType)
+            {
+                spellTypeFound = true;
+            }
+        }
 
+        if (!spellTypeFound)
+        {
+            for (int i = 0; i < basicSpells.PrimarySpells.Count; i++)
+            {
+               if(basicSpells.PrimarySpells[i].GetComponent<AttackCore>().ElementType == spellType)
+                {
+                    AddSpell(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost, currentSpellList.PrimaryFireRate, 
+                        basicSpells.PrimarySpells[i],basicSpells.PrimarySpellCost[i], basicSpells.PrimaryFireRate[i]);
+
+                    AddSpell(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost, currentSpellList.SecondaryFireRate,
+                      basicSpells.SecondarySpells[i], basicSpells.SecondarySpellCost[i], basicSpells.SecondaryFireRate[i]);
+                }
+            }
+        }
+    }
+
+    void AddSpell(List<GameObject> MasterList,List<int>MasterSpellCost,List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
+    {
+        MasterList.Add(Spell);
+        MasterSpellCost.Add(SpellCost);
+        MasterFirerate.Add(FireRate);
+    }
+
+    public void UpdateSpellList()
+    {
+        UpdateSpellList(currentSpellList.PrimarySpells, true);
+        UpdateSpellList(currentSpellList.SecondarySpells,false);
+    }
+
+    void UpdateSpellList(List<GameObject> list, bool isPrimary)
+    {
+        List < GameObject > newSpells = new List < GameObject >();
+  
+        for (int i = 0; i < list.Count; i++)
+        {
+            DamageEngine.ElementType SpellElement = list[i].GetComponent<AttackCore>().ElementType;
+            if (UpgradedElements.Contains(SpellElement))
+            { 
+                if (isPrimary)
+                    newSpells = upgradedSpells.PrimarySpells;
+                else
+                    newSpells = upgradedSpells.SecondarySpells;
+
+                foreach (var spell in newSpells)
+                {
+                    if (spell.GetComponent<AttackCore>().ElementType == SpellElement) 
+                    {
+                        list[i]=spell;
+                    };
+                }
+            }
+        }
+    }
 }

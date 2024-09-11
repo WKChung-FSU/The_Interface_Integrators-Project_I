@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skellington (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -257,6 +261,69 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+--- !u!1001 &102216783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0003325343
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 179.962
+      objectReference: {fileID: 0}
+    - target: {fileID: 923733682893886450, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107559156651876055, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      propertyPath: m_Name
+      value: Glowing crystal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4107559156651876055, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 836778980}
+    - targetCorrespondingSourceObject: {fileID: 4107559156651876055, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 836778979}
+  m_SourcePrefab: {fileID: 100100000, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
 --- !u!1 &224847952
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +596,9 @@ MonoBehaviour:
     m_Bits: 0
   RequiredElement: 0
   SpellRange: 0
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   AttackSpeed: 1
   targets: []
 --- !u!4 &224847959
@@ -1643,6 +1713,57 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+--- !u!1 &836778976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4107559156651876055, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+  m_PrefabInstance: {fileID: 102216783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &836778979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836778976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp: 7
+  mObjectCollider: {fileID: 836778982}
+  elementType: 0
+  IsMandatory: 0
+  isPlayer: 0
+  modelColor: {fileID: 836778981}
+  textHP: {fileID: 0}
+  enemyHud: {fileID: 0}
+  particles: {fileID: 11400000, guid: 9437386100fe0f64980ea44516c867ea, type: 2}
+  SpawnsItemOnDeath: 0
+  deathSpawnItems: []
+--- !u!114 &836778980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836778976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1de1563e13a7da41acb2fee6c203512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementType: 1
+--- !u!23 &836778981 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2256683250764849902, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+  m_PrefabInstance: {fileID: 102216783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &836778982 stripped
+MeshCollider:
+  m_CorrespondingSourceObject: {fileID: 2327997224185826577, guid: bf9f2a86d9f4e3a4bb01792654aad0e6, type: 3}
+  m_PrefabInstance: {fileID: 102216783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000002758
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,6 +2130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water puddle
       objectReference: {fileID: 0}
+    - target: {fileID: 5602369512909197254, guid: 92e39186ab5beb247a8f196def88adbb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5612228614174917173, guid: 92e39186ab5beb247a8f196def88adbb, type: 3}
       propertyPath: RemoveTime
       value: 0
@@ -2153,14 +2278,6 @@ PrefabInstance:
     - target: {fileID: 428244897788786412, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 460195234844669151, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
-      propertyPath: MaxInfectAoe
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 460195234844669151, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
-      propertyPath: MaxInfectAOEs
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5038584095303052715, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_Name
@@ -2594,6 +2711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skellington (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2666,6 +2787,10 @@ PrefabInstance:
     - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Name
       value: Skellington (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
@@ -2845,6 +2970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skellington (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3018,6 +3147,10 @@ PrefabInstance:
     - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Name
       value: Skellington (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
@@ -3594,6 +3727,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Test player
       objectReference: {fileID: 0}
+    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: MenuDelay
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: basicSpells
+      value: 
+      objectReference: {fileID: 11400000, guid: 707be2d6edfd5334992323608ff83b48, type: 2}
+    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: upgradedSpells
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c6cd20b29547444a8d3b93a4c178700, type: 2}
+    - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      propertyPath: currentSpellList
+      value: 
+      objectReference: {fileID: 11400000, guid: 0fb4bec252ead694e98298d0fdbf897a, type: 2}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.25
@@ -4145,3 +4294,4 @@ SceneRoots:
   - {fileID: 2051106610}
   - {fileID: 2061224178}
   - {fileID: 100674310}
+  - {fileID: 102216783}
