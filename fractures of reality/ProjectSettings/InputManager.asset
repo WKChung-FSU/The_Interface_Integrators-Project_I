@@ -214,13 +214,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Submit
+    m_Name: WeaponMenu
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: enter
+    positiveButton: m
     altNegativeButton: 
-    altPositiveButton: space
+    altPositiveButton: f
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

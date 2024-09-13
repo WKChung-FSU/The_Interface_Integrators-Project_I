@@ -12,6 +12,17 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameGoal CurrentGoal;
 
 
+    #region RadialMenu
+
+    [Header("----- Radial Menu -----")]
+    [SerializeField] GameObject EntryPrefab;
+
+    [SerializeField] float Radius = 300f;
+    [SerializeField] List<Texture> icons;
+    [SerializeField] public GameObject WeapPause;
+    List<RadialMenuEntry> entries;
+    #endregion
+
     #region Player
     [Header("----- Player Attributes -----")]
     public GameObject player;
@@ -73,6 +84,7 @@ public class gameManager : MonoBehaviour
         StopSpawning = false;
         instance = this;
         player = GameObject.FindWithTag("Player");
+        
         playerScript = player.GetComponent<DestructibleHealthCore>();
         CharacterController= player.GetComponent<CharacterController>();
         playerWeapon = player.GetComponent<PlayerWeapon>();
@@ -83,8 +95,12 @@ public class gameManager : MonoBehaviour
         enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
 
         crystalManifest.ResetManifest();
+       
     }
-
+    private void Start()
+    {
+        entries = new List<RadialMenuEntry>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -104,6 +120,24 @@ public class gameManager : MonoBehaviour
             }
             
         }
+        if (Input.GetButtonDown("WeaponMenu"))
+        {
+            if (entries.Count == 0)
+            {
+                Open();
+                statePause();
+                menuActive = WeapPause;
+                menuActive.SetActive(isPaused);
+
+                DisableHUD();
+            }
+            else
+            {
+                Close();
+                stateUnPaused();
+                EnableHUD();
+            }
+        }
         GoalTextUpdate();
         //update health bar
         UpdateHUD();
@@ -114,6 +148,7 @@ public class gameManager : MonoBehaviour
         //{
         //    UpdateWeaponIconUI();
         //}
+       
     }
      void GoalTextUpdate()
     {
@@ -231,8 +266,53 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    #region Getters and Setter
-    public Vector3 StartPosition()
+    #region RadMenu
+    void AddEntry(Texture pIcon)
+    {
+        GameObject entry = Instantiate(EntryPrefab, transform);
+        RadialMenuEntry rme = entry.GetComponent<RadialMenuEntry>();
+
+
+        rme.SetIcon(pIcon);
+        entries.Add(rme);
+    }
+
+    public void Open()
+    {
+        for (int i = 0; i < icons.Count; i++)
+        {
+            AddEntry(icons[i]);
+        }
+        rearrange();
+    }
+    public void Close()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+
+            RectTransform rect = entries[i].GetComponent<RectTransform>();
+            GameObject entry = entries[i].gameObject;
+
+            Destroy(entry);
+        }
+       entries.Clear();
+    }
+    void rearrange()
+    {
+        float radiansOfSeperation = (Mathf.PI * 2) / entries.Count;
+        for (int i = 0; i < entries.Count; i++)
+        {
+            float x = Mathf.Sin(radiansOfSeperation * i) * Radius;
+            float y = Mathf.Cos(radiansOfSeperation * i) * Radius;
+
+            entries[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(x, y, 0);
+        }
+    }
+
+
+#endregion
+#region Getters and Setter
+public Vector3 StartPosition()
     {
         return startPosition;
     }
