@@ -34,7 +34,7 @@ public class AttackCore : MonoBehaviour
     [Header("will not attack if 0 / is also used for infection")]
     [Range(0, 1)][SerializeField] float AttackSpeed = 0.5f;
 
-
+    DestructibleHealthCore SpawningEntity;
     int FinalTargetMask;
     public List<Collider> targets = new List<Collider>();
     bool Attacking;
@@ -42,11 +42,7 @@ public class AttackCore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (movementType == DamageEngine.movementType.teleportation)
-        {
-
-            return;
-        }
+        
 
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeInitialization)
         {
@@ -78,6 +74,11 @@ public class AttackCore : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (movementType == DamageEngine.movementType.teleportation)
+        {
+        }
+
+
         if (IsInfectious)
             DamageEngine.instance.UpdateAOEs(-1);
     }
@@ -89,6 +90,15 @@ public class AttackCore : MonoBehaviour
         {
             StartCoroutine(environmentalAttack());
         }
+
+        if (movementType == DamageEngine.movementType.teleportation)
+        {
+            if (this.gameObject != gameManager.instance.playerWeapon.GetCurrentWeapon(true))
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
 
         if (IsInfectious)
         {
@@ -111,6 +121,10 @@ public class AttackCore : MonoBehaviour
         if (other.isTrigger || other == gameManager.instance.player.GetComponent<CapsuleCollider>())
         {
             return;
+        }
+        if (movementType == DamageEngine.movementType.teleportation&& gameManager.instance.playerWeapon.GetCurrentWeapon()!=this.gameObject)
+        {
+            Destroy(gameObject);
         }
         //do damage
         if (movementType == DamageEngine.movementType.Environmental)
@@ -230,7 +244,7 @@ public class AttackCore : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, SpellRange, ~ignoreMask))
+        if (Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, SpellRange, ~ignoreMask))
         {
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 

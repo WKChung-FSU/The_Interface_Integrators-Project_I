@@ -29,6 +29,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     bool SwitchingWeapon;
     int CurrAmmo;
     int currentWeapon;
+    EntTeleportation TPSpell;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -50,9 +51,21 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(ShootPrimary());
 
-        if (Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false)
+        if ((Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false) &&!TPSpell)
             StartCoroutine(ShootSecondary());
 
+        if (TPSpell)
+        {
+            if (Input.GetButtonDown("Shoot 2") && gameManager.instance.menuActive == false)
+            {
+                TPSpell.Teleport(true);
+
+            }
+            if (Input.GetButtonUp("Shoot 2") && gameManager.instance.menuActive == false)
+            {
+               TPSpell.Teleport(false);
+            }
+        }
         if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0) && SwitchingWeapon == false)
             //No longer coroutine -CM, changed it back to implement menu lock-wc
             StartCoroutine(WeaponMenuSystem());
@@ -65,7 +78,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             ReloadAmmo();
         }
     }
-
+    
     #region Public Getters
 
     public int Ammo
@@ -90,6 +103,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             MaxAmmo = value;
         }
     }
+   
     public bool PlayerShooting
     {
         get { return isShooting; }
@@ -171,10 +185,15 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     IEnumerator ShootSecondary()
     {
         isShooting = true;
-
+       
         if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
         {
-            Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+
+            TPSpell=Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation)
+                .GetComponent<EntTeleportation>();
+
+            if (TPSpell)
+                TPSpell.SetHealthCore(gameManager.instance.playerScript);
             CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
         }
         else if (currentSpellList.SecondarySpells[currentWeapon] == null)
@@ -253,6 +272,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 }
             }
         }
+    }
+
+   public void ClearTP()
+    {
+        TPSpell=null;
     }
 
     void AddSpell(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
