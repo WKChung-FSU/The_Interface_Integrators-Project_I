@@ -42,6 +42,12 @@ public class AttackCore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (movementType == DamageEngine.movementType.teleportation)
+        {
+
+            return;
+        }
+
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeInitialization)
         {
             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, false), DamageEngine.instance.GetSpellVolume(false));

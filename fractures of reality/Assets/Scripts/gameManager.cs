@@ -219,13 +219,9 @@ public class gameManager : MonoBehaviour
 
     public void Respawn(bool trueRespawn = false)
     {
-        CharacterController.enabled = false;
-        player.transform.position = startPosition;
-        CharacterController.enabled = true;
-
+        playerScript.TeleportTo(startPosition);
         //clear the crowd list
         enemiesInMeleeRangeOfPlayer.Clear();
-
         if (trueRespawn == true)
         {
             playerWeapon.ReloadAmmo();
@@ -233,10 +229,7 @@ public class gameManager : MonoBehaviour
             playerScript.ResetAllStatuses();
             playerDead = false;
         }
-         
     }
-
-   
 
     #region Getters and Setter
     public Vector3 StartPosition()
@@ -315,6 +308,15 @@ public class gameManager : MonoBehaviour
         get { return StopSpawning; }
         set {StopSpawning = value;}
     }
+
+    public CharacterController PlayerCController
+    {
+    get { return CharacterController; } 
+    }
+    public playerController PlayerController
+    {
+        get { return playerController; }
+    }
     #endregion
 
 
@@ -323,10 +325,6 @@ public class gameManager : MonoBehaviour
         AudioSource.PlayOneShot(audio, volume);
     }
 
-    public playerController PlayerController
-    {
-        get { return playerController; }
-    }
 
     #region private functions
     void ToggleHUD()

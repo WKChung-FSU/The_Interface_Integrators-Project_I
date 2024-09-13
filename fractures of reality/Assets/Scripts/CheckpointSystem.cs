@@ -14,6 +14,7 @@ public class CheckpointSystem : MonoBehaviour
     [SerializeField] int TypeChangeAnimationDelay;
     [Header("----- Teleportation Attributes -----")]
     [SerializeField] GameObject TLGameObject;
+    [SerializeField] bool TransportPosAsNewStart;
     [SerializeField] Vector3 TransportPosition;
    
     void Start()
@@ -47,7 +48,10 @@ public class CheckpointSystem : MonoBehaviour
                     ToggleParticles(true);
                     break;
                 case WaypointType.Teleporter:
-                    gameManager.instance.StartPosition(TransportPosition);
+
+                    if (TransportPosAsNewStart)
+                        gameManager.instance.StartPosition(TransportPosition);
+
                     gameManager.instance.Respawn();
                     break;
                 case WaypointType.WinPoint:

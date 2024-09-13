@@ -9,7 +9,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
-public class DestructibleHealthCore : MonoBehaviour, IDamage
+public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 {
 
     public enum statusEffect { normal, fireBurning, LightningShocked, IceFrozen, Earth, Windborn, WaterWet }
@@ -414,5 +414,29 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage
                 Instantiate(particles.healParticle, mObjectCollider.transform);
             }
         }
+    }
+
+    public void TeleportTo(Vector3 Location)
+    {
+        if (Location == Vector3.zero)
+        {
+            Debug.LogError("Teleport location Failed");
+        return;
+        }
+        if (isPlayer)
+        {
+           gameManager.instance.PlayerCController.enabled = false;
+            gameManager.instance.PlayerCController.transform.position = Location;
+            gameManager.instance.PlayerCController.enabled = true;
+        }
+        else 
+        { 
+        
+        
+        
+        
+        }
+
+
     }
 }

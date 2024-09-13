@@ -90,6 +90,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             MaxAmmo = value;
         }
     }
+    public bool PlayerShooting
+    {
+        get { return isShooting; }
+    }
     public bool MenuLock
     {
         get { return SwitchingWeapon; }
