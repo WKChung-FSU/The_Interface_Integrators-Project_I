@@ -14,44 +14,38 @@ public class SaveSystem : MonoBehaviour
         DestructibleHealthCore playercore = player.GetComponent<DestructibleHealthCore>();
 
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/save.dat";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string fPath = Application.persistentDataPath + "/save.dat";
+        FileStream stream = new FileStream(fPath, FileMode.Create);
         PlayerData data = new PlayerData(ammo, playercore);
-
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
     public static PlayerData Load()
     {
-        string path = Application.persistentDataPath + "/save.dat";
-        if (File.Exists(path))
+        string sPath = Application.persistentDataPath + "/save.dat";
+        if (File.Exists(sPath))
         {
-            Debug.Log("Is possible work");
+            Debug.Log("It's ALIVE");
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode .Open);
-
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-
+            FileStream stream = new FileStream(sPath, FileMode.Open);
+            PlayerData pData = formatter.Deserialize(stream) as PlayerData;
             stream.Close();
-
-            return data;
+            return pData;
         }
         else
         {
-            Debug.LogError("Save file not found at: " + path);
-
-            if (File.Exists(path))
+            Debug.LogError("Save file not found at: " + sPath);
+            if (File.Exists(sPath))
             {
                 BinaryFormatter formatter = new BinaryFormatter ();
-                FileStream stream = new FileStream (path, FileMode .Open);
+                FileStream stream = new FileStream (sPath, FileMode.Open);
 
                PlayerData data = formatter.Deserialize(stream) as PlayerData;
                stream.Close();
 
                return data;
             }
-
             else
             {
                 Debug.LogError("Save file not found");

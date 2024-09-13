@@ -11,7 +11,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 {
-
+    
     public enum statusEffect { normal, fireBurning, LightningShocked, IceFrozen, Earth, Windborn, WaterWet }
     [Range(0, 500)][SerializeField] public int Hp = 100;
     [SerializeField] Collider mObjectCollider;

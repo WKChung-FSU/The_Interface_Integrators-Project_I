@@ -36,7 +36,7 @@ public class ButtonFunctions : MonoBehaviour
 
         if (data == null)
         {
-            Debug.LogError("No data found");
+            Debug.LogError("No saves can be loaded.");
             return;
         }
         Vector3 position;
