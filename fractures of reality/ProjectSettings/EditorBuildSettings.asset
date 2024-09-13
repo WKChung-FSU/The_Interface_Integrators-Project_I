@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Volcano level.unity
     guid: d29093131c5d69f46aa6a4b6f9b3016e
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 90bb17f31b593c04b9d3f38934b7dea5
+  - enabled: 1
     path: Assets/Scenes/WaterLevel v2.unity
     guid: 2a5a72ba2293c2143a379475d10dd0d6
   m_configObjects: {}
