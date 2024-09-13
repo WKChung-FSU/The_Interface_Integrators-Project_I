@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 public class ButtonFunctions : MonoBehaviour
 {
   public void resume()
@@ -22,6 +24,29 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.stateUnPaused();
 
     }
+
+    public void Save(GameObject player)
+    {
+        SaveSystem.Save(player);
+    }
+
+    public void Load()
+    {
+        PlayerData data = SaveSystem.Load();
+
+        if (data == null)
+        {
+            Debug.LogError("No data found");
+            return;
+        }
+        Vector3 position;
+
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        transform.position = position;
+    }
+    
     public void quit()
     {
 #if UNITY_EDITOR

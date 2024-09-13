@@ -6,15 +6,15 @@ public class SoundEffects : MonoBehaviour
 {
     [Header ("------- Audio Source -------")]
     [SerializeField] AudioSource theme;
-    [SerializeField] AudioSource SFXSource;
+    //[SerializeField] AudioSource SFXSource;
 
     [Header("------- Audio Clip -------")]
     public AudioClip background;
-    public AudioClip death;
-    public AudioClip checkpoint;
-    public AudioClip wallTouch;
-    public AudioClip spellpickup;
-    public AudioClip bookPickup;
+    //public AudioClip death;
+    //public AudioClip checkpoint;
+    //public AudioClip wallTouch;
+    //public AudioClip spellpickup;
+    //public AudioClip bookPickup;
 
     private void Start()
     {
