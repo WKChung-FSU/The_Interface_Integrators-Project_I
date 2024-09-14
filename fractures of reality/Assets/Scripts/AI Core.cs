@@ -71,7 +71,7 @@ public class AICore : MonoBehaviour
 
         RaycastHit hit;
         //if there is nothing in the way
-        if (Physics.Raycast(headPos.position, playerDirection, out hit, enemyLayerMask))//, enemyLayerMask
+        if (Physics.Raycast(headPos.position, playerDirection, out hit, Mathf.Infinity,enemyLayerMask))
         {
             //if the player is within your sightlines
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewAngle)
@@ -161,6 +161,13 @@ public class AICore : MonoBehaviour
             (stoppingDistanceOriginal + (Random.Range(stoppingDistanceOriginal, stoppingDistanceOriginal * 2)))
             );
         return floatingAroundPlayerDistance;
+    }
+
+    public void SetDestinationToPlayer()
+    {
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        agent.stoppingDistance = stoppingDistanceOriginal;
+
     }
 
     private void OnTriggerEnter(Collider other)

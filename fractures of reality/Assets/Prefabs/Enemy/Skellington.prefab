@@ -3591,13 +3591,17 @@ MonoBehaviour:
   castAngle: 45
   facePlayerSpeed: 10
   playerInRange: 0
+  floatingAroundPlayerDistance: {x: 0, y: 0, z: 0}
   isAttacking: 0
   stoppingDistanceOriginal: 2.25
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 383
   spellsList:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   shootPos: {fileID: 3186620901102437523}
   attackRate: 3
-  canRoam: 1
+  canRoam: 0
   isRoaming: 0
   roamDistance: 15
   roamTimer: 10
@@ -5590,11 +5594,22 @@ MonoBehaviour:
   damageAmount: 5
   RemoveTime: 0
   destroyParticle: {fileID: 0}
-  impactSource: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
+  IsInfectious: 0
   AoeObject: {fileID: 0}
+  colliderRadius: 0
+  TargetMask1:
+    serializedVersion: 2
+    m_Bits: 0
+  TargetMask2:
+    serializedVersion: 2
+    m_Bits: 0
+  RequiredElement: 0
   SpellRange: 1
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   AttackSpeed: 1
   targets: []
 --- !u!1 &7442783791793326799

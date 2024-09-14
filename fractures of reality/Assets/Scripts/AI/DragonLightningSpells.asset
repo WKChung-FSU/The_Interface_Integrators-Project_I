@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b46846d3c0b4644f851f75a266058f3, type: 3}
+  m_Name: DragonLightningSpells
+  m_EditorClassIdentifier: 
+  spellList:
+  - {fileID: 1180295084170229988, guid: fe2189af410d89c419e636969d7e3504, type: 3}
+  dragonMaterialOfThisType: {fileID: 2100000, guid: 2fc77c489e5359f4b9e53de1c5561aeb, type: 2}

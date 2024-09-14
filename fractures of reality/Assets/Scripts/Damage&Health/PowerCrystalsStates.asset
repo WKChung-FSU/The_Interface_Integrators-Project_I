@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f1df21ef2c7afa4d94cd32fa123a6bd, type: 3}
   m_Name: PowerCrystalsStates
   m_EditorClassIdentifier: 
-  fireCrystalDestroyed: 1
+  fireCrystalDestroyed: 0
   lightningCrystalDestroyed: 0
   iceCrystalDestroyed: 0
   earthCrystalDestroyed: 0

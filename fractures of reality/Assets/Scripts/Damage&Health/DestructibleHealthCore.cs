@@ -439,4 +439,14 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 
 
     }
+
+
+    public void SetElementalTypeGraphic(DamageEngine.ElementType type)
+    {
+        if (isPlayer == false && textHP != null)
+        {
+            //Tell the hud object to change the icon
+            enemyHud.GetComponent<TypeIcon>().EnableElementTypeGraphic(type);
+        }
+    }
 }

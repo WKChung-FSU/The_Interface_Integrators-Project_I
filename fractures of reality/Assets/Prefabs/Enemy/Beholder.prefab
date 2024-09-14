@@ -603,8 +603,12 @@ MonoBehaviour:
   castAngle: 45
   facePlayerSpeed: 10
   playerInRange: 0
+  floatingAroundPlayerDistance: {x: 0, y: 0, z: 0}
   isAttacking: 0
   stoppingDistanceOriginal: 15
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 383
   spellsList:
   - {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}
   - {fileID: 2276658285452781468, guid: a496e94fe50bb634fa8d05948dd02282, type: 3}
