@@ -5,6 +5,7 @@ using UnityEngine;
 public class DragonScript : MonoBehaviour
 {
     [Header("Battle Info")]
+    [SerializeField] AICore aiCore;
     bool fightStarted = false;
     [SerializeField] int phaseTimer = 20;
     //use a scriptable game object that contains all the spells the dragon can cast.
@@ -14,22 +15,27 @@ public class DragonScript : MonoBehaviour
     [SerializeField] DragonSpellList iceSpells;
     [SerializeField] DragonSpellList earthSpells;
     [SerializeField] DragonSpellList waterSpells;
-    [SerializeField] enum BattlePhase { attack, defend, summon };
+    [SerializeField] enum BattlePhase { attack, defend };
     int currentPhase;
-    Transform shootPosition;
     private bool isChangingPhases = false;
-    [SerializeField] int attackDelay;
-    [SerializeField] Transform shootPos;
-    private List<GameObject> currentSpellList = new List<GameObject>();
+    private bool canAttack;
+    private bool bHellPhase;
 
     [Header("Attributes")]
     private DestructibleHealthCore healthCore;
     private DamageEngine.ElementType currentType;
-    //scriptable game object that has all the dragon's materials
     [SerializeField] Renderer model;
-    //private Dictionary<DamageEngine.ElementType, bool> typeAllowance = new Dictionary<DamageEngine.ElementType, bool>();
     private List<DamageEngine.ElementType> typeAllowances = new List<DamageEngine.ElementType>();
+    private bool currentlySummoning = false;
 
+    [Header("Bullet Hell phase info")]
+    [SerializeField] List<Transform> NorthHazard = new List<Transform>();
+    [SerializeField] List<Transform> EastHazard = new List<Transform>();
+    [SerializeField] List<Transform> WestHazard = new List<Transform>();
+
+    [Header("Add phase information")]
+    [SerializeField] List<Transform> spawnLocations = new List<Transform>();
+    [SerializeField] List<GameObject> spawnsPool = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +57,21 @@ public class DragonScript : MonoBehaviour
         if (gameManager.instance.crystalManifest.waterCrystalDestroyed == false)
             typeAllowances.Add(DamageEngine.ElementType.Water);
 
+        //choose to either do bullet-hell or summon adds
+        int rando = Random.Range(0, (int)Time.time) % 1;
+        if (rando == 0)
+        {
+            Debug.Log("Summon Phase first");
+            bHellPhase = false;
+            //summon phase
+        }
+        else
+        {
+            Debug.Log("Bullet Hell Phase first");
+            bHellPhase = true;
+            //bullet-hell phase
+        }
+
     }
 
     // Update is called once per frame
@@ -59,8 +80,11 @@ public class DragonScript : MonoBehaviour
         //if (fightStarted == false)            uncomment this when you have a trigger for starting the fight
         //    return;
 
+        aiCore.SmoothAnimations();
+
         if (isChangingPhases == false)
         {
+            isChangingPhases = true;
             StartCoroutine(NextPhase());
         }
         switch (currentPhase)
@@ -68,19 +92,32 @@ public class DragonScript : MonoBehaviour
             case (int)BattlePhase.attack:
                 {
                     //attack the player
+                    if (canAttack == true)
+                    StartCoroutine(aiCore.shoot());
                     break;
                 }
             case (int)BattlePhase.defend:
                 {
+                    Debug.Log("Summon or BHell phase");
+                    if (bHellPhase)
+                    {
+                        //logic for bullet hell phase
+                    }
+                    else
+                    {
+                        //logic for summoning adds phase
+                        if(currentlySummoning == false)
+                        {
+                            currentlySummoning = true;
+                            StartCoroutine(SummonFromPool());
 
+                        }
+                    }
                     break;
                 }
-            case (int)BattlePhase.summon:
-                {
-                    //choose to either do bullet-hell or summon adds
-                    break;
-                }
+
         }
+
     }
 
     //TODO: methods for handling finite state machine logic
@@ -94,6 +131,7 @@ public class DragonScript : MonoBehaviour
 
     void TypeSwap()
     {
+        //gets called by the animation
         //dragon cannot be hurt
         //check to see what the next type to use even is
         //  set spells the dragon can use,
@@ -127,6 +165,8 @@ public class DragonScript : MonoBehaviour
                 break;
         }
         UpdateType(idkman);
+        canAttack = true;
+
         // else
         // {
         //     UpdateType(DamageEngine.ElementType.Normal);
@@ -135,7 +175,7 @@ public class DragonScript : MonoBehaviour
         // }
 
         //TODO: add something to the healthcore that I can call here to change the icon on demand
-        Debug.Log(healthCore.ElementType);
+        //Debug.Log(healthCore.ElementType);
         //dragon can now be hurt,
         //go to next phase
     }
@@ -143,11 +183,15 @@ public class DragonScript : MonoBehaviour
     //go to the next phase
     IEnumerator NextPhase()
     {
-        isChangingPhases = true;
-        yield return new WaitForSeconds(phaseTimer);
+        //isChangingPhases = true;
+        aiCore.animator.SetTrigger("NextPhase"); //NextPhase calls the animation that calls TypeSwap
+        canAttack = false;
+
         //figure out what phase you are currently in,
         //enter the next phase,
         //if you are in the last phase, go to the first phase
+
+        //play animation for swapping phases
 
         switch (currentPhase)
         {
@@ -158,16 +202,14 @@ public class DragonScript : MonoBehaviour
                 }
             case (int)BattlePhase.defend:
                 {
-                    TypeSwap();
-                    break;
-                }
-            case (int)BattlePhase.summon:
-                {
+                    //TypeSwap();
+                    bHellPhase = !bHellPhase;
                     currentPhase = 0;
                     break;
                 }
         }
         Debug.Log((BattlePhase)currentPhase);
+        yield return new WaitForSeconds(phaseTimer);
         isChangingPhases = false;
     }
 
@@ -176,17 +218,27 @@ public class DragonScript : MonoBehaviour
         healthCore.ElementType = type;
         healthCore.SetElementalTypeGraphic(type);
         currentType = healthCore.ElementType;
-
     }
 
     void SetSpells(DragonSpellList spells)
     {
-        currentSpellList.Clear();
+        aiCore.spellsList.Clear();
         for (int i = 0; i < spells.GetSpellListSize(); i++)
         {
-            currentSpellList.Add(spells.spellList[i]);
+            aiCore.spellsList.Add(spells.spellList[i]);
         }
         model.material = spells.GetMaterial();
+        healthCore.SetColorOriginal(spells.GetMaterial());
+    }
+
+    IEnumerator SummonFromPool()
+    {
+        for (int i = 0; i < spawnLocations.Count; i++)
+        {
+            Instantiate(spawnsPool[Random.Range(0, spawnsPool.Count)], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
+        }
+        yield return new WaitForSeconds(phaseTimer/2);
+        currentlySummoning = false;
     }
 
     public void StartFinalBattle()

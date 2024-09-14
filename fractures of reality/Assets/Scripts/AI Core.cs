@@ -48,7 +48,7 @@ public class AICore : MonoBehaviour
     //this is the function that actually creates the spell
     {
         isAttacking = true;
-        Debug.Log("CastRandomSpell");
+        //Debug.Log("CastRandomSpell");
         animator.SetTrigger("CastRandomSpell");
         yield return new WaitForSeconds(attackRate);
         isAttacking = false;

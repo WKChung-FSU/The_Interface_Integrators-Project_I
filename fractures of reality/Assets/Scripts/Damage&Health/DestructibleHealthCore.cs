@@ -449,4 +449,9 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
             enemyHud.GetComponent<TypeIcon>().EnableElementTypeGraphic(type);
         }
     }
+
+    public void SetColorOriginal(Material material)
+    {
+        colorOriginal = material.color;
+    }
 }
