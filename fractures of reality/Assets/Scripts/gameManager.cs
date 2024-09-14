@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    public Slider slider;
+    public GameObject LoadingScreen;
     public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects}
     [SerializeField] GameGoal CurrentGoal;
 
@@ -251,6 +253,7 @@ public class gameManager : MonoBehaviour
         //disable all weapon icons first
         wCurrentSpellIcon.EnableElementTypeGraphic(weapon.ElementType);
     }
+   
 
     public void Respawn(bool trueRespawn = false)
     {
