@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702996875c5a91a47b614e32747853c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackElement: 0
+  attackElement: 4
   movementType: 4
   damageAmount: 9
   CastFractureDamage: 9

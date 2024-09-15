@@ -22,6 +22,7 @@ public class PowerCrystalScript : MonoBehaviour
    //}
     private void OnDestroy()
     {
+        if (healthCore.HP==0)
         crystalManifest.SetDestroyedCrystalOfType(elementType);
     }
 }

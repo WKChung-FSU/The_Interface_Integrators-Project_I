@@ -151,7 +151,7 @@ public class DragonScript : MonoBehaviour
 
         //check to see what the next type to use even is
         //get a random position in your type allowance list, everything there is what's allowed
-        DamageEngine.ElementType nextType = (DamageEngine.ElementType)Random.Range(0, typeAllowances.Count);
+        DamageEngine.ElementType nextType = typeAllowances[Random.Range(0, typeAllowances.Count)];
 
        // DamageEngine.ElementType idkman = (DamageEngine.ElementType)nextType;
         switch (nextType)

@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PowerCrystalManifest : ScriptableObject
 {
-    [SerializeField] public bool fireCrystalDestroyed = false;
-    [SerializeField] public bool lightningCrystalDestroyed = false;
-    [SerializeField] public bool iceCrystalDestroyed = false;
-    [SerializeField] public bool earthCrystalDestroyed = false;
-    [SerializeField] public bool waterCrystalDestroyed = false;
+    [SerializeField] public bool fireCrystalDestroyed;
+    [SerializeField] public bool lightningCrystalDestroyed;
+    [SerializeField] public bool iceCrystalDestroyed;
+    [SerializeField] public bool earthCrystalDestroyed;
+    [SerializeField] public bool waterCrystalDestroyed;
 
     private int amountOfCrystals = 5;
 

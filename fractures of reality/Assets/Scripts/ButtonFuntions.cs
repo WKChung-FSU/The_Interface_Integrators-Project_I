@@ -14,9 +14,11 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void restart()
     {
+      
         gameManager.instance.stopSpawning=true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.stateUnPaused();
+
     }
 
     public void respawn(){
@@ -29,6 +31,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Save(GameObject player)
     {
+        //TODO: Add the Crystal manifest to the saves
         SaveSystem.Save(player);
     }
 
@@ -57,6 +60,7 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void quit()
     {
+       
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

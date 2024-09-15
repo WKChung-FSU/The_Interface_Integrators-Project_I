@@ -44,11 +44,10 @@ public class gameManager : MonoBehaviour
 
     #region CrystalStates
     [SerializeField] public PowerCrystalManifest crystalManifest;
-
     #endregion
 
     #region UI
-    [Header("----- Ui settings/Objects -----")]
+   [Header("----- Ui settings/Objects -----")]
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
@@ -78,7 +77,6 @@ public class gameManager : MonoBehaviour
 
     #endregion
     bool StopSpawning;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -96,12 +94,16 @@ public class gameManager : MonoBehaviour
         GoalTextUpdate();
         enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
 
-        crystalManifest.ResetManifest();
+        //crystalManifest.ResetManifest();
        
     }
     private void Start()
     {
         entries = new List<RadialMenuEntry>();
+    }
+    private void OnApplicationQuit()
+    {
+        gameManager.instance.crystalManifest.ResetManifest();
     }
     // Update is called once per frame
     void Update()
