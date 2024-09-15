@@ -3490,6 +3490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 15
+  scoreValue: 100
   mObjectCollider: {fileID: 3683724265528122240}
   elementType: 0
   IsMandatory: 0
@@ -3601,6 +3602,8 @@ MonoBehaviour:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   shootPos: {fileID: 3186620901102437523}
   attackRate: 3
+  SpellTracking: 0
+  TrackingStrength: 0
   canRoam: 0
   isRoaming: 0
   roamDistance: 15
@@ -5592,6 +5595,7 @@ MonoBehaviour:
   attackElement: 0
   movementType: 2
   damageAmount: 5
+  CastFractureDamage: 0
   RemoveTime: 0
   destroyParticle: {fileID: 0}
   speed: 1
@@ -5611,6 +5615,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   AttackSpeed: 1
+  TrackingStrength: 0
   targets: []
 --- !u!1 &7442783791793326799
 GameObject:

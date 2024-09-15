@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 10
+  scoreValue: 200
   mObjectCollider: {fileID: -6313164765329900153}
   elementType: 0
   IsMandatory: 0
@@ -622,6 +623,8 @@ MonoBehaviour:
   - {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
   shootPos: {fileID: 1429644074775471359}
   attackRate: 1
+  SpellTracking: 0
+  TrackingStrength: 0
   canRoam: 1
   isRoaming: 0
   roamDistance: 50

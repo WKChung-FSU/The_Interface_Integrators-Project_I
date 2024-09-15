@@ -44,7 +44,6 @@ public class AICore : MonoBehaviour
         startingPosition = transform.position;
         agent.stoppingDistance = stoppingDistanceOriginal;
         startingPosition = transform.position;
-        //enemyLayerMask =~ LayerMask.GetMask("EnemyHitbox");
     }
     public IEnumerator shoot()
     //this is the function that actually creates the spell
@@ -124,35 +123,6 @@ public class AICore : MonoBehaviour
         float agentSpeed = agent.velocity.normalized.magnitude;
         animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animationSpeedTransition));
     }
-    //void Update()
-    //{
-    //    float agentSpeed = agent.velocity.normalized.magnitude;
-    //    animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), agentSpeed, Time.deltaTime * animationSpeedTransition));
-
-    //    if (playerInRange)
-    //    {
-    //        agent.SetDestination(gameManager.instance.player.transform.position);
-    //        if (!isAttacking && playerInRange)
-    //        {
-    //            if (isMelee)
-    //            {
-    //                StartCoroutine(MeleeAttack());
-    //            }
-    //            else
-    //            {
-    //                StartCoroutine(shoot());
-    //            }
-    //        }
-
-    //    }
-    //}
-    //IEnumerator MeleeAttack()
-    //{
-    //    isAttacking = true;
-    //    DamageEngine.instance.CalculateDamage(attackTarget, meleeDamage, mDamage);
-    //    yield return new WaitForSeconds(attackRate);
-    //    isAttacking = false;
-    //}
 
     /// <summary>
     /// Returns a Vector3 that is somewhere random inbetween the original stopping distance*2 and *3
