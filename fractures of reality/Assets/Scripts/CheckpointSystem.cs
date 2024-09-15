@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckpointSystem : MonoBehaviour
 {
-    enum WaypointType { Checkpoint,Teleporter,WinPoint}
+    enum WaypointType { Checkpoint,Teleporter,WinPoint,ScenePoint}
     [Header("----- Main Attributes -----")]
     [SerializeField] List<GameObject> WaypointParticles = new List<GameObject>();
     [SerializeField] WaypointType waypoint;
@@ -16,7 +18,8 @@ public class CheckpointSystem : MonoBehaviour
     [SerializeField] GameObject TLGameObject;
     [SerializeField] bool TransportPosAsNewStart;
     [SerializeField] Vector3 TransportPosition;
-   
+    [Header("----- Scene Attributes -----")]
+    [SerializeField] int sceneIndex;
     void Start()
     {
         if (TLGameObject != null)
@@ -57,6 +60,10 @@ public class CheckpointSystem : MonoBehaviour
                 case WaypointType.WinPoint:
                     gameManager.instance.youWin();
                     break;
+
+                case WaypointType.ScenePoint:
+                    SceneManager.LoadScene(sceneIndex);
+                        break;
                 default:
                     break;
             }
