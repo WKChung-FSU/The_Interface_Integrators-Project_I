@@ -52,7 +52,7 @@ public class CheckpointSystem : MonoBehaviour
                     if (TransportPosAsNewStart)
                         gameManager.instance.StartPosition(TransportPosition);
 
-                    gameManager.instance.Respawn();
+                    gameManager.instance.playerScript.TeleportTo(TransportPosition);
                     break;
                 case WaypointType.WinPoint:
                     gameManager.instance.youWin();
