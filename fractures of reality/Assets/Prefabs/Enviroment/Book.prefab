@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4699311185035166181}
   - component: {fileID: 3176473689524080424}
   - component: {fileID: 6146832740662466858}
+  - component: {fileID: 3170637807298990186}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b1583d1731180354285d3e2b5260cfe9, type: 2}
+  - {fileID: 2100000, guid: 2b5a1fc255609e5459df03931fd98861, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +85,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3170637807298990186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810114651399111078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb1f1bae6fa26b4c93ecb514ac4d3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeedX: 1
+  scrollSpeedY: 1
+  theRenderer: {fileID: 0}
 --- !u!1 &8409201526147981770
 GameObject:
   m_ObjectHideFlags: 0
