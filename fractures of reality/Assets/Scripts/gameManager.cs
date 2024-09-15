@@ -56,6 +56,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
     [SerializeField] TMP_Text highScoreValue;
+    [SerializeField] GameObject toolTipPanel;
+    [SerializeField] TMP_Text toolTipText;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuHUD;
     [SerializeField] Image healthBar;
@@ -297,6 +299,21 @@ public class gameManager : MonoBehaviour
         score = score * (1 + crystalManifest.GetAmountOfCrystals());
         score = score + (timesDied * -100);
     }
+    #endregion
+
+    #region Tooltip methods
+
+    public void ToolTip(TMP_Text textObj)
+    {
+        toolTipText.text = textObj.text;
+        toolTipPanel.SetActive(true);
+    }
+    public void ClearToolTip()
+    {
+        toolTipText.text = string.Empty;
+        toolTipPanel.SetActive(false);
+    }
+
     #endregion
 
     #region RadMenu
