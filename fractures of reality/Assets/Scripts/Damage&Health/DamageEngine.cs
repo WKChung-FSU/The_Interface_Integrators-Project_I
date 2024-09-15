@@ -104,10 +104,10 @@ public class DamageEngine : MonoBehaviour
                     // add damage calculation
                     int damageDealt = ElementTypeMultiplier(healthCore.ElementType, DamageAmount, attackType);
 
-                    if (damageDealt <0&&targetPlayer)
+                    if (damageDealt ==0&&targetPlayer)
                     {
                         // hardcoded for debug purposes
-                        targetPlayer.updateFractureBar(-(damageDealt));
+                        targetPlayer.updateFractureBar(DamageAmount);
                     }
 
                     TempHealth -= damageDealt;

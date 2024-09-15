@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.ParticleSystem;
@@ -10,7 +12,8 @@ public class AttackCore : MonoBehaviour
     [Header("-----MainAttributes-----")]
     [SerializeField] DamageEngine.ElementType attackElement;
     [SerializeField] DamageEngine.movementType movementType;
-    [Range(0, 10)][SerializeField] int damageAmount;
+    [Range(0, 100)][SerializeField] int damageAmount;
+    [Range(0, 100)][SerializeField] int CastFractureDamage;
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] float RemoveTime = 0;
     [SerializeField] GameObject destroyParticle;
@@ -256,6 +259,10 @@ public class AttackCore : MonoBehaviour
             return attackElement;
         }
     }
+    public int GetFractureDamage()
+    {
+        return CastFractureDamage;
+    }
     //currently player only
 
     IEnumerator LightningSpell()
@@ -284,6 +291,7 @@ public class AttackCore : MonoBehaviour
 
             Destroy(gameObject);
         }
-
+      
     }
+   
 }

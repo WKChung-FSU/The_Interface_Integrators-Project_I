@@ -47,13 +47,25 @@ MonoBehaviour:
   attackElement: 2
   movementType: 3
   damageAmount: 9
+  CastFractureDamage: 9
   RemoveTime: 0
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 1
   rb: {fileID: 0}
-  AoeObject: {fileID: 0}
   IsInfectious: 1
-  InfectiousSpawn: {fileID: 0}
+  AoeObject: {fileID: 0}
+  colliderRadius: 0
+  TargetMask1:
+    serializedVersion: 2
+    m_Bits: 0
+  TargetMask2:
+    serializedVersion: 2
+    m_Bits: 0
+  RequiredElement: 0
   SpellRange: 50
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   AttackSpeed: 1
+  TrackingStrength: 0
   targets: []

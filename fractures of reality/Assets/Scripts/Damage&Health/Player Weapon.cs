@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Numerics;
+using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -172,12 +173,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     #endregion
     IEnumerator ShootPrimary()
     {
+        AttackCore castedSpell=null;
         isShooting = true;
         // All primary spells are summons
         if (((CurrAmmo - currentSpellList.PrimarySpellCost[currentWeapon]) >= 0) && currentSpellList.PrimarySpells[currentWeapon] != null)
         {
-            Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+            castedSpell=Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation).GetComponent<AttackCore>();
             CurrAmmo -= currentSpellList.PrimarySpellCost[currentWeapon];
+            gameManager.instance.PlayerController.updateFractureBar(castedSpell.GetFractureDamage());
         }
         else if (currentSpellList.PrimarySpells[currentWeapon] == null)
         {
@@ -191,17 +194,22 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     IEnumerator ShootSecondary()
     {
+        GameObject castedSpell;
+        AttackCore attack;
         isShooting = true;
        
         if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
         {
 
-            TPSpell=Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation)
-                .GetComponent<EntTeleportation>();
+            castedSpell = Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
+            TPSpell=castedSpell.GetComponent<EntTeleportation>();
+            attack= castedSpell.GetComponent<AttackCore>();
 
             if (TPSpell)
                 TPSpell.SetHealthCore(gameManager.instance.playerScript);
             CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
+            if(attack)
+             gameManager.instance.PlayerController.updateFractureBar(attack.GetFractureDamage());
         }
         else if (currentSpellList.SecondarySpells[currentWeapon] == null)
         {

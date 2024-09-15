@@ -173,7 +173,7 @@ public class playerController : MonoBehaviour
                 UpgradedSpell = false;
             }
         }
-        else if(CurrentFractureBar >= MaxFractureResistance)
+        else if(CurrentFractureBar > MaxFractureResistance)
         {
             CurrentFractureBar=MaxFractureResistance;
             gameManager.instance.playerWeapon.MenuLock = true;
