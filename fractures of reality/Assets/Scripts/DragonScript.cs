@@ -27,6 +27,7 @@ public class DragonScript : MonoBehaviour
     [SerializeField] Renderer model;
     private List<DamageEngine.ElementType> typeAllowances = new List<DamageEngine.ElementType>();
     private bool currentlySummoning = false;
+    CapsuleCollider bodyCollider;
 
     [Header("Bullet Hell phase info")]
     [SerializeField] List<GameObject> NorthHazard = new List<GameObject>();
@@ -46,6 +47,7 @@ public class DragonScript : MonoBehaviour
     {
         healthCore = transform.GetComponent<DestructibleHealthCore>();
         currentType = healthCore.ElementType;
+        bodyCollider = GetComponent<CapsuleCollider>();
 
         SetSpells(normalSpells);
 
@@ -141,20 +143,19 @@ public class DragonScript : MonoBehaviour
     void TypeSwap()
     {
         //gets called by the animation
-        //dragon cannot be hurt
-        //check to see what the next type to use even is
-        //  set spells the dragon can use,
-        //  Change the dragons materials
 
-        //get a random position in your type allowance list, everything there is what's allowed
         //  check it's type and apply it's spells
 
-        int nextType = Random.Range(0, typeAllowances.Count);
+        //check to see what the next type to use even is
+        //get a random position in your type allowance list, everything there is what's allowed
+        DamageEngine.ElementType nextType = (DamageEngine.ElementType)Random.Range(0, typeAllowances.Count);
 
-        DamageEngine.ElementType idkman = (DamageEngine.ElementType)nextType;
-        switch (idkman)
+       // DamageEngine.ElementType idkman = (DamageEngine.ElementType)nextType;
+        switch (nextType)
         {
             case DamageEngine.ElementType.fire:
+        //  set spells the dragon can use,
+        //  Change the dragons materials
                 SetSpells(fireSpells);
                 break;
             case DamageEngine.ElementType.Lightning:
@@ -173,20 +174,9 @@ public class DragonScript : MonoBehaviour
                 SetSpells(normalSpells);
                 break;
         }
-        UpdateType(idkman);
+        UpdateType(nextType);
         canAttack = true;
 
-        // else
-        // {
-        //     UpdateType(DamageEngine.ElementType.Normal);
-        //     SetSpells(normalSpells);
-        //
-        // }
-
-        //TODO: add something to the healthcore that I can call here to change the icon on demand
-        //Debug.Log(healthCore.ElementType);
-        //dragon can now be hurt,
-        //go to next phase
     }
 
     //go to the next phase
@@ -208,11 +198,12 @@ public class DragonScript : MonoBehaviour
             case (int)BattlePhase.attack:
                 {
                     currentPhase++;
+                    //DisableInvuln();  disabling this because it's not fun.
                     break;
                 }
             case (int)BattlePhase.defend:
                 {
-                    //TypeSwap();
+                    //EnableInvuln();   disabling this because it's not fun.
                     bHellPhase = !bHellPhase;
                     currentPhase = 0;
                     break;
@@ -254,7 +245,7 @@ public class DragonScript : MonoBehaviour
 
     IEnumerator BulletHellPhase()
     {
-        //choose direction of hazard, Display the direction to the player
+        //choose direction of hazard
         int randomPos = Random.Range(0, (int)Time.time) % 3;
         hazardSafeZoneIterator = Random.Range(0, (int)Time.time) % NorthHazard.Count; // they all have the same amount of hazards, not the best solution
         switch (randomPos)
@@ -262,9 +253,13 @@ public class DragonScript : MonoBehaviour
             case 0:
                 {
                     //west
+                    //enable the wall of hazards
                     EnableHazardList(ref WestHazard);
+                    //notify the player where this is happening
                     westIndicator.SetActive(true);
+                    //delay
                     yield return new WaitForSeconds(timeBetweenIndicatorAndShot);
+                    //now shoot from that direction
                     StartCoroutine(HazardShoot(WestHazard));
                     yield return new WaitForSeconds(1);
                     DisableHazardList(ref WestHazard);
@@ -299,13 +294,7 @@ public class DragonScript : MonoBehaviour
                     break;
                 }
         }
-        //Short delay so the player isn't overwhelmed
-        //loop through each hazard spawner and shoot the first spell from the spell list Except for one so the player knows where to stand
-        //  first iterator of the one hazard to not shoot from
-        //  then loop through the list of hazard
-        //  at each hazard instantiate the first spell in the list
-
-        yield return new WaitForSeconds((phaseTimer/bHellTimesPerPhase) - 0.9f);
+        yield return new WaitForSeconds((phaseTimer / bHellTimesPerPhase) - 0.9f);
         currentlySummoning = false;
     }
 
@@ -332,8 +321,18 @@ public class DragonScript : MonoBehaviour
         for (int i = 0; i < hazardList.Count; i++)
         {
             if (i != hazardSafeZoneIterator)
-            Instantiate(aiCore.spellsList[0], hazardList[i].transform.position, hazardList[i].transform.localRotation);
+                Instantiate(aiCore.spellsList[0], hazardList[i].transform.position, hazardList[i].transform.localRotation);
         }
+    }
+
+    void EnableInvuln()
+    {
+        bodyCollider.enabled = true;
+    }
+
+    void DisableInvuln()
+    {
+        bodyCollider.enabled = false;
     }
 
     public void StartFinalBattle()
