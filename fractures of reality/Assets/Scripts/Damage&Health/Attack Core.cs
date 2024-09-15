@@ -35,9 +35,9 @@ public class AttackCore : MonoBehaviour
     [SerializeField] LayerMask ignoreMask;
     [Header("-----Environmental Attributes-----")]
     [Header("will not attack if 0 / is also used for infection")]
-    [Range(0, 1)][SerializeField] float AttackSpeed = 0.5f;
+    [Range(0, 1)][SerializeField] float AttackSpeed;
     [Header("-----Spell tracking-----")]
-    [Range(0, 1)][SerializeField] float TrackingStrength = 0f;
+    [Range(0, 1)][SerializeField] float TrackingStrength;
     DestructibleHealthCore SpawningEntity;
     int FinalTargetMask;
     public List<Collider> targets = new List<Collider>();
@@ -204,6 +204,13 @@ public class AttackCore : MonoBehaviour
             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, true), DamageEngine.instance.GetSpellVolume(true));
         }
     }
+
+    public float SpellTrackingStrength
+    {
+        get { return TrackingStrength; }
+        set { TrackingStrength = value; }
+    }
+
 
     private void OnTriggerExit(Collider other)
     {

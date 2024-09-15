@@ -28,6 +28,8 @@ public class AICore : MonoBehaviour
     [SerializeField] public List<GameObject> spellsList = new List<GameObject>();
     [SerializeField] public Transform shootPos;
     [SerializeField] public float attackRate;
+    [SerializeField] bool SpellTracking;
+    [SerializeField] float TrackingStrength;
 
     [Header(" --- Roaming --- ")]
     [SerializeField] public bool canRoam;
@@ -56,10 +58,13 @@ public class AICore : MonoBehaviour
 
     public void CastRandomSpell()
     {
+        AttackCore _currentSpell;
         //get random spell from list
         int thisSpell = Random.Range(0, spellsList.Count);
         //cast the random spell
-        Instantiate(spellsList[thisSpell], shootPos.position, shootPos.rotation);
+        _currentSpell= Instantiate(spellsList[thisSpell], shootPos.position, shootPos.rotation).GetComponent<AttackCore>();
+        if(SpellTracking) 
+           _currentSpell.SpellTrackingStrength = TrackingStrength;
     }
 
     public bool CanSeePlayer()
@@ -111,7 +116,7 @@ public class AICore : MonoBehaviour
         playerDirY.y = 0;
         Quaternion rotation = Quaternion.LookRotation(playerDirY);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * facePlayerSpeed);
-
+      
     }
 
     public void SmoothAnimations()
