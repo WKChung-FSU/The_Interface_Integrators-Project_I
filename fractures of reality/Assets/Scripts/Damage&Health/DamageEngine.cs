@@ -8,7 +8,7 @@ public class DamageEngine : MonoBehaviour
 
     public static DamageEngine instance;
     // will add more spell types if necessary
-    public enum ElementType { Normal, fire, Lightning, Ice, Earth,Water, Wind  }
+    public enum ElementType { Normal, fire, Lightning, Ice, Earth,Water, Wind_tempHeal  }
     public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeInitialization, teleportation }
     // struct framework for the damage multipliers, will eventually change it to a scriptable game object
     [System.Serializable]
@@ -190,7 +190,7 @@ public class DamageEngine : MonoBehaviour
                 CurrentMult = EarthMultiplier;
                 break;
 
-            case ElementType.Wind:
+            case ElementType.Wind_tempHeal:
                 CurrentMult = WindMultiplier;
                 break;
 
@@ -221,7 +221,7 @@ public class DamageEngine : MonoBehaviour
                 currentEffect = CurrentMult.earthMult;
                 damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
-            case ElementType.Wind:
+            case ElementType.Wind_tempHeal:
                 currentEffect = CurrentMult.windMult;
                 damageAmount = DamageMult(currentEffect, floatDamage);
                 break;
@@ -286,7 +286,7 @@ public class DamageEngine : MonoBehaviour
                 outClip = Output[4];
                 break;
 
-            case ElementType.Wind:
+            case ElementType.Wind_tempHeal:
                 outClip = Output[5];
                 break;
 

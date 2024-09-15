@@ -46,7 +46,7 @@ public class TypeIcon : MonoBehaviour
                     icon.GetComponent<Image>().sprite = earthIco;
                     break;
                 }
-            case DamageEngine.ElementType.Wind:
+            case DamageEngine.ElementType.Wind_tempHeal:
                 {
                     icon.GetComponent<Image>().sprite = windIco;
                     break;

@@ -12,7 +12,7 @@ public class AttackCore : MonoBehaviour
     [Header("-----MainAttributes-----")]
     [SerializeField] DamageEngine.ElementType attackElement;
     [SerializeField] DamageEngine.movementType movementType;
-    [Range(0, 100)][SerializeField] int damageAmount;
+    [Range(-20, 100)][SerializeField] int damageAmount;
     [Range(0, 100)][SerializeField] int CastFractureDamage;
     [Header("if 0 then it will not deSpawn")]
     [Range(0, 30)][SerializeField] float RemoveTime = 0;

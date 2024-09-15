@@ -40,7 +40,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
         //debug for now, btw enums are pain
         //AddSpell(DamageEngine.ElementType.Lightning);
-        for (int SpellType = 0; SpellType <(int)DamageEngine.ElementType.Wind; SpellType++)
+        for (int SpellType = 0; SpellType <(int)DamageEngine.ElementType.Wind_tempHeal; SpellType++)
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }

@@ -83,7 +83,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 
     private void OnDestroy()
     {
-        if (!gameManager.instance.stopSpawning && SpawnsItemOnDeath)
+        if (Hp==0 && SpawnsItemOnDeath)
             Instantiate(GETDeathSpawnItems(), transform.position + Vector3.up, transform.rotation);
     }
     void OnApplicationQuit()
@@ -250,7 +250,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
                     //  not anymore
                     break;
                 }
-            case DamageEngine.ElementType.Wind:
+            case DamageEngine.ElementType.Wind_tempHeal:
                 {
                     //if you are on fire
                     //  deal big damage
