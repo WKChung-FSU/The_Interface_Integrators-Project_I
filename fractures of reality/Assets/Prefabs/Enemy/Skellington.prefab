@@ -3490,6 +3490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 15
+  scoreValue: 100
   mObjectCollider: {fileID: 3683724265528122240}
   elementType: 0
   IsMandatory: 0

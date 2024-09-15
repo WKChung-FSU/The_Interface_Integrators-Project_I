@@ -55,6 +55,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
+    [SerializeField] TMP_Text highScoreValue;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject menuHUD;
     [SerializeField] Image healthBar;
@@ -234,6 +235,8 @@ public class gameManager : MonoBehaviour
     {
         statePause();
         menuActive = menuWin;
+        CalculateScore();
+        highScoreValue.text = score.ToString("f0");
         menuActive.SetActive(isPaused);
     }
 
@@ -291,6 +294,7 @@ public class gameManager : MonoBehaviour
 
     private void CalculateScore()
     {
+        score = score * (1 + crystalManifest.GetAmountOfCrystals());
         score = score + (timesDied * -100);
     }
     #endregion
