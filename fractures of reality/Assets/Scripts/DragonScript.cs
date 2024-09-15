@@ -42,6 +42,9 @@ public class DragonScript : MonoBehaviour
     [SerializeField] List<Transform> spawnLocations = new List<Transform>();
     [SerializeField] List<GameObject> spawnsPool = new List<GameObject>();
 
+    [Header("On Kill")]
+    [SerializeField] GameObject walkway;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,14 +80,14 @@ public class DragonScript : MonoBehaviour
             bHellPhase = true;
             //bullet-hell phase
         }
-
+        EnableInvuln();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (fightStarted == false)            uncomment this when you have a trigger for starting the fight
-        //    return;
+        if (fightStarted == false)   //uncomment this when you have a trigger for starting the fight
+            return;
 
         aiCore.SmoothAnimations();
 
@@ -327,16 +330,23 @@ public class DragonScript : MonoBehaviour
 
     void EnableInvuln()
     {
-        bodyCollider.enabled = true;
+        bodyCollider.enabled = false;
     }
 
     void DisableInvuln()
     {
-        bodyCollider.enabled = false;
+        bodyCollider.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        //This is where the dragon dies, allow the player to exit
+        walkway.SetActive(true);
     }
 
     public void StartFinalBattle()
     {
         fightStarted = true;
+        DisableInvuln();
     }
 }
