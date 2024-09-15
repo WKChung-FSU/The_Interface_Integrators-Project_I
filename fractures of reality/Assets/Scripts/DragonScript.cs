@@ -29,9 +29,13 @@ public class DragonScript : MonoBehaviour
     private bool currentlySummoning = false;
 
     [Header("Bullet Hell phase info")]
-    [SerializeField] List<Transform> NorthHazard = new List<Transform>();
-    [SerializeField] List<Transform> EastHazard = new List<Transform>();
-    [SerializeField] List<Transform> WestHazard = new List<Transform>();
+    [SerializeField] List<GameObject> NorthHazard = new List<GameObject>();
+    [SerializeField] List<GameObject> EastHazard = new List<GameObject>();
+    [SerializeField] List<GameObject> WestHazard = new List<GameObject>();
+    [SerializeField] GameObject northIndicator, eastIndicator, westIndicator;
+    int hazardSafeZoneIterator;
+    [SerializeField] float timeBetweenIndicatorAndShot;
+    [SerializeField] int bHellTimesPerPhase;
 
     [Header("Add phase information")]
     [SerializeField] List<Transform> spawnLocations = new List<Transform>();
@@ -93,7 +97,7 @@ public class DragonScript : MonoBehaviour
                 {
                     //attack the player
                     if (canAttack == true)
-                    StartCoroutine(aiCore.shoot());
+                        StartCoroutine(aiCore.shoot());
                     break;
                 }
             case (int)BattlePhase.defend:
@@ -102,11 +106,16 @@ public class DragonScript : MonoBehaviour
                     if (bHellPhase)
                     {
                         //logic for bullet hell phase
+                        if (currentlySummoning == false)
+                        {
+                            currentlySummoning = true;
+                            StartCoroutine(BulletHellPhase());
+                        }
                     }
                     else
                     {
                         //logic for summoning adds phase
-                        if(currentlySummoning == false)
+                        if (currentlySummoning == false)
                         {
                             currentlySummoning = true;
                             StartCoroutine(SummonFromPool());
@@ -184,8 +193,9 @@ public class DragonScript : MonoBehaviour
     IEnumerator NextPhase()
     {
         //isChangingPhases = true;
-        aiCore.animator.SetTrigger("NextPhase"); //NextPhase calls the animation that calls TypeSwap
         canAttack = false;
+        StopCoroutine(aiCore.shoot());
+        aiCore.animator.SetTrigger("NextPhase"); //NextPhase calls the animation that calls TypeSwap
 
         //figure out what phase you are currently in,
         //enter the next phase,
@@ -233,12 +243,97 @@ public class DragonScript : MonoBehaviour
 
     IEnumerator SummonFromPool()
     {
+        yield return new WaitForSeconds(1);
         for (int i = 0; i < spawnLocations.Count; i++)
         {
             Instantiate(spawnsPool[Random.Range(0, spawnsPool.Count)], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
         }
-        yield return new WaitForSeconds(phaseTimer/2);
+        yield return new WaitForSeconds(phaseTimer / 2);
         currentlySummoning = false;
+    }
+
+    IEnumerator BulletHellPhase()
+    {
+        //choose direction of hazard, Display the direction to the player
+        int randomPos = Random.Range(0, (int)Time.time) % 3;
+        hazardSafeZoneIterator = Random.Range(0, (int)Time.time) % NorthHazard.Count; // they all have the same amount of hazards, not the best solution
+        switch (randomPos)
+        {
+            case 0:
+                {
+                    //west
+                    EnableHazardList(ref WestHazard);
+                    westIndicator.SetActive(true);
+                    yield return new WaitForSeconds(timeBetweenIndicatorAndShot);
+                    StartCoroutine(HazardShoot(WestHazard));
+                    yield return new WaitForSeconds(1);
+                    DisableHazardList(ref WestHazard);
+                    westIndicator.SetActive(false);
+                    //maybe here play sounds and make pretty
+                    break;
+                }
+            case 1:
+                {
+                    //north
+                    EnableHazardList(ref NorthHazard);
+                    northIndicator.SetActive(true);
+                    yield return new WaitForSeconds(timeBetweenIndicatorAndShot);
+                    StartCoroutine(HazardShoot(NorthHazard));
+                    yield return new WaitForSeconds(1);
+                    DisableHazardList(ref NorthHazard);
+                    northIndicator.SetActive(false);
+                    //above
+                    break;
+                }
+            case 2:
+                {
+                    //east
+                    EnableHazardList(ref EastHazard);
+                    eastIndicator.SetActive(true);
+                    yield return new WaitForSeconds(timeBetweenIndicatorAndShot);
+                    StartCoroutine(HazardShoot(EastHazard));
+                    yield return new WaitForSeconds(1);
+                    DisableHazardList(ref EastHazard);
+                    eastIndicator.SetActive(false);
+                    //above
+                    break;
+                }
+        }
+        //Short delay so the player isn't overwhelmed
+        //loop through each hazard spawner and shoot the first spell from the spell list Except for one so the player knows where to stand
+        //  first iterator of the one hazard to not shoot from
+        //  then loop through the list of hazard
+        //  at each hazard instantiate the first spell in the list
+
+        yield return new WaitForSeconds((phaseTimer/bHellTimesPerPhase) - 0.9f);
+        currentlySummoning = false;
+    }
+
+    void EnableHazardList(ref List<GameObject> hazardList)
+    {
+
+        for (int i = 0; i < hazardList.Count; i++)
+        {
+            if (i != hazardSafeZoneIterator)
+                hazardList[i].SetActive(true);
+        }
+    }
+    void DisableHazardList(ref List<GameObject> hazardList)
+    {
+        for (int i = 0; i < hazardList.Count; i++)
+        {
+            hazardList[i].SetActive(false);
+        }
+    }
+
+    IEnumerator HazardShoot(List<GameObject> hazardList)
+    {
+        yield return new WaitForSeconds(1);
+        for (int i = 0; i < hazardList.Count; i++)
+        {
+            if (i != hazardSafeZoneIterator)
+            Instantiate(aiCore.spellsList[0], hazardList[i].transform.position, hazardList[i].transform.localRotation);
+        }
     }
 
     public void StartFinalBattle()
