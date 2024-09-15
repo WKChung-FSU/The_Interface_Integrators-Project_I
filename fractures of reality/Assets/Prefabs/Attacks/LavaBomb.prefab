@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 948573705619184506}
   - component: {fileID: 8665744176817869189}
   m_Layer: 7
-  m_Name: BIG FIREBALL
+  m_Name: LavaBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.85, y: 1.74, z: -20.28}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1612166617016378804}
   m_Father: {fileID: 0}
@@ -51,15 +51,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackElement: 1
-  movementType: 0
+  movementType: 4
   damageAmount: 8
   CastFractureDamage: 8
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
-  speed: 3
+  speed: 15
   rb: {fileID: 7520967230421969509}
   IsInfectious: 0
-  AoeObject: {fileID: 0}
+  AoeObject: {fileID: 3898865168374525701, guid: 2a703d1a24b90f347850f72cada745f4, type: 3}
   colliderRadius: 0
   TargetMask1:
     serializedVersion: 2
@@ -126,7 +126,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
