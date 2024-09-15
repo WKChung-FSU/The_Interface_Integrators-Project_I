@@ -4971,7 +4971,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5675089778262515172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f3a35aa59713c74cac09b96fc43257e, type: 3}
   m_Name: 
@@ -4998,7 +4998,8 @@ MonoBehaviour:
   attackElement: 2
   movementType: 5
   damageAmount: 0
-  RemoveTime: 0
+  CastFractureDamage: 0
+  RemoveTime: 0.01
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 20
   rb: {fileID: 1042421152863441195}
@@ -5204,7 +5205,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5675089778262515172}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

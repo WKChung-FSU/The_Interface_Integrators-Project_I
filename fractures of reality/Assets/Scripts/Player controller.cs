@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour
     [Range(1, 50)][SerializeField] int MaxFractureResistance=5;
     [Range(1, 10)][SerializeField] int fractureRegenAmount = 1;
     Dictionary<DamageEngine.ElementType, int> FractureBars=new Dictionary<DamageEngine.ElementType, int>();
-    int CurrentFractureBar;
+   
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
@@ -72,7 +72,7 @@ public class playerController : MonoBehaviour
                 Debug.LogError("Fracture bar has failed to build");
             }
         }
-        FractureListUpdate(DamageEngine.ElementType.Normal);
+       
     }
 
     public Dictionary<DamageEngine.ElementType, int> fractureBars
@@ -145,25 +145,14 @@ public class playerController : MonoBehaviour
         speed = baseSpeed;
     }
 
-    public void FractureListUpdate(DamageEngine.ElementType Element)
-    {
-        CurrentFractureBar=FractureBars[Element];
-        updateFractureBar();
-    }
-
-    public void FractureListUpdate()
-    {
-        FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()]=CurrentFractureBar;
-    }
-
 
     public void updateFractureBar(int amount=0)
     {
-        CurrentFractureBar += amount;
+        FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] += amount;
 
-        if (CurrentFractureBar <= 0 && IsFractured)
+        if (FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] <= 0 && IsFractured)
         {
-            CurrentFractureBar = 0;
+            FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] = 0;
             IsFractured = false;
             gameManager.instance.playerWeapon.MenuLock = false;
             gameManager.instance.playerScript.ElementType = gameManager.instance.playerWeapon.GetCurrentElement();
@@ -173,9 +162,9 @@ public class playerController : MonoBehaviour
                 UpgradedSpell = false;
             }
         }
-        else if(CurrentFractureBar > MaxFractureResistance)
+        else if (FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] > MaxFractureResistance)
         {
-            CurrentFractureBar=MaxFractureResistance;
+            FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] = MaxFractureResistance;
             gameManager.instance.playerWeapon.MenuLock = true;
             IsFractured = true;
             gameManager.instance.playerScript.ElementType =DamageEngine.ElementType.Normal;
@@ -188,7 +177,6 @@ public class playerController : MonoBehaviour
     }
     IEnumerator RegenFracture()
     {
-        FractureListUpdate();
         IsRegenFracture = true;
         foreach (DamageEngine.ElementType Type in Enum.GetValues(typeof(DamageEngine.ElementType)))
         {
@@ -198,7 +186,7 @@ public class playerController : MonoBehaviour
             else if(FractureBars[Type] > 0)
                 FractureBars[Type] -= fractureRegenAmount;
         }
-        FractureListUpdate(gameManager.instance.playerWeapon.GetCurrentElement());
+      
         yield return new WaitForSeconds(fractureRegenRate);
         IsRegenFracture=false;
     }

@@ -47,44 +47,55 @@ public class AttackCore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeInitialization)
+        switch (movementType)
         {
-            gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, false), DamageEngine.instance.GetSpellVolume(false));
-            rb.velocity = rb.transform.forward * speed;
-            if (RemoveTime != 0)
-            {
+            case DamageEngine.movementType.Spell:
+                case DamageEngine.movementType.AoeInitialization:
+                    case DamageEngine.movementType.teleportation:
+                gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, false), DamageEngine.instance.GetSpellVolume(false));
+                rb.velocity = rb.transform.forward * speed;
+                if (RemoveTime != 0)
+                {
                 Destroy(this.GetComponent<TrailRenderer>(), RemoveTime);
                 Destroy(gameObject, RemoveTime);
-            }
-        }
-        else if (movementType == DamageEngine.movementType.Spell_HitScan) {
+                }
+                break;
 
-            StartCoroutine(LightningSpell());
-        
+            case DamageEngine.movementType.Spell_HitScan:
+                StartCoroutine(LightningSpell());
+
+                break;
+
+            case DamageEngine.movementType.Environmental:
+                if (RemoveTime != 0)
+                {
+                    Destroy(gameObject, RemoveTime);
+                }
+                break;
+           
+                
+              
+                default:
+                Debug.LogError("How? movement type error...");
+                break;
         }
 
         if (IsInfectious)
             DamageEngine.instance.UpdateAOEs(1);
 
-        if (movementType == DamageEngine.movementType.Environmental)
-        {
-            if (RemoveTime != 0)
-            {
-                Destroy(gameObject, RemoveTime);
-            }
-        }
         FinalTargetMask = TargetMask1 | TargetMask2;
     }
     private void OnDestroy()
     {
         if (movementType == DamageEngine.movementType.teleportation)
         {
+            gameManager.instance.playerScript.TeleportTo(transform.position+(Vector3.up*2));
         }
 
 
         if (IsInfectious)
-            DamageEngine.instance.UpdateAOEs(-1);
-    }
+                DamageEngine.instance.UpdateAOEs(-1);
+        }
 
 
     private void Update()
@@ -138,7 +149,7 @@ public class AttackCore : MonoBehaviour
         {
             return;
         }
-        if (movementType == DamageEngine.movementType.teleportation&& gameManager.instance.playerWeapon.GetCurrentWeapon()!=this.gameObject)
+        if (movementType == DamageEngine.movementType.teleportation)
         {
             Destroy(gameObject);
         }

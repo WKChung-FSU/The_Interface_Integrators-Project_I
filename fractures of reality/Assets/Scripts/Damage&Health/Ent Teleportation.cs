@@ -34,6 +34,8 @@ public class EntTeleportation : MonoBehaviour
 
     public void Teleport(bool Holding)
     {
+
+
         RaycastHit reticlePos;
         if (Physics.Raycast(transform.position, Camera.main.transform.forward, out reticlePos, TeleportRange, environment))
         {

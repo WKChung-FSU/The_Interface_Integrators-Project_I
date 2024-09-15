@@ -303,37 +303,58 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     public void UpdateSpellList()
     {
-        UpdateSpellList(currentSpellList.PrimarySpells, true);
-        UpdateSpellList(currentSpellList.SecondarySpells, false);
+        UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost,currentSpellList.PrimaryFireRate,true);
+        UpdateSpellList(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost,currentSpellList.SecondaryFireRate, false);
     }
 
-    void UpdateSpellList(List<GameObject> list, bool isPrimary)
+    void UpdateSpellList(List<GameObject> list,List<int>SpellCost,List<float>spellFireRate, bool isPrimary)
     {
         List<GameObject> newSpells = new List<GameObject>();
-
+        List<int>NewSpellCost = new List<int>();
+        List<float>NewFireRate = new List<float>();
         for (int i = 0; i < list.Count; i++)
         {
             DamageEngine.ElementType SpellElement = list[i].GetComponent<AttackCore>().ElementType;
             if (UpgradedElements.Contains(SpellElement))
             {
                 if (isPrimary)
+                {
                     newSpells = upgradedSpells.PrimarySpells;
+                    NewSpellCost = upgradedSpells.PrimarySpellCost;
+                    NewFireRate = upgradedSpells.PrimaryFireRate;
+                }
                 else
+                {
                     newSpells = upgradedSpells.SecondarySpells;
+                    NewSpellCost = upgradedSpells.SecondarySpellCost;
+                    NewFireRate = upgradedSpells.SecondaryFireRate;
 
+                }
             }
-            else if (currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i])
+            else if ((currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i]) ||
+                (currentSpellList.SecondarySpells[i] != basicSpells.SecondarySpells[i]))
             {
                 if (isPrimary)
-                    newSpells = basicSpells.PrimarySpells;
-                else
-                    newSpells = basicSpells.SecondarySpells;
-            }
-            foreach (var spell in newSpells)
-            {
-                if (spell.GetComponent<AttackCore>().ElementType == SpellElement)
                 {
-                    list[i] = spell;
+                    newSpells = basicSpells.PrimarySpells;
+                    NewSpellCost = basicSpells.PrimarySpellCost;
+                    NewFireRate = basicSpells.PrimaryFireRate;
+                }
+                else
+                {
+                    newSpells = basicSpells.SecondarySpells;
+                    NewSpellCost = basicSpells.SecondarySpellCost;
+                    NewFireRate = basicSpells.SecondaryFireRate;
+                }
+            }
+            for (int Spell = 0; Spell < newSpells.Count; Spell++)
+            {
+                
+            if (newSpells[Spell].GetComponent<AttackCore>().ElementType == SpellElement)
+                {
+                    list[i] = newSpells[Spell];
+                    SpellCost[i]=NewSpellCost[Spell];
+                    spellFireRate[i]=NewFireRate[Spell];
                 };
             }
         }
