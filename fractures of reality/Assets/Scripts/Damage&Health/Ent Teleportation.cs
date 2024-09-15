@@ -40,7 +40,7 @@ public class EntTeleportation : MonoBehaviour
             if (Holding)
             {
                 ReticleRenderer.enabled = true;
-                reticle.transform.position = reticlePos.transform.position;
+                reticle.transform.position = reticlePos.point;
             }
             else
             {

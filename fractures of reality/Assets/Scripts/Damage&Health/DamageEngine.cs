@@ -50,7 +50,7 @@ public class DamageEngine : MonoBehaviour
     int currInfectAoeAmount;
 
     // remember that this is a instance
-    void Start()
+    void Awake()
     {
         instance = this;
     }
