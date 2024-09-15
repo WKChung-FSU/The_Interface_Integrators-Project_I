@@ -8414,7 +8414,7 @@ MonoBehaviour:
     waterMult: 0
   FireMultiplier:
     normalMult: 0
-    fireMult: 4
+    fireMult: 3
     lightningMult: 3
     iceMult: 1
     earthMult: 0
@@ -8423,7 +8423,7 @@ MonoBehaviour:
   LightningMultiplier:
     normalMult: 0
     fireMult: 2
-    lightningMult: 4
+    lightningMult: 3
     iceMult: 3
     earthMult: 1
     windMult: 3

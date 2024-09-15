@@ -4933,7 +4933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191993395568796945}
-  - component: {fileID: 4917127030048991013}
+  - component: {fileID: 3595919635132942729}
   - component: {fileID: 1422008966665230101}
   - component: {fileID: 5816309458070177822}
   - component: {fileID: 2026558866931064036}
@@ -4964,7 +4964,7 @@ Transform:
   - {fileID: 1852871918227747134}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4917127030048991013
+--- !u!114 &3595919635132942729
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4977,7 +4977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransportObject: {fileID: 0}
-  TeleportRange: 10
+  TeleportRange: 100
   environment:
     serializedVersion: 2
     m_Bits: 256
@@ -4997,7 +4997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 2
   movementType: 5
-  damageAmount: 2
+  damageAmount: 0
   RemoveTime: 0
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 20
@@ -5017,6 +5017,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   AttackSpeed: 1
+  TrackingStrength: 0
   targets: []
 --- !u!33 &5816309458070177822
 MeshFilter:

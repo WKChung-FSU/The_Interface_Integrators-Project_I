@@ -33,21 +33,21 @@ public class AttackCore : MonoBehaviour
     [Header("-----Environmental Attributes-----")]
     [Header("will not attack if 0 / is also used for infection")]
     [Range(0, 1)][SerializeField] float AttackSpeed = 0.5f;
-
+    [Header("-----Spell tracking-----")]
+    [Range(0, 1)][SerializeField] float TrackingStrength = 0f;
     DestructibleHealthCore SpawningEntity;
     int FinalTargetMask;
     public List<Collider> targets = new List<Collider>();
     bool Attacking;
-    bool Searching;
+    bool IsTracking;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-
         if (movementType == DamageEngine.movementType.Spell || movementType == DamageEngine.movementType.AoeInitialization)
         {
             gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, false), DamageEngine.instance.GetSpellVolume(false));
-            rb.velocity = transform.forward * speed;
+            rb.velocity = rb.transform.forward * speed;
             if (RemoveTime != 0)
             {
                 Destroy(this.GetComponent<TrailRenderer>(), RemoveTime);
@@ -86,19 +86,32 @@ public class AttackCore : MonoBehaviour
 
     private void Update()
     {
-        if ((!Attacking && AttackSpeed != 0) && movementType == DamageEngine.movementType.Environmental)
-        {
-            StartCoroutine(environmentalAttack());
-        }
 
-        if (movementType == DamageEngine.movementType.teleportation)
+        switch (movementType)
         {
-            if (this.gameObject != gameManager.instance.playerWeapon.GetCurrentWeapon(true))
-            {
-                Destroy(this.gameObject);
-            }
-        }
+            default:
 
+
+                break;
+
+            case DamageEngine.movementType.Spell:
+                if(!IsTracking)
+                    StartCoroutine(SpellTracking());
+                break;
+            case DamageEngine.movementType.Environmental:
+                if (!Attacking && AttackSpeed != 0)
+                {
+                    StartCoroutine(environmentalAttack());
+                }
+                break;
+            case DamageEngine.movementType.teleportation:
+                if (this.gameObject != gameManager.instance.playerWeapon.GetCurrentWeapon(true))
+                {
+                    Debug.Log(this.gameObject);
+                    //Destroy(this.gameObject);
+                }
+                break;
+        }
 
         if (IsInfectious)
         {
@@ -191,6 +204,17 @@ public class AttackCore : MonoBehaviour
         return;
     }
 
+   IEnumerator SpellTracking()
+    {
+        IsTracking=true;
+        Quaternion currentRotation = rb.rotation;
+        
+        Quaternion PlayerAngle = Quaternion.LookRotation(gameManager.instance.player.transform.position - gameObject.transform.position);
+        rb.rotation= Quaternion.Lerp(currentRotation, PlayerAngle,TrackingStrength);
+        rb.velocity = rb.transform.forward * speed;
+        yield return new WaitForSeconds(0.1f);
+        IsTracking=false;
+    }
     IEnumerator environmentalAttack()
     {
         Attacking = true;

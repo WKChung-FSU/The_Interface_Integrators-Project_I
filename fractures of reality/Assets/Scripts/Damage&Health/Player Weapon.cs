@@ -29,7 +29,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     bool SwitchingWeapon;
     int CurrAmmo;
     int currentWeapon;
-    EntTeleportation TPSpell;
+    [SerializeField] EntTeleportation TPSpell;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }
+
+      
+
     }
 
     // Update is called once per frame
@@ -128,10 +131,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
     public GameObject GetCurrentWeapon(bool Secondary = false)
     {
+        Debug.Log(currentSpellList.PrimarySpells[currentWeapon]);
+        Debug.Log(currentSpellList.SecondarySpells[currentWeapon]);
         if (!Secondary)
             return currentSpellList.PrimarySpells[currentWeapon];
         else
             return currentSpellList.SecondarySpells[currentWeapon];
+       
+
     }
 
     public DamageEngine.ElementType GetCurrentElement()
