@@ -4851,6 +4851,10 @@ PrefabInstance:
       value: 1.313
       objectReference: {fileID: 0}
     - target: {fileID: 3302662432230603298, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: scoreValue
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3302662432230603298, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: elementType
       value: 4
       objectReference: {fileID: 0}

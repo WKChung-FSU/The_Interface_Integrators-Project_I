@@ -144,6 +144,7 @@ public class DamageEngine : MonoBehaviour
                                 //remove it from the crowd list
                                 gameManager.instance.RemoveFromPlayerMeleeRangeList(healthCore.gameObject);
                             }
+                            gameManager.instance.AddScore(healthCore.GetScoreValue());
                             Destroy(healthCore.gameObject);
                         }
                     }

@@ -4,13 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
     public Slider slider;
     public GameObject LoadingScreen;
-    public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects}
+    public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects }
     [SerializeField] GameGoal CurrentGoal;
 
 
@@ -36,6 +37,9 @@ public class gameManager : MonoBehaviour
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
 
+    private int score;
+    private int timesDied;
+
     [SerializeField] int enemiesAllowedToCrowdThePlayer = 3;
     private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
 
@@ -47,7 +51,7 @@ public class gameManager : MonoBehaviour
     #endregion
 
     #region UI
-   [Header("----- Ui settings/Objects -----")]
+    [Header("----- Ui settings/Objects -----")]
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
     [SerializeField] GameObject menuWin;
@@ -60,16 +64,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text ammoCountText;
     [SerializeField] TMP_Text enemyCountText;
     [SerializeField] TMP_Text enemyCountValue;
-    [SerializeField] string[] goalText=new string[3];
+    [SerializeField] string[] goalText = new string[3];
     [SerializeField] Image fractureBar;
     public bool isPaused;
     public bool hudEnabled;
 
-    
+
 
     [Header("----- sounds -----")]
     [SerializeField] AudioSource AudioSource;
-    
+
     bool playerDead;
 
     //weapon icons
@@ -77,6 +81,7 @@ public class gameManager : MonoBehaviour
 
     #endregion
     bool StopSpawning;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -84,18 +89,18 @@ public class gameManager : MonoBehaviour
         StopSpawning = false;
         instance = this;
         player = GameObject.FindWithTag("Player");
-        
+
         playerScript = player.GetComponent<DestructibleHealthCore>();
-        CharacterController= player.GetComponent<CharacterController>();
+        CharacterController = player.GetComponent<CharacterController>();
         playerWeapon = player.GetComponent<PlayerWeapon>();
-        playerController=player.GetComponent<playerController>();
+        playerController = player.GetComponent<playerController>();
         hudEnabled = true;
         startPosition = player.transform.position;
         GoalTextUpdate();
         enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
 
         //crystalManifest.ResetManifest();
-       
+
     }
     private void Start()
     {
@@ -122,7 +127,7 @@ public class gameManager : MonoBehaviour
                 stateUnPaused();
                 EnableHUD();
             }
-            
+
         }
         if (Input.GetButtonDown("WeaponMenu"))
         {
@@ -152,9 +157,9 @@ public class gameManager : MonoBehaviour
         //{
         //    UpdateWeaponIconUI();
         //}
-       
+
     }
-     void GoalTextUpdate()
+    void GoalTextUpdate()
     {
         switch (CurrentGoal)
         {
@@ -195,7 +200,7 @@ public class gameManager : MonoBehaviour
         Debug.Log("un Paused");
     }
 
-    public void updateGameGoal(int amount=0)
+    public void updateGameGoal(int amount = 0)
     {
         GoalCount += amount;
 
@@ -210,7 +215,7 @@ public class gameManager : MonoBehaviour
                     youWin();
                     break;
                 case GameGoal.AcquireObjects:
-                   gameGoal(GameGoal.ReachGoal);
+                    gameGoal(GameGoal.ReachGoal);
                     break;
             }
         }
@@ -255,13 +260,14 @@ public class gameManager : MonoBehaviour
         //disable all weapon icons first
         wCurrentSpellIcon.EnableElementTypeGraphic(weapon.ElementType);
     }
-   
+
 
     public void Respawn(bool trueRespawn = false)
     {
         playerScript.TeleportTo(startPosition);
         //clear the crowd list
         enemiesInMeleeRangeOfPlayer.Clear();
+        timesDied++;
         if (trueRespawn == true)
         {
             playerWeapon.ReloadAmmo();
@@ -270,6 +276,24 @@ public class gameManager : MonoBehaviour
             playerDead = false;
         }
     }
+
+    #region Score methods
+    public void AddScore(int add)
+    {
+        score += add;
+    }
+
+    private void ResetScore()
+    {
+        score = 0;
+        timesDied = 0;
+    }
+
+    private void CalculateScore()
+    {
+        score = score + (timesDied * -100);
+    }
+    #endregion
 
     #region RadMenu
     void AddEntry(Texture pIcon)
@@ -300,7 +324,7 @@ public class gameManager : MonoBehaviour
 
             Destroy(entry);
         }
-       entries.Clear();
+        entries.Clear();
     }
     void rearrange()
     {
@@ -315,9 +339,9 @@ public class gameManager : MonoBehaviour
     }
 
 
-#endregion
-#region Getters and Setter
-public Vector3 StartPosition()
+    #endregion
+    #region Getters and Setter
+    public Vector3 StartPosition()
     {
         return startPosition;
     }
@@ -337,11 +361,11 @@ public Vector3 StartPosition()
         lastCheckPoint = checkpoint;
     }
 
-    public bool PlayerDead 
+    public bool PlayerDead
     {
         get
         {
-        return playerDead; 
+            return playerDead;
         }
         set
         {
@@ -372,7 +396,7 @@ public Vector3 StartPosition()
 
     public bool CrowdListContains(GameObject other)
     {
-        if(enemiesInMeleeRangeOfPlayer.Contains(other))
+        if (enemiesInMeleeRangeOfPlayer.Contains(other))
             return true;
         else
             return false;
@@ -391,12 +415,12 @@ public Vector3 StartPosition()
     public bool stopSpawning
     {
         get { return StopSpawning; }
-        set {StopSpawning = value;}
+        set { StopSpawning = value; }
     }
 
     public CharacterController PlayerCController
     {
-    get { return CharacterController; } 
+        get { return CharacterController; }
     }
     public playerController PlayerController
     {
@@ -405,7 +429,7 @@ public Vector3 StartPosition()
     #endregion
 
 
-    public void playAudio(AudioClip audio,float volume=0.5f)
+    public void playAudio(AudioClip audio, float volume = 0.5f)
     {
         AudioSource.PlayOneShot(audio, volume);
     }
@@ -439,7 +463,7 @@ public Vector3 StartPosition()
     void UpdateFractureBar()
     {
         playerController PlControl = player.GetComponent<playerController>();
-        fractureBar.fillAmount= ((float) PlControl.fractureBars[playerWeapon.GetCurrentElement()]/ (float)PlControl.getMaxFractureAmount());
+        fractureBar.fillAmount = ((float)PlControl.fractureBars[playerWeapon.GetCurrentElement()] / (float)PlControl.getMaxFractureAmount());
     }
 
 

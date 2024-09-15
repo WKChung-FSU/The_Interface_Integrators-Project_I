@@ -341,6 +341,7 @@ public class DragonScript : MonoBehaviour
     private void OnDestroy()
     {
         //This is where the dragon dies, allow the player to exit
+        if (walkway != null)
         walkway.SetActive(true);
     }
 

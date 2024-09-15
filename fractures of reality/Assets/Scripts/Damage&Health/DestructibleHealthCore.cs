@@ -11,9 +11,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 {
-    
+
     public enum statusEffect { normal, fireBurning, LightningShocked, IceFrozen, Earth, Windborn, WaterWet }
     [Range(0, 500)][SerializeField] public int Hp = 100;
+    [SerializeField] int scoreValue;
     [SerializeField] Collider mObjectCollider;
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
@@ -82,7 +83,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 
     private void OnDestroy()
     {
-        if (!gameManager.instance.stopSpawning&&SpawnsItemOnDeath)
+        if (!gameManager.instance.stopSpawning && SpawnsItemOnDeath)
             Instantiate(GETDeathSpawnItems(), transform.position + Vector3.up, transform.rotation);
     }
     void OnApplicationQuit()
@@ -350,15 +351,18 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 
     IEnumerator SlowPlayer()
     {
-        player.SetSprintMod(1);
-        player.SetBaseSpeed(player.GetBaseSpeed() / 10);
-        yield return new WaitForSeconds(5);
-        player.SetBaseSpeed(player.GetOriginalSpeed());
-        if (Input.GetButton("Sprint"))
+        if (player != null)
         {
-            player.SetBaseSpeed(player.GetBaseSpeed() * 2);
+            player.SetSprintMod(1);
+            player.SetBaseSpeed(player.GetBaseSpeed() / 10);
+            yield return new WaitForSeconds(5);
+            player.SetBaseSpeed(player.GetOriginalSpeed());
+            if (Input.GetButton("Sprint"))
+            {
+                player.SetBaseSpeed(player.GetBaseSpeed() * 2);
+            }
+            player.SetSprintMod(sprintModCache);
         }
-        player.SetSprintMod(sprintModCache);
     }
 
 
@@ -421,20 +425,20 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
         if (Location == Vector3.zero)
         {
             Debug.LogError("Teleport location Failed");
-        return;
+            return;
         }
         if (isPlayer)
         {
-           gameManager.instance.PlayerCController.enabled = false;
+            gameManager.instance.PlayerCController.enabled = false;
             gameManager.instance.PlayerCController.transform.position = Location;
             gameManager.instance.PlayerCController.enabled = true;
         }
-        else 
-        { 
-        
-        
-        
-        
+        else
+        {
+
+
+
+
         }
 
 
@@ -453,5 +457,10 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
     public void SetColorOriginal(Material material)
     {
         colorOriginal = material.color;
+    }
+
+    public int GetScoreValue()
+    {
+        return scoreValue;
     }
 }
