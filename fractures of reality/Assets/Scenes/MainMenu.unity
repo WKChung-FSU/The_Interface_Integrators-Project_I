@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7315470601531378724, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
@@ -491,6 +491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1240641930483488278, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1373205653042205255, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -582,6 +586,10 @@ PrefabInstance:
     - target: {fileID: 7843362821959576784, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: PauseLock
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877906759116302285, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

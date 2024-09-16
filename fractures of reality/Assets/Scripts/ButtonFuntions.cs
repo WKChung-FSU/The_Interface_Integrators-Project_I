@@ -72,8 +72,14 @@ public class ButtonFunctions : MonoBehaviour
     {
         StartCoroutine(LoadAsync(sceneIndex));
     }
+    public void NewGame(int sceneIndex)
+    { 
+        StartCoroutine(LoadAsync(sceneIndex));
+        gameManager.instance.PlayerController.PlayerKeys.Clear();
 
-    public IEnumerator LoadAsync(int sceneIndex)
+    }
+
+public IEnumerator LoadAsync(int sceneIndex)
     {
         gameManager.instance.LoadingScreen.SetActive(true);
         yield return new WaitForSecondsRealtime(3.0f);
