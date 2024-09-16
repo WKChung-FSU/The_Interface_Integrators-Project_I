@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 50
+  scoreValue: 0
   mObjectCollider: {fileID: 5537295069211213221}
   elementType: 0
   IsMandatory: 0
@@ -307,6 +308,7 @@ MonoBehaviour:
   jumpMax: 2
   jumpSpeed: 10
   gravity: 28
+  PlayerPocket: {fileID: 11400000, guid: fe3a8f32349230e4f8245ef6a5e77d4f, type: 2}
   AudioJump:
   - {fileID: 8300000, guid: 693be1807adca0e40bc288fdc62a2d38, type: 3}
   - {fileID: 8300000, guid: e4222a72abb32be4ea589e67ebc887bf, type: 3}
@@ -327,7 +329,6 @@ MonoBehaviour:
   MaxFractureResistance: 20
   fractureRegenAmount: 1
   isSprinting: 0
-  Keys: []
 --- !u!114 &7315470601531378724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +352,7 @@ MonoBehaviour:
   currentSpellList: {fileID: 11400000, guid: 0fb4bec252ead694e98298d0fdbf897a, type: 2}
   MaxAmmo: 20
   UpgradedElements: 
+  TPSpell: {fileID: 0}
 --- !u!120 &8967944993132212243
 LineRenderer:
   serializedVersion: 2

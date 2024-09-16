@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpMax;
     [SerializeField] int jumpSpeed;
     [SerializeField] int gravity;
-    
+    [SerializeField] KeyPocket PlayerPocket;
     [Header("-----Player Sounds-----")]
     [SerializeField] AudioClip[] AudioJump;
     [Range(0, 1)][SerializeField] float AudioJumpVol = 0.5f;
@@ -39,7 +39,6 @@ public class playerController : MonoBehaviour
     bool IsFractured;
     bool IsRegenFracture;
     bool UpgradedSpell=false;
-     List<KeySystem> Keys = new List<KeySystem>();
 
     // Start is called before the first frame update
     void Start()
@@ -53,12 +52,12 @@ public class playerController : MonoBehaviour
     {
         get
         {
-            return Keys;
+            return PlayerPocket.AccessKeys;
         }
 
         set 
-        { 
-        Keys= value;
+        {
+            PlayerPocket.AccessKeys = value;
         }
     }
 
