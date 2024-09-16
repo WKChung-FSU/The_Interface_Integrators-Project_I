@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7446007077731808715}
-  - component: {fileID: 1889614445350510251}
+  - component: {fileID: 5457331692746655213}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2918392418486299229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1889614445350510251
+--- !u!82 &5457331692746655213
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,12 @@ AudioSource:
   m_GameObject: {fileID: 5529053696606743938}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6073985239166611707, guid: f3ebc06ebf127424390102422adb3cb5, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 27373aa007794344d9022611894a0f1c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -169,7 +169,7 @@ AudioSource:
   m_GameObject: {fileID: 6499047214802941538}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 6073985239166611707, guid: f3ebc06ebf127424390102422adb3cb5, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -265,7 +265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2918392418486299229}
-  - component: {fileID: 7862742911180452961}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -290,23 +289,3 @@ Transform:
   - {fileID: 8658666102888316505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7862742911180452961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7955335909431952859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acc7b93394e161d458fd62bb035853de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  theme: {fileID: 1889614445350510251}
-  SFXSource: {fileID: 4302850113659636563}
-  background: {fileID: 8300000, guid: 27373aa007794344d9022611894a0f1c, type: 3}
-  death: {fileID: 0}
-  checkpoint: {fileID: 0}
-  wallTouch: {fileID: 0}
-  spellpickup: {fileID: 0}
-  bookPickup: {fileID: 0}
