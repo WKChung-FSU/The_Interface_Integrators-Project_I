@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellList:
   - {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}
+  - {fileID: 1524407541534914017, guid: b005f6c9d51c06a488ca7caef59c85bc, type: 3}
   dragonMaterialOfThisType: {fileID: 2100000, guid: 764634202fdad124cae9c1508f34abba, type: 2}
