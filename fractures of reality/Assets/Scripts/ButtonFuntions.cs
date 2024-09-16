@@ -77,12 +77,10 @@ public class ButtonFunctions : MonoBehaviour
     {
         gameManager.instance.LoadingScreen.SetActive(true);
         yield return new WaitForSecondsRealtime(3.0f);
+        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        Time.timeScale = 1f;
         float progress = Mathf.Clamp01(operation.progress / 0.9f);
         gameManager.instance.slider.value = progress;
-
-
-
-
     }
 }

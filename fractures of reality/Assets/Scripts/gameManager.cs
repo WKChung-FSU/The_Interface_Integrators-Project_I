@@ -13,7 +13,7 @@ public class gameManager : MonoBehaviour
     public GameObject LoadingScreen;
     public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects }
     [SerializeField] GameGoal CurrentGoal;
-
+    [SerializeField] bool PauseLock;
 
     #region RadialMenu
 
@@ -107,6 +107,10 @@ public class gameManager : MonoBehaviour
     }
     private void Start()
     {
+        if (PauseLock)
+        {
+            StartCoroutine(MainMenu());
+        }
         entries = new List<RadialMenuEntry>();
     }
     private void OnApplicationQuit()
@@ -116,7 +120,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel")&&!PauseLock)
         {
             if (menuActive == null)
             {
@@ -282,6 +286,12 @@ public class gameManager : MonoBehaviour
         }
     }
 
+
+    IEnumerator MainMenu()
+    {
+        yield return new WaitForSeconds(0.01f);
+        statePause();
+    }
     #region Score methods
     public void AddScore(int add)
     {
@@ -361,7 +371,7 @@ public class gameManager : MonoBehaviour
 
 
     #endregion
-    #region Getters and Setter
+     #region Getters and Setter
     public Vector3 StartPosition()
     {
         return startPosition;
