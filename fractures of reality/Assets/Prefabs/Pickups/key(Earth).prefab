@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &545682501367403885
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.290333
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 29.676863
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.126694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a578616d3f0c37544b387e2647b00a6c, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 87aa65d42c6f2084080e690e3cb8ca49, type: 2}
+    - target: {fileID: 919132149155446097, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      propertyPath: m_Name
+      value: key(Earth)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: -8687935810130444562}
+  m_SourcePrefab: {fileID: 100100000, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+--- !u!1 &816223049084545084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c6f0e263eb1c1c448abc86945ef2577, type: 3}
+  m_PrefabInstance: {fileID: 545682501367403885}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8687935810130444562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816223049084545084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df2c3ed7c6d65f4e882fd79dc2ced2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keySystem: {fileID: 11400000, guid: 2e7d7ad7c7a0be44da6ac26ecba3092c, type: 2}
+  IsKey: 1
+  IsGlyph: 0
+  boxCollider: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  OpenTime: 1
+  doorSounds: []
+  doorSoundVol: 0.5
