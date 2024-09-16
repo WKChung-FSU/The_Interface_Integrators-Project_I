@@ -75,15 +75,14 @@ public class ButtonFunctions : MonoBehaviour
 
     public IEnumerator LoadAsync(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
         gameManager.instance.LoadingScreen.SetActive(true);
+        yield return new WaitForSecondsRealtime(3.0f);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        float progress = Mathf.Clamp01(operation.progress / 0.9f);
+        gameManager.instance.slider.value = progress;
 
-        while (!operation.isDone)
-        {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
-            gameManager.instance.slider.value = progress;
-            yield return null;
-        }
+
+
+
     }
 }
