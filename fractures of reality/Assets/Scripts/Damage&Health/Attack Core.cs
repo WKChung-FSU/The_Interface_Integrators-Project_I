@@ -72,6 +72,7 @@ public class AttackCore : MonoBehaviour
                     Destroy(gameObject, RemoveTime);
                 }
                 break;
+
                 default:
                 Debug.Log("How? movement type error...");
                 break;

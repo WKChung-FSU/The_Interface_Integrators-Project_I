@@ -141,8 +141,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
     public GameObject GetCurrentWeapon(bool Secondary = false)
     {
-        Debug.Log(currentSpellList.PrimarySpells[currentWeapon]);
-        Debug.Log(currentSpellList.SecondarySpells[currentWeapon]);
         if (!Secondary)
             return currentSpellList.PrimarySpells[currentWeapon];
         else
