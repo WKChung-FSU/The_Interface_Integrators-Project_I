@@ -28,7 +28,8 @@ public class playerController : MonoBehaviour
     [Range(0, 10)][SerializeField] float fractureRegenRate =0.5f;
     [Range(1, 50)][SerializeField] int MaxFractureResistance=5;
     [Range(1, 10)][SerializeField] int fractureRegenAmount = 1;
-    Dictionary<DamageEngine.ElementType, int> FractureBars=new Dictionary<DamageEngine.ElementType, int>();
+    [Range(1, 10)][SerializeField] int FractureFireRateReduction;
+   Dictionary<DamageEngine.ElementType, int> FractureBars=new Dictionary<DamageEngine.ElementType, int>();
    
     Vector3 move;
     Vector3 playerVel;
@@ -199,6 +200,8 @@ public class playerController : MonoBehaviour
         {
             FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] = 0;
             IsFractured = false;
+            //gameManager.instance.playerWeapon.PrimaryFireRate *= FractureFireRateReduction;
+            //gameManager.instance.playerWeapon.SecondaryFireRate *= FractureFireRateReduction;
             gameManager.instance.playerWeapon.MenuLock = false;
             gameManager.instance.playerScript.ElementType = gameManager.instance.playerWeapon.GetCurrentElement();
 
@@ -213,6 +216,8 @@ public class playerController : MonoBehaviour
             gameManager.instance.playerWeapon.MenuLock = true;
             IsFractured = true;
             gameManager.instance.playerScript.ElementType =DamageEngine.ElementType.Normal;
+            //gameManager.instance.playerWeapon.PrimaryFireRate /= FractureFireRateReduction;
+            //gameManager.instance.playerWeapon.SecondaryFireRate /= FractureFireRateReduction;
             if (gameManager.instance.playerWeapon.UpgradedList().Contains(gameManager.instance.playerWeapon.GetCurrentElement()))
             {
                 gameManager.instance.playerWeapon.UpgradedList(gameManager.instance.playerWeapon.GetCurrentElement(), false);

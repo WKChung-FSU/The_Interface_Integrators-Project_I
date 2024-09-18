@@ -194,7 +194,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             Debug.Log("Something Failed in ShootPrimary");
         }
         AmmoTest();
-        yield return new WaitForSeconds(currentSpellList.PrimaryFireRate[currentWeapon]);
+        yield return new WaitForSeconds(PrimeFireRate);
         isShooting = false;
     }
 
@@ -223,7 +223,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             Debug.Log("Something Failed in ShootSecondary");
         }
         AmmoTest();
-        yield return new WaitForSeconds(currentSpellList.SecondaryFireRate[currentWeapon]);
+        yield return new WaitForSeconds(SecondFireRate);
         isShooting = false;
 
     }

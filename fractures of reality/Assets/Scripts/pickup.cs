@@ -18,9 +18,6 @@ public class pickup : MonoBehaviour
     public int AmmoBonus = 10;
 
 
-    [SerializeField] bool Health = true;
-
-
     private void OnTriggerEnter(Collider other)
     {
         PlayerWeapon weapon = other.GetComponent<PlayerWeapon>();
