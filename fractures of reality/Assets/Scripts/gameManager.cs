@@ -37,8 +37,6 @@ public class gameManager : MonoBehaviour
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
 
-    private int score;
-    private int timesDied;
 
     [SerializeField] int enemiesAllowedToCrowdThePlayer = 3;
     private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
@@ -54,8 +52,6 @@ public class gameManager : MonoBehaviour
     [Header("----- Ui settings/Objects -----")]
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] TMP_Text highScoreValue;
     [SerializeField] GameObject toolTipPanel;
     [SerializeField] TMP_Text toolTipText;
     [SerializeField] GameObject menuLose;
@@ -82,6 +78,36 @@ public class gameManager : MonoBehaviour
 
     //weapon icons
     [SerializeField] TypeIcon wCurrentSpellIcon;
+
+    #endregion
+
+    #region ScoreInfo
+    [Header("Score stuff")]
+    [SerializeField] GameObject menuWin;
+    [SerializeField] float nextScoreDelay = 0.5f;
+    //TODO: sound effect here
+    [SerializeField] GameObject SkeletonsKilledLabel;
+    [SerializeField] TMP_Text SkeletonsKilledAmount;
+    [SerializeField] TMP_Text SkeletonsKilledValue;
+    [SerializeField] GameObject BeholderKilledLabel;
+    [SerializeField] TMP_Text BeholderKilledAmount;
+    [SerializeField] TMP_Text BeholderKilledValue;
+    [SerializeField] GameObject NecromancersKilledLabel;
+    [SerializeField] TMP_Text NecromancersKilledAmount;
+    [SerializeField] TMP_Text NecromancersKilledValue;
+    [SerializeField] GameObject DragonKilledLabel;
+    [SerializeField] TMP_Text DragonKilledAmount;
+    [SerializeField] TMP_Text DragonKilledValue;
+    [SerializeField] GameObject powerMultLabel;
+    [SerializeField] GameObject CrystalsDestroyedLabel;
+    [SerializeField] TMP_Text CrystalsDestroyedAmount;
+    [SerializeField] TMP_Text CrystalsDestroyedValue;
+    [SerializeField] GameObject playerDeathsLabel;
+    [SerializeField] TMP_Text playerDeathsAmount;
+    [SerializeField] TMP_Text playerDeathsValue;
+    [SerializeField] TMP_Text totalScoreValue;
+    private int score;
+    private int timesDied;
 
     #endregion
     bool StopSpawning;
@@ -243,7 +269,7 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         CalculateScore();
-        highScoreValue.text = score.ToString("f0");
+        totalScoreValue.text = score.ToString("f0");
         menuActive.SetActive(isPaused);
     }
 
@@ -307,8 +333,50 @@ public class gameManager : MonoBehaviour
 
     private void CalculateScore()
     {
+        //first disable the buttons at the bottom
+        //also maybe remove controls from the player?
+        //Time.timeScale = 1f;
+        StartCoroutine(ShowAllStats());
         score = score * (1 + crystalManifest.GetAmountOfCrystals());
         score = score + (timesDied * -100);
+    }
+    IEnumerator ShowAllStats()
+    {
+        yield return new WaitForSecondsRealtime(nextScoreDelay);
+        StartCoroutine(ShowStat(SkeletonsKilledLabel, SkeletonsKilledAmount, SkeletonsKilledValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        StartCoroutine(ShowStat(BeholderKilledLabel, BeholderKilledAmount, BeholderKilledValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        StartCoroutine(ShowStat(NecromancersKilledLabel, NecromancersKilledAmount, NecromancersKilledValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        StartCoroutine(ShowStat(DragonKilledLabel, DragonKilledAmount, DragonKilledValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        powerMultLabel.SetActive(true);
+        yield return new WaitForSecondsRealtime(nextScoreDelay);
+        StartCoroutine(ShowStat(CrystalsDestroyedLabel, CrystalsDestroyedAmount, CrystalsDestroyedValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        StartCoroutine(ShowStat(playerDeathsLabel, playerDeathsAmount, playerDeathsValue));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+
+        //crystal info
+
+        //players die
+
+        //flash the total
+        //enable those last few buttons
+
+    }
+    IEnumerator ShowStat(GameObject label, TMP_Text amount, TMP_Text value)
+    {
+        //the part where the point amount for this enemy is added up
+        //I would like this to start at 0 and then build up to (value) in a short duration over time
+        //yield return new WaitForSeconds(nextScoreDelay);
+        label.SetActive(true); 
+        yield return new WaitForSecondsRealtime(nextScoreDelay);
+        amount.enabled = true;
+        yield return new WaitForSecondsRealtime(nextScoreDelay);
+        value.enabled = true;
+        yield return new WaitForSecondsRealtime(nextScoreDelay);
     }
     #endregion
 
@@ -495,39 +563,39 @@ public class gameManager : MonoBehaviour
     void UpdateFractureBar()
     {
         Color BarColor;
-            switch (playerWeapon.GetCurrentElement())
-            {
-                default:
-                case DamageEngine.ElementType.Normal:
-                    BarColor = Color.magenta;
-                    break;
-                case DamageEngine.ElementType.fire:
-                    BarColor = Color.red;
-                    break;
-                case DamageEngine.ElementType.Lightning:
-                    BarColor = Color.yellow;
-                    break;
-                case DamageEngine.ElementType.Ice:
-                    BarColor = Color.white;
-                    break;
-                case DamageEngine.ElementType.Earth:
-                    BarColor = Color.green;
-                    break;
-                case DamageEngine.ElementType.Water:
-                    BarColor = Color.blue;
-                    break;
-            }
+        switch (playerWeapon.GetCurrentElement())
+        {
+            default:
+            case DamageEngine.ElementType.Normal:
+                BarColor = Color.magenta;
+                break;
+            case DamageEngine.ElementType.fire:
+                BarColor = Color.red;
+                break;
+            case DamageEngine.ElementType.Lightning:
+                BarColor = Color.yellow;
+                break;
+            case DamageEngine.ElementType.Ice:
+                BarColor = Color.white;
+                break;
+            case DamageEngine.ElementType.Earth:
+                BarColor = Color.green;
+                break;
+            case DamageEngine.ElementType.Water:
+                BarColor = Color.blue;
+                break;
+        }
 
 
 
 
-        if (playerController.FractureStatus&&!fractureText.gameObject.activeSelf)
+        if (playerController.FractureStatus && !fractureText.gameObject.activeSelf)
         {
             fractureText.gameObject.SetActive(true);
             fractureText.color = BarColor;
             BarColor = Color.gray;
         }
-        else if(fractureText.gameObject.activeSelf&& !playerController.FractureStatus)
+        else if (fractureText.gameObject.activeSelf && !playerController.FractureStatus)
         {
             fractureText.gameObject.SetActive(false);
         }
