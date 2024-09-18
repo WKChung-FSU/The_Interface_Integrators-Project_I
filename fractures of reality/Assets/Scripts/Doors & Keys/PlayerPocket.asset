@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bdca752533922439560fdf9572abc8, type: 3}
   m_Name: PlayerPocket
   m_EditorClassIdentifier: 
+  PlayerKeys:
+  - {fileID: 11400000, guid: ea8ba44733ef3a440a577e2726ba4d8c, type: 2}
+  - {fileID: 11400000, guid: 1a23b7e3dd30e4e4bb45dbd32885a460, type: 2}

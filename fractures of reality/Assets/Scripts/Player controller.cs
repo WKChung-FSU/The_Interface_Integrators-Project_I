@@ -48,43 +48,6 @@ public class playerController : MonoBehaviour
         baseSpeed = speed;
     }
 
-    public List<KeySystem> PlayerKeys
-    {
-        get
-        {
-            return PlayerPocket.AccessKeys;
-        }
-
-        set 
-        {
-            PlayerPocket.AccessKeys = value;
-        }
-    }
-
-    public void InitializeFractureBars()
-    {
-        FractureBars.Clear();
-        foreach (DamageEngine.ElementType type in Enum.GetValues(typeof(DamageEngine.ElementType)))
-        {
-            if (!FractureBars.TryAdd(type, 0))
-            {
-                Debug.LogError("Fracture bar has failed to build");
-            }
-        }
-       
-    }
-
-    public Dictionary<DamageEngine.ElementType, int> fractureBars
-    {
-        get { return FractureBars; }
-    }
-
-    public int getMaxFractureAmount()
-    {
-        return MaxFractureResistance;
-    }
-  
-
     // Update is called once per frame
     void Update()
     {
@@ -100,10 +63,72 @@ public class playerController : MonoBehaviour
         }
 
     }
+
+    #region Getters/Setters
+
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+    public void SetBaseSpeed(float newSpeed)
+    {
+        baseSpeed = newSpeed;
+    }
+    public float GetBaseSpeed()
+    {
+        return baseSpeed;
+    }
+    public float GetOriginalSpeed()
+    {
+        return originalSpeed;
+    }
+    public int GetSprintMod()
+    {
+        return sprintMod;
+    }
+    public void SetSprintMod(int newSprintMod)
+    {
+        sprintMod = newSprintMod;
+    }
+    public List<KeySystem> PlayerKeys
+    {
+        get
+        {
+            return PlayerPocket.AccessKeys;
+        }
+
+        set 
+        {
+            PlayerPocket.AccessKeys = value;
+        }
+    }
+
+    public Dictionary<DamageEngine.ElementType, int> fractureBars
+    {
+        get { return FractureBars; }
+    }
+
+    public int getMaxFractureAmount()
+    {
+        return MaxFractureResistance;
+    }
+
+    public bool FractureStatus
+    {
+        get
+        {
+            return IsFractured;
+        }
+    }
+
+    #endregion
     void Movement()
     {
-        
-        
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -145,7 +170,28 @@ public class playerController : MonoBehaviour
     }
 
 
-    public void updateFractureBar(int amount=0)
+    #region Fracture Logic
+    /// <summary>
+    /// Clears and rebuilds the Fracture bars.
+    /// </summary>
+    public void InitializeFractureBars()
+    {
+        FractureBars.Clear();
+        foreach (DamageEngine.ElementType type in Enum.GetValues(typeof(DamageEngine.ElementType)))
+        {
+            if (!FractureBars.TryAdd(type, 0))
+            {
+                Debug.LogError("Fracture bar has failed to build");
+            }
+        }
+       
+    }
+
+    /// <summary>
+    /// Adds number to the fracture bar of the current element, the correct bar is chosen automatically.
+    /// </summary>
+    /// <param name="amount">the amount that you wish to increase the fracture bar by</param>
+    public void UpdateFractureBar(int amount=0)
     {
         FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] += amount;
 
@@ -174,9 +220,15 @@ public class playerController : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// regenerates the fracture bare and brings it down to zero
+    /// </summary>
+    /// <returns></returns>
     IEnumerator RegenFracture()
     {
         IsRegenFracture = true;
+        yield return new WaitForSeconds(fractureRegenRate);
+
         foreach (DamageEngine.ElementType Type in Enum.GetValues(typeof(DamageEngine.ElementType)))
         {
             if (FractureBars[Type] < 0 ) 
@@ -185,10 +237,12 @@ public class playerController : MonoBehaviour
             else if(FractureBars[Type] > 0)
                 FractureBars[Type] -= fractureRegenAmount;
         }
-      
-        yield return new WaitForSeconds(fractureRegenRate);
         IsRegenFracture=false;
     }
+
+    #endregion
+
+
     IEnumerator PlayStep()
     {
         isPlayingSteps = true;
@@ -198,36 +252,6 @@ public class playerController : MonoBehaviour
         else
             yield return new WaitForSeconds(0.3f);
         isPlayingSteps = false;
-    }
-
-    public float GetSpeed()
-    {
-        return speed;
-    }
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-    public void SetBaseSpeed(float newSpeed)
-    {
-        baseSpeed = newSpeed;
-    }
-    public float GetBaseSpeed()
-    {
-        return baseSpeed;
-    }
-    public float GetOriginalSpeed()
-    {
-        return originalSpeed;
-    }
-    public int GetSprintMod()
-    {
-        return sprintMod;
-    }
-    public void SetSprintMod(int newSprintMod)
-    {
-        sprintMod = newSprintMod;
     }
 
 }

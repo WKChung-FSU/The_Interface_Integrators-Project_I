@@ -69,6 +69,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text enemyCountValue;
     [SerializeField] string[] goalText = new string[3];
     [SerializeField] Image fractureBar;
+    [SerializeField] TMP_Text fractureText;
     public bool isPaused;
     public bool hudEnabled;
 
@@ -120,7 +121,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel")&&!PauseLock)
+        if (Input.GetButtonDown("Cancel") && !PauseLock)
         {
             if (menuActive == null)
             {
@@ -371,7 +372,7 @@ public class gameManager : MonoBehaviour
 
 
     #endregion
-     #region Getters and Setter
+    #region Getters and Setter
     public Vector3 StartPosition()
     {
         return startPosition;
@@ -493,8 +494,46 @@ public class gameManager : MonoBehaviour
     }
     void UpdateFractureBar()
     {
-        playerController PlControl = player.GetComponent<playerController>();
-        fractureBar.fillAmount = ((float)PlControl.fractureBars[playerWeapon.GetCurrentElement()] / (float)PlControl.getMaxFractureAmount());
+        Color BarColor;
+            switch (playerWeapon.GetCurrentElement())
+            {
+                default:
+                case DamageEngine.ElementType.Normal:
+                    BarColor = Color.magenta;
+                    break;
+                case DamageEngine.ElementType.fire:
+                    BarColor = Color.red;
+                    break;
+                case DamageEngine.ElementType.Lightning:
+                    BarColor = Color.yellow;
+                    break;
+                case DamageEngine.ElementType.Ice:
+                    BarColor = Color.white;
+                    break;
+                case DamageEngine.ElementType.Earth:
+                    BarColor = Color.green;
+                    break;
+                case DamageEngine.ElementType.Water:
+                    BarColor = Color.blue;
+                    break;
+            }
+
+
+
+
+        if (playerController.FractureStatus&&!fractureText.gameObject.activeSelf)
+        {
+            fractureText.gameObject.SetActive(true);
+            fractureText.color = BarColor;
+            BarColor = Color.gray;
+        }
+        else if(fractureText.gameObject.activeSelf&& !playerController.FractureStatus)
+        {
+            fractureText.gameObject.SetActive(false);
+        }
+
+        fractureBar.color = BarColor;
+        fractureBar.fillAmount = ((float)playerController.fractureBars[playerWeapon.GetCurrentElement()] / (float)playerController.getMaxFractureAmount());
     }
 
 

@@ -31,6 +31,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     int CurrAmmo;
     int currentWeapon;
     [SerializeField] EntTeleportation TPSpell;
+
+    float PrimeFireRate;
+    float SecondFireRate;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -44,9 +47,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }
-
-      
-
+       UpdateSpellList();
     }
 
     // Update is called once per frame
@@ -107,7 +108,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             MaxAmmo = value;
         }
     }
-   
+    public float PrimaryFireRate
+    {
+        get { return PrimeFireRate; }
+        set { PrimeFireRate = value; }
+    }
+    public float SecondaryFireRate
+    {
+        get { return SecondFireRate; }
+        set { SecondFireRate = value; }
+    }
+
+
     public bool PlayerShooting
     {
         get { return isShooting; }
@@ -122,10 +134,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     public int GetMaxAmmo()
     { return MaxAmmo; }
     //May depreciate
-    public bool GetOutOfAmmo()
-    {
-        return OutOfAmmo;
-    }
+  
     public LineRenderer GetLineRenderer()
     {
         return lightningVisual;
@@ -138,8 +147,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             return currentSpellList.PrimarySpells[currentWeapon];
         else
             return currentSpellList.SecondarySpells[currentWeapon];
-       
-
     }
 
     public DamageEngine.ElementType GetCurrentElement()
@@ -180,7 +187,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             castedSpell=Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation).GetComponent<AttackCore>();
             CurrAmmo -= currentSpellList.PrimarySpellCost[currentWeapon];
-            gameManager.instance.PlayerController.updateFractureBar(castedSpell.GetFractureDamage());
+            gameManager.instance.PlayerController.UpdateFractureBar(castedSpell.GetFractureDamage());
         }
         else if (currentSpellList.PrimarySpells[currentWeapon] == null)
         {
@@ -209,7 +216,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 TPSpell.SetHealthCore(gameManager.instance.playerScript);
             CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
             if(attack)
-             gameManager.instance.PlayerController.updateFractureBar(attack.GetFractureDamage());
+             gameManager.instance.PlayerController.UpdateFractureBar(attack.GetFractureDamage());
         }
         else if (currentSpellList.SecondarySpells[currentWeapon] == null)
         {
@@ -305,6 +312,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost,currentSpellList.PrimaryFireRate,true);
         UpdateSpellList(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost,currentSpellList.SecondaryFireRate, false);
+        PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];
+        SecondFireRate = currentSpellList.SecondaryFireRate[currentWeapon];
     }
 
     void UpdateSpellList(List<GameObject> list,List<int>SpellCost,List<float>spellFireRate, bool isPrimary)

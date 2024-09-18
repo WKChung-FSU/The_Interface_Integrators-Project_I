@@ -54,6 +54,11 @@ public class DamageEngine : MonoBehaviour
     {
         instance = this;
     }
+
+    private void Start()
+    {
+        
+    }
     #region Getters/Setters
     public int MaxInfectedAOE
     {
@@ -107,7 +112,7 @@ public class DamageEngine : MonoBehaviour
                     if (damageDealt ==0&&targetPlayer)
                     {
                         // hardcoded for debug purposes
-                        targetPlayer.updateFractureBar(DamageAmount);
+                        targetPlayer.UpdateFractureBar(DamageAmount);
                     }
 
                     TempHealth -= damageDealt;
