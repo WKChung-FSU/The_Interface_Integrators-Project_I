@@ -13,16 +13,14 @@ public class PowerCrystalScript : MonoBehaviour
     {
         healthCore = GetComponent<DestructibleHealthCore>();
         elementType = healthCore.ElementType;
+        if (crystalManifest.DestroyList.Contains(elementType))
+        {
+            Destroy(gameObject);
+        }
     }
-
-    // Update is called once per frame
-   //void Update()
-   //{
-   //    
-   //}
     private void OnDestroy()
     {
-        if (healthCore.HP==0)
+        if (healthCore.HP==0 && !crystalManifest.DestroyList.Contains(elementType))
         crystalManifest.SetDestroyedCrystalOfType(elementType);
     }
 }

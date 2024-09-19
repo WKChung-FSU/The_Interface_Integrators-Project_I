@@ -4343,7 +4343,11 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &2298310740495258239
+=======
+--- !u!1 &2271588378913820894
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
 --- !u!1 &2271588378913820894
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
@@ -4355,6 +4359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 839732836751691342}
   - component: {fileID: 6262371351918077336}
   - component: {fileID: 1952916859894249498}
@@ -4362,11 +4367,16 @@ GameObject:
   m_Layer: 5
   m_Name: fire
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   - component: {fileID: 7145254851583660636}
   - component: {fileID: 540625477467211407}
   - component: {fileID: 5705096474903018895}
   m_Layer: 5
   m_Name: Crystal text
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4374,7 +4384,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &839732836751691342
+=======
+--- !u!224 &7145254851583660636
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
 --- !u!224 &7145254851583660636
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
@@ -4383,6 +4397,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 2298310740495258239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -4400,6 +4415,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6262371351918077336
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_GameObject: {fileID: 2271588378913820894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -4414,6 +4431,9 @@ RectTransform:
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &540625477467211407
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4421,9 +4441,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 2298310740495258239}
   m_CullTransparentMesh: 1
 --- !u!114 &1952916859894249498
+=======
+  m_GameObject: {fileID: 2271588378913820894}
+  m_CullTransparentMesh: 1
+--- !u!114 &5705096474903018895
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
   m_GameObject: {fileID: 2271588378913820894}
   m_CullTransparentMesh: 1
@@ -4435,15 +4461,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 2298310740495258239}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_GameObject: {fileID: 2271588378913820894}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_Name: 
   m_EditorClassIdentifier: 
@@ -4455,6 +4487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: c26a7d3961c4deb4ab15283bb15b5445, type: 3}
   m_Type: 0
@@ -4523,6 +4556,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_text: '
 
 
@@ -4596,6 +4631,9 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 --- !u!1 &2325622305630050375
 GameObject:
@@ -10657,7 +10695,11 @@ MonoBehaviour:
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &5722543705399255089
+=======
+--- !u!1 &5836188372251029334
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
 --- !u!1 &5836188372251029334
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
@@ -10669,17 +10711,23 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< HEAD
+<<<<<<< HEAD
   - component: {fileID: 5787947049157935704}
   - component: {fileID: 8673003743318748193}
   - component: {fileID: 4569239934659879093}
   m_Layer: 5
   m_Name: Image
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   - component: {fileID: 2565096872917673293}
   - component: {fileID: 6203357517701641792}
   - component: {fileID: 4780602334092118581}
   m_Layer: 5
   m_Name: Label
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10687,7 +10735,11 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!224 &5787947049157935704
+=======
+--- !u!224 &2565096872917673293
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
 --- !u!224 &2565096872917673293
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
@@ -10696,6 +10748,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_GameObject: {fileID: 5722543705399255089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -10712,6 +10765,8 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8673003743318748193
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_GameObject: {fileID: 5836188372251029334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -10726,6 +10781,9 @@ RectTransform:
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6203357517701641792
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10733,9 +10791,15 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5722543705399255089}
   m_CullTransparentMesh: 1
 --- !u!114 &4569239934659879093
+=======
+  m_GameObject: {fileID: 5836188372251029334}
+  m_CullTransparentMesh: 1
+--- !u!114 &4780602334092118581
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 =======
   m_GameObject: {fileID: 5836188372251029334}
   m_CullTransparentMesh: 1
@@ -10747,15 +10811,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 5722543705399255089}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_GameObject: {fileID: 5836188372251029334}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_Name: 
   m_EditorClassIdentifier: 
@@ -10768,6 +10838,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Sprite: {fileID: 21300000, guid: fc497d05d166f21449926e09ea722b70, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -10779,6 +10850,8 @@ MonoBehaviour:
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 =======
+=======
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
   m_text: 'Destroyed Crystals:
 
 
@@ -10851,6 +10924,9 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< HEAD
+>>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
+=======
 >>>>>>> 007e3e60de3dd38c91cbf0251e60c97fc9404f81
 --- !u!1 &5844271266463497179
 GameObject:

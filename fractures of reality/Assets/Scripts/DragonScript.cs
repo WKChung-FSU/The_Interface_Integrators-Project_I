@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,21 +54,15 @@ public class DragonScript : MonoBehaviour
         bodyCollider = GetComponent<CapsuleCollider>();
 
         SetSpells(normalSpells);
-
-        typeAllowances.Add(DamageEngine.ElementType.Normal);
-        if (gameManager.instance.crystalManifest.fireCrystalDestroyed == false)
-            typeAllowances.Add(DamageEngine.ElementType.fire);
-        if (gameManager.instance.crystalManifest.lightningCrystalDestroyed == false)
-            typeAllowances.Add(DamageEngine.ElementType.Lightning);
-        if (gameManager.instance.crystalManifest.iceCrystalDestroyed == false)
-            typeAllowances.Add(DamageEngine.ElementType.Ice);
-        if (gameManager.instance.crystalManifest.earthCrystalDestroyed == false)
-            typeAllowances.Add(DamageEngine.ElementType.Earth);
-        if (gameManager.instance.crystalManifest.waterCrystalDestroyed == false)
-            typeAllowances.Add(DamageEngine.ElementType.Water);
-
+        foreach (DamageEngine.ElementType type in Enum.GetValues(typeof(DamageEngine.ElementType)))
+        {
+            if (!gameManager.instance.PCrystalManifest.DestroyList.Contains(type)&&type!=DamageEngine.ElementType.Wind_tempHeal)
+            {
+                typeAllowances.Add(type);
+            }
+        }
         //choose to either do bullet-hell or summon adds
-        int rando = Random.Range(0, (int)Time.time) % 1;
+        int rando = UnityEngine.Random.Range(0, (int)Time.time) % 1;
         if (rando == 0)
         {
             Debug.Log("Summon Phase first");
@@ -151,7 +146,7 @@ public class DragonScript : MonoBehaviour
 
         //check to see what the next type to use even is
         //get a random position in your type allowance list, everything there is what's allowed
-        DamageEngine.ElementType nextType = typeAllowances[Random.Range(0, typeAllowances.Count)];
+        DamageEngine.ElementType nextType = typeAllowances[UnityEngine.Random.Range(0, typeAllowances.Count)];
 
        // DamageEngine.ElementType idkman = (DamageEngine.ElementType)nextType;
         switch (nextType)
@@ -240,7 +235,7 @@ public class DragonScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         for (int i = 0; i < spawnLocations.Count; i++)
         {
-            Instantiate(spawnsPool[Random.Range(0, spawnsPool.Count)], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
+            Instantiate(spawnsPool[UnityEngine.Random.Range(0, spawnsPool.Count)], spawnLocations[i].transform.position, spawnLocations[i].transform.rotation);
         }
         yield return new WaitForSeconds(phaseTimer / 2);
         currentlySummoning = false;
@@ -249,8 +244,8 @@ public class DragonScript : MonoBehaviour
     IEnumerator BulletHellPhase()
     {
         //choose direction of hazard
-        int randomPos = Random.Range(0, (int)Time.time) % 3;
-        hazardSafeZoneIterator = Random.Range(0, (int)Time.time) % NorthHazard.Count; // they all have the same amount of hazards, not the best solution
+        int randomPos = UnityEngine.Random.Range(0, (int)Time.time) % 3;
+        hazardSafeZoneIterator = UnityEngine.Random.Range(0, (int)Time.time) % NorthHazard.Count; // they all have the same amount of hazards, not the best solution
         switch (randomPos)
         {
             case 0:

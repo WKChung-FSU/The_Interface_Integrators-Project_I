@@ -210,7 +210,7 @@ public class playerController : MonoBehaviour
                 UpgradedSpell = false;
             }
         }
-        else if (FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] > MaxFractureResistance)
+        else if (FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] > MaxFractureResistance&&!IsFractured)
         {
             FractureBars[gameManager.instance.playerWeapon.GetCurrentElement()] = MaxFractureResistance;
             gameManager.instance.playerWeapon.MenuLock = true;

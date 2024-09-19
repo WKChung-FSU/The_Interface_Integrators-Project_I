@@ -2400,14 +2400,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3251283071075202745, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3916114887991379800, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3977793510108017344, guid: 97397294e9d1ccd4887a63a320d73403, type: 3}
       propertyPath: m_Pivot.x
       value: 0

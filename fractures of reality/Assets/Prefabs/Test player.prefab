@@ -325,9 +325,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb9acde1b19309545aca4aa1d05b3b1e, type: 3}
   - {fileID: 8300000, guid: 2fbb212e49b926549ab2685094ade70b, type: 3}
   AudioStepsVol: 0.2
-  fractureRegenRate: 2
-  MaxFractureResistance: 20
+  fractureRegenRate: 0.5
+  MaxFractureResistance: 25
   fractureRegenAmount: 1
+  FractureFireRateReduction: 1
   isSprinting: 0
 --- !u!114 &7315470601531378724
 MonoBehaviour:
