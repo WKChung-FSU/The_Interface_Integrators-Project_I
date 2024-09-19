@@ -45,7 +45,9 @@ public class gameManager : MonoBehaviour
     #endregion
 
     #region CrystalStates
-    [SerializeField] public PowerCrystalManifest crystalManifest;
+    [SerializeField] PowerCrystalManifest crystalManifest;
+    [SerializeField] TMP_Text CrystalText;
+    string CrystalNames;
     #endregion
 
     #region UI
@@ -142,6 +144,7 @@ public class gameManager : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
+        // remember to add a save to this...
         gameManager.instance.crystalManifest.ResetManifest();
     }
     // Update is called once per frame
@@ -184,6 +187,7 @@ public class gameManager : MonoBehaviour
         GoalTextUpdate();
         //update health bar
         UpdateHUD();
+        UpdateCrystalText();
         UpdateFractureBar();
         //check if switch weapon button is pressed
         //then call weapon swap UI code
@@ -210,6 +214,45 @@ public class gameManager : MonoBehaviour
                 enemyCountText.text = goalText[2];
                 break;
             default:
+                break;
+        }
+    }
+
+    public void UpdateCrystalText()
+    {
+        CrystalText.text = "";
+        CrystalNames = "";
+        crystalManifest.DestroyList.ForEach(CrystalNameMaker);
+        CrystalText.text=CrystalNames;
+    }
+    
+    void CrystalNameMaker(DamageEngine.ElementType crystalElement)
+    {
+        switch (crystalElement)
+        {
+            case DamageEngine.ElementType.fire:
+                CrystalNames += ("Fire Crystal" + "\n");
+                break;
+            case DamageEngine.ElementType.Lightning:
+                CrystalNames += ("Lightning Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Ice:
+                CrystalNames += ("Ice Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Earth:
+                CrystalNames += ("Earth Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Water:
+                CrystalNames += ("Water Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Normal:
+            case DamageEngine.ElementType.Wind_tempHeal:
+            default:
+
                 break;
         }
     }
@@ -525,6 +568,10 @@ public class gameManager : MonoBehaviour
     public playerController PlayerController
     {
         get { return playerController; }
+    }
+
+    public PowerCrystalManifest PCrystalManifest { 
+        get { return crystalManifest; } 
     }
     #endregion
 

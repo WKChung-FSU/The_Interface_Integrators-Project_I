@@ -5,51 +5,30 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PowerCrystalManifest : ScriptableObject
 {
-    [SerializeField] public bool fireCrystalDestroyed;
-    [SerializeField] public bool lightningCrystalDestroyed;
-    [SerializeField] public bool iceCrystalDestroyed;
-    [SerializeField] public bool earthCrystalDestroyed;
-    [SerializeField] public bool waterCrystalDestroyed;
-
-    private int amountOfCrystals = 5;
-
+    [SerializeField] int amountOfCrystals = 5;
+    [SerializeField] List<DamageEngine.ElementType>CrystalsDestroyed = new List<DamageEngine.ElementType>();
     private PlayerWeapon weapon;
+    
 
     public void SetDestroyedCrystalOfType(DamageEngine.ElementType type)
     {
-        switch (type)
+        if (!CrystalsDestroyed.Contains(type))
         {
-            case DamageEngine.ElementType.fire:
-                {
-                    fireCrystalDestroyed = true;
-                    break;
-                }
-            case DamageEngine.ElementType.Lightning:
-                {
-                    lightningCrystalDestroyed = true;
-                    break;
-                }
-            case DamageEngine.ElementType.Ice:
-                {
-                    iceCrystalDestroyed = true;
-                    break;
-                }
-            case DamageEngine.ElementType.Earth:
-                {
-                    earthCrystalDestroyed = true;
-                    break;
-                }
-            case DamageEngine.ElementType.Water:
-                {
-                    waterCrystalDestroyed = true;
-                    break;
-                }
-        }
+            CrystalsDestroyed.Add(type);
+
         weapon = gameManager.instance.playerWeapon;
         weapon.UpgradedList(type);
         weapon.UpdateSpellList();
         CrystalDestroyed();
+        gameManager.instance.UpdateCrystalText();
+        }
     }
+
+    public List<DamageEngine.ElementType> DestroyList
+    {
+        get { return CrystalsDestroyed; }
+    }
+
 
     public int GetAmountOfCrystals()
     {
@@ -62,12 +41,7 @@ public class PowerCrystalManifest : ScriptableObject
 
     public void ResetManifest()
     {
-        fireCrystalDestroyed = false;
-        lightningCrystalDestroyed = false;
-        iceCrystalDestroyed = false;
-        earthCrystalDestroyed = false;
-        waterCrystalDestroyed = false;
-
+        CrystalsDestroyed.Clear();
         amountOfCrystals = 5;
     }
 }

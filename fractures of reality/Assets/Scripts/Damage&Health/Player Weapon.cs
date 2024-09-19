@@ -47,7 +47,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }
-       UpdateSpellList();
+        UpgradedElements = gameManager.instance.PCrystalManifest.DestroyList;
+        UpdateSpellList();
     }
 
     // Update is called once per frame
@@ -158,7 +159,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         return UpgradedElements;
     }
 
-
     /// <summary>
     /// Adds The ability for the player to use a upgraded spell type
     /// </summary>
@@ -166,7 +166,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     /// <param name="Upgrade">if true upgrade, if false downgrade</param>
     public void UpgradedList(DamageEngine.ElementType Element, bool Upgrade = true)
     {
-
         if (Upgrade && !UpgradedElements.Contains(Element))
             UpgradedElements.Add(Element);
         else if (!Upgrade && UpgradedElements.Contains(Element))
@@ -376,18 +375,5 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
     }
-
-    public void UpdateUpgradeList()
-    {
-      
-
-
-
-
-
-
-
-    }
-
 
 }
