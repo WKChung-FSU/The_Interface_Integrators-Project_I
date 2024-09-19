@@ -72,7 +72,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
 
-        
+        if ((Input.GetAxis("Mouse ScrollWheel") != 0) && SwitchingWeapon == false)
+            //No longer coroutine -CM, changed it back to implement menu lock-wc
+            StartCoroutine(WeaponMenuSystem());
+
         if (Input.GetButton("Cheat"))
         {
             Cheat = !Cheat;
@@ -226,7 +229,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         SwitchingWeapon = true;
         //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
-       
+        if (( Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
+        {
+            currentWeapon++;
+        }
+        else if (( Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
+        {
+            currentWeapon--;
+        }
         gameManager.instance.UpdateWeaponIconUI();
         UpdateSpellList();
         gameManager.instance.playerScript.ElementType = GetCurrentElement();
