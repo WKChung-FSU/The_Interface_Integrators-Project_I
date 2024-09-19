@@ -43,7 +43,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
         //debug for now, btw enums are pain
         //AddSpell(DamageEngine.ElementType.Lightning);
-        for (int SpellType = 0; SpellType <(int)DamageEngine.ElementType.Wind_tempHeal; SpellType++)
+        for (int SpellType = 0; SpellType <(int)DamageEngine.ElementType.Water; SpellType++)
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }
@@ -64,13 +64,13 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             if (Input.GetButtonDown("Shoot 2") && gameManager.instance.menuActive == false)
             {
                 TPSpell.Teleport(true);
-
             }
             if (Input.GetButtonUp("Shoot 2") && gameManager.instance.menuActive == false)
             {
                TPSpell.Teleport(false);
             }
         }
+
         if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0) && SwitchingWeapon == false)
             //No longer coroutine -CM, changed it back to implement menu lock-wc
             StartCoroutine(WeaponMenuSystem());
@@ -243,6 +243,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         yield return new WaitForSeconds(MenuDelay);
         SwitchingWeapon = false;
     }
+    public void InstantWeaponSwitch(DamageEngine.ElementType spellType)
+    {
+        foreach (var spell in currentSpellList.PrimarySpells)
+        {
+            if (spell.GetComponent<AttackCore>().ElementType == spellType)
+            {
+                currentWeapon = currentSpellList.PrimarySpells.IndexOf(spell);
+                break;
+            }
+        }
+    }
+
     void AmmoTest()
     {
         if (CurrAmmo > 0)
@@ -293,12 +305,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
     }
-
-   public void ClearTP()
-    {
-        TPSpell=null;
-    }
-
     void AddSpell(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
     {
         MasterList.Add(Spell);
@@ -306,6 +312,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         MasterFirerate.Add(FireRate);
     }
 
+   public void ClearTP()
+    {
+        TPSpell=null;
+    }
     public void UpdateSpellList()
     {
         UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost,currentSpellList.PrimaryFireRate,true);
@@ -366,4 +376,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
     }
+
+    public void UpdateUpgradeList()
+    {
+      
+
+
+
+
+
+
+
+    }
+
+
 }
