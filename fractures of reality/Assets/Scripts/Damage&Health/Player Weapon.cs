@@ -47,7 +47,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         {
             AddSpell((DamageEngine.ElementType)SpellType);
         }
-       UpdateSpellList();
+        UpgradedElements = gameManager.instance.PCrystalManifest.DestroyList;
+        UpdateSpellList();
     }
 
     // Update is called once per frame
@@ -71,9 +72,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
 
-        if ((Input.GetButtonDown("Switch Weapon") || Input.GetAxis("Mouse ScrollWheel") != 0) && SwitchingWeapon == false)
-            //No longer coroutine -CM, changed it back to implement menu lock-wc
-            StartCoroutine(WeaponMenuSystem());
+        
         if (Input.GetButton("Cheat"))
         {
             Cheat = !Cheat;
@@ -158,7 +157,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         return UpgradedElements;
     }
 
-
     /// <summary>
     /// Adds The ability for the player to use a upgraded spell type
     /// </summary>
@@ -166,7 +164,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     /// <param name="Upgrade">if true upgrade, if false downgrade</param>
     public void UpgradedList(DamageEngine.ElementType Element, bool Upgrade = true)
     {
-
         if (Upgrade && !UpgradedElements.Contains(Element))
             UpgradedElements.Add(Element);
         else if (!Upgrade && UpgradedElements.Contains(Element))
@@ -229,14 +226,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         SwitchingWeapon = true;
         //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
-        if ((Input.GetAxis("Switch Weapon") > 0 || Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
-        {
-            currentWeapon++;
-        }
-        else if ((Input.GetAxis("Switch Weapon") < 0 || Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
-        {
-            currentWeapon--;
-        }
+       
         gameManager.instance.UpdateWeaponIconUI();
         UpdateSpellList();
         gameManager.instance.playerScript.ElementType = GetCurrentElement();
@@ -376,18 +366,5 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
     }
-
-    public void UpdateUpgradeList()
-    {
-      
-
-
-
-
-
-
-
-    }
-
 
 }

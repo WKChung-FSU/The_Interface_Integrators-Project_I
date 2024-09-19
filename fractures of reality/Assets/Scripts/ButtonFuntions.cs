@@ -78,6 +78,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.PlayerController.PlayerKeys.Clear();
 
     }
+    
 
 public IEnumerator LoadAsync(int sceneIndex)
     {

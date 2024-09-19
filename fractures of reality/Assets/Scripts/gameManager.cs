@@ -15,17 +15,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameGoal CurrentGoal;
     [SerializeField] bool PauseLock;
 
-    #region RadialMenu
-
-    [Header("----- Radial Menu -----")]
-    [SerializeField] GameObject EntryPrefab;
-
-    [SerializeField] float Radius = 300f;
-    [SerializeField] List<Texture> icons;
-    [SerializeField] public GameObject WeapPause;
-    List<RadialMenuEntry> entries;
-    #endregion
-
+   
     #region Player
     [Header("----- Player Attributes -----")]
     public GameObject player;
@@ -45,13 +35,16 @@ public class gameManager : MonoBehaviour
     #endregion
 
     #region CrystalStates
-    [SerializeField] public PowerCrystalManifest crystalManifest;
+    [SerializeField] PowerCrystalManifest crystalManifest;
+    [SerializeField] TMP_Text CrystalText;
+    string CrystalNames;
     #endregion
 
     #region UI
     [Header("----- Ui settings/Objects -----")]
     [SerializeField] GameObject menuPause;
     [SerializeField] public GameObject menuActive;
+    [SerializeField] GameObject menuWeap;
     [SerializeField] GameObject toolTipPanel;
     [SerializeField] TMP_Text toolTipText;
     [SerializeField] GameObject menuLose;
@@ -138,10 +131,11 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(MainMenu());
         }
-        entries = new List<RadialMenuEntry>();
+        
     }
     private void OnApplicationQuit()
     {
+        // remember to add a save to this...
         gameManager.instance.crystalManifest.ResetManifest();
     }
     // Update is called once per frame
@@ -165,25 +159,24 @@ public class gameManager : MonoBehaviour
         }
         if (Input.GetButtonDown("WeaponMenu"))
         {
-            if (entries.Count == 0)
+            if (menuActive == null)
             {
-                Open();
-                statePause();
-                menuActive = WeapPause;
-                menuActive.SetActive(isPaused);
-
-                DisableHUD();
+                stateWeapOn();
+                menuActive = menuWeap;
+                menuActive.SetActive(true);
+               
+               
             }
-            else
+            else if (menuActive == menuWeap)
             {
-                Close();
-                stateUnPaused();
-                EnableHUD();
+                stateWeapOff();
+               
             }
         }
         GoalTextUpdate();
         //update health bar
         UpdateHUD();
+        UpdateCrystalText();
         UpdateFractureBar();
         //check if switch weapon button is pressed
         //then call weapon swap UI code
@@ -214,6 +207,45 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    public void UpdateCrystalText()
+    {
+        CrystalText.text = "";
+        CrystalNames = "";
+        crystalManifest.DestroyList.ForEach(CrystalNameMaker);
+        CrystalText.text=CrystalNames;
+    }
+    
+    void CrystalNameMaker(DamageEngine.ElementType crystalElement)
+    {
+        switch (crystalElement)
+        {
+            case DamageEngine.ElementType.fire:
+                CrystalNames += ("Fire Crystal" + "\n");
+                break;
+            case DamageEngine.ElementType.Lightning:
+                CrystalNames += ("Lightning Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Ice:
+                CrystalNames += ("Ice Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Earth:
+                CrystalNames += ("Earth Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Water:
+                CrystalNames += ("Water Crystal" + "\n");
+                break;
+
+            case DamageEngine.ElementType.Normal:
+            case DamageEngine.ElementType.Wind_tempHeal:
+            default:
+
+                break;
+        }
+    }
+
     public void statePause()
     {
         isPaused = !isPaused;
@@ -233,7 +265,26 @@ public class gameManager : MonoBehaviour
         EnableHUD();
         Debug.Log("un Paused");
     }
+    public void stateWeapOn()
+    {
+        Time.timeScale = 0.1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        playerWeapon.enabled = false;
+        Debug.Log("WeaponMenu active");
+    }
+    public void stateWeapOff()
+    {
+        
+        Time.timeScale = 1f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(false);
+        menuActive = null;
+        playerWeapon.enabled = true;
+        Debug.Log("WeaponMenu inactive");
 
+    }
     public void updateGameGoal(int amount = 0)
     {
         GoalCount += amount;
@@ -288,8 +339,56 @@ public class gameManager : MonoBehaviour
     public void DamageFlashScreen(Color color)
     {
         StartCoroutine(DamageFlashTimer(color));
-    }
 
+    }
+    public void switchWeapon(int selection)
+    {
+        if (selection == 0)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.Normal);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+            
+        }
+        else if (selection == 1)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.fire);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+            
+        }
+        else if (selection == 2)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.Lightning);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+
+        }
+        else if (selection == 3)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.Ice);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+        }
+        else if (selection == 4)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.Earth);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+        }       
+        else if (selection == 5)
+        {
+            playerWeapon.InstantWeaponSwitch(DamageEngine.ElementType.Water);
+            UpdateWeaponIconUI();
+            playerWeapon.UpdateSpellList();
+            stateWeapOff();
+        }
+    }
     public void UpdateWeaponIconUI()
     {
         AttackCore weapon = playerWeapon.GetCurrentWeapon().GetComponent<AttackCore>();
@@ -395,51 +494,7 @@ public class gameManager : MonoBehaviour
 
     #endregion
 
-    #region RadMenu
-    void AddEntry(Texture pIcon)
-    {
-        GameObject entry = Instantiate(EntryPrefab, transform);
-        RadialMenuEntry rme = entry.GetComponent<RadialMenuEntry>();
-
-
-        rme.SetIcon(pIcon);
-        entries.Add(rme);
-    }
-
-    public void Open()
-    {
-        for (int i = 0; i < icons.Count; i++)
-        {
-            AddEntry(icons[i]);
-        }
-        rearrange();
-    }
-    public void Close()
-    {
-        for (int i = 0; i < 6; i++)
-        {
-
-            RectTransform rect = entries[i].GetComponent<RectTransform>();
-            GameObject entry = entries[i].gameObject;
-
-            Destroy(entry);
-        }
-        entries.Clear();
-    }
-    void rearrange()
-    {
-        float radiansOfSeperation = (Mathf.PI * 2) / entries.Count;
-        for (int i = 0; i < entries.Count; i++)
-        {
-            float x = Mathf.Sin(radiansOfSeperation * i) * Radius;
-            float y = Mathf.Cos(radiansOfSeperation * i) * Radius;
-
-            entries[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(x, y, 0);
-        }
-    }
-
-
-    #endregion
+   
     #region Getters and Setter
     public Vector3 StartPosition()
     {
@@ -525,6 +580,10 @@ public class gameManager : MonoBehaviour
     public playerController PlayerController
     {
         get { return playerController; }
+    }
+
+    public PowerCrystalManifest PCrystalManifest { 
+        get { return crystalManifest; } 
     }
     #endregion
 
