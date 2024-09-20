@@ -4977,7 +4977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 0
   movementType: 0
-  damageAmount: 2
+  damageAmount: 5
   CastFractureDamage: 0
   RemoveTime: 5
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}

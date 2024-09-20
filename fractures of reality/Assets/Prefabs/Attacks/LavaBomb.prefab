@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 1
   movementType: 4
-  damageAmount: 8
-  CastFractureDamage: 8
+  damageAmount: 20
+  CastFractureDamage: 20
   RemoveTime: 10
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 15
