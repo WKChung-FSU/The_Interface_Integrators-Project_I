@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e032db688b6f40f43ad97627ba0ae35e, type: 3}
   m_Name: ScoreManifest
   m_EditorClassIdentifier: 
-  skeleValue: 100
-  BeholdersValue: 50
+  skeleValue: 50
+  BeholdersValue: 150
   NecromancersValue: 250
   DragonsKilledValue: 1000
   playerDeathScoreDeduction: -100
