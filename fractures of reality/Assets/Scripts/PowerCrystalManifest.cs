@@ -32,7 +32,7 @@ public class PowerCrystalManifest : ScriptableObject
 
     public int GetAmountOfCrystals()
     {
-        return amountOfCrystals;
+        return CrystalsDestroyed.Count;
     }
     public void CrystalDestroyed()
     {

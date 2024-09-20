@@ -21,6 +21,7 @@ public class AICore : MonoBehaviour
     public bool isAttacking;
     public float stoppingDistanceOriginal;
     [SerializeField]LayerMask enemyLayerMask;
+    [SerializeField] EnemySoundManifest soundLists;
 
 
     [Header(" --- Attacks --- ")]

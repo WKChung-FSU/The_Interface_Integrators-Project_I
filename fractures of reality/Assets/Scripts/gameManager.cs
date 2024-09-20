@@ -59,6 +59,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] string[] goalText = new string[3];
     [SerializeField] Image fractureBar;
     [SerializeField] TMP_Text fractureText;
+    [SerializeField] GameObject reticle;
     public bool isPaused;
     public bool hudEnabled;
 
@@ -79,26 +80,37 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] float nextScoreDelay = 0.5f;
     //TODO: sound effect here
-    [SerializeField] GameObject SkeletonsKilledLabel;
-    [SerializeField] TMP_Text SkeletonsKilledAmount;
-    [SerializeField] TMP_Text SkeletonsKilledValue;
-    [SerializeField] GameObject BeholderKilledLabel;
-    [SerializeField] TMP_Text BeholderKilledAmount;
-    [SerializeField] TMP_Text BeholderKilledValue;
-    [SerializeField] GameObject NecromancersKilledLabel;
-    [SerializeField] TMP_Text NecromancersKilledAmount;
-    [SerializeField] TMP_Text NecromancersKilledValue;
-    [SerializeField] GameObject DragonKilledLabel;
-    [SerializeField] TMP_Text DragonKilledAmount;
-    [SerializeField] TMP_Text DragonKilledValue;
-    [SerializeField] GameObject powerMultLabel;
-    [SerializeField] GameObject CrystalsDestroyedLabel;
-    [SerializeField] TMP_Text CrystalsDestroyedAmount;
-    [SerializeField] TMP_Text CrystalsDestroyedValue;
-    [SerializeField] GameObject playerDeathsLabel;
-    [SerializeField] TMP_Text playerDeathsAmount;
-    [SerializeField] TMP_Text playerDeathsValue;
-    [SerializeField] TMP_Text totalScoreValue;
+    [System.Serializable]
+    struct WinMenuScoresObjects
+    {
+        [SerializeField] public GameObject SkeletonsKilledLabel;
+        [SerializeField] public TMP_Text SkeletonsKilledAmount;
+        [SerializeField] public TMP_Text SkeletonsKilledValue;
+        [SerializeField] public GameObject BeholderKilledLabel;
+        [SerializeField] public TMP_Text BeholderKilledAmount;
+        [SerializeField] public TMP_Text BeholderKilledValue;
+        [SerializeField] public GameObject NecromancersKilledLabel;
+        [SerializeField] public TMP_Text NecromancersKilledAmount;
+        [SerializeField] public TMP_Text NecromancersKilledValue;
+        [SerializeField] public GameObject DragonKilledLabel;
+        [SerializeField] public TMP_Text DragonKilledAmount;
+        [SerializeField] public TMP_Text DragonKilledValue;
+        [SerializeField] public GameObject CrystalsDestroyedLabel;
+        [SerializeField] public TMP_Text CrystalsDestroyedAmount;
+        [SerializeField] public TMP_Text CrystalsDestroyedValue;
+        [SerializeField] public GameObject playerDeathsLabel;
+        [SerializeField] public TMP_Text playerDeathsAmount;
+        [SerializeField] public TMP_Text playerDeathsValue;
+        [SerializeField] public TMP_Text totalScoreValue;
+        [SerializeField] public Button winMenuMainMenuButton;
+        [SerializeField] public Button winMenuRestartButton;
+        [SerializeField] public Button winMenuQuitButton;
+
+    }
+    [SerializeField] WinMenuScoresObjects wMenuObj;
+    [SerializeField] public ScoreKeeper scoreKeeper;
+
+
     private int score;
     private int timesDied;
 
@@ -135,8 +147,9 @@ public class gameManager : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        // remember to add a save to this...
-        gameManager.instance.crystalManifest.ResetManifest();
+        //TODO: remember to add a save to this...
+        crystalManifest.ResetManifest();
+        scoreKeeper.ResetScoreKeeper();
     }
     // Update is called once per frame
     void Update()
@@ -320,7 +333,6 @@ public class gameManager : MonoBehaviour
         statePause();
         menuActive = menuWin;
         CalculateScore();
-        totalScoreValue.text = score.ToString("f0");
         menuActive.SetActive(isPaused);
     }
 
@@ -428,35 +440,41 @@ public class gameManager : MonoBehaviour
     {
         score = 0;
         timesDied = 0;
+        scoreKeeper.ResetScoreKeeper();
     }
 
     private void CalculateScore()
     {
         //first disable the buttons at the bottom
         //also maybe remove controls from the player?
-        //Time.timeScale = 1f;
+        reticle.SetActive(false);
         StartCoroutine(ShowAllStats());
-        score = score * (1 + crystalManifest.GetAmountOfCrystals());
-        score = score + (timesDied * -100);
     }
     IEnumerator ShowAllStats()
     {
         yield return new WaitForSecondsRealtime(nextScoreDelay);
-        StartCoroutine(ShowStat(SkeletonsKilledLabel, SkeletonsKilledAmount, SkeletonsKilledValue));
+        //skeletons
+        StartCoroutine(ShowStat(wMenuObj.SkeletonsKilledLabel, wMenuObj.SkeletonsKilledAmount, wMenuObj.SkeletonsKilledValue, scoreKeeper.getSkeles(), scoreKeeper.skeleValue));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
-        StartCoroutine(ShowStat(BeholderKilledLabel, BeholderKilledAmount, BeholderKilledValue));
+        //Beholders
+        StartCoroutine(ShowStat(wMenuObj.BeholderKilledLabel, wMenuObj.BeholderKilledAmount, wMenuObj.BeholderKilledValue, scoreKeeper.getBeholders(), scoreKeeper.BeholdersValue));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
-        StartCoroutine(ShowStat(NecromancersKilledLabel, NecromancersKilledAmount, NecromancersKilledValue));
+        //Necromancers
+        StartCoroutine(ShowStat(wMenuObj.NecromancersKilledLabel, wMenuObj.NecromancersKilledAmount, wMenuObj.NecromancersKilledValue, scoreKeeper.getNecromancers(), scoreKeeper.NecromancersValue));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
-        StartCoroutine(ShowStat(DragonKilledLabel, DragonKilledAmount, DragonKilledValue));
-        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
-        powerMultLabel.SetActive(true);
-        yield return new WaitForSecondsRealtime(nextScoreDelay);
-        StartCoroutine(ShowStat(CrystalsDestroyedLabel, CrystalsDestroyedAmount, CrystalsDestroyedValue));
-        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
-        StartCoroutine(ShowStat(playerDeathsLabel, playerDeathsAmount, playerDeathsValue));
+        //Dragon
+        StartCoroutine(ShowStat(wMenuObj.DragonKilledLabel, wMenuObj.DragonKilledAmount, wMenuObj.DragonKilledValue, scoreKeeper.getDragon(), scoreKeeper.DragonsKilledValue));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
 
+        //crystals multiplier
+        StartCoroutine(ShowStat(wMenuObj.CrystalsDestroyedLabel, wMenuObj.CrystalsDestroyedAmount, wMenuObj.CrystalsDestroyedValue,crystalManifest.GetAmountOfCrystals(),1));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        //player
+        StartCoroutine(ShowStat(wMenuObj.playerDeathsLabel, wMenuObj.playerDeathsAmount, wMenuObj.playerDeathsValue, timesDied, scoreKeeper.playerDeathScoreDeduction));
+        yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
+        wMenuObj.winMenuMainMenuButton.interactable = true;
+        wMenuObj.winMenuRestartButton.interactable = true;
+        wMenuObj.winMenuQuitButton.interactable = true;
         //crystal info
 
         //players die
@@ -465,17 +483,38 @@ public class gameManager : MonoBehaviour
         //enable those last few buttons
 
     }
-    IEnumerator ShowStat(GameObject label, TMP_Text amount, TMP_Text value)
+    IEnumerator ShowStat(GameObject label, TMP_Text amount, TMP_Text value, int amountKilled, int valueOfEnemy)
     {
         //the part where the point amount for this enemy is added up
         //I would like this to start at 0 and then build up to (value) in a short duration over time
         //yield return new WaitForSeconds(nextScoreDelay);
         label.SetActive(true); 
         yield return new WaitForSecondsRealtime(nextScoreDelay);
+        amount.text = amountKilled.ToString();
         amount.enabled = true;
         yield return new WaitForSecondsRealtime(nextScoreDelay);
+        if (label == wMenuObj.playerDeathsLabel)
+        {
+            value.text = (amountKilled * valueOfEnemy).ToString();
+            score += (amountKilled * valueOfEnemy);
+        }
+        else if (label == wMenuObj.CrystalsDestroyedLabel)
+        {
+            float crystalValue = 0.1f;
+            value.text = "x " + ((amountKilled * crystalValue) + 1).ToString();
+            float fScore = score * ((crystalValue * amountKilled) + 1);
+            score = (int)fScore;
+        }
+        else
+        {
+            value.text = "+ " + (amountKilled * valueOfEnemy).ToString();
+            score += (amountKilled * valueOfEnemy);
+        }
         value.enabled = true;
+        
+        wMenuObj.totalScoreValue.text = score.ToString("f0");
         yield return new WaitForSecondsRealtime(nextScoreDelay);
+
     }
     #endregion
 
@@ -485,11 +524,13 @@ public class gameManager : MonoBehaviour
     {
         toolTipText.text = textObj.text;
         toolTipPanel.SetActive(true);
+        reticle.SetActive(false);
     }
     public void ClearToolTip()
     {
         toolTipText.text = string.Empty;
         toolTipPanel.SetActive(false);
+        reticle.SetActive(true);
     }
 
     #endregion
@@ -599,6 +640,7 @@ public class gameManager : MonoBehaviour
     {
         //stay DRY
         menuHUD.SetActive(hudEnabled);
+        reticle.SetActive(true);
     }
 
     void UpdateHUD()

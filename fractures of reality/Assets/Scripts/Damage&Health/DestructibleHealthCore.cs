@@ -14,7 +14,8 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
 
     public enum statusEffect { normal, fireBurning, LightningShocked, IceFrozen, Earth, Windborn, WaterWet }
     [Range(0, 500)][SerializeField] public int Hp = 100;
-    [SerializeField] int scoreValue;
+    public enum EnemyType { Other, Skeleton, Beholder, Necromancer, Dragon, Crystal, Player}
+    [SerializeField] public EnemyType thisEnemy;
     [SerializeField] Collider mObjectCollider;
     [SerializeField] DamageEngine.ElementType elementType;
     [SerializeField] public bool IsMandatory = true;
@@ -459,8 +460,4 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
         colorOriginal = material.color;
     }
 
-    public int GetScoreValue()
-    {
-        return scoreValue;
-    }
 }

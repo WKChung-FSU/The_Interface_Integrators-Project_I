@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp: 500
-  scoreValue: 1000
+  thisEnemy: 4
   mObjectCollider: {fileID: 8202796709849882331}
   elementType: 0
   IsMandatory: 1
