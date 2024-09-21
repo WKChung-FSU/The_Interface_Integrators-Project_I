@@ -51,7 +51,7 @@ MonoBehaviour:
   movementType: 0
   damageAmount: 9
   CastFractureDamage: 0
-  RemoveTime: 10
+  RemoveTime: 1.5
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
   speed: 28
   rb: {fileID: 5791687774503595315}

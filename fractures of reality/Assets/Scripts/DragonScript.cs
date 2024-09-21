@@ -62,7 +62,10 @@ public class DragonScript : MonoBehaviour
             }
         }
         //choose to either do bullet-hell or summon adds
-        int rando = UnityEngine.Random.Range(0, (int)Time.time) % 1;
+        Debug.Log(Time.realtimeSinceStartup * 10000);
+        int rando = (int)(Time.realtimeSinceStartup*10000) % 2;
+        //rando = 1;
+
         if (rando == 0)
         {
             Debug.Log("Summon Phase first");
@@ -102,7 +105,6 @@ public class DragonScript : MonoBehaviour
                 }
             case (int)BattlePhase.defend:
                 {
-                    Debug.Log("Summon or BHell phase");
                     if (bHellPhase)
                     {
                         //logic for bullet hell phase
@@ -245,7 +247,14 @@ public class DragonScript : MonoBehaviour
     {
         //choose direction of hazard
         int randomPos = UnityEngine.Random.Range(0, (int)Time.time) % 3;
-        hazardSafeZoneIterator = UnityEngine.Random.Range(0, (int)Time.time) % NorthHazard.Count; // they all have the same amount of hazards, not the best solution
+        hazardSafeZoneIterator = UnityEngine.Random.Range(0, (int)Time.time) % NorthHazard.Count - 1; // they all have the same amount of hazards, not the best solution
+
+        if (hazardSafeZoneIterator == 0 || hazardSafeZoneIterator >= NorthHazard.Count - 1)
+        {
+            //if the safe zone is at the edge of the arena, make it the middle instead
+            hazardSafeZoneIterator = 10;
+        }
+
         switch (randomPos)
         {
             case 0:

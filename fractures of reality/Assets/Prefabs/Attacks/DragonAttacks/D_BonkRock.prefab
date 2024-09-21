@@ -13,6 +13,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 857550822065736880, guid: 3314fa8649defd1408f4d104f99e97fb, type: 3}
+      propertyPath: RemoveTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 857550822065736880, guid: 3314fa8649defd1408f4d104f99e97fb, type: 3}
       propertyPath: damageAmount
       value: 10
       objectReference: {fileID: 0}
