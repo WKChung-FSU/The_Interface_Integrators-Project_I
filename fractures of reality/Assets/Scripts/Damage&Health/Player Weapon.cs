@@ -24,7 +24,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     [Range(1, 100)][SerializeField] int MaxAmmo;
 
     [SerializeField] List<DamageEngine.ElementType> UpgradedElements;
-    bool OutOfAmmo;
     bool isShooting;
     bool Cheat = false;
     bool SwitchingWeapon;
@@ -257,15 +256,9 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     void AmmoTest()
     {
-        if (CurrAmmo > 0)
-        {
-            OutOfAmmo = false;
-        }
-        else
-        {
-            OutOfAmmo = true;
+        if (CurrAmmo < 0)
             CurrAmmo = 0;
-        }
+        
     }
     public void ReloadAmmo(int amount = 0)
     {

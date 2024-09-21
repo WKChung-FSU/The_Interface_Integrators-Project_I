@@ -74,7 +74,7 @@ public class AttackCore : MonoBehaviour
                 break;
 
                 default:
-                Debug.Log("How? movement type error...");
+                //Debug.Log("How? movement type error...");
                 break;
         }
 
