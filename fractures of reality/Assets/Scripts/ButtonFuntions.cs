@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 public class ButtonFunctions : MonoBehaviour
 {
-    
-    
+
+    [SerializeField] KeyPocket playerKeysPocket;
+    [SerializeField] PowerCrystalManifest powerCrystalManifest;
+    [SerializeField] ScoreKeeper scoreKeeper;
+
     public void resume()
     {
         gameManager.instance.stateUnPaused();
@@ -53,7 +56,7 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void mainMenu(int sceneIndex)
     {
-        StartCoroutine(LoadAsync(sceneIndex));
+        LoadAsync(sceneIndex);
         gameManager.instance.menuActive.SetActive(gameManager.instance.isPaused);
         gameManager.instance.menuActive = null;
 
@@ -70,24 +73,26 @@ public class ButtonFunctions : MonoBehaviour
    
     public void PlayGame(int sceneIndex)
     {
-        StartCoroutine(LoadAsync(sceneIndex));
+        LoadAsync(sceneIndex);
     }
     public void NewGame(int sceneIndex)
-    { 
-        StartCoroutine(LoadAsync(sceneIndex));
-        gameManager.instance.PlayerController.PlayerKeys.Clear();
+    {
+        playerKeysPocket.ClearAllKeys();
+        powerCrystalManifest.ResetManifest();
+        scoreKeeper.ResetScoreKeeper();
+        LoadAsync(sceneIndex);
+        //gameManager.instance.PlayerController.PlayerKeys.Clear();
 
     }
     
 
-public IEnumerator LoadAsync(int sceneIndex)
+public void LoadAsync(int sceneIndex)
     {
-        gameManager.instance.LoadingScreen.SetActive(true);
-        yield return new WaitForSecondsRealtime(3.0f);
-        
+        //gameManager.instance.LoadingScreen.SetActive(true);
+        SceneManager.LoadScene(5);  //index 5 is the loading screen        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         Time.timeScale = 1f;
         float progress = Mathf.Clamp01(operation.progress / 0.9f);
-        gameManager.instance.slider.value = progress;
+       //gameManager.instance.slider.value = progress;
     }
 }

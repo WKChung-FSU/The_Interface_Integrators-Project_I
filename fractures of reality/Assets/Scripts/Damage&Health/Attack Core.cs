@@ -50,14 +50,14 @@ public class AttackCore : MonoBehaviour
         switch (movementType)
         {
             case DamageEngine.movementType.Spell:
-                case DamageEngine.movementType.AoeInitialization:
-                    case DamageEngine.movementType.teleportation:
+            case DamageEngine.movementType.AoeInitialization:
+            case DamageEngine.movementType.teleportation:
                 gameManager.instance.playAudio(DamageEngine.instance.GetSpellSound(attackElement, false), DamageEngine.instance.GetSpellVolume(false));
                 rb.velocity = rb.transform.forward * speed;
                 if (RemoveTime != 0)
                 {
-                Destroy(this.GetComponent<TrailRenderer>(), RemoveTime);
-                Destroy(gameObject, RemoveTime);
+                    Destroy(this.GetComponent<TrailRenderer>(), RemoveTime);
+                    Destroy(gameObject, RemoveTime);
                 }
                 break;
 
@@ -73,7 +73,7 @@ public class AttackCore : MonoBehaviour
                 }
                 break;
 
-                default:
+            default:
                 //Debug.Log("How? movement type error...");
                 break;
         }
@@ -87,13 +87,13 @@ public class AttackCore : MonoBehaviour
     {
         if (movementType == DamageEngine.movementType.teleportation)
         {
-            gameManager.instance.playerScript.TeleportTo(transform.position+(Vector3.up*2));
+            gameManager.instance.playerScript.TeleportTo(transform.position + (Vector3.up * 2));
         }
 
 
         if (IsInfectious)
-                DamageEngine.instance.UpdateAOEs(-1);
-        }
+            DamageEngine.instance.UpdateAOEs(-1);
+    }
 
 
     private void Update()
@@ -107,7 +107,7 @@ public class AttackCore : MonoBehaviour
                 break;
 
             case DamageEngine.movementType.Spell:
-                if(!IsTracking)
+                if (!IsTracking)
                     StartCoroutine(SpellTracking());
                 break;
             case DamageEngine.movementType.Environmental:
@@ -223,16 +223,16 @@ public class AttackCore : MonoBehaviour
         return;
     }
 
-   IEnumerator SpellTracking()
+    IEnumerator SpellTracking()
     {
-        IsTracking=true;
+        IsTracking = true;
         Quaternion currentRotation = rb.rotation;
-        
+
         Quaternion PlayerAngle = Quaternion.LookRotation(gameManager.instance.player.transform.position - gameObject.transform.position);
-        rb.rotation= Quaternion.Lerp(currentRotation, PlayerAngle,TrackingStrength);
+        rb.rotation = Quaternion.Lerp(currentRotation, PlayerAngle, TrackingStrength);
         rb.velocity = rb.transform.forward * speed;
         yield return new WaitForSeconds(0.1f);
-        IsTracking=false;
+        IsTracking = false;
     }
     IEnumerator environmentalAttack()
     {
@@ -307,7 +307,7 @@ public class AttackCore : MonoBehaviour
 
             Destroy(gameObject);
         }
-      
+
     }
-   
+
 }

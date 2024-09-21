@@ -5,12 +5,13 @@ using TMPro;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
-    public Slider slider;
-    public GameObject LoadingScreen;
+    //public Slider slider;     wtf is slider????
+    //public GameObject LoadingScreen;
     public enum GameGoal { KillAllEnemies, ReachGoal, AcquireObjects }
     [SerializeField] GameGoal CurrentGoal;
     [SerializeField] bool PauseLock;
@@ -121,8 +122,15 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
 
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
         StopSpawning = false;
-        instance = this;
         player = GameObject.FindWithTag("Player");
 
         playerScript = player.GetComponent<DestructibleHealthCore>();
@@ -134,6 +142,8 @@ public class gameManager : MonoBehaviour
         GoalTextUpdate();
         enemiesInMeleeRangeOfPlayer.Capacity = enemiesAllowedToCrowdThePlayer;
 
+        //PlayerController.PlayerKeys.Clear();
+        //Debug.LogWarning("GM start key clear");
         //crystalManifest.ResetManifest();
 
     }
@@ -143,7 +153,8 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(MainMenu());
         }
-        
+
+
     }
     private void OnApplicationQuit()
     {
