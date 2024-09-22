@@ -3598,6 +3598,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 383
+  soundLists: {fileID: 0}
   spellsList:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
   shootPos: {fileID: 3186620901102437523}
@@ -3622,7 +3623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 7403270909451607216}
   canCastSpell: 1
-  spellCastTimer: 15
+  spellCastTimer: 20
 --- !u!1 &4781242229725236917
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,7 +70,8 @@ MonoBehaviour:
   attackElement: 2
   movementType: 1
   damageAmount: 1
-  RemoveTime: 1
+  CastFractureDamage: 0
+  RemoveTime: 0.5
   destroyParticle: {fileID: 0}
   speed: 1
   rb: {fileID: 0}
@@ -85,7 +86,11 @@ MonoBehaviour:
     m_Bits: 128
   RequiredElement: 6
   SpellRange: 1
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   AttackSpeed: 0.4
+  TrackingStrength: 0
   targets: []
 --- !u!1001 &5082833751932503227
 PrefabInstance:
