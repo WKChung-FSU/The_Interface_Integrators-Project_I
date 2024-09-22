@@ -714,6 +714,11 @@ public class gameManager : MonoBehaviour
 
         fractureBar.color = BarColor;
         fractureBar.fillAmount = ((float)playerController.fractureBars[playerWeapon.GetCurrentElement()] / (float)playerController.getMaxFractureAmount());
+        if (fractureBar.fillAmount < 1)
+        {
+            playerController.UpdateFractureBar();
+        }
+
     }
 
 

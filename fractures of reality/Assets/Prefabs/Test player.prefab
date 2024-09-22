@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9072709061254972098}
   - component: {fileID: 5620486254663220588}
   - component: {fileID: 907075649820734068}
+  - component: {fileID: 5651154771512009867}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -225,6 +226,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5651154771512009867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309362789038141989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb0fd25deeaea0498849fee6f341e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2734904393709309649
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +373,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb9acde1b19309545aca4aa1d05b3b1e, type: 3}
   - {fileID: 8300000, guid: 2fbb212e49b926549ab2685094ade70b, type: 3}
   AudioStepsVol: 0.2
-  fractureRegenRate: 0.5
+  fractureRegenRate: 0.2
   MaxFractureResistance: 25
   fractureRegenAmount: 1
   FractureFireRateReduction: 1
