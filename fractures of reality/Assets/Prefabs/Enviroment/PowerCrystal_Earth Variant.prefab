@@ -16,6 +16,13 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4a7139dbbadaf1d46831a7e358501e10, type: 2}
+    - target: {fileID: 3366075122733106860, guid: 5abef6fa1e76803428f6efa398db6eb4, type: 3}
+      propertyPath: m_text
+      value: 'Earth Crystal Destroyed!
+
+
+        Earth spells have been upgraded'
+      objectReference: {fileID: 0}
     - target: {fileID: 4769151098393949228, guid: 5abef6fa1e76803428f6efa398db6eb4, type: 3}
       propertyPath: elementType
       value: 4
@@ -59,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 8607402037377539559, guid: 5abef6fa1e76803428f6efa398db6eb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884275690112951010, guid: 5abef6fa1e76803428f6efa398db6eb4, type: 3}
+      propertyPath: displayTime
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

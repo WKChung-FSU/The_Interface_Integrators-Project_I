@@ -531,17 +531,27 @@ public class gameManager : MonoBehaviour
 
     #region Tooltip methods
 
-    public void ToolTip(TMP_Text textObj)
+    public void ToolTip(TMP_Text textObj, float decay = 0f)
     {
         toolTipText.text = textObj.text;
         toolTipPanel.SetActive(true);
         reticle.SetActive(false);
+        if(decay != 0f)
+        {
+            StartCoroutine(ClearToolTipDelayed(decay));
+        }
     }
     public void ClearToolTip()
     {
         toolTipText.text = string.Empty;
         toolTipPanel.SetActive(false);
         reticle.SetActive(true);
+    }
+
+    public IEnumerator ClearToolTipDelayed(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        ClearToolTip();
     }
 
     #endregion
