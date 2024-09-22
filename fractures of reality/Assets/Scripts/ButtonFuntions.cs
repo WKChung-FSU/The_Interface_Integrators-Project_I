@@ -21,7 +21,7 @@ public class ButtonFunctions : MonoBehaviour
         gameManager.instance.stopSpawning=true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.stateUnPaused();
-
+        gameManager.instance.scoreKeeper.IncreaseDeathCount();
     }
 
     public void respawn(){

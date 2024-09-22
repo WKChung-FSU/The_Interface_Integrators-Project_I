@@ -14311,7 +14311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7adf626739da85a45b4bc47043464b20, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7adf626739da85a45b4bc47043464b20, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14345,6 +14345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 7adf626739da85a45b4bc47043464b20, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fbe2cc091f6a9dc4c90c621aefb387b2, type: 2}
     - target: {fileID: 919132149155446097, guid: 7adf626739da85a45b4bc47043464b20, type: 3}
       propertyPath: m_Name
       value: Crystal

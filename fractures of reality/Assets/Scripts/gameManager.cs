@@ -115,7 +115,6 @@ public class gameManager : MonoBehaviour
 
 
     private int score;
-    private int timesDied;
 
     #endregion
     bool StopSpawning;
@@ -425,7 +424,7 @@ public class gameManager : MonoBehaviour
         playerScript.TeleportTo(startPosition);
         //clear the crowd list
         enemiesInMeleeRangeOfPlayer.Clear();
-        timesDied++;
+        scoreKeeper.IncreaseDeathCount();
         if (trueRespawn == true)
         {
             playerWeapon.ReloadAmmo();
@@ -450,7 +449,6 @@ public class gameManager : MonoBehaviour
     private void ResetScore()
     {
         score = 0;
-        timesDied = 0;
         scoreKeeper.ResetScoreKeeper();
     }
 
@@ -481,7 +479,7 @@ public class gameManager : MonoBehaviour
         StartCoroutine(ShowStat(wMenuObj.CrystalsDestroyedLabel, wMenuObj.CrystalsDestroyedAmount, wMenuObj.CrystalsDestroyedValue,crystalManifest.GetAmountOfCrystals(),1));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
         //player
-        StartCoroutine(ShowStat(wMenuObj.playerDeathsLabel, wMenuObj.playerDeathsAmount, wMenuObj.playerDeathsValue, timesDied, scoreKeeper.playerDeathScoreDeduction));
+        StartCoroutine(ShowStat(wMenuObj.playerDeathsLabel, wMenuObj.playerDeathsAmount, wMenuObj.playerDeathsValue, scoreKeeper.GetTimesDied(), scoreKeeper.playerDeathScoreDeduction));
         yield return new WaitForSecondsRealtime(nextScoreDelay * 3);
         wMenuObj.winMenuMainMenuButton.interactable = true;
         wMenuObj.winMenuRestartButton.interactable = true;

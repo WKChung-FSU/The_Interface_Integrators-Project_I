@@ -24007,9 +24007,14 @@ PrefabInstance:
 
 
         Legend states that when they
-        are destroyed, they grant the closest living creature their power. Through
-        much experimentation, it has been proven that no mortal being can possess
-        the power of all the elements at once. '
+        are destroyed, they grant the closest living creature their power. Even though
+        many have tried, there has been no mortal being that can possess the power
+        of all the elements at once.
+
+
+
+
+        So far...'
       objectReference: {fileID: 0}
     - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36325,10 +36330,6 @@ PrefabInstance:
     - target: {fileID: 1490940534321337345, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490940534321337345, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7587965237632798219, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
       propertyPath: m_Pivot.x

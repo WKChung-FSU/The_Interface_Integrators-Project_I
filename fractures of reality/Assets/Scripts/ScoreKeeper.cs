@@ -9,6 +9,7 @@ public class ScoreKeeper : ScriptableObject
     int BeholdersKilled;
     int NecromancersKilled;
     int DragonsKilled;
+    int timesDied;
     [SerializeField] public int skeleValue;
     [SerializeField] public int BeholdersValue;
     [SerializeField] public int NecromancersValue;
@@ -46,6 +47,7 @@ public class ScoreKeeper : ScriptableObject
 
     public void ResetScoreKeeper()
     {
+        timesDied = 0;
         skelesKilled = 0;
         BeholdersKilled = 0;
         NecromancersKilled = 0;
@@ -67,5 +69,14 @@ public class ScoreKeeper : ScriptableObject
     public int getDragon()
     {
         return DragonsKilled;
+    }
+    public int GetTimesDied()
+    {
+        return timesDied;
+    }
+
+    public void IncreaseDeathCount(int count = 1)
+    {
+        timesDied += count;
     }
 }
