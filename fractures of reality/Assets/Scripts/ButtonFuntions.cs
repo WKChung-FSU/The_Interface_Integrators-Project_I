@@ -47,12 +47,13 @@ public class ButtonFunctions : MonoBehaviour
             Debug.LogError("No saves can be loaded.");
             return;
         }
-        Vector3 position;
+        powerCrystalManifest=data.GetCrystalManifest();
+        playerKeysPocket = data.GetPlayerKeys();
+        scoreKeeper=data.GetScoreKeeper();
 
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        gameManager.instance.stopSpawning = true;
+        SceneManager.LoadScene(data.GetSceneIndex());
+        gameManager.instance.stateUnPaused();
     }
     public void mainMenu(int sceneIndex)
     {

@@ -109,6 +109,13 @@ public class playerController : MonoBehaviour
         }
     }
 
+    public KeyPocket Pocket
+    {
+        get { return PlayerPocket; }
+    }
+
+
+
     public Dictionary<DamageEngine.ElementType, int> fractureBars
     {
         get { return FractureBars; }

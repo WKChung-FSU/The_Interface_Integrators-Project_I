@@ -4,19 +4,18 @@ using System.Security.Cryptography.X509Certificates;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
 
     public static void Save(GameObject player)
     {
-        PlayerWeapon ammo = player.GetComponent<PlayerWeapon>();
-        DestructibleHealthCore playercore = player.GetComponent<DestructibleHealthCore>();
-
         BinaryFormatter formatter = new BinaryFormatter();
         string fPath = Application.persistentDataPath + "/save.dat";
         FileStream stream = new FileStream(fPath, FileMode.Create);
-        PlayerData data = new PlayerData(ammo, playercore);
+        PlayerData data = new PlayerData(gameManager.instance.PlayerController.Pocket,gameManager.instance.PCrystalManifest,gameManager.instance.scoreKeeper,
+            SceneManager.GetActiveScene().buildIndex);
         formatter.Serialize(stream, data);
         stream.Close();
     }

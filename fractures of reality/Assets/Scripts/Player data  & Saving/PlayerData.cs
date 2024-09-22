@@ -5,18 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int health;
-    public int mana;
-    public float[] position;
-
-    public PlayerData (PlayerWeapon ammo, DestructibleHealthCore player)
+    KeyPocket PlayerKeys;
+    PowerCrystalManifest CrystalManifest;
+    int SceneIndex;
+    ScoreKeeper ScoreKeeper;
+    public PlayerData ( KeyPocket playerKeys, PowerCrystalManifest crystals,ScoreKeeper score, int sceneIndex)
     {
-        health = player.Hp;
-        mana = ammo.Ammo;
-
-        position = new float[3];
-        position[0] = player.transform.position.x;
-        position[1] = player.transform.position.y;
-        position[2] = player.transform.position.z;
+        PlayerKeys = playerKeys;
+        CrystalManifest = crystals;
+        SceneIndex=sceneIndex;
+        ScoreKeeper = score;
     }
+    public int GetSceneIndex() { return SceneIndex; }
+    public KeyPocket GetPlayerKeys() { return PlayerKeys; }
+    public PowerCrystalManifest GetCrystalManifest() { return CrystalManifest; }
+    public ScoreKeeper GetScoreKeeper() { return ScoreKeeper; }
 }
