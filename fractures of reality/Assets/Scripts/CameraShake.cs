@@ -11,6 +11,8 @@ public class CameraShake : MonoBehaviour
     private float timeAtLastFrame;
     private float timeDelta;
 
+    static bool isShaking = false;
+
     void Awake()
     {
         instance = this;
@@ -26,9 +28,19 @@ public class CameraShake : MonoBehaviour
 
     public static void Shake(float duration, float amount)
     {
-        instance.originalPos = instance.gameObject.transform.localPosition;
-        instance.StopAllCoroutines();
-        instance.StartCoroutine(instance.cShake(duration, amount));
+        if(isShaking == true)
+        {
+            return;
+        }
+        else 
+        {
+            isShaking = true;
+            instance.originalPos = instance.gameObject.transform.localPosition;
+            //instance.StopAllCoroutines();
+            instance.StartCoroutine(instance.cShake(duration, amount));
+            isShaking = false;
+        }
+       
     }
 
     public IEnumerator cShake(float duration, float amount)
