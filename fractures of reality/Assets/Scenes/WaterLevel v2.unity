@@ -43132,6 +43132,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781395388196052279, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: elementType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.178368
@@ -43701,6 +43705,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12635a54930258041a2ed69fa077595d, type: 3}
+--- !u!1 &1118268483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118268484}
+  - component: {fileID: 1118268485}
+  m_Layer: 0
+  m_Name: Spot Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1118268484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118268483}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3256295, y: 0.62766665, z: 0.3256295, w: 0.62766665}
+  m_LocalPosition: {x: -1.79, y: -3.11, z: -0.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1448110568}
+  m_LocalEulerAnglesHint: {x: -54.84, y: 90, z: 0}
+--- !u!108 &1118268485
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118268483}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 4.41
+  m_Range: 10
+  m_SpotAngle: 63.5
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!4 &1121381205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5243315901114573207, guid: 07fd80d5d42af88438e5de8b028d9807, type: 3}
@@ -54623,6 +54721,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3f7d4927009b84583c02fcbc509217, type: 3}
+--- !u!4 &1448110568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
+  m_PrefabInstance: {fileID: 1840106303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1448399052
 GameObject:
   m_ObjectHideFlags: 0
@@ -69202,13 +69305,28 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 656853901308223166, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
+      propertyPath: m_text
+      value: 'Water Crystal Destroyed!
+
+
+        Water spells have been upgraded
+
+
+        Your
+        alternate water spell will now heal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 656853901308223166, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3851226082550856609, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
       propertyPath: m_Name
       value: PowerCrystal_Water Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 103.28552
+      value: 117.34
       objectReference: {fileID: 0}
     - target: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -69216,7 +69334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.073444
+      value: 46.19
       objectReference: {fileID: 0}
     - target: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -69246,9 +69364,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6692463337949969136, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
+      propertyPath: displayTime
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5825560965631673845, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1118268484}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7bc2190b2bcb7c46adb704dba709c8a, type: 3}
 --- !u!1 &1840228587
@@ -70369,10 +70494,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4781395388196052279, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
-      propertyPath: Hp
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 4781395388196052279, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: IsMandatory
       value: 1

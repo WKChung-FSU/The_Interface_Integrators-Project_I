@@ -32626,6 +32626,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781395388196052279, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: elementType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3447
@@ -32678,6 +32682,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7389733548724252210, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: spellsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 7050129238098773698, guid: 6e1ea347e817f4440982907405458473, type: 3}
     - target: {fileID: 8568607709419824845, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_Name
       value: Wizard
