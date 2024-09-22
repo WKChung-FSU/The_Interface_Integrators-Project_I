@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9072709061254972098}
   - component: {fileID: 5620486254663220588}
   - component: {fileID: 907075649820734068}
-  - component: {fileID: 5651154771512009867}
+  - component: {fileID: 4660820231304202754}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb0fd25deeaea0498849fee6f341e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensity: 0
 --- !u!114 &5620486254663220588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +227,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5651154771512009867
+--- !u!114 &4660820231304202754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cb0fd25deeaea0498849fee6f341e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intensity: 0.05
 --- !u!1 &2734904393709309649
 GameObject:
   m_ObjectHideFlags: 0

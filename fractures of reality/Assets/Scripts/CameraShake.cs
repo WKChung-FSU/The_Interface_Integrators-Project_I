@@ -6,6 +6,8 @@ public class CameraShake : MonoBehaviour
 {
     public static CameraShake instance;
 
+    [SerializeField] float intensity = 0.2f;
+
     private Vector3 originalPos;
     private float timeAtCurrentFrame;
     private float timeAtLastFrame;
@@ -15,10 +17,17 @@ public class CameraShake : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
-    void Update()
+void Update()
     {
         // Calculate a fake delta time, so we can Shake while game is paused.
         timeAtCurrentFrame = Time.realtimeSinceStartup;
@@ -26,7 +35,7 @@ public class CameraShake : MonoBehaviour
         timeAtLastFrame = timeAtCurrentFrame;
     }
 
-    public static void Shake(float duration, float amount)
+    public static void Shake(float duration)
     {
         if(isShaking == true)
         {
@@ -37,19 +46,19 @@ public class CameraShake : MonoBehaviour
             isShaking = true;
             instance.originalPos = instance.gameObject.transform.localPosition;
             //instance.StopAllCoroutines();
-            instance.StartCoroutine(instance.cShake(duration, amount));
+            instance.StartCoroutine(instance.cShake(duration));
             isShaking = false;
         }
        
     }
 
-    public IEnumerator cShake(float duration, float amount)
+    public IEnumerator cShake(float duration)
     {
         float endTime = Time.time + duration;
 
         while (duration > 0)
         {
-            transform.localPosition = originalPos + Random.insideUnitSphere * amount;
+            transform.localPosition = originalPos + Random.insideUnitSphere * intensity;
 
             duration -= timeDelta;
 

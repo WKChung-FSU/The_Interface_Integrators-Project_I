@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crystalManifest: {fileID: 11400000, guid: 8ea92698243cdae408a3f70048859109, type: 2}
-  displayTime: 5
+  displayTime: 3
   textObject: {fileID: 2350557031872187852}
 --- !u!1 &2350557031872187852
 GameObject:
