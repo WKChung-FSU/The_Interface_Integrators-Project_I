@@ -33259,6 +33259,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: ClearLists
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
       propertyPath: GivenSpells.Array.size
       value: 1
       objectReference: {fileID: 0}
