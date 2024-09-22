@@ -38,6 +38,17 @@ public class SpellList : ScriptableObject
     {
         get { return secondaryFireRate; }
     }
+    public void ClearSpells()
+    {
+        ClearSpells(PrimarySpells, PrimarySpellCost,  PrimaryFireRate);
+        ClearSpells(SecondarySpells,SecondarySpellCost, SecondaryFireRate);
+    }
+    void ClearSpells(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate)
+    {
+        MasterList.Clear();
+        MasterSpellCost.Clear();
+        MasterFirerate.Clear();
+    }
 }
 
 

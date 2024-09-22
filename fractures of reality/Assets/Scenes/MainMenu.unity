@@ -3505,6 +3505,7 @@ MonoBehaviour:
   playerKeysPocket: {fileID: 11400000, guid: fe3a8f32349230e4f8245ef6a5e77d4f, type: 2}
   powerCrystalManifest: {fileID: 11400000, guid: 8ea92698243cdae408a3f70048859109, type: 2}
   scoreKeeper: {fileID: 11400000, guid: fcd5e924d3adbf5408980521f457d3f3, type: 2}
+  CurrentSpells: {fileID: 11400000, guid: 0fb4bec252ead694e98298d0fdbf897a, type: 2}
 --- !u!114 &5746646689306261703
 MonoBehaviour:
   m_ObjectHideFlags: 0

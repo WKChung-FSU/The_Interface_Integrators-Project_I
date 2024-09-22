@@ -62,7 +62,7 @@ public class DamageEngine : MonoBehaviour
     {
         if (ClearLists)
         {
-            gameManager.instance.playerWeapon.ClearSpells();
+         gameManager.instance.playerWeapon.CurrentList.ClearSpells();
         }
 
         if (GivenSpells.Count > 0)

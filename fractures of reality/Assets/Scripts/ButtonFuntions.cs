@@ -10,7 +10,7 @@ public class ButtonFunctions : MonoBehaviour
     [SerializeField] KeyPocket playerKeysPocket;
     [SerializeField] PowerCrystalManifest powerCrystalManifest;
     [SerializeField] ScoreKeeper scoreKeeper;
-
+    [SerializeField] SpellList CurrentSpells;
     public void resume()
     {
         gameManager.instance.stateUnPaused();
@@ -80,7 +80,7 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void NewGame(int sceneIndex)
     {
-
+        CurrentSpells.ClearSpells();
         playerKeysPocket.ClearAllKeys();
         powerCrystalManifest.ResetManifest();
         scoreKeeper.ResetScoreKeeper();
