@@ -236,13 +236,18 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     }
     public void InstantWeaponSwitch(DamageEngine.ElementType spellType)
     {
-        foreach (var spell in currentSpellList.PrimarySpells)
+        if (!SwitchingWeapon)
         {
-            if (spell.GetComponent<AttackCore>().ElementType == spellType)
+            SwitchingWeapon=true;
+            foreach (var spell in currentSpellList.PrimarySpells)
             {
-                currentWeapon = currentSpellList.PrimarySpells.IndexOf(spell);
-                break;
+                if (spell.GetComponent<AttackCore>().ElementType == spellType)
+                {
+                    currentWeapon = currentSpellList.PrimarySpells.IndexOf(spell);
+                    break;
+                }
             }
+            SwitchingWeapon=false;
         }
     }
 
@@ -305,8 +310,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost,currentSpellList.PrimaryFireRate,true);
         UpdateSpellList(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost,currentSpellList.SecondaryFireRate, false);
-        PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];
-        SecondFireRate = currentSpellList.SecondaryFireRate[currentWeapon];
     }
 
     public SpellList CurrentList
@@ -341,8 +344,8 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
                 }
             }
-            else if ((currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i]) ||
-                (currentSpellList.SecondarySpells[i] != basicSpells.SecondarySpells[i]))
+            else if (((currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i]) &&(isPrimary)||
+                (currentSpellList.SecondarySpells[i] != basicSpells.SecondarySpells[i])&& (!isPrimary)))
             {
                 if (isPrimary)
                 {
@@ -367,7 +370,14 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     spellFireRate[i]=NewFireRate[Spell];
                 };
             }
+            newSpells.Clear();
+            NewSpellCost.Clear();
+            NewFireRate.Clear();
         }
+        if(isPrimary)
+        PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];
+        else
+        SecondFireRate = currentSpellList.SecondaryFireRate[currentWeapon];
     }
 
 }
