@@ -34,26 +34,28 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Save()
     {
+        /// this does not wok and causes game breaking errors, should have been made in json-WC
         //TODO: Add the Crystal manifest to the saves
-        SaveSystem.Save();
+        //SaveSystem.Save();
     }
 
     public void Load()
     {
-        PlayerData data = SaveSystem.Load();
+        /// this does not wok and causes game breaking errors, should have been made in json-WC
+        //PlayerData data = SaveSystem.Load();
 
-        if (data == null)
-        {
-            Debug.LogError("No saves can be loaded.");
-            return;
-        }
-        powerCrystalManifest.DestroyList=data.GetCrystalManifest();
-        playerKeysPocket.AccessKeys = data.GetPlayerKeys();
-        //scoreKeeper=data.GetScoreKeeper();
+        //if (data == null)
+        //{
+        //    Debug.LogError("No saves can be loaded.");
+        //    return;
+        //}
+        //powerCrystalManifest.DestroyList=data.GetCrystalManifest();
+        //playerKeysPocket.AccessKeys = data.GetPlayerKeys();
+        ////scoreKeeper=data.GetScoreKeeper();
 
-        gameManager.instance.stopSpawning = true;
-        SceneManager.LoadScene(data.GetSceneIndex());
-        gameManager.instance.stateUnPaused();
+        //gameManager.instance.stopSpawning = true;
+        //SceneManager.LoadScene(data.GetSceneIndex());
+        //gameManager.instance.stateUnPaused();
     }
     public void mainMenu(int sceneIndex)
     {
