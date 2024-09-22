@@ -290,6 +290,20 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
         }
     }
+    public void ClearSpells()
+    {
+        ClearSpells(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost, currentSpellList.PrimaryFireRate);
+        ClearSpells(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost, currentSpellList.SecondaryFireRate);
+    }
+    void ClearSpells(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate)
+    {
+        MasterList.Clear();
+        MasterSpellCost.Clear();
+        MasterFirerate.Clear();
+    }
+
+
+
     void AddSpell(List<GameObject> MasterList, List<int> MasterSpellCost, List<float> MasterFirerate, GameObject Spell, int SpellCost, float FireRate)
     {
         MasterList.Add(Spell);

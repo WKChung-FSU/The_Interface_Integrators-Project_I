@@ -80,6 +80,7 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void NewGame(int sceneIndex)
     {
+
         playerKeysPocket.ClearAllKeys();
         powerCrystalManifest.ResetManifest();
         scoreKeeper.ResetScoreKeeper();

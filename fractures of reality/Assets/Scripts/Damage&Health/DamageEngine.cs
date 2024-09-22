@@ -25,7 +25,8 @@ public class DamageEngine : MonoBehaviour
     [Header("---Given Spells---")]
     [Header("if empty will not give a spell, should work with more than one")]
     [SerializeField] List<DamageEngine.ElementType> GivenSpells;
-    [Header("---- Global Effect Multipliers ----")]
+    [SerializeField] bool ClearLists;
+     [Header("---- Global Effect Multipliers ----")]
     [SerializeField] float critMult = 2f;
     [SerializeField] float nullMult = 0f;
     [SerializeField] float weakMult = 0.5f;
@@ -59,6 +60,11 @@ public class DamageEngine : MonoBehaviour
 
     private void Start()
     {
+        if (ClearLists)
+        {
+            gameManager.instance.playerWeapon.ClearSpells();
+        }
+
         if (GivenSpells.Count > 0)
         {
             GivenSpells.ForEach(gameManager.instance.playerWeapon.AddSpell);
