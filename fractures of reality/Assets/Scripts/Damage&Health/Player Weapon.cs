@@ -322,6 +322,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
 
     void UpdateSpellList(List<GameObject> list,List<int>SpellCost,List<float>spellFireRate, bool isPrimary)
     {
+        bool didChange = false;
         List<GameObject> newSpells = new List<GameObject>();
         List<int>NewSpellCost = new List<int>();
         List<float>NewFireRate = new List<float>();
@@ -343,9 +344,10 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     NewFireRate = upgradedSpells.SecondaryFireRate;
 
                 }
+                didChange = true;
             }
-            else if (((currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i]) &&(isPrimary)||
-                (currentSpellList.SecondarySpells[i] != basicSpells.SecondarySpells[i])&& (!isPrimary)))
+            else if (((currentSpellList.PrimarySpells[i] != basicSpells.PrimarySpells[i]) && (isPrimary) ||
+                (currentSpellList.SecondarySpells[i] != basicSpells.SecondarySpells[i]) && (!isPrimary)))
             {
                 if (isPrimary)
                 {
@@ -359,20 +361,22 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     NewSpellCost = basicSpells.SecondarySpellCost;
                     NewFireRate = basicSpells.SecondaryFireRate;
                 }
+                didChange = true;
             }
+            if (didChange) { 
             for (int Spell = 0; Spell < newSpells.Count; Spell++)
             {
-                
-            if (newSpells[Spell].GetComponent<AttackCore>().ElementType == SpellElement)
+
+                if (newSpells[Spell].GetComponent<AttackCore>().ElementType == SpellElement)
                 {
                     list[i] = newSpells[Spell];
-                    SpellCost[i]=NewSpellCost[Spell];
-                    spellFireRate[i]=NewFireRate[Spell];
+                    SpellCost[i] = NewSpellCost[Spell];
+                    spellFireRate[i] = NewFireRate[Spell];
                 };
+                  
             }
-            newSpells.Clear();
-            NewSpellCost.Clear();
-            NewFireRate.Clear();
+                didChange=false;
+            }
         }
         if(isPrimary)
         PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];

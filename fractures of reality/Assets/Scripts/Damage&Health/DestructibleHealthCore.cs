@@ -89,7 +89,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
     }
     void OnApplicationQuit()
     {
-        gameManager.instance.stopSpawning = true;
+        gameManager.instance.stopSpawning = true;   
     }
     public DamageEngine.ElementType ElementType
     {
