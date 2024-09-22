@@ -7537,48 +7537,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0d71d1c13932048ad972a8686fbfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  critMult: 2
+  GivenSpells: 000000000100000002000000030000000400000005000000
+  ClearLists: 1
+  critMult: 2.2
   nullMult: 0
-  weakMult: 0.5
+  weakMult: 0.6
   healMult: -1
   normalMultiplier:
+    normalMult: 0
+    fireMult: 3
+    lightningMult: 0
+    iceMult: 1
+    earthMult: 0
+    windMult: 0
+    waterMult: 0
+  FireMultiplier:
+    normalMult: 1
+    fireMult: 0
+    lightningMult: 0
+    iceMult: 3
+    earthMult: 0
+    windMult: 4
+    waterMult: 0
+  LightningMultiplier:
     normalMult: 0
     fireMult: 0
     lightningMult: 0
     iceMult: 0
-    earthMult: 0
-    windMult: 4
-    waterMult: 0
-  FireMultiplier:
-    normalMult: 0
-    fireMult: 3
-    lightningMult: 3
-    iceMult: 1
-    earthMult: 0
-    windMult: 4
-    waterMult: 1
-  LightningMultiplier:
-    normalMult: 0
-    fireMult: 2
-    lightningMult: 3
-    iceMult: 3
     earthMult: 1
     windMult: 4
-    waterMult: 1
+    waterMult: 3
   IceMultiplier:
-    normalMult: 0
+    normalMult: 3
     fireMult: 1
-    lightningMult: 2
-    iceMult: 4
-    earthMult: 1
+    lightningMult: 0
+    iceMult: 0
+    earthMult: 0
     windMult: 2
-    waterMult: 4
+    waterMult: 0
   EarthMultiplier:
     normalMult: 0
-    fireMult: 3
+    fireMult: 0
     lightningMult: 3
-    iceMult: 3
-    earthMult: 2
+    iceMult: 0
+    earthMult: 0
     windMult: 4
     waterMult: 1
   WindMultiplier:
@@ -7591,12 +7593,12 @@ MonoBehaviour:
     waterMult: 0
   WaterMultiplier:
     normalMult: 0
-    fireMult: 3
-    lightningMult: 0
-    iceMult: 1
+    fireMult: 0
+    lightningMult: 1
+    iceMult: 0
     earthMult: 3
     windMult: 4
-    waterMult: 4
+    waterMult: 0
   lightningAOE: {fileID: 8561355821137050106, guid: b4000e3e869f52f4eb1eedf044d6610c, type: 3}
   MaxInfectAoe: 10
   castSounds:
@@ -7640,6 +7642,7 @@ MonoBehaviour:
   playerKeysPocket: {fileID: 11400000, guid: fe3a8f32349230e4f8245ef6a5e77d4f, type: 2}
   powerCrystalManifest: {fileID: 11400000, guid: 8ea92698243cdae408a3f70048859109, type: 2}
   scoreKeeper: {fileID: 11400000, guid: fcd5e924d3adbf5408980521f457d3f3, type: 2}
+  CurrentSpells: {fileID: 0}
 --- !u!82 &955472737586027820
 AudioSource:
   m_ObjectHideFlags: 0

@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658d6ef1e3e0ec648811d83c13c5f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 100
+  Hp: 50
   thisEnemy: 3
   mObjectCollider: {fileID: 6725909310829867033}
   elementType: 0
@@ -2542,6 +2542,7 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 383
+  soundLists: {fileID: 0}
   spellsList:
   - {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}
   - {fileID: 5281581821160802740, guid: 04e7d3486e77f444698ab74f6abb71b7, type: 3}

@@ -1158,6 +1158,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lightning_Skellington Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5764343910948660261, guid: fb0b9950934b70f44b6fd4f36e42e5ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1761,6 +1765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Earth_Skellington Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7894117806034600336, guid: 976df32021575f840a15b57eaaa71a2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1961,6 +1969,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice_Skellington Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4430658635203945756, guid: 3e1ac3a6fc6e2524c85f08d590cad3bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4888902774510342658, guid: 3e1ac3a6fc6e2524c85f08d590cad3bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.969999
@@ -2103,6 +2115,10 @@ PrefabInstance:
     - target: {fileID: 4430658635203945756, guid: 22b150efc83de9a48a737498f7ab7848, type: 3}
       propertyPath: m_Name
       value: Fire_Skellington Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430658635203945756, guid: 22b150efc83de9a48a737498f7ab7848, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4888902774510342658, guid: 22b150efc83de9a48a737498f7ab7848, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2393,6 +2409,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: critMult
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: FireMultiplier.iceMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: IceMultiplier.fireMult
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: IceMultiplier.normalMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: normalMultiplier.iceMult
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: EarthMultiplier.waterMult
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: FireMultiplier.normalMult
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: WaterMultiplier.earthMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: normalMultiplier.fireMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: EarthMultiplier.lightningMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: LightningMultiplier.earthMult
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: LightningMultiplier.waterMult
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
+      propertyPath: WaterMultiplier.lightningMult
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1490940534321337345, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
       propertyPath: m_Name
       value: UI
@@ -3402,7 +3470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &886065384
 Transform:
   m_ObjectHideFlags: 0
@@ -4766,6 +4834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beholder
       objectReference: {fileID: 0}
+    - target: {fileID: 1695502807786733843, guid: c73a559184154c75991d095521bdea87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2906023006067330561, guid: c73a559184154c75991d095521bdea87, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4899,7 +4971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1373949387
 Transform:
   m_ObjectHideFlags: 0
@@ -4977,7 +5049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1502725761
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5123,6 +5195,10 @@ PrefabInstance:
     - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Name
       value: Skellington
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713686830246885100, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5716873203330546369, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_Enabled
@@ -6209,6 +6285,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 8568607709419824845, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6234,6 +6314,10 @@ PrefabInstance:
     - target: {fileID: 3383779007301046564, guid: ed8d82dab21305e4cb3a41ce51684324, type: 3}
       propertyPath: m_Name
       value: Water_Skellington Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383779007301046564, guid: ed8d82dab21305e4cb3a41ce51684324, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5787577086933673530, guid: ed8d82dab21305e4cb3a41ce51684324, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6886,7 +6970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.88
+      value: -10.55
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6894,7 +6978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.51
+      value: -17.34
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalRotation.w
