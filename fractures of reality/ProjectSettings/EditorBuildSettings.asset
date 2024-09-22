@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/WaterLevel v2.unity
     guid: 2a5a72ba2293c2143a379475d10dd0d6
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: a170b267ebe514340854f7f6cecfa977
-  - enabled: 1
     path: Assets/Scenes/FinalBossScene.unity
     guid: 8e35077852b1eb343816870d684cd991
   - enabled: 1

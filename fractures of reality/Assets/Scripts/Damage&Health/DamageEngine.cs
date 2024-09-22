@@ -22,7 +22,9 @@ public class DamageEngine : MonoBehaviour
         [SerializeField] public DamageEffect windMult;
         [SerializeField] public DamageEffect waterMult;
     }
-
+    [Header("---Given Spells---")]
+    [Header("if empty will not give a spell, should work with more than one")]
+    [SerializeField] List<DamageEngine.ElementType> GivenSpells;
     [Header("---- Global Effect Multipliers ----")]
     [SerializeField] float critMult = 2f;
     [SerializeField] float nullMult = 0f;
@@ -57,7 +59,10 @@ public class DamageEngine : MonoBehaviour
 
     private void Start()
     {
-        
+        if (GivenSpells.Count > 0)
+        {
+            GivenSpells.ForEach(gameManager.instance.playerWeapon.AddSpell);
+        }
     }
     #region Getters/Setters
     public int MaxInfectedAOE

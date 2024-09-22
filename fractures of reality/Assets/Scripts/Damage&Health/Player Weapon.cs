@@ -38,14 +38,6 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     void Start()
     {
         CurrAmmo = MaxAmmo;
-        //gameManager.instance.ammoMax = MaxAmmo;
-
-        //debug for now, btw enums are pain
-        //AddSpell(DamageEngine.ElementType.Lightning);
-        for (int SpellType = 0; SpellType <(int)DamageEngine.ElementType.Water; SpellType++)
-        {
-            AddSpell((DamageEngine.ElementType)SpellType);
-        }
         UpgradedElements = gameManager.instance.PCrystalManifest.DestroyList;
         UpdateSpellList();
     }

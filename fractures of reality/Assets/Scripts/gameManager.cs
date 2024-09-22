@@ -33,6 +33,8 @@ public class gameManager : MonoBehaviour
     private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
 
 
+ 
+
     #endregion
 
     #region CrystalStates
@@ -153,8 +155,6 @@ public class gameManager : MonoBehaviour
         {
             StartCoroutine(MainMenu());
         }
-
-
     }
     private void OnApplicationQuit()
     {

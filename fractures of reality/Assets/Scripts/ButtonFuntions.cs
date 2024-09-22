@@ -63,8 +63,11 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void quit()
     {
-       
+
 #if UNITY_EDITOR
+        playerKeysPocket.ClearAllKeys();
+        powerCrystalManifest.ResetManifest();
+        scoreKeeper.ResetScoreKeeper();
         UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
