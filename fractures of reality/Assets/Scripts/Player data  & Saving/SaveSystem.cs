@@ -9,12 +9,12 @@ using UnityEngine.SceneManagement;
 public class SaveSystem : MonoBehaviour
 {
 
-    public static void Save(GameObject player)
+    public static void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string fPath = Application.persistentDataPath + "/save.dat";
         FileStream stream = new FileStream(fPath, FileMode.Create);
-        PlayerData data = new PlayerData(gameManager.instance.PlayerController.Pocket,gameManager.instance.PCrystalManifest,gameManager.instance.scoreKeeper,
+        PlayerData data = new PlayerData(gameManager.instance.PlayerController.Pocket.AccessKeys,gameManager.instance.PCrystalManifest,
             SceneManager.GetActiveScene().buildIndex);
         formatter.Serialize(stream, data);
         stream.Close();

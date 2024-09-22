@@ -32,10 +32,10 @@ public class ButtonFunctions : MonoBehaviour
 
     }
 
-    public void Save(GameObject player)
+    public void Save()
     {
         //TODO: Add the Crystal manifest to the saves
-        SaveSystem.Save(player);
+        SaveSystem.Save();
     }
 
     public void Load()
@@ -47,9 +47,9 @@ public class ButtonFunctions : MonoBehaviour
             Debug.LogError("No saves can be loaded.");
             return;
         }
-        powerCrystalManifest=data.GetCrystalManifest();
-        playerKeysPocket = data.GetPlayerKeys();
-        scoreKeeper=data.GetScoreKeeper();
+        powerCrystalManifest.DestroyList=data.GetCrystalManifest();
+        playerKeysPocket.AccessKeys = data.GetPlayerKeys();
+        //scoreKeeper=data.GetScoreKeeper();
 
         gameManager.instance.stopSpawning = true;
         SceneManager.LoadScene(data.GetSceneIndex());

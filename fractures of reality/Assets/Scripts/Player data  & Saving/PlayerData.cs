@@ -5,19 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    KeyPocket PlayerKeys;
-    PowerCrystalManifest CrystalManifest;
+    List<KeySystem> PlayerKeys;
+    List<DamageEngine.ElementType> CrystalManifest;
     int SceneIndex;
-    ScoreKeeper ScoreKeeper;
-    public PlayerData ( KeyPocket playerKeys, PowerCrystalManifest crystals,ScoreKeeper score, int sceneIndex)
+    //ScoreKeeper ScoreKeeper;
+    public PlayerData (List<KeySystem> playerKeys, PowerCrystalManifest crystals, int sceneIndex)
     {
         PlayerKeys = playerKeys;
-        CrystalManifest = crystals;
+        CrystalManifest = crystals.DestroyList;
         SceneIndex=sceneIndex;
-        ScoreKeeper = score;
     }
     public int GetSceneIndex() { return SceneIndex; }
-    public KeyPocket GetPlayerKeys() { return PlayerKeys; }
-    public PowerCrystalManifest GetCrystalManifest() { return CrystalManifest; }
-    public ScoreKeeper GetScoreKeeper() { return ScoreKeeper; }
+    public List<KeySystem> GetPlayerKeys() { return PlayerKeys; }
+    public List<DamageEngine.ElementType> GetCrystalManifest() { return CrystalManifest; }
+    //public ScoreKeeper GetScoreKeeper() { return ScoreKeeper; }
 }

@@ -27,6 +27,7 @@ public class PowerCrystalManifest : ScriptableObject
     public List<DamageEngine.ElementType> DestroyList
     {
         get { return CrystalsDestroyed; }
+        set { CrystalsDestroyed = value; }
     }
 
 
