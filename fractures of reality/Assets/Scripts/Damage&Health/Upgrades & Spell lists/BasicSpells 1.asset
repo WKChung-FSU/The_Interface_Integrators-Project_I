@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d54089389af256445bc921dee9f9abe9, type: 3}
-  m_Name: BasicSpells
+  m_Name: BasicSpells 1
   m_EditorClassIdentifier: 
   primarySpells:
   - {fileID: 8249964557088227797, guid: eb458112fe8a60540b96f92abc03c6fd, type: 3}
