@@ -35177,6 +35177,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d9d96b5e8d758c46a823dbe3494179d, type: 3}
+--- !u!1001 &1807383262
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1501819720371367160, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_text
+      value: An overwhelming heat compasses about your body and you hear a faint
+        flap of wings... This is the necromancer's den.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2193141
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.2491503
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -33.097305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70105743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0922958
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70105743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0922958
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810114651399111078, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
+      propertyPath: m_Name
+      value: Book (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
 --- !u!4 &1820456437 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 243653984, guid: 52e86cf63f5a28643b9ff6c47eec24cf, type: 3}
@@ -43505,3 +43567,4 @@ SceneRoots:
   - {fileID: 976349759}
   - {fileID: 524852979}
   - {fileID: 839380778}
+  - {fileID: 1807383262}
