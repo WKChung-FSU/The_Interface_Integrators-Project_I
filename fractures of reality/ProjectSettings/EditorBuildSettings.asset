@@ -20,4 +20,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Volcano level.unity
     guid: d29093131c5d69f46aa6a4b6f9b3016e
+  - enabled: 1
+    path: Assets/Scenes/loadingScreen.unity
+    guid: 7625a8c327d1d2a4b95a2ad34890f9b1
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Scene.unity
+    guid: d7432c861ccfbcf4b8fcd62127a05aca
+  - enabled: 1
+    path: Assets/Scenes/IceLevel.unity
+    guid: edcae366c424aa140b7a59e657cf5bca
+  - enabled: 1
+    path: Assets/Scenes/Lightning Level.unity
+    guid: 9155fb0ed28a52b43b5e34fe39e9abb9
+  - enabled: 1
+    path: Assets/Scenes/Earth Scene.unity
+    guid: 227c60bfa676bd94791fb24001f889ec
   m_configObjects: {}

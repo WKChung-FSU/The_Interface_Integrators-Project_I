@@ -55,7 +55,14 @@ public class DamageEngine : MonoBehaviour
     // remember that this is a instance
     void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     private void Start()
