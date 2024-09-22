@@ -48,7 +48,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && isShooting == false && gameManager.instance.menuActive == false)
             StartCoroutine(ShootPrimary());
 
-        if ((Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false) &&!TPSpell)
+        if ((Input.GetButton("Shoot 2") && isShooting == false && gameManager.instance.menuActive == false) && !TPSpell)
             StartCoroutine(ShootSecondary());
 
         if (TPSpell)
@@ -59,7 +59,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             }
             if (Input.GetButtonUp("Shoot 2") && gameManager.instance.menuActive == false)
             {
-               TPSpell.Teleport(false);
+                TPSpell.Teleport(false);
             }
         }
 
@@ -76,7 +76,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
             ReloadAmmo();
         }
     }
-    
+
     #region Public Getters
 
     public int Ammo
@@ -127,7 +127,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     public int GetMaxAmmo()
     { return MaxAmmo; }
     //May depreciate
-  
+
     public LineRenderer GetLineRenderer()
     {
         return lightningVisual;
@@ -169,12 +169,12 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     #endregion
     IEnumerator ShootPrimary()
     {
-        AttackCore castedSpell=null;
+        AttackCore castedSpell = null;
         isShooting = true;
         // All primary spells are summons
         if (((CurrAmmo - currentSpellList.PrimarySpellCost[currentWeapon]) >= 0) && currentSpellList.PrimarySpells[currentWeapon] != null)
         {
-            castedSpell=Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation).GetComponent<AttackCore>();
+            castedSpell = Instantiate(currentSpellList.PrimarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation).GetComponent<AttackCore>();
             CurrAmmo -= currentSpellList.PrimarySpellCost[currentWeapon];
             gameManager.instance.PlayerController.UpdateFractureBar(castedSpell.GetFractureDamage());
         }
@@ -193,19 +193,19 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         GameObject castedSpell;
         AttackCore attack;
         isShooting = true;
-       
+
         if (((CurrAmmo - currentSpellList.SecondarySpellCost[currentWeapon]) >= 0) && currentSpellList.SecondarySpells[currentWeapon] != null)
         {
 
             castedSpell = Instantiate(currentSpellList.SecondarySpells[currentWeapon], SpellLaunchPos.position, SpellLaunchPos.rotation);
-            TPSpell=castedSpell.GetComponent<EntTeleportation>();
-            attack= castedSpell.GetComponent<AttackCore>();
+            TPSpell = castedSpell.GetComponent<EntTeleportation>();
+            attack = castedSpell.GetComponent<AttackCore>();
 
             if (TPSpell)
                 TPSpell.SetHealthCore(gameManager.instance.playerScript);
             CurrAmmo -= currentSpellList.SecondarySpellCost[currentWeapon];
-            if(attack)
-             gameManager.instance.PlayerController.UpdateFractureBar(attack.GetFractureDamage());
+            if (attack)
+                gameManager.instance.PlayerController.UpdateFractureBar(attack.GetFractureDamage());
         }
         else if (currentSpellList.SecondarySpells[currentWeapon] == null)
         {
@@ -220,11 +220,11 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         SwitchingWeapon = true;
         //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
-        if (( Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
+        if ((Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
         {
             currentWeapon++;
         }
-        else if (( Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
+        else if ((Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
         {
             currentWeapon--;
         }
@@ -238,7 +238,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         if (!SwitchingWeapon)
         {
-            SwitchingWeapon=true;
+            SwitchingWeapon = true;
             foreach (var spell in currentSpellList.PrimarySpells)
             {
                 if (spell.GetComponent<AttackCore>().ElementType == spellType)
@@ -247,7 +247,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                     break;
                 }
             }
-            SwitchingWeapon=false;
+            SwitchingWeapon = false;
         }
     }
 
@@ -255,7 +255,7 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         if (CurrAmmo < 0)
             CurrAmmo = 0;
-        
+
     }
     public void ReloadAmmo(int amount = 0)
     {
@@ -302,30 +302,30 @@ public class PlayerWeapon : MonoBehaviour, IDamage
         MasterFirerate.Add(FireRate);
     }
 
-   public void ClearTP()
+    public void ClearTP()
     {
-        TPSpell=null;
+        TPSpell = null;
     }
     public void UpdateSpellList()
     {
-        UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost,currentSpellList.PrimaryFireRate,true);
-        UpdateSpellList(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost,currentSpellList.SecondaryFireRate, false);
+        UpdateSpellList(currentSpellList.PrimarySpells, currentSpellList.PrimarySpellCost, currentSpellList.PrimaryFireRate, true);
+        UpdateSpellList(currentSpellList.SecondarySpells, currentSpellList.SecondarySpellCost, currentSpellList.SecondaryFireRate, false);
     }
 
     public SpellList CurrentList
     {
 
-    get { return currentSpellList; } 
+        get { return currentSpellList; }
     }
 
 
 
-    void UpdateSpellList(List<GameObject> list,List<int>SpellCost,List<float>spellFireRate, bool isPrimary)
+    void UpdateSpellList(List<GameObject> list, List<int> SpellCost, List<float> spellFireRate, bool isPrimary)
     {
         bool didChange = false;
         List<GameObject> newSpells = new List<GameObject>();
-        List<int>NewSpellCost = new List<int>();
-        List<float>NewFireRate = new List<float>();
+        List<int> NewSpellCost = new List<int>();
+        List<float> NewFireRate = new List<float>();
         for (int i = 0; i < list.Count; i++)
         {
             DamageEngine.ElementType SpellElement = list[i].GetComponent<AttackCore>().ElementType;
@@ -363,25 +363,30 @@ public class PlayerWeapon : MonoBehaviour, IDamage
                 }
                 didChange = true;
             }
-            if (didChange) { 
-            for (int Spell = 0; Spell < newSpells.Count; Spell++)
+            if (didChange)
             {
-
-                if (newSpells[Spell].GetComponent<AttackCore>().ElementType == SpellElement)
+                for (int Spell = 0; Spell < newSpells.Count; Spell++)
                 {
-                    list[i] = newSpells[Spell];
-                    SpellCost[i] = NewSpellCost[Spell];
-                    spellFireRate[i] = NewFireRate[Spell];
-                };
-                  
-            }
-                didChange=false;
+
+                    if (newSpells[Spell].GetComponent<AttackCore>().ElementType == SpellElement)
+                    {
+                        list[i] = newSpells[Spell];
+                        SpellCost[i] = NewSpellCost[Spell];
+                        spellFireRate[i] = NewFireRate[Spell];
+                    };
+
+                }
+                didChange = false;
             }
         }
-        if(isPrimary)
-        PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];
-        else
-        SecondFireRate = currentSpellList.SecondaryFireRate[currentWeapon];
+        if (currentSpellList != null)
+        {
+
+            if (isPrimary)
+                PrimeFireRate = currentSpellList.PrimaryFireRate[currentWeapon];
+            else
+                SecondFireRate = currentSpellList.SecondaryFireRate[currentWeapon];
+        }
     }
 
 }

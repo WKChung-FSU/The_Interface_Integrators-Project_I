@@ -4855,6 +4855,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3744692766403397622, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: canRoam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744692766403397622, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: spellsList.Array.data[0]
       value: 
       objectReference: {fileID: 2276658285452781468, guid: a496e94fe50bb634fa8d05948dd02282, type: 3}
