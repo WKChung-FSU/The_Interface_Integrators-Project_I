@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SFXVolControl : MonoBehaviour
 {
-    [SerializeField] string sfxvolParam = "SFXVol";
+    [SerializeField] string sfxvolParam = "MusicVol";
     [SerializeField] AudioMixer sfxmixer;
     [SerializeField] Slider sfxSlider;
     [SerializeField] float mult = 20f;

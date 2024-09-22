@@ -862,8 +862,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2202168243566072442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.79998, y: 0}
-  m_AnchorMax: {x: 0.79998, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3942,7 +3942,7 @@ RectTransform:
   m_Father: {fileID: 1233558550536773049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4451,7 +4451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SFX Volume:
+  m_text: 'Music Volume:
 
 '
   m_isRightToLeft: 0
@@ -4532,7 +4532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662043835262565615}
   m_Layer: 0
-  m_Name: music slider
+  m_Name: Master Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5444,7 +5444,7 @@ RectTransform:
   m_Father: {fileID: 7102478533473067979}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7338,7 +7338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903d8e6a1ee8a0c488b7e539e79cc378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volParam: MusicVol
+  volParam: MasterVol
   mixer: {fileID: 24100000, guid: f3ebc06ebf127424390102422adb3cb5, type: 2}
   musicSlider: {fileID: 3316525882691744590}
   mult: 20
@@ -7375,8 +7375,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8803651844281064360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.79998, y: 0}
-  m_AnchorMax: {x: 0.79998, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8732,7 +8732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7891f53a62a4c429e95902a363bafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxvolParam: SFXVol
+  sfxvolParam: MusicVol
   sfxmixer: {fileID: 24100000, guid: f3ebc06ebf127424390102422adb3cb5, type: 2}
   sfxSlider: {fileID: 4979576405598943652}
   mult: 20
@@ -10887,12 +10887,12 @@ GameObject:
   m_Component:
   - component: {fileID: 816548475431742704}
   m_Layer: 0
-  m_Name: SFX slider
+  m_Name: Music Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &816548475431742704
 Transform:
   m_ObjectHideFlags: 0
@@ -11498,7 +11498,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -61}
+  m_AnchoredPosition: {x: 0, y: -21.9}
   m_SizeDelta: {x: 250, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2806497788270146628
