@@ -3742,7 +3742,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1501819720371367160, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
       propertyPath: m_text
-      value: '"The earthen general. Although robust, he has a weakness to baser magics.
+      value: '"The earthen general. Although robust, he has a weakness to water magics.
         I must keep this in mind when working further..."
 
 '
@@ -6344,6 +6344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1364090225}
     m_Modifications:
+    - target: {fileID: 4781395388196052279, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
+      propertyPath: elementType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7045606035599892952, guid: 74d5c96d634c61840a35003686eb361c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.819773
@@ -15481,7 +15485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.5
+      value: 56.8
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15493,15 +15497,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.74479705
+      value: -0.734204
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.66729116
+      value: 0.6789289
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalRotation.z
@@ -15513,7 +15517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 276.283
+      value: 274.48
       objectReference: {fileID: 0}
     - target: {fileID: 8441483300417840540, guid: 6b59f2839021d52448c08462b506c338, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -16322,15 +16326,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 564010672294056680, guid: f8fb38ce0f3ccec49b17268d9ccc54ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8440628
+      value: -66.48
       objectReference: {fileID: 0}
     - target: {fileID: 564010672294056680, guid: f8fb38ce0f3ccec49b17268d9ccc54ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.238575
+      value: 9.21
       objectReference: {fileID: 0}
     - target: {fileID: 564010672294056680, guid: f8fb38ce0f3ccec49b17268d9ccc54ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1779137
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 564010672294056680, guid: f8fb38ce0f3ccec49b17268d9ccc54ed, type: 3}
       propertyPath: m_LocalRotation.w
