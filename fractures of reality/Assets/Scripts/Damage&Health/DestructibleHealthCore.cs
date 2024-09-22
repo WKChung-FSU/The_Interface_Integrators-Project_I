@@ -411,6 +411,7 @@ public class DestructibleHealthCore : MonoBehaviour, IDamage, ITeleport
                 Color transparentRed = new Color(1, 0, 0, 0.2f);
                 gameManager.instance.DamageFlashScreen(transparentRed);
                 Instantiate(particles.damageParticle, mObjectCollider.transform);
+                CameraShake.Shake(0.5f, 0.5f);
             }
             else
             {
