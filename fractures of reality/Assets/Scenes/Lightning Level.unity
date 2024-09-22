@@ -3810,7 +3810,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1668563098410967601, guid: f2d46d49a62530d4da865917a02b8b06, type: 3}
       propertyPath: waypoint
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1668563098410967601, guid: f2d46d49a62530d4da865917a02b8b06, type: 3}
       propertyPath: sceneIndex
