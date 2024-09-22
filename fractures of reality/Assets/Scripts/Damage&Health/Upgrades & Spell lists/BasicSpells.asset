@@ -21,12 +21,12 @@ MonoBehaviour:
   - {fileID: 7836639226435765880, guid: f6d8d1d6e1e0fb848867f4202d92e1a8, type: 3}
   SpellCostPrimary: 000000000000000000000000000000000000000000000000
   primaryFireRate:
-  - 0.82
-  - 0.96
-  - 0.78
-  - 0.84
-  - 0.93
-  - 1.09
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   secondarySpells:
   - {fileID: 2877259622126326705, guid: 53827eb7050e28b459c2f99250e81c94, type: 3}
   - {fileID: 1524407541534914017, guid: 541d5b218d28c134bbba65820a36476d, type: 3}

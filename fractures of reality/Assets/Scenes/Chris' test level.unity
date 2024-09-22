@@ -2026,6 +2026,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1ac3a6fc6e2524c85f08d590cad3bd, type: 3}
+--- !u!1 &597226580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 309362789038141989, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+  m_PrefabInstance: {fileID: 7994993492293305036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &597226587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597226580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb0fd25deeaea0498849fee6f341e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &610325171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2409,58 +2426,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: critMult
-      value: 2.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: FireMultiplier.iceMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: IceMultiplier.fireMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: IceMultiplier.normalMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: normalMultiplier.iceMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: EarthMultiplier.waterMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: FireMultiplier.normalMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: WaterMultiplier.earthMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: normalMultiplier.fireMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: EarthMultiplier.lightningMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: LightningMultiplier.earthMult
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: LightningMultiplier.waterMult
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1042216625821190312, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
-      propertyPath: WaterMultiplier.lightningMult
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1490940534321337345, guid: ac24ed1da2a5a3241a218813882ca122, type: 3}
       propertyPath: m_Name
       value: UI
@@ -4971,7 +4936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1373949387
 Transform:
   m_ObjectHideFlags: 0
@@ -7011,7 +6976,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 309362789038141989, guid: 6b59f2839021d52448c08462b506c338, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597226587}
   m_SourcePrefab: {fileID: 100100000, guid: 6b59f2839021d52448c08462b506c338, type: 3}
 --- !u!1001 &8611719775819181428
 PrefabInstance:
