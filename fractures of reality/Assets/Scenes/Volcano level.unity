@@ -13256,7 +13256,7 @@ PrefabInstance:
     - target: {fileID: 1501819720371367160, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
       propertyPath: m_text
       value: '"Once he had gone through his transformation, he had become much more
-        volatile. I''ll keep my water general in tow when dealing with this one"'
+        volatile. I''ll keep my arcane general in tow when dealing with this one"'
       objectReference: {fileID: 0}
     - target: {fileID: 4699311185035166181, guid: a88387afc683c1f47be3822980a3fbc3, type: 3}
       propertyPath: m_LocalPosition.x
