@@ -330,6 +330,10 @@ public class gameManager : MonoBehaviour
     }
     public void youLose()
     {
+        if (toolTipPanel.activeInHierarchy == true)
+        {
+            ClearToolTip();
+        }
         playerDead = true;
         statePause();
         Debug.Log("YOU LOSE MENU OPEN?");
