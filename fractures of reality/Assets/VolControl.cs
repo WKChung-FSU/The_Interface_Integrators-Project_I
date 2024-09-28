@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class VolControl : MonoBehaviour
     private bool disableMusicMute;
     private bool disableSFXMute;
 
+    private float prevVolume;
 
     private void Awake()
     {
@@ -30,11 +32,12 @@ public class VolControl : MonoBehaviour
 
         if (enable)
         {
-            musicSlider.value = musicSlider.maxValue;
+            musicSlider.value = prevVolume > musicSlider.minValue ? prevVolume : musicSlider.maxValue;
         }
 
         else
         {
+            prevVolume = musicSlider.value;
             musicSlider.value = musicSlider.minValue;
         }
     }

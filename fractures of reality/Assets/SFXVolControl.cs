@@ -13,6 +13,8 @@ public class SFXVolControl : MonoBehaviour
     [SerializeField] private Toggle sfxMute;
     private bool disablesfxMute;
 
+    private float prevVolume;
+
     private void Awake()
     {
         sfxSlider.onValueChanged.AddListener(ValueChangedMusic);
@@ -28,11 +30,12 @@ public class SFXVolControl : MonoBehaviour
 
         if (enable)
         {
-            sfxSlider.value = sfxSlider.maxValue;
+            sfxSlider.value = prevVolume > sfxSlider.minValue ? prevVolume : sfxSlider.maxValue;
         }
 
         else
         {
+            prevVolume = sfxSlider.value;
             sfxSlider.value = sfxSlider.minValue;
         }
     }
