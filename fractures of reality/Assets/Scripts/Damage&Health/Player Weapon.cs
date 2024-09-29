@@ -220,12 +220,20 @@ public class PlayerWeapon : MonoBehaviour, IDamage
     {
         SwitchingWeapon = true;
         //changed from IEnumerator to void -CM, changed it back to implement menu lock for fracturing-WC
-        if ((Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon < currentSpellList.PrimarySpells.Count - 1)
+        if ((Input.GetAxis("Mouse ScrollWheel") > 0) && currentWeapon <= currentSpellList.PrimarySpells.Count - 1)
         {
+            if (currentWeapon == currentSpellList.PrimarySpells.Count - 1)
+                currentWeapon = 0;
+            else
             currentWeapon++;
         }
-        else if ((Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon > 0)
+        else if ((Input.GetAxis("Mouse ScrollWheel") < 0) && currentWeapon >= 0)
         {
+            if (currentWeapon == 0)
+            {
+                currentWeapon = currentSpellList.PrimarySpells.Count - 1;
+            }
+            else
             currentWeapon--;
         }
         gameManager.instance.UpdateWeaponIconUI();
