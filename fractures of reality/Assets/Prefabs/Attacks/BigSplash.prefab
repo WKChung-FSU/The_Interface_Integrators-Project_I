@@ -153,7 +153,7 @@ MonoBehaviour:
   speed: 30
   rb: {fileID: 4037457198636128959}
   IsInfectious: 0
-  AoeObject: {fileID: 5602369512909197254, guid: 92e39186ab5beb247a8f196def88adbb, type: 3}
+  AoeObject: {fileID: 5602369512909197254, guid: 7633d27483ffcbc49aab85d910dfa2d0, type: 3}
   colliderRadius: 0
   TargetMask1:
     serializedVersion: 2

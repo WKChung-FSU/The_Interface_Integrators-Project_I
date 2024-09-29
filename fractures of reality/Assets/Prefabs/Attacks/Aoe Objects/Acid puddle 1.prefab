@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5778152054521970901}
   - component: {fileID: 6275821932581556083}
   m_Layer: 0
-  m_Name: Water puddle
+  m_Name: Acid puddle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackElement: 5
   movementType: 1
-  damageAmount: 0
+  damageAmount: 2
   CastFractureDamage: 0
   RemoveTime: 8
   destroyParticle: {fileID: 2944396702758532163, guid: 4c34dedfa5000b14ba6040c1f3691108, type: 3}
