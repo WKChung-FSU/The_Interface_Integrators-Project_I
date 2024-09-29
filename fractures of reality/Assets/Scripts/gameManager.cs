@@ -27,7 +27,8 @@ public class gameManager : MonoBehaviour
     int GoalCount;
     Vector3 startPosition;
     CheckpointSystem lastCheckPoint;
-
+    [SerializeField] int currentPlayerObjects = 0;
+    [SerializeField] int MaxPlayerSpawnedObjects = 5;
 
     [SerializeField] int enemiesAllowedToCrowdThePlayer = 3;
     private List<GameObject> enemiesInMeleeRangeOfPlayer = new List<GameObject>();
@@ -649,6 +650,17 @@ public class gameManager : MonoBehaviour
     public PowerCrystalManifest PCrystalManifest { 
         get { return crystalManifest; } 
     }
+    public int PlayerMaxObjects
+    {
+        get { return MaxPlayerSpawnedObjects; }
+        set { MaxPlayerSpawnedObjects = value; }
+    }
+    public int CurrentPlayerObjects
+    {
+        get { return currentPlayerObjects; }
+        set {  currentPlayerObjects = value; }
+    }
+
     #endregion
 
 

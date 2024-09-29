@@ -11,6 +11,7 @@ public class CheckpointSystem : MonoBehaviour
     [SerializeField] List<GameObject> WaypointParticles = new List<GameObject>();
     [SerializeField] WaypointType waypoint;
     [SerializeField] bool IsElementPoint;
+    [SerializeField] bool ClearKeys;
     [Header("----- type change Attributes -----")]
     [SerializeField] DamageEngine.ElementType NewElement;
     [SerializeField] int TypeChangeAnimationDelay;
@@ -38,7 +39,9 @@ public class CheckpointSystem : MonoBehaviour
             return;
         if (other.CompareTag("Player")  && (((waypoint==WaypointType.Checkpoint && gameManager.instance.Checkpoint() != this) || waypoint != WaypointType.Checkpoint)))
         {
-
+            if (ClearKeys) { 
+            gameManager.instance.PlayerController.PlayerKeys.Clear();
+            }
             switch (waypoint)
             {
                 case WaypointType.Checkpoint:

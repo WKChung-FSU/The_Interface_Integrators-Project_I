@@ -43,7 +43,8 @@ public class AttackCore : MonoBehaviour
     public List<Collider> targets = new List<Collider>();
     bool Attacking;
     bool IsTracking;
-
+    bool BelongsToPlayer;
+    GameObject spawnObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,9 +86,20 @@ public class AttackCore : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (movementType == DamageEngine.movementType.teleportation)
+
+        switch (movementType)
         {
-            gameManager.instance.playerScript.TeleportTo(transform.position + (Vector3.up * 2));
+            case DamageEngine.movementType.teleportation:
+                gameManager.instance.playerScript.TeleportTo(transform.position + (Vector3.up * 2));
+
+                break;
+            case DamageEngine.movementType.Environmental:
+
+                if (ElementType == DamageEngine.ElementType.Earth&& BelongsToPlayer)
+                    gameManager.instance.CurrentPlayerObjects -= 1;
+                break;
+            default:
+                break;
         }
 
 
@@ -176,8 +188,14 @@ public class AttackCore : MonoBehaviour
                     #region Debug
                     //Debug.Log(hit.collider.name);
                     #endregion
-
-                    Instantiate(AoeObject, hit.point, hit.transform.rotation);
+                    if (ElementType != DamageEngine.ElementType.Earth ||
+                        (ElementType == DamageEngine.ElementType.Earth &&
+                        (gameManager.instance.CurrentPlayerObjects) < gameManager.instance.PlayerMaxObjects))
+                        spawnObject = Instantiate(AoeObject, hit.point, hit.transform.rotation);
+                   if (spawnObject && ElementType == DamageEngine.ElementType.Earth)
+                    {
+                            gameManager.instance.CurrentPlayerObjects += 1;
+                    }
                 }
 
             }
@@ -263,11 +281,11 @@ public class AttackCore : MonoBehaviour
                         if (targetHealth.statusDictionary[RequiredElement] || RequiredElement == DamageEngine.ElementType.Normal)
                             Instantiate(AoeObject, target.transform.position, target.transform.rotation);
                     }
-
                 }
             }
         }
     }
+    #region Getters and setters
     public DamageEngine.ElementType ElementType
     {
         get
@@ -279,6 +297,15 @@ public class AttackCore : MonoBehaviour
     {
         return CastFractureDamage;
     }
+
+    public bool SpellAllegiance
+    {
+
+        get { return BelongsToPlayer; }
+        set { BelongsToPlayer = value; }
+    }
+    #endregion
+
     //currently player only
 
     IEnumerator LightningSpell()
