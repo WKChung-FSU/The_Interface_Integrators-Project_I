@@ -4866,6 +4866,10 @@ PrefabInstance:
       propertyPath: spellsList.Array.data[0]
       value: 
       objectReference: {fileID: 8214835987957181740, guid: 3314fa8649defd1408f4d104f99e97fb, type: 3}
+    - target: {fileID: 4171396310415516251, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
+      propertyPath: spellCastTimer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4597720660390183410, guid: 711a0f4153f9c52499fe2a9b7c6007b8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.404373

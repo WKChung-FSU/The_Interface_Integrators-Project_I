@@ -3623,7 +3623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 7403270909451607216}
   canCastSpell: 1
-  spellCastTimer: 20
+  spellCastTimer: 6
 --- !u!1 &4781242229725236917
 GameObject:
   m_ObjectHideFlags: 0
