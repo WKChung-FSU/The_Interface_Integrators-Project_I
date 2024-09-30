@@ -95,7 +95,10 @@ public class ButtonFunctions : MonoBehaviour
 
 public void LoadAsync(int sceneIndex)
     {
+
+
         //gameManager.instance.LoadingScreen.SetActive(true);
+        
         SceneManager.LoadScene(5);  //index 5 is the loading screen        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         Time.timeScale = 1f;

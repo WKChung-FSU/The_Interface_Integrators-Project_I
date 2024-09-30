@@ -2056,6 +2056,7 @@ GameObject:
   - component: {fileID: 127644948884556816}
   - component: {fileID: 1807921829743203971}
   - component: {fileID: 7028146292111490685}
+  - component: {fileID: 940526440361396358}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -2177,6 +2178,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &940526440361396358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487517857919702211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb6ba086e2b5f84385ae9768a4d5af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExitButton: {fileID: 1487517857919702211}
 --- !u!1 &1490940534321337345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,6 +3587,7 @@ GameObject:
   - component: {fileID: 5898287172500697119}
   - component: {fileID: 1325083527894324581}
   - component: {fileID: 3992408274606168471}
+  - component: {fileID: 2242742165247253608}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -3694,6 +3709,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2242742165247253608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453276075859971190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb6ba086e2b5f84385ae9768a4d5af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExitButton: {fileID: 2453276075859971190}
 --- !u!1 &2493059716511938469
 GameObject:
   m_ObjectHideFlags: 0
@@ -8370,6 +8398,8 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   playerWeapon: {fileID: 0}
+  currentPlayerObjects: 0
+  MaxPlayerSpawnedObjects: 5
   enemiesAllowedToCrowdThePlayer: 3
   crystalManifest: {fileID: 11400000, guid: 8ea92698243cdae408a3f70048859109, type: 2}
   CrystalText: {fileID: 5671628955106056539}
@@ -10980,6 +11010,7 @@ GameObject:
   - component: {fileID: 5619680732652141627}
   - component: {fileID: 6188124102943724783}
   - component: {fileID: 4668146247323884993}
+  - component: {fileID: 6684239707384790330}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -11101,6 +11132,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6684239707384790330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421253270543033052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb6ba086e2b5f84385ae9768a4d5af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExitButton: {fileID: 7421253270543033052}
 --- !u!1 &7529474327850146804
 GameObject:
   m_ObjectHideFlags: 0
