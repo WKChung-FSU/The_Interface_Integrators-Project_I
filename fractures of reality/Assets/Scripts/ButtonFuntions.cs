@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.LowLevel;
 using UnityEngine.UIElements;
 public class ButtonFunctions : MonoBehaviour
 {
 
     [SerializeField] KeyPocket playerKeysPocket;
+    [SerializeField] KeyPocket MasterKeyPocket;
     [SerializeField] PowerCrystalManifest powerCrystalManifest;
     [SerializeField] ScoreKeeper scoreKeeper;
     [SerializeField] SpellList CurrentSpells;
@@ -36,26 +38,52 @@ public class ButtonFunctions : MonoBehaviour
     {
         /// this does not wok and causes game breaking errors, should have been made in json-WC
         //TODO: Add the Crystal manifest to the saves
-        //SaveSystem.Save();
+       SaveSystem.Save();
     }
 
     public void Load()
     {
+        playerKeysPocket.ClearAllKeys();
+        powerCrystalManifest.ResetManifest();
         /// this does not wok and causes game breaking errors, should have been made in json-WC
-        //PlayerData data = SaveSystem.Load();
+        PlayerData data = SaveSystem.Load();
 
-        //if (data == null)
-        //{
-        //    Debug.LogError("No saves can be loaded.");
-        //    return;
-        //}
-        //powerCrystalManifest.DestroyList=data.GetCrystalManifest();
+        if (data == null)
+        {
+            Debug.LogError("No saves can be loaded.");
+            return;
+        }
+        powerCrystalManifest.DestroyList=data.GetCrystalManifest();
+         KeySystem newKey=new KeySystem();
+        foreach (DamageEngine.ElementType elementType in powerCrystalManifest.DestroyList)
+        {
+            switch (elementType)
+            {
+                case DamageEngine.ElementType.fire:
+                    newKey = MasterKeyPocket.AccessKeys[0];
+                    break;
+                    case DamageEngine.ElementType.Water:
+                    newKey = MasterKeyPocket.AccessKeys[1];
+                    break;
+                    case DamageEngine.ElementType.Earth:
+                    newKey = MasterKeyPocket.AccessKeys[3];
+                    break;
+                default:
+                    break;
+            }
+            if (!playerKeysPocket.AccessKeys.Contains(newKey))
+            {
+                playerKeysPocket.AccessKeys.Add(newKey);
+            }
+        }
+
+
         //playerKeysPocket.AccessKeys = data.GetPlayerKeys();
-        ////scoreKeeper=data.GetScoreKeeper();
+        //scoreKeeper=data.GetScoreKeeper();
 
-        //gameManager.instance.stopSpawning = true;
-        //SceneManager.LoadScene(data.GetSceneIndex());
-        //gameManager.instance.stateUnPaused();
+        gameManager.instance.stopSpawning = true;
+        SceneManager.LoadScene(data.GetSceneIndex());
+        gameManager.instance.stateUnPaused();
     }
     public void mainMenu(int sceneIndex)
     {

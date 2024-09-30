@@ -7,6 +7,7 @@ public class DamageEngine : MonoBehaviour
     public enum DamageEffect { Normal, critical, nullified, Weak, Heal }
 
     public static DamageEngine instance;
+    [System.Serializable]
     // will add more spell types if necessary
     public enum ElementType { Normal, fire, Lightning, Ice, Earth,Water, Wind_tempHeal  }
     public enum movementType { Spell, Environmental, melee, Spell_HitScan, AoeInitialization, teleportation }
