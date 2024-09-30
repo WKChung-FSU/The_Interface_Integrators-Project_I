@@ -3556,6 +3556,7 @@ GameObject:
   - component: {fileID: 8719448376396334592}
   - component: {fileID: 2734965454628482000}
   - component: {fileID: 2612364730484910936}
+  - component: {fileID: 8719448376396334593}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -6340,6 +6341,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455304763107103015}
   m_CullTransparentMesh: 1
+--- !u!114 &8719448376396334593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455304763107103015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb6ba086e2b5f84385ae9768a4d5af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExitButton: {fileID: 455304763107103015}
 --- !u!114 &8819851663909182221
 MonoBehaviour:
   m_ObjectHideFlags: 0
