@@ -19,14 +19,15 @@ public class ButtonFunctions : MonoBehaviour
     }
     public void restart()
     {
-      
-        gameManager.instance.stopSpawning=true;
+
+        gameManager.instance.stopSpawning = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameManager.instance.stateUnPaused();
         gameManager.instance.scoreKeeper.IncreaseDeathCount();
     }
 
-    public void respawn(){
+    public void respawn()
+    {
 
         gameManager.instance.Respawn(true);
         gameManager.instance.PlayerController.InitializeFractureBars();
@@ -38,23 +39,24 @@ public class ButtonFunctions : MonoBehaviour
     {
         /// this does not wok and causes game breaking errors, should have been made in json-WC
         //TODO: Add the Crystal manifest to the saves
-       SaveSystem.Save();
+        SaveSystem.Save();
     }
 
     public void Load()
     {
-        playerKeysPocket.ClearAllKeys();
-        powerCrystalManifest.ResetManifest();
-        /// this does not wok and causes game breaking errors, should have been made in json-WC
         PlayerData data = SaveSystem.Load();
 
         if (data == null)
         {
-            Debug.LogError("No saves can be loaded.");
+            Debug.Log("No saves can be loaded.");
             return;
         }
-        powerCrystalManifest.DestroyList=data.GetCrystalManifest();
-         KeySystem newKey=new KeySystem();
+
+        playerKeysPocket.ClearAllKeys();
+        powerCrystalManifest.ResetManifest();
+        /// this does not wok and causes game breaking errors, should have been made in json-WC
+        powerCrystalManifest.DestroyList = data.GetCrystalManifest();
+        KeySystem newKey = new KeySystem();
         foreach (DamageEngine.ElementType elementType in powerCrystalManifest.DestroyList)
         {
             switch (elementType)
@@ -62,10 +64,10 @@ public class ButtonFunctions : MonoBehaviour
                 case DamageEngine.ElementType.fire:
                     newKey = MasterKeyPocket.AccessKeys[0];
                     break;
-                    case DamageEngine.ElementType.Water:
+                case DamageEngine.ElementType.Water:
                     newKey = MasterKeyPocket.AccessKeys[1];
                     break;
-                    case DamageEngine.ElementType.Earth:
+                case DamageEngine.ElementType.Earth:
                     newKey = MasterKeyPocket.AccessKeys[3];
                     break;
                 default:
@@ -80,10 +82,15 @@ public class ButtonFunctions : MonoBehaviour
 
         //playerKeysPocket.AccessKeys = data.GetPlayerKeys();
         //scoreKeeper=data.GetScoreKeeper();
-
-        gameManager.instance.stopSpawning = true;
+        if (gameManager.instance != null)
+        {
+            gameManager.instance.stopSpawning = true;
+        }
         SceneManager.LoadScene(data.GetSceneIndex());
-        gameManager.instance.stateUnPaused();
+        if (gameManager.instance != null)
+        {
+            gameManager.instance.stateUnPaused();
+        }
     }
     public void mainMenu(int sceneIndex)
     {
@@ -104,7 +111,7 @@ public class ButtonFunctions : MonoBehaviour
         Application.Quit();
 #endif
     }
-   
+
     public void PlayGame(int sceneIndex)
     {
         LoadAsync(sceneIndex);
@@ -119,18 +126,18 @@ public class ButtonFunctions : MonoBehaviour
         //gameManager.instance.PlayerController.PlayerKeys.Clear();
 
     }
-    
 
-public void LoadAsync(int sceneIndex)
+
+    public void LoadAsync(int sceneIndex)
     {
 
 
         //gameManager.instance.LoadingScreen.SetActive(true);
-        
+
         SceneManager.LoadScene(5);  //index 5 is the loading screen        
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
         Time.timeScale = 1f;
         float progress = Mathf.Clamp01(operation.progress / 0.9f);
-       //gameManager.instance.slider.value = progress;
+        //gameManager.instance.slider.value = progress;
     }
 }
